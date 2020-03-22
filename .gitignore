@@ -33,3 +33,4 @@ npm-debug.log*
 #custom add
 /android
 /ios
+capacitor.json

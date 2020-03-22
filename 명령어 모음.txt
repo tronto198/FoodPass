@@ -1,0 +1,30 @@
+1. vs code에서 이 폴더를 열었을때 cmd창 열려면
+ctrl - shift - c
+
+atom 에서 열었을때는 알아서 지정해서 쓰기
+
+2. 나는 capacitor.config.json 에 "windowsAndroidStudioPath" 로 경로 지정해줘야 했음
+그런데 이건 내가 toolbox로 다운받아서 그런거 같고 경로도 다 다를테니까 gitignore에 등록해둘테니
+알아서 등록하기
+
+
+밑은 ionic 명령어들 : 프로젝트 폴더에 있는 상태에서
+문서 주소 : https://ionicframework.com/docs/cli/commands/build
+3. 브라우저에서 실행 - 라이브 리로드
+ionic serve
+
+4. 안드에서 첫실행 순서
+ionic build
+ionic capacitor add android
+ionic capacitor run android : 안드에서 실행
+ - 안드스튜디오를 열어준다. 환경 변수 설정해야 할 수도 있음
+ - 에러나면 에러 보고 필요한 환경변수 먼저 설정하기
+
+5. 이후 안드실행 아마
+ionic capacitor sync  - 이걸 해야 바뀐게 반영이 되는듯?
+ionic capacitor run android
+
+만약 ionic build에서 에러나면 참고
+https://forum.ionicframework.com/t/could-not-find-plugin-proposal-numeric-separator/185556/5
+맨 마지막에 있는 resolutions 하는걸로 난 해결했음
+packcage.json 건드는 걸로 해결한거라 에러 안날지도
