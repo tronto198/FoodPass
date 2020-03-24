@@ -1,0 +1,8 @@
+app.component.spec.ts  테스트 자동화 (초보자는 무시)
+app.routing.module.ts  라우팅 탭별 경로지정해주는거
+app.component.html     메뉴 구현하는 파일이라는데 잘 모르겠음
+app.component.ts       실제 로직 구현
+
+asset  아이콘, 그림 넣는 폴더
+
+theme  색깔
