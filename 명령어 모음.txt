@@ -7,6 +7,8 @@ atom 에서 열었을때는 알아서 지정해서 쓰기
 그런데 이건 내가 toolbox로 다운받아서 그런거 같고 경로도 다 다를테니까 gitignore에 등록해둘테니
 알아서 등록하기
 
+3. 맨처음 깃에서 다운받을때 npm install 로 node-modules 설치
+
 
 밑은 ionic 명령어들 : 프로젝트 폴더에 있는 상태에서
 문서 주소 : https://ionicframework.com/docs/cli/commands/build
