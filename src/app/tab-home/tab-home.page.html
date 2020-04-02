@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">{{location}} <ion-icon name="location-outline"></ion-icon></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h2>hello</h2>
+  <ion-list>
+    <ion-item *ngFor="let hero of heroes">
+      <app-cardview str="{{hero}}"></app-cardview>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" name="add">
+    <ion-fab-button (click)="fabclick()">
+      
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
