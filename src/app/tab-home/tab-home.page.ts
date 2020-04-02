@@ -28,7 +28,7 @@ export class TabHomePage implements OnInit {
     let text = "new " + this.testno;
     this.heroes.push(text);
     this.testno++;
-
+///////
     let texts = this.serverConnecter.updateInfo();
     this.heroes = this.heroes.concat(texts);
     
@@ -57,6 +57,7 @@ export class TabHomePage implements OnInit {
         }
       ]
     });
+    toast.present();
   }
   toastsync(message : string){
     const toast = this.toastController.create({
