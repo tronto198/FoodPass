@@ -11,7 +11,7 @@ import { ServerConnecterService } from '../../services/server-connecter/server-c
 export class TabHomePage implements OnInit {
   private location : string;
   private heroes : string[];
-
+  private test : string;
   testno : number;
   constructor(
     private toastController : ToastController,
@@ -22,9 +22,11 @@ export class TabHomePage implements OnInit {
     this.location = "위치를 선택하세요";
     this.heroes = ["hh","dd","gs"];
     this.testno = 1;
+    this.test = "test";
   }
 
   fabclick(){
+    this.test = "fab clicked";
     let text = "new " + this.testno;
     this.heroes.push(text);
     this.testno++;
@@ -56,6 +58,7 @@ export class TabHomePage implements OnInit {
           icon: 'star',
         }
       ]
+
     });
     toast.present();
   }
