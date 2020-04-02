@@ -5,10 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <h2>hello</h2>
+  <h2>{{test}}</h2>
+  <app-cardview str="HELLO"> </app-cardview>
   <ion-list>
     <ion-item *ngFor="let hero of heroes">
-      <app-cardview str="{{hero}}"></app-cardview>
+      <!-- <app-cardview str="{{hero}}"></app-cardview> -->
+      {{hero}}
     </ion-item>
   </ion-list>
 
