@@ -6,7 +6,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { TabHomePageRoutingModule } from './tab-home-routing.module';
 
+import { ToastController } from '@ionic/angular';
+
 import { TabHomePage } from './tab-home.page';
+import { CardviewComponent } from '../../component/cardview/cardview.component';
+import { ServerConnecterService } from '../../services/server-connecter/server-connecter.service';
+
 
 @NgModule({
   imports: [
@@ -15,6 +20,10 @@ import { TabHomePage } from './tab-home.page';
     IonicModule,
     TabHomePageRoutingModule
   ],
-  declarations: [TabHomePage]
+  declarations: [TabHomePage, CardviewComponent],
+  providers: [
+    ToastController,
+    ServerConnecterService
+  ]
 })
 export class TabHomePageModule {}
