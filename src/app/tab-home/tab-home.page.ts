@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToastController } from '@ionic/angular';
+
+import { ToastController, ModalController } from '@ionic/angular';
 import { ServerConnecterService } from '../../services/server-connecter/server-connecter.service';
+
+import { MapComponent } from '../../component/map/map.component';
+import { BasketPage } from './basket/basket.page';
+
 
 @Component({
   selector: 'app-tab-home',
   templateUrl: './tab-home.page.html',
-  styleUrls: ['./tab-home.page.scss'],
+  styleUrls: ['./tab-home.page.scss']
 })
 export class TabHomePage implements OnInit {
-  private location : string;
-  private heroes : string[];
-  private test : string;
+  location : string;
+  heroes : string[];
+  test : string;
   testno : number;
+
   constructor(
     private toastController : ToastController,
+    public modalController : ModalController,
     private serverConnecter : ServerConnecterService
   ) { }
 
@@ -25,14 +32,35 @@ export class TabHomePage implements OnInit {
     this.test = "test";
   }
 
-  fabclick(){
+  onToolbarClicked(){
+    
+    this.callMapPage().then(()=>{
+        this.toast('sc');
+      }
+    )
+    .catch(()=>{
+      this.toast('error');
+    })
+  }
+
+  async callMapPage(){
+    const mapModal = await this.modalController.create({
+      component: MapComponent
+    });
+
+    
+  }
+
+
+
+  onFabClicked(){
     this.test = "fab clicked";
-    let text = "new " + this.testno;
-    this.heroes.push(text);
-    this.testno++;
-///////
-    let texts = this.serverConnecter.updateInfo();
-    this.heroes = this.heroes.concat(texts);
+//     let text = "new " + this.testno;
+//     this.heroes.push(text);
+//     this.testno++;
+// ///////
+//     let texts = this.serverConnecter.updateInfo();
+//     this.heroes = this.heroes.concat(texts);
     
     // this.toast(text).then(() =>{
     //   console.log('test');
@@ -42,8 +70,18 @@ export class TabHomePage implements OnInit {
     //   console.log('error: ' + e);
     // });
     
-    this.toast(text);
+    // this.toast(text);
 
+    this.modalController.create({
+      component: BasketPage,
+      cssClass: "modal-fullscreen"
+    }
+    ).then(s =>{
+      s.present();
+    });
+
+    
+    
   }
 
   async toast(message : string){

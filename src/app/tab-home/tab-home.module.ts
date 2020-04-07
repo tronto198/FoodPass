@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 
 import { TabHomePageRoutingModule } from './tab-home-routing.module';
 
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
 
 import { TabHomePage } from './tab-home.page';
+import { MapComponent } from '../../component/map/map.component';
 import { CardviewComponent } from '../../component/cardview/cardview.component';
-import { ServerConnecterService } from '../../services/server-connecter/server-connecter.service';
+import { BasketPage } from './basket/basket.page';
+//import { ServerConnecterService } from '../../services/server-connecter/server-connecter.service';
 
 
 @NgModule({
@@ -20,10 +22,16 @@ import { ServerConnecterService } from '../../services/server-connecter/server-c
     IonicModule,
     TabHomePageRoutingModule
   ],
-  declarations: [TabHomePage, CardviewComponent],
+  declarations: [
+    TabHomePage,
+    CardviewComponent,
+    MapComponent,
+    BasketPage
+  ],
   providers: [
     ToastController,
-    ServerConnecterService
+    ModalController,
+    NavController
   ]
 })
 export class TabHomePageModule {}
