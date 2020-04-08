@@ -9,10 +9,10 @@ import { TabHomePageRoutingModule } from './tab-home-routing.module';
 import { ToastController, ModalController } from '@ionic/angular';
 
 import { TabHomePage } from './tab-home.page';
-import { MapComponent } from '../../component/map/map.component';
-import { CardviewComponent } from '../../component/cardview/cardview.component';
+import { MapComponent } from '../../../component/map/map.component';
+import { CardviewComponent } from '../../../component/cardview/cardview.component';
 import { BasketPage } from './basket/basket.page';
-//import { ServerConnecterService } from '../../services/server-connecter/server-connecter.service';
+import { from } from 'rxjs';
 
 
 @NgModule({
@@ -35,3 +35,4 @@ import { BasketPage } from './basket/basket.page';
   ]
 })
 export class TabHomePageModule {}
+//todo: splashScreen

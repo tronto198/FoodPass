@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center" color="dark" (click)="routingbt()">
+    위치를 입력하세요
+    <ion-icon name="location-outline"></ion-icon>
+  </ion-toolbar>
+  <!-- routerLink="basket"  -->
+</ion-header>
+<ion-button (click)="routingbt()">Go to detail</ion-button>
+<!-- 1
+<router-outlet></router-outlet>
+test -->
+
+<ion-content>
+  <span *ngIf="!basket">
+    <h2>{{test}}</h2>
+    <!-- <app-cardview str="HELLO"> </app-cardview> -->
+    <ion-list>
+      <ion-item *ngFor="let hero of heroes">
+        <app-cardview str="{{hero}}"></app-cardview>
+        {{hero}}
+      </ion-item>
+    </ion-list>
+
+  </span>
+
+  <ion-fab vertical="bottom" horizontal="end" name="add" slot="fixed">
+    <ion-fab-button (click)="onFabClicked()">
+      
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 
 import { BasketPageRoutingModule } from './basket-routing.module';
 
@@ -15,6 +15,7 @@ import { BasketPage } from './basket.page';
     IonicModule,
     BasketPageRoutingModule
   ],
-  declarations: [BasketPage]
+  declarations: [BasketPage],
+  providers: [ModalController]
 })
 export class BasketPageModule {}
