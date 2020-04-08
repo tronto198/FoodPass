@@ -5,7 +5,9 @@ import { ToastController, ModalController } from '@ionic/angular';
 import { ServerConnecterService } from '../../services/server-connecter/server-connecter.service';
 
 import { MapComponent } from '../../../component/map/map.component';
-import { BasketPage } from './basket/basket.page';
+import { BasketPage } from '../../modal-pages/basket/basket.page';
+import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
+import { TabHomeControl } from 'src/app/services/tab-home-controller/tab-home-control';
 
 
 @Component({
@@ -15,23 +17,34 @@ import { BasketPage } from './basket/basket.page';
 })
 export class TabHomePage implements OnInit {
   location : string;
-  heroes : string[];
-  test : string;
-  testno : number;
   basket : boolean;
 
   constructor(
     private toastController : ToastController,
     public modalController : ModalController,
-    private serverConnecter : ServerConnecterService
+    private serverConnecter : ServerConnecterService,
+    public pageController : TabHomeControllerService
   ) { }
 
   ngOnInit() {
     this.location = "위치를 선택하세요";
-    this.heroes = ["hh","dd","gs"];
-    this.testno = 1;
-    this.test = "test";
     this.basket = false;
+  }
+
+  get control() {
+    return this.pageController.pageControl;
+  }
+  get mapPage() {
+    return TabHomeControl.Map;
+  }
+  get foodtrcukListPage(){
+    return TabHomeControl.FoodTruckList;
+  }
+  get foodtruckInfoPage(){
+    return TabHomeControl.FoodTruckInfo;
+  }
+  get menuInfoPage(){
+    return TabHomeControl.MenuInfo;
   }
 
   routingbt(){
@@ -59,7 +72,6 @@ export class TabHomePage implements OnInit {
 
 
   onFabClicked(){
-    this.test = "fab clicked";
 //     let text = "new " + this.testno;
 //     this.heroes.push(text);
 //     this.testno++;
@@ -126,4 +138,8 @@ export class TabHomePage implements OnInit {
   //todo: fab : 장바구니 가기
   //todo: 상단바 : 지도 가기
   //todo: 서비스 연결
+
+  //todo: 여기에 남는거
+  //1. fab버튼 -> modal 장바구니 페이지
+  //2. 페이지 전환
 }

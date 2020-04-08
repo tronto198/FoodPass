@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TabHomePage } from './tab-home.page';
-import { BasketPage } from './basket/basket.page';
-import { HomePage } from './home/home.page';
+import { BasketPage } from '../../modal-pages/basket/basket.page';
 
 const routes: Routes = [
   {
@@ -14,22 +13,22 @@ const routes: Routes = [
         path: 'basket',
         component: BasketPage
         // loadChildren: () => import('./basket/basket.module').then( m => m.BasketPageModule)
-      },
-      {
-        path: 'home',
-        // component: HomePage
-        loadChildren: () => import('./home/home.module').then( m=> m.HomePageModule)
       }
-        // component: HomePage,
-        // loadChildren: () => import('./home/home.module').then( m=> m.HomePageModule)
-      // ,
-      // {
-      //   path: '',
-      //   redirectTo: 'home',
-      //   pathMatch: 'full'
-      // }
     ]
   }
+  // {
+  //   path: 'foodtruck-list/:id',
+  //   loadChildren: () => import('./foodtruck-list/foodtruck-list.module').then( m => m.FoodtruckListPageModule)
+  // },
+  // {
+  //   path: 'foodtruck-info/:id',
+  //   loadChildren: () => import('./foodtruck-info/foodtruck-info.module').then( m => m.FoodtruckInfoPageModule)
+  // },
+  // {
+  //   path: 'menu-info/:id',
+  //   loadChildren: () => import('./menu-info/menu-info.module').then( m => m.MenuInfoPageModule)
+  // }
+
   // {
   //   path: 'basket',
   //   component: BasketPage

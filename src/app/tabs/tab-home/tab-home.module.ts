@@ -10,10 +10,11 @@ import { ToastController, ModalController } from '@ionic/angular';
 
 import { TabHomePage } from './tab-home.page';
 import { MapComponent } from '../../../component/map/map.component';
-import { CardviewComponent } from '../../../component/cardview/cardview.component';
-import { BasketPage } from './basket/basket.page';
+import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { from } from 'rxjs';
-
+import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
+import { FoodtruckListPage } from './foodtruck-list/foodtruck-list.page';
+import { CardviewComponent } from '../../../component/cardview/cardview.component';
 
 @NgModule({
   imports: [
@@ -26,9 +27,11 @@ import { from } from 'rxjs';
     TabHomePage,
     CardviewComponent,
     MapComponent,
-    BasketPage
+    BasketPage,
+    FoodtruckListPage
   ],
   providers: [
+    TabHomeControllerService,
     ToastController,
     ModalController,
     NavController

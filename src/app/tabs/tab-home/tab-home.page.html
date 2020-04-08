@@ -11,17 +11,13 @@
 test -->
 
 <ion-content>
-  <span *ngIf="!basket">
-    <h2>{{test}}</h2>
-    <!-- <app-cardview str="HELLO"> </app-cardview> -->
-    <ion-list>
-      <ion-item *ngFor="let hero of heroes">
-        <app-cardview str="{{hero}}"></app-cardview>
-        {{hero}}
-      </ion-item>
-    </ion-list>
-
-  </span>
+  <home-foodtruck-list></home-foodtruck-list>
+  <!-- <span [ngSwitch]="control">
+    <span *ngSwitchCase="foodtruckListPage">
+    </span>
+    <span *ngSwitchCase="foodtruckInfoPage"></span>
+    <span *ngSwitchCase="menuInfoPage"></span>
+  </span> -->
 
   <ion-fab vertical="bottom" horizontal="end" name="add" slot="fixed">
     <ion-fab-button (click)="onFabClicked()">
