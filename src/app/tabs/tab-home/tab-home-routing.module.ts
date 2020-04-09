@@ -3,8 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TabHomePage } from './tab-home.page';
 import { BasketPage } from '../../modal-pages/basket/basket.page';
+import { MapPage } from '../../modal-pages/map/map.page';
 import { FoodtruckInfoPage } from './foodtruck-info/foodtruck-info.page';
-import { MapComponent } from 'src/component/map/map.component';
+
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'map',
-        component: MapComponent
+        component: MapPage
       },
       {
         path: 'foodtruck-info/:id',

@@ -3,10 +3,10 @@ import { NavParams, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+  templateUrl: './map.page.html',
+  styleUrls: ['./map.page.scss'],
 })
-export class MapComponent implements OnInit {
+export class MapPage implements OnInit {
 
   constructor(
 

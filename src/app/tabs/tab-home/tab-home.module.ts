@@ -9,13 +9,13 @@ import { TabHomePageRoutingModule } from './tab-home-routing.module';
 import { ToastController, ModalController } from '@ionic/angular';
 
 import { TabHomePage } from './tab-home.page';
-import { MapComponent } from '../../../component/map/map.component';
 import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { from } from 'rxjs';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { FoodtruckListPage } from './foodtruck-list/foodtruck-list.page';
-import { CardviewComponent } from '../../../component/cardview/cardview.component';
 import { FoodtruckInfoPage } from './foodtruck-info/foodtruck-info.page';
+import { CardviewComponent } from 'src/app/component/cardview/cardview.component';
+import { MapPage } from 'src/app/modal-pages/map/map.page';
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import { FoodtruckInfoPage } from './foodtruck-info/foodtruck-info.page';
   declarations: [
     TabHomePage,
     CardviewComponent,
-    MapComponent,
+    MapPage,
     BasketPage,
     FoodtruckListPage,
     FoodtruckInfoPage
