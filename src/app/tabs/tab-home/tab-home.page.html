@@ -1,17 +1,19 @@
 <ion-header>
-  <ion-toolbar class="ion-text-center" color="dark" (click)="routingbt()">
+  <ion-toolbar class="ion-text-center" color="dark" (click)="onToolbarClicked()">
     위치를 입력하세요
     <ion-icon name="location-outline"></ion-icon>
   </ion-toolbar>
-  <!-- routerLink="basket"  -->
 </ion-header>
-<ion-button (click)="routingbt()">Go to detail</ion-button>
-<!-- 1
-<router-outlet></router-outlet>
-test -->
-
+<!-- <ion-button >Go to detail</ion-button> -->
+<!-- footruck-info/11 -->
 <ion-content>
-  <home-foodtruck-list></home-foodtruck-list>
+  
+  <span *ngIf="isSearching; else routing">
+    <ion-router-outlet></ion-router-outlet>
+  </span>
+  <ng-template #routing>
+    <home-foodtruck-list></home-foodtruck-list>
+  </ng-template>
   <!-- <span [ngSwitch]="control">
     <span *ngSwitchCase="foodtruckListPage">
     </span>

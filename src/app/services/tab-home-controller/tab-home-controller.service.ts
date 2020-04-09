@@ -7,9 +7,11 @@ export class TabHomeControllerService {
   find: boolean;
   pageControl: TabHomeControl;
   foodtruckData: FoodtruckData;
+  test: string;
 
   constructor() {
     this.pageControl = TabHomeControl.FoodTruckList;
+    this.find = false;
   }
 }
 

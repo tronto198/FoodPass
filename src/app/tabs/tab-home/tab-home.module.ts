@@ -15,6 +15,7 @@ import { from } from 'rxjs';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { FoodtruckListPage } from './foodtruck-list/foodtruck-list.page';
 import { CardviewComponent } from '../../../component/cardview/cardview.component';
+import { FoodtruckInfoPage } from './foodtruck-info/foodtruck-info.page';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { CardviewComponent } from '../../../component/cardview/cardview.componen
     CardviewComponent,
     MapComponent,
     BasketPage,
-    FoodtruckListPage
+    FoodtruckListPage,
+    FoodtruckInfoPage
   ],
   providers: [
     TabHomeControllerService,

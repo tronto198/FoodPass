@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavParams } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-map',
@@ -8,8 +8,15 @@ import { NavParams } from '@ionic/angular';
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+
+    private modalCtrl : ModalController
+  ) { }
 
   ngOnInit() {}
+
+  dismiss(){
+    this.modalCtrl.dismiss();
+  }
 
 }

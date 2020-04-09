@@ -8,6 +8,7 @@ import { MapComponent } from '../../../component/map/map.component';
 import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { TabHomeControl } from 'src/app/services/tab-home-controller/tab-home-control';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -23,12 +24,17 @@ export class TabHomePage implements OnInit {
     private toastController : ToastController,
     public modalController : ModalController,
     private serverConnecter : ServerConnecterService,
-    public pageController : TabHomeControllerService
+    public pageController : TabHomeControllerService,
+    private route : ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.location = "위치를 선택하세요";
     this.basket = false;
+  }
+
+  get isSearching(){
+    return this.pageController.find;
   }
 
   get control() {
@@ -48,37 +54,22 @@ export class TabHomePage implements OnInit {
   }
 
   routingbt(){
-    this.basket = !this.basket;
+    // this.basket = !this.basket;
+    // this.router.navigateByUrl('/tabs/tab-home/foodtruckInfo/11');
+    
   }
 
   onToolbarClicked(){
-    this.callMapPage().then(()=>{
-        this.toast('sc');
-      }
-    )
-    .catch(()=>{
-      this.toast('error');
-    })
-  }
-
-  async callMapPage(){
-    const mapModal = await this.modalController.create({
-      component: BasketPage
+    this.modalController.create({
+      component: MapComponent,
+      cssClass: "modal-fullscreen"
+    }
+    ).then(s =>{
+      s.present();
     });
-
-    
   }
-
-
 
   onFabClicked(){
-//     let text = "new " + this.testno;
-//     this.heroes.push(text);
-//     this.testno++;
-// ///////
-//     let texts = this.serverConnecter.updateInfo();
-//     this.heroes = this.heroes.concat(texts);
-    
     // this.toast(text).then(() =>{
     //   console.log('test');
     //   //t는 toast의 객체인듯
@@ -97,8 +88,6 @@ export class TabHomePage implements OnInit {
       s.present();
     });
 
-    
-    
   }
 
   async toast(message : string){
