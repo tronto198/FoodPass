@@ -7,12 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardviewComponent implements OnInit {
   @Input() str:string;
+  @Input() locate:string;
   @Input() foodtruckList : string;
   @Input() wating: string;
+  @Input() inform:string;
   constructor() { }
 
   ngOnInit() {
-    //this.str;
+    
     
   }
 
