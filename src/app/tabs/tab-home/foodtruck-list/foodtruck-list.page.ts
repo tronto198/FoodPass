@@ -19,7 +19,6 @@ export class FoodtruckListPage implements OnInit {
   }
 
   test(ft : string){
-    this.pageController.find = true;
     this.pageController.test = ft;
   }
 }

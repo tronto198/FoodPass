@@ -17,12 +17,10 @@ export class FoodtruckInfoPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.pageCtrl.find = true;
     this.routedata = this.route.snapshot.paramMap.get("id");
   }
 
   test(){
-    this.pageCtrl.find = false;
   }
 
   get data(){
