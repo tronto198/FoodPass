@@ -1,42 +1,34 @@
 <ion-card>
   <ion-item>
-    <ion-avatar slot="start">
-      <img src="../assets/icon/user-icon.png">
-    </ion-avatar>
-    <ion-label>
-      <h3>{{str}}</h3>
-      <p>Dec 10, 2019</p>
-    </ion-label>
+    <h4 name=location, slot="start"> A{{location}}</h4>
+   
   </ion-item>
-
   <img src="../assets/icon/foodtruck.png" alt="ion">
   <ion-card-header>
-    <ion-card-title>Hotel Panama Garden</ion-card-title>
+    
+    <ion-card-title>닭발 트럭{{foodtruckList}}, {{str}}</ion-card-title>
+    <ion-card-subtitle>
+       {{inform}}
+      치즈 닭발, 매운닭발(1~3 단계), 무뼈닭발/뼈닭발 있습니다.
+    </ion-card-subtitle>
+      <button>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half"></ion-icon>
+        4.5점
+       
+      </button>
+      <ion-label>대기 {{wating}}5명</ion-label>
   </ion-card-header>
-  <ion-card-content>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis mollis ligula sed ultrices.
-  </ion-card-content>
+
 
   <ion-footer>
-    <ion-row>
-      <ion-col center text-center>
-        <button>
-          <ion-icon name="thumbs-up"></ion-icon>
-          <div>1.5k Likes</div>
-        </button>
-      </ion-col>
-      <ion-col center text-center>
-        <button>
-          <ion-icon name="text"></ion-icon>
-          <div>4 Comments</div>
-        </button>
-      </ion-col>
-      <ion-col center text-center>
-        <button>
-          <ion-icon name="time"></ion-icon>
-          <div>11h ago</div>
-        </button>
-      </ion-col>
-    </ion-row>
+   
+    <ion-label> 공지사항 없음</ion-label>
+      
+
   </ion-footer>
+
 </ion-card>

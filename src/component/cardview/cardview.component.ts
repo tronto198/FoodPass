@@ -6,11 +6,14 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./cardview.component.scss'],
 })
 export class CardviewComponent implements OnInit {
-  @Input() str : string; // HELLO
+  @Input() str:string;
+  @Input() foodtruckList : string;
+  @Input() wating: string;
   constructor() { }
 
   ngOnInit() {
-    this.str = "cardview " + this.str;
+    //this.str;
+    
   }
 
 }
