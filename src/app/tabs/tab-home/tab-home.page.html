@@ -8,12 +8,8 @@
 <!-- footruck-info/11 -->
 <ion-content>
   
-  <span *ngIf="isSearching; else routing">
-    <ion-router-outlet></ion-router-outlet>
-  </span>
-  <ng-template #routing>
-    <home-foodtruck-list></home-foodtruck-list>
-  </ng-template>
+  <ion-router-outlet></ion-router-outlet>
+  <home-foodtruck-list></home-foodtruck-list>
   <!-- <span [ngSwitch]="control">
     <span *ngSwitchCase="foodtruckListPage">
     </span>
@@ -23,7 +19,7 @@
 
   <ion-fab vertical="bottom" horizontal="end" name="add" slot="fixed">
     <ion-fab-button (click)="onFabClicked()">
-      
+      <ion-icon name="basket-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

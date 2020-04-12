@@ -5,32 +5,32 @@ import { TabHomePage } from './tab-home.page';
 import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { MapPage } from '../../modal-pages/map/map.page';
 import { FoodtruckInfoPage } from './foodtruck-info/foodtruck-info.page';
-import { MenuInfoPage } from './menu-info/menu-info.page';
 
 
 const routes: Routes = [
   {
     path: '',
     component: TabHomePage,
-  },
-  {
-    //이거 있어야 modal 가능
-    path: 'basket',
-    component: BasketPage
-  },
-  {
-    path: 'map',
-    component: MapPage
-  },
-  {
-    path: 'foodtruck-info/:id',
-    component: FoodtruckInfoPage
-    // loadChildren: () => import('./foodtruck-info/foodtruck-info.module').then( m => m.FoodtruckInfoPageModule)
-  },
-  {
-    path: 'menu-info/:id',
-    // component: MenuInfoPage
-    loadChildren: () => import('./menu-info/menu-info.module').then( m => m.MenuInfoPageModule)
+    children: [
+      {
+        //이거 있어야 modal 가능
+        path: 'basket',
+        component: BasketPage
+      },
+      {
+        path: 'map',
+        component: MapPage
+      },
+      {
+        path: 'foodtruck-info/:id',
+        component: FoodtruckInfoPage
+        // loadChildren: () => import('./foodtruck-info/foodtruck-info.module').then( m => m.FoodtruckInfoPageModule)
+      },
+      {
+        path: 'menu-info/:id',
+        loadChildren: () => import('./menu-info/menu-info.module').then( m => m.MenuInfoPageModule)
+      }
+    ]
   }
   
 
