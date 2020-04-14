@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TabHomePage } from './tab-home.page';
-import { BasketPage } from '../../modal-pages/basket/basket.page';
+import { BasketPage } from './basket/basket.page';
 import { MapPage } from '../../modal-pages/map/map.page';
 import { FoodtruckInfoPage } from './foodtruck-info/foodtruck-info.page';
 

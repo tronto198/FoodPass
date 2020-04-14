@@ -12,4 +12,9 @@
 <ion-content>
   
 basket
+
+  <ion-list *ngFor="let order of basket">
+    <ion-item>{{order.name}}</ion-item>
+  </ion-list>
+
 </ion-content>

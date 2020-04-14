@@ -21,7 +21,6 @@ export class TabHomePage implements OnInit {
   constructor(
     private toastController : ToastController,
     public modalController : ModalController,
-    private serverConnecter : ServerConnecterService,
     public pageController : TabHomeControllerService
   ) { }
 
@@ -56,6 +55,8 @@ export class TabHomePage implements OnInit {
     // });
     
     // this.toast(text);
+
+    this.pageController.push();
 
     this.modalController.create({
       component: BasketPage,

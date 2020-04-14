@@ -1,13 +1,15 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/tab-home" (click)="test()"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/tab-home"></ion-back-button>
     </ion-buttons>
     <ion-title>foodtruck-info</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-{{data}}
 routing : {{routedata}}
+<ion-list *ngFor="let menu of menuList">
+  <ion-item routerLink="../../menu-info/{{menu.id}}">{{menu.id}}: {{menu.name}}</ion-item>
+</ion-list>
 </ion-content>

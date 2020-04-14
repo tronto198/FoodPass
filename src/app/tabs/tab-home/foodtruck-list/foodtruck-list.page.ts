@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { FoodtruckData } from 'src/app/data/foodtruck';
+import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
 
 @Component({
   selector: 'home-foodtruck-list',
@@ -8,17 +9,15 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
   styleUrls: ['./foodtruck-list.page.scss'],
 })
 export class FoodtruckListPage implements OnInit {
-  foodtruckList: string[];
+  foodtruckList: FoodtruckData[];
 
   constructor(
-    private pageController : TabHomeControllerService
+    private pageController : TabHomeControllerService,
+    private serverConnecter : ServerConnecterService
   ) { }
 
   ngOnInit() {
-    this.foodtruckList = ["hh","dd","gs"];
+    this.foodtruckList = this.serverConnecter.getFoodtruckData();
   }
 
-  test(ft : string){
-    this.pageController.test = ft;
-  }
 }
