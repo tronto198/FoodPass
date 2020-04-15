@@ -14,7 +14,7 @@ export class FoodtruckListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.foodtruckList = ["hh","dd","gs"];
+    this.foodtruckList = ["hh1","hh2","hh3","hh4","hh1","hh2","hh3","hh4"];
   }
 
   test(ft : string){
