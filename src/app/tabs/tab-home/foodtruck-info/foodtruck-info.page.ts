@@ -23,9 +23,12 @@ export class FoodtruckInfoPage implements OnInit {
 
   test(){
     this.pageCtrl.find = false;
+    
   }
 
   get data(){
     return this.pageCtrl.test;
   }
 }
+
+
