@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { cordovaPropertyGet } from '@ionic-native/core';
 
-import { Plugins } from '@capacitor/core';
-const { Geolocation } = Plugins;
+// import { Plugins } from '@capacitor/core';
+// const { Geolocation } = Plugins;
 
 // Kakao Map API
 declare var kakao;
@@ -23,7 +25,8 @@ export class MapPage implements OnInit {
   message: any;
 
   constructor(
-    private modalCtrl : ModalController
+    private modalCtrl : ModalController,
+    private geo : Geolocation
   ) { 
     // 초기 값 (대전 시청)
     this.lat = 36.350456;
@@ -33,27 +36,27 @@ export class MapPage implements OnInit {
   
   ngOnInit() {
 
-    this.watchPosition();
-    this.position = new kakao.maps.LatLng(this.lat, this.lon);
+    // this.watchPosition();
+    // this.position = new kakao.maps.LatLng(this.lat, this.lon);
 
-    setTimeout(() => {
-      const mapOptions = {
-        center: this.position,
-        level: 3
-      };
+    // setTimeout(() => {
+    //   const mapOptions = {
+    //     center: this.position,
+    //     level: 3
+    //   };
           
-      this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
-      this.message = '<div style="padding:5px;">현재 위치</div>';
-      this.displayMarker(this.position, this.message);
+    //   this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
+    //   this.message = '<div style="padding:5px;">현재 위치</div>';
+    //   this.displayMarker(this.position, this.message);
     
-    }, 300);
+    // }, 300);
   }
   //Component 상태변화에 반응하여 호출
-  ngDoCheck(){
-    this.watchPosition();
-    this.position = new kakao.maps.LatLng(this.lat, this.lon);
-    this.displayMarker(this.position, this.message);
-  }
+  // ngDoCheck(){
+  //   this.watchPosition();
+  //   this.position = new kakao.maps.LatLng(this.lat, this.lon);
+  //   this.displayMarker(this.position, this.message);
+  // }
 
   displayMarker(locPosition, message) {
     // 마커 생성
@@ -75,14 +78,31 @@ export class MapPage implements OnInit {
   }
 
   async getCurrentPosition() {
-    const coordinates = await Geolocation.getCurrentPosition();
-    this.lat = coordinates.coords.latitude.toFixed(6);
-    this.lon = coordinates.coords.longitude.toFixed(6);
+    var geoOptions = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+    const mapOptions = {
+      center: this.position,
+      level: 3
+    };
+
+    const coordinates = await this.geo.getCurrentPosition(geoOptions);
+    this.lat = coordinates.coords.latitude;
+    this.lon = coordinates.coords.longitude;
+    
+    this.position = new kakao.maps.LatLng(this.lat, this.lon);
+    this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
+    this.message = '<div style="padding:5px;">현재 위치</div>';
+    this.displayMarker(this.position, this.message);
+    // this.lat = coordinates.coords.latitude.toFixed(6);
+    // this.lon = coordinates.coords.longitude.toFixed(6);
   }
 
   watchPosition() {
-    const wait = Geolocation.watchPosition({}, (position, err) => {
-    })
+    // const wait = this.geo.watchPosition({}, (position, err) => {
+    // })
   }
 
   get getLatitude(){
