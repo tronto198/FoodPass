@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-foodtruck-info',
   templateUrl: './foodtruck-info.page.html',
-  //templateUrl: '../../../../component/menu-list/menu-list.component.html',
+
   styleUrls: ['./foodtruck-info.page.scss'],
 })
 export class FoodtruckInfoPage implements OnInit {
