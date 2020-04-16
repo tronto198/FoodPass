@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NavParams, ModalController } from '@ionic/angular';
-
-import { Plugins } from '@capacitor/core';
-const { Geolocation } = Plugins;
+import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 // Kakao Map API
 declare var kakao;
@@ -23,18 +21,34 @@ export class MapPage implements OnInit {
   message: any;
 
   constructor(
+    private geolocation: Geolocation,
     private modalCtrl : ModalController
   ) { 
     // 초기 값 (대전 시청)
     this.lat = 36.350456;
     this.lon = 127.384818;
-    this.getCurrentPosition();
+
+    this.position = new kakao.maps.LatLng(this.lat, this.lon);
   }
   
   ngOnInit() {
 
-    this.watchPosition();
-    this.position = new kakao.maps.LatLng(this.lat, this.lon);
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.lat = resp.coords.latitude;
+      this.lon = resp.coords.longitude;
+
+      this.position = new kakao.maps.LatLng(this.lat, this.lon);
+
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+
+     let watch = this.geolocation.watchPosition();
+     watch.subscribe((data) => {
+      // data can be a set of coordinates, or an error (if an error occurred).
+      this.lat =  data.coords.latitude
+      this.lon = data.coords.longitude
+     });
 
     setTimeout(() => {
       const mapOptions = {
@@ -47,12 +61,6 @@ export class MapPage implements OnInit {
       this.displayMarker(this.position, this.message);
     
     }, 300);
-  }
-  //Component 상태변화에 반응하여 호출
-  ngDoCheck(){
-    this.watchPosition();
-    this.position = new kakao.maps.LatLng(this.lat, this.lon);
-    this.displayMarker(this.position, this.message);
   }
 
   displayMarker(locPosition, message) {
@@ -72,17 +80,6 @@ export class MapPage implements OnInit {
     
     infowindow.open(this.map, marker);
     this.map.setCenter(locPosition);     
-  }
-
-  async getCurrentPosition() {
-    const coordinates = await Geolocation.getCurrentPosition();
-    this.lat = coordinates.coords.latitude.toFixed(6);
-    this.lon = coordinates.coords.longitude.toFixed(6);
-  }
-
-  watchPosition() {
-    const wait = Geolocation.watchPosition({}, (position, err) => {
-    })
   }
 
   get getLatitude(){
