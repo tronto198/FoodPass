@@ -36,21 +36,21 @@ export class MapPage implements OnInit {
   ngOnInit() {
 
     // this.watchPosition();
-    // this.getCurrentPosition();
-    const mapOptions = {
-      center: this.position,
-      level: 3
-    };
+    this.getCurrentPosition();
+    // this.position = new kakao.maps.LatLng(this.lat, this.lon);
+    // const mapOptions = {
+    //   center: this.position,
+    //   level: 3
+    // };
 
-    this.position = new kakao.maps.LatLng(this.lat, this.lon);
         
     
-    setTimeout(() => {
+    // setTimeout(() => {
       
-      this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
-      this.message = '<div style="padding:5px;">현재 위치</div>';
-      this.displayMarker(this.position, this.message);
-    }, 300);
+    //   this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
+    //   this.message = '<div style="padding:5px;">현재 위치</div>';
+    //   this.displayMarker(this.position, this.message);
+    // }, 300);
   }
   //Component 상태변화에 반응하여 호출
   // ngDoCheck(){
@@ -86,9 +86,16 @@ export class MapPage implements OnInit {
     };
 
     const coordinates = await this.geo.getCurrentPosition(geoOptions);
-    
-    // this.lat = coordinates.coords.latitude.toFixed(6);
-    // this.lon = coordinates.coords.longitude.toFixed(6);
+    this.lat = coordinates.coords.latitude;
+    this.lon = coordinates.coords.longitude;
+    this.position = new kakao.maps.LatLng(this.lat, this.lon);
+    const mapOptions = {
+      center: this.position,
+      level: 3
+    };
+    this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
+    this.message = '<div style="padding:5px;">현재 위치</div>';
+    this.displayMarker(this.position, this.message);
   }
 
   watchPosition() {
