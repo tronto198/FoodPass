@@ -6,10 +6,12 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-foodtruck-info',
   templateUrl: './foodtruck-info.page.html',
+  //templateUrl: '../../../../component/menu-list/menu-list.component.html',
   styleUrls: ['./foodtruck-info.page.scss'],
 })
 export class FoodtruckInfoPage implements OnInit {
-  routedata: string
+  routedata: string;
+  menuList:string[];
 
   constructor(
     private pageCtrl : TabHomeControllerService,
@@ -19,6 +21,7 @@ export class FoodtruckInfoPage implements OnInit {
   ngOnInit() {
     this.pageCtrl.find = true;
     this.routedata = this.route.snapshot.paramMap.get("id");
+    this.menuList=["와플", "도넛"];
   }
 
   test(){
