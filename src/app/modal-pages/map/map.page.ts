@@ -46,22 +46,21 @@ export class MapPage implements OnInit {
 
      let watch = this.geolocation.watchPosition();
      watch.subscribe((data) => {
-      // data can be a set of coordinates, or an error (if an error occurred).
       this.lat =  data.coords.latitude
       this.lon = data.coords.longitude
      });
 
-    // setTimeout(() => {
-    //   const mapOptions = {
-    //     center: this.position,
-    //     level: 3
-    //   };
+    setTimeout(() => {
+      const mapOptions = {
+        center: this.position,
+        level: 3
+      };
           
-    //   this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
-    //   this.message = '<div style="padding:5px;">현재 위치</div>';
-    //   this.displayMarker(this.position, this.message);
+      this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
+      this.message = '<div style="padding:5px;">현재 위치</div>';
+      this.displayMarker(this.position, this.message);
     
-    // }, 300);
+    }, 300);
   }
 
   displayMarker(locPosition, message) {
