@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { cordovaPropertyGet } from '@ionic-native/core';
 
 // import { Plugins } from '@capacitor/core';
 // const { Geolocation } = Plugins;
