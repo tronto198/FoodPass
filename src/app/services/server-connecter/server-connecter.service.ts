@@ -13,6 +13,14 @@ export class ServerConnecterService {
   constructor() { }
 
   getFoodtruckData() : FoodtruckData[]{
+    let object : FoodtruckData = {
+        id: 1,
+        name: "test",
+        locate: "a"
+    }
+    
+
+
     this.FoodtruckDummyData.push({id: 15, name: "test foodtruckDummy 15"});
     this.FoodtruckDummyData.push({id: 16, name: "test foodtruckDummy 16"});
     this.FoodtruckDummyData.push({id: 17, name: "test foodtruckDummy 17"});

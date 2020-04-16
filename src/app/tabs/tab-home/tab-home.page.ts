@@ -17,6 +17,7 @@ import { MapPage } from 'src/app/modal-pages/map/map.page';
 export class TabHomePage implements OnInit {
   location : string;
   basket : boolean;
+  test: number;
 
   constructor(
     private toastController : ToastController,
@@ -27,6 +28,12 @@ export class TabHomePage implements OnInit {
   ngOnInit() {
     this.location = "위치를 선택하세요";
     this.basket = false;
+    this.test = 1;
+  }
+
+  get testlocation(){
+    this.pageController.test = "test "+ this.test++;
+    return this.pageController.test;
   }
 
   routingbt(){
