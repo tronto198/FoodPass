@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController, ModalController } from '@ionic/angular';
 import { ServerConnecterService } from '../../services/server-connecter/server-connecter.service';
 
-import { MapComponent } from '../../../component/map/map.component';
 import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { TabHomeControl } from 'src/app/services/tab-home-controller/tab-home-control';
 import { ActivatedRoute } from '@angular/router';
+import { MapPage } from 'src/app/modal-pages/map/map.page';
 
 
 @Component({
@@ -61,7 +61,7 @@ export class TabHomePage implements OnInit {
 
   onToolbarClicked(){
     this.modalController.create({
-      component: MapComponent,
+      component: MapPage,
       cssClass: "modal-fullscreen"
     }
     ).then(s =>{

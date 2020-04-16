@@ -1,6 +1,7 @@
 <ion-list>
-  <ion-item *ngFor="let foodtruck of foodtruckList">
+   <ion-item *ngFor="let foodtruck of foodtruckList" class="foodtruck-list-cards">
     <app-cardview str="{{foodtruck}}" [routerLink]="'foodtruck-info/' + foodtruck" (click)="test(foodtruck)"></app-cardview>
+<<<<<<< HEAD
     
   </ion-item>
    <!-- <ion-item *ngFor="let locate of location">
@@ -21,3 +22,8 @@
   </ion-item> -->
   <!-- [routerLink]="'foodtruckInfo/' + 11'" -->
 </ion-list>
+=======
+  </ion-item>
+</ion-list>
+   <!-- [routerLink]="'foodtruckInfo/' + 11'" -->
+>>>>>>> 37492a47073d9181c91bd8e43518cb76fad10575

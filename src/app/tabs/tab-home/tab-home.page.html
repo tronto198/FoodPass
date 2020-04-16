@@ -11,7 +11,9 @@
   <span *ngIf="isSearching; else routing">
     <ion-router-outlet></ion-router-outlet>
   </span>
-  <ng-template #routing>
+  <ng-template #routing >
+    <div><h4>즐겨찾는 푸트트럭</h4></div>
+    <!-- <ion-scroll scrollX="true"></ion-scroll>  -->
     <home-foodtruck-list></home-foodtruck-list>
   </ng-template>
   <!-- <span [ngSwitch]="control">
@@ -21,7 +23,7 @@
     <span *ngSwitchCase="menuInfoPage"></span>
   </span> -->
 
-  <ion-fab vertical="bottom" horizontal="end" name="add" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" name="add" slot="fixed" >
     <ion-fab-button (click)="onFabClicked()">
       
     </ion-fab-button>
