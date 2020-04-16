@@ -25,6 +25,7 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+//modal의 fullscreen을 위해 modalCtrl.create에서 cssClass 로 modal-fullscreen을 지정
 .modal-fullscreen {
     .modal-wrapper {
         position: absolute;

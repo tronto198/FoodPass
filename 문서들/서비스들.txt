@@ -1,0 +1,5 @@
+
+services/
+| server-connecter/         서버와 통신하는 서비스 - 지금은 더미 데이터 제공
+| tab-home-controller/      tab-home의 데이터 공유 및 컨트롤 역할
+| user-config/              앱 전체에 공유되는 유저 설정 (예정)
