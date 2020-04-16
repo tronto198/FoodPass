@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
-
 // Kakao Map API
 declare var kakao;
 
@@ -19,14 +18,15 @@ export class MapPage implements OnInit {
   lat: any;
   lon: any;
 
+  marker: any;
   message: any;
-
+  infowindow: any;
+  
   constructor(
     private geo: Geolocation,
-    private modalCtrl : ModalController
+    private modalCtrl : ModalController,
 
   ) { 
-    // 초기 값 (대전 시청)
     this.lat = 36.350456;
     this.lon = 127.384818;
   }
@@ -36,23 +36,17 @@ export class MapPage implements OnInit {
   }
 
   displayMarker(locPosition, message) {
-    // 마커 생성
-    var marker = new kakao.maps.Marker({  
+    this.marker = new kakao.maps.Marker({  
         map: this.map, 
+        draggable: true,
         position: locPosition
     }); 
-    // //인포윈도우 내용
-    // var iwContent = message,
-    //     iwRemoveable = true;
-    // //인포윈도우 생성
-    // var infowindow = new kakao.maps.InfoWindow({
-    //     content : iwContent,
-    //     removable : iwRemoveable
-    // });
-    
-    // infowindow.open(this.map, marker);
-    marker.setDraggable(true);
-    this.map.setCenter(locPosition);     
+    this.map.setCenter(locPosition);  
+  }
+  
+  show(mouseEvent){
+    alert("Ohhhhhhh");
+
   }
 
   async getCurrentPosition() {
@@ -61,11 +55,11 @@ export class MapPage implements OnInit {
       timeout: 5000,
       maximumAge: 0
     };
-
     const coordinates = await this.geo.getCurrentPosition(geoOptions);
     this.lat = coordinates.coords.latitude;
     this.lon = coordinates.coords.longitude;
     this.position = new kakao.maps.LatLng(this.lat, this.lon);
+
     const mapOptions = {
       center: this.position,
       level: 3
@@ -73,6 +67,10 @@ export class MapPage implements OnInit {
     this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
     this.message = '<div style="padding:5px;">현재 위치</div>';
     this.displayMarker(this.position, this.message);
+
+    kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {
+      alert(mouseEvent.latLng instanceof kakao.maps.LatLng); // true
+  });
   }
 
   get getLatitude(){
