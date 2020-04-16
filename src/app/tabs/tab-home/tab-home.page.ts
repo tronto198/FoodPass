@@ -32,7 +32,6 @@ export class TabHomePage implements OnInit {
   }
 
   get testlocation(){
-    this.pageController.test = "test "+ this.test++;
     return this.pageController.test;
   }
 
