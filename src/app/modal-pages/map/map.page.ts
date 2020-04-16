@@ -18,7 +18,6 @@ export class MapPage implements OnInit {
   lat: any;
   lon: any;
 
-  marker: any;
   message: any;
   infowindow: any;
   
@@ -36,16 +35,19 @@ export class MapPage implements OnInit {
   }
 
   displayMarker(locPosition, message) {
-    this.marker = new kakao.maps.Marker({  
+    const marker = new kakao.maps.Marker({  
         map: this.map, 
         draggable: true,
         position: locPosition
     }); 
+    kakao.maps.event.addListener(marker, 'dragend', () => {
+      var latlng = marker.getPosition();
+      this.lat = latlng.getLat();
+      this.lon =latlng.getLng();
+      //alert("getLat : "+latlng.getLat()+"  getLon : "+latlng.getLng());
+
+  });
     this.map.setCenter(locPosition);  
-  }
-  
-  show(mouseEvent){
-    alert("Ohhhhhhh");
 
   }
 
@@ -67,10 +69,6 @@ export class MapPage implements OnInit {
     this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
     this.message = '<div style="padding:5px;">현재 위치</div>';
     this.displayMarker(this.position, this.message);
-
-    kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {
-      alert(mouseEvent.latLng instanceof kakao.maps.LatLng); // true
-  });
   }
 
   get getLatitude(){
