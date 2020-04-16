@@ -31,25 +31,26 @@ export class MapPage implements OnInit {
     // 초기 값 (대전 시청)
     this.lat = 36.350456;
     this.lon = 127.384818;
-    this.getCurrentPosition();
   }
   
   ngOnInit() {
 
     // this.watchPosition();
-    // this.position = new kakao.maps.LatLng(this.lat, this.lon);
+    // this.getCurrentPosition();
+    const mapOptions = {
+      center: this.position,
+      level: 3
+    };
 
-    // setTimeout(() => {
-    //   const mapOptions = {
-    //     center: this.position,
-    //     level: 3
-    //   };
-          
-    //   this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
-    //   this.message = '<div style="padding:5px;">현재 위치</div>';
-    //   this.displayMarker(this.position, this.message);
+    this.position = new kakao.maps.LatLng(this.lat, this.lon);
+        
     
-    // }, 300);
+    setTimeout(() => {
+      
+      this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
+      this.message = '<div style="padding:5px;">현재 위치</div>';
+      this.displayMarker(this.position, this.message);
+    }, 300);
   }
   //Component 상태변화에 반응하여 호출
   // ngDoCheck(){
@@ -83,19 +84,9 @@ export class MapPage implements OnInit {
       timeout: 5000,
       maximumAge: 0
     };
-    const mapOptions = {
-      center: this.position,
-      level: 3
-    };
 
     const coordinates = await this.geo.getCurrentPosition(geoOptions);
-    this.lat = coordinates.coords.latitude;
-    this.lon = coordinates.coords.longitude;
     
-    this.position = new kakao.maps.LatLng(this.lat, this.lon);
-    this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
-    this.message = '<div style="padding:5px;">현재 위치</div>';
-    this.displayMarker(this.position, this.message);
     // this.lat = coordinates.coords.latitude.toFixed(6);
     // this.lon = coordinates.coords.longitude.toFixed(6);
   }
