@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
+import { FoodtruckData } from 'src/app/data/foodtruck';
+import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
 
 @Component({
   selector: 'home-foodtruck-list',
@@ -14,7 +16,8 @@ export class FoodtruckListPage implements OnInit {
   distance: string[];
 
   constructor(
-    private pageController : TabHomeControllerService
+    private pageController : TabHomeControllerService,
+    private serverConnecter : ServerConnecterService
   ) { }
 
   ngOnInit() {
@@ -23,11 +26,7 @@ export class FoodtruckListPage implements OnInit {
     this.inform=["매운 닭발 있습니다.", "초코맛, 딸기맛 와플 있습니다.", "여러가지 맛 아이스크림이 콘, 컵으로 제공됩니다."];
     this.wating=["3","4","5"];
     this.distance=["100m", "500m", "500m"];
-  //  this.foodtruckList = ["hh1","hh2","hh3","hh4","hh1","hh2","hh3","hh4"];
+   //this.foodtruckList = this.serverConnecter.getFoodtruckData();
   }
 
-  test(ft : string){
-    this.pageController.find = true;
-    this.pageController.test = ft;
-  }
 }

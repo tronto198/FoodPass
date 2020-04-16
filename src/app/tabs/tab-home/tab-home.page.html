@@ -1,13 +1,12 @@
 <ion-header>
   <ion-toolbar class="ion-text-center" color="dark" (click)="onToolbarClicked()">
-    위치를 입력하세요
+    {{testlocation}}
     <ion-icon name="location-outline"></ion-icon>
   </ion-toolbar>
 </ion-header>
-<!-- <ion-button >Go to detail</ion-button> -->
-<!-- footruck-info/11 -->
+
 <ion-content>
-  
+
   <span *ngIf="isSearching; else routing">
     <ion-router-outlet></ion-router-outlet>
   </span>
@@ -25,7 +24,8 @@
 
   <ion-fab vertical="bottom" horizontal="end" name="add" slot="fixed" >
     <ion-fab-button (click)="onFabClicked()">
-      
+      <ion-icon name="basket-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
 </ion-content>

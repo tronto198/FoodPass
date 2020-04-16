@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { FoodtruckData } from 'src/app/data/foodtruck';
-import { TabHomeControl } from './tab-home-control';
+import { OrderData } from 'src/app/data/order';
 
 @Injectable()
 export class TabHomeControllerService {
-  find: boolean;
-  pageControl: TabHomeControl;
   foodtruckData: FoodtruckData;
+  basket: OrderData[] = [];
   test: string;
+  order : OrderData;
 
+  
   constructor() {
-    this.pageControl = TabHomeControl.FoodTruckList;
-    this.find = false;
+    
+  }
+
+  push(){
+    let order = {id: 1, name: "testname"};
+    this.basket.push(order);
   }
 }
 

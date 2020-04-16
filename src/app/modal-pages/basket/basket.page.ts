@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { ModalController } from '@ionic/angular';
 export class BasketPage implements OnInit {
 
   constructor(
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private pageCtrl: TabHomeControllerService
   ) { }
 
   ngOnInit() {
@@ -18,6 +20,10 @@ export class BasketPage implements OnInit {
 
   dismiss(){
     this.modalCtrl.dismiss();
+  }
+
+  get basket(){
+    return this.pageCtrl.basket;
   }
 
 }

@@ -1,0 +1,38 @@
+src/                        
+| app/$                     앱 폴더
+| asset/                    아이콘, 그림 넣는 폴더
+| environments/             빌드 옵션 등의 환경 구성
+| theme/                    색깔
+| global.scss               글로벌한 css 정의
+| index.html                앱의 최상위 페이지
+
+
+app/
+| component/                앱에서 공통적으로 사용할 컴포넌트들
+| data/                     앱에서 사용할 데이터들
+| modal-pages/              modal로 나타날 페이지들
+| services/                 앱에서 사용할 서비스들
+| tabs/$                    탭 페이지들
+
+
+tabs/                       탭 페이지들
+| tab-home/$
+| tab-mypage/$
+| tab-order/$
+
+
+tab-home/
+| foodtruck-list/           첫 화면에 나오는 푸드트럭 리스트 화면
+| foodtruck-info/           푸드트럭을 눌렀을 때 나오는 푸드트럭 정보 화면
+| menu-info/                메뉴 정보 화면
+
+
+
+
+파일 구성
+(이름)-routing.module.ts    이 페이지의 라우팅 경로 설정 - tab-home의 라우팅모듈 참고
+(이름).module.ts            이 모듈이 사용할 것들을 미리 정의
+(이름).(구분자).spec.ts     테스트 자동화 (초보자는 무시)
+(이름).(구분자).html        이 모듈의 정적 구조 구현
+(이름).(구분자).scss        이 모듈이 사용할 스타일 구현
+(이름).(구분자).ts          이 모듈의 동작 구현
