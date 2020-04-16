@@ -1,3 +1,4 @@
 export interface OrderData {
-    id: number
+    id: number,
+    name: string
 }

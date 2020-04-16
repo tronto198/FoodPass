@@ -6,8 +6,6 @@ import { ServerConnecterService } from '../../services/server-connecter/server-c
 
 import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
-import { TabHomeControl } from 'src/app/services/tab-home-controller/tab-home-control';
-import { ActivatedRoute } from '@angular/router';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
 
 
@@ -19,38 +17,22 @@ import { MapPage } from 'src/app/modal-pages/map/map.page';
 export class TabHomePage implements OnInit {
   location : string;
   basket : boolean;
+  test: number;
 
   constructor(
     private toastController : ToastController,
     public modalController : ModalController,
-    private serverConnecter : ServerConnecterService,
-    public pageController : TabHomeControllerService,
-    private route : ActivatedRoute
+    public pageController : TabHomeControllerService
   ) { }
 
   ngOnInit() {
     this.location = "위치를 선택하세요";
     this.basket = false;
+    this.test = 1;
   }
 
-  get isSearching(){
-    return this.pageController.find;
-  }
-
-  get control() {
-    return this.pageController.pageControl;
-  }
-  get mapPage() {
-    return TabHomeControl.Map;
-  }
-  get foodtrcukListPage(){
-    return TabHomeControl.FoodTruckList;
-  }
-  get foodtruckInfoPage(){
-    return TabHomeControl.FoodTruckInfo;
-  }
-  get menuInfoPage(){
-    return TabHomeControl.MenuInfo;
+  get testlocation(){
+    return this.pageController.test;
   }
 
   routingbt(){
@@ -79,6 +61,8 @@ export class TabHomePage implements OnInit {
     // });
     
     // this.toast(text);
+
+    this.pageController.push();
 
     this.modalController.create({
       component: BasketPage,

@@ -14,6 +14,8 @@ import { from } from 'rxjs';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { FoodtruckListPage } from './foodtruck-list/foodtruck-list.page';
 import { FoodtruckInfoPage } from './foodtruck-info/foodtruck-info.page';
+import { MenuListComponent } from 'src/app/component/menu-list/menu-list.component';
+ 
 import { CardviewComponent } from 'src/app/component/cardview/cardview.component';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
 
@@ -30,7 +32,8 @@ import { MapPage } from 'src/app/modal-pages/map/map.page';
     MapPage,
     BasketPage,
     FoodtruckListPage,
-    FoodtruckInfoPage
+    FoodtruckInfoPage,
+    MenuListComponent
   ],
   providers: [
     TabHomeControllerService,

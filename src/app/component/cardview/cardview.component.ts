@@ -6,11 +6,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./cardview.component.scss'],
 })
 export class CardviewComponent implements OnInit {
-  @Input() str : string; // HELLO
+  @Input() str:string;
+  @Input() locate:string;
+
+  @Input() wating: string;
+  @Input() inform:string;
   constructor() { }
 
   ngOnInit() {
-    this.str = "cardview " + this.str;
+    
+    
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
+
 // Kakao Map API
 declare var kakao;
 
@@ -23,6 +24,7 @@ export class MapPage implements OnInit {
   constructor(
     private geolocation: Geolocation,
     private modalCtrl : ModalController
+
   ) { 
     // 초기 값 (대전 시청)
     this.lat = 36.350456;
@@ -32,7 +34,6 @@ export class MapPage implements OnInit {
   }
   
   ngOnInit() {
-
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lon = resp.coords.longitude;
@@ -50,17 +51,17 @@ export class MapPage implements OnInit {
       this.lon = data.coords.longitude
      });
 
-    setTimeout(() => {
-      const mapOptions = {
-        center: this.position,
-        level: 3
-      };
+    // setTimeout(() => {
+    //   const mapOptions = {
+    //     center: this.position,
+    //     level: 3
+    //   };
           
-      this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
-      this.message = '<div style="padding:5px;">현재 위치</div>';
-      this.displayMarker(this.position, this.message);
+    //   this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
+    //   this.message = '<div style="padding:5px;">현재 위치</div>';
+    //   this.displayMarker(this.position, this.message);
     
-    }, 300);
+    // }, 300);
   }
 
   displayMarker(locPosition, message) {
@@ -81,7 +82,6 @@ export class MapPage implements OnInit {
     infowindow.open(this.map, marker);
     this.map.setCenter(locPosition);     
   }
-
   get getLatitude(){
     return "lat : "+this.lat;
   }
