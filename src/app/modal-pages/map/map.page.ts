@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
+// import { Plugins } from '@capacitor/core';
+// const { Geolocation } = Plugins;
+
 // Kakao Map API
 declare var kakao;
 
