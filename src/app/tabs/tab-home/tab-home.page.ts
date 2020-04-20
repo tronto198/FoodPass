@@ -62,7 +62,7 @@ export class TabHomePage implements OnInit {
     
     // this.toast(text);
 
-    this.pageController.push();
+    //this.pageController.push();
 
     this.modalController.create({
       component: BasketPage,

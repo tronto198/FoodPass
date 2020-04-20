@@ -18,22 +18,27 @@ import { MenuListComponent } from 'src/app/component/menu-list/menu-list.compone
  
 import { CardviewComponent } from 'src/app/component/cardview/cardview.component';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
+import { OrderComponent } from 'src/app/component/order/order.component';
+import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TabHomePageRoutingModule
+    //순서 바꾸면 장바구니만 나옴 ??
+    TabHomePageRoutingModule,
+    BasketPageModule,
   ],
   declarations: [
     TabHomePage,
     CardviewComponent,
     MapPage,
-    BasketPage,
+    // BasketPage,
     FoodtruckListPage,
     FoodtruckInfoPage,
     MenuListComponent
+    // OrderComponent
   ],
   providers: [
     TabHomeControllerService,

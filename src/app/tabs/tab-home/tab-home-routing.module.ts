@@ -12,11 +12,13 @@ const routes: Routes = [
   {
     path: '',
     component: TabHomePage,
+    // pathMatch: 'full'
   },
   {
     //이거 있어야 modal 가능
     path: 'basket',
     component: BasketPage
+    // loadChildren: () => import('src/app/modal-pages/basket/basket.module').then( m => m.BasketPageModule)
   },
   {
     path: 'map',
