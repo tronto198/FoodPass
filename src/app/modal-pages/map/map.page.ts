@@ -82,5 +82,8 @@ export class MapPage implements OnInit {
   dismiss(){
     this.modalCtrl.dismiss();
   }
-
+  
+  dismissWithLoc(){
+    this.modalCtrl.dismiss(this.location);
+  }
 }
