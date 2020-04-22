@@ -20,7 +20,7 @@ export class MapPage implements OnInit {
   message: any;
   infowindow: any;
   location: LocationData;
-  @Input() loc: Object;
+  @Input() loc: object;
   
   constructor(
     private geo: Geolocation,

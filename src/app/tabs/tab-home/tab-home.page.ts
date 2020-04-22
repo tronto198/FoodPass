@@ -16,6 +16,7 @@ import { LocationData } from 'src/app/data/location';
   styleUrls: ['./tab-home.page.scss']
 })
 export class TabHomePage implements OnInit {
+  location: object;
   basket : boolean;
   test: number;
 
@@ -41,11 +42,11 @@ export class TabHomePage implements OnInit {
   }
 
   onToolbarClicked(){
-    // let location = this.pageController.getLocation();
+    let location = this.pageController.getLocation();
     this.modalController.create({
       component: MapPage,
       componentProps: {
-        'loc': {lat: 36.350456, lng: 127.384818}
+        'loc': location
       },
       cssClass: "modal-fullscreen"
     }

@@ -13,13 +13,13 @@ export class TabHomeControllerService {
 
   
   constructor() {
-    
+    this.locationData ={lat: 36.3504563333333, lng:127.38481833333333};
   }
-  // getLocation(){
-  //   this.locationData.lat=36.12415;
-  //   this.locationData.lng=127.242356;
-
-  // }
+  setLocation(){
+  }
+ getLocation() : object{
+    return this.locationData;
+  }
 
   push(){
     let order = {id: 1, name: "testname"};
