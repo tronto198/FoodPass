@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, Input } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationData } from 'src/app/data/location';
 
 // Kakao Map API
 declare var kakao;
@@ -15,19 +16,19 @@ export class MapPage implements OnInit {
   map: any;
 
   position: any;
-  lat: any;
-  lon: any;
 
   message: any;
   infowindow: any;
+  location: LocationData;
+  @Input() loc: Object;
   
   constructor(
     private geo: Geolocation,
     private modalCtrl : ModalController,
-
+    navParams : NavParams
   ) { 
-    this.lat = 36.350456;
-    this.lon = 127.384818;
+    this.location =navParams.get('loc');
+    alert("lat: "+this.location.lat +"\n"+"lng: "+ this.location.lng);
   }
   
   ngOnInit() {
@@ -42,9 +43,8 @@ export class MapPage implements OnInit {
     }); 
     kakao.maps.event.addListener(marker, 'dragend', () => {
       var latlng = marker.getPosition();
-      this.lat = latlng.getLat();
-      this.lon =latlng.getLng();
-      //alert("getLat : "+latlng.getLat()+"  getLon : "+latlng.getLng());
+      this.location.lat = latlng.getLat();
+      this.location.lng =latlng.getLng();
 
   });
     this.map.setCenter(locPosition);  
@@ -58,9 +58,9 @@ export class MapPage implements OnInit {
       maximumAge: 0
     };
     const coordinates = await this.geo.getCurrentPosition(geoOptions);
-    this.lat = coordinates.coords.latitude;
-    this.lon = coordinates.coords.longitude;
-    this.position = new kakao.maps.LatLng(this.lat, this.lon);
+    this.location.lat = coordinates.coords.latitude;
+    this.location.lng = coordinates.coords.longitude;
+    this.position = new kakao.maps.LatLng(this.location.lat, this.location.lng);
 
     const mapOptions = {
       center: this.position,
@@ -72,11 +72,11 @@ export class MapPage implements OnInit {
   }
 
   get getLatitude(){
-    return "lat : "+this.lat;
+    return "lat : "+this.location.lat;
   }
 
   get getLongitude(){
-    return "lon : "+this.lon;
+    return "lng : "+this.location.lng;
   }
 
   dismiss(){

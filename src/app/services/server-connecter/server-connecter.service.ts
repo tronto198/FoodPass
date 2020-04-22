@@ -15,8 +15,7 @@ export class ServerConnecterService {
   getFoodtruckData() : FoodtruckData[]{
     let object : FoodtruckData = {
         id: 1,
-        name: "test",
-        locate: "a"
+        name: "test"
     }
     
 
