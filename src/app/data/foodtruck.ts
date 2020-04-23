@@ -3,9 +3,9 @@ export interface FoodtruckData {
     name: string,
     locate? : string,
     distance?:number,
-    inform:string,
+    inform?:string,
     grade?:number,
-    wating: number,
+    wating?: number,
     notice?: string,
     truckImage?: string
 

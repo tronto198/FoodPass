@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FoodtruckData } from 'src/app/data/foodtruck';
 
 @Component({
   selector: 'app-cardview',
@@ -15,7 +16,7 @@ export class CardviewComponent implements OnInit {
   @Input() notice:string;
   @Input() distance:number;
   @Input() truckImage: string;
-
+  //@Input() foodtruck:FoodtruckData;
   constructor() { }
 
   ngOnInit() {
