@@ -3,5 +3,6 @@ import { OptionData } from './option';
 
 export interface OrderedMenuData {
     menuinfo: MenuData,
-    optioninfo: OptionData
+    optioninfo: OptionData,
+    amount: number
 }

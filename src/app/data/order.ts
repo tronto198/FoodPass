@@ -4,7 +4,7 @@ import { OptionData } from './option';
 import { OrderedMenuData } from './ordered-menu';
 
 export interface OrderData {
-    id: number,
+    id?: number,
     foodtruckinfo: FoodtruckData,
-    menuinfo: OrderedMenuData[]
+    orderedMenu: OrderedMenuData[]
 }

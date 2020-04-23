@@ -10,8 +10,6 @@ export class OrderComponent implements OnInit {
   foodtruckName : string;
   menuList : string[];
 
-  @Output() allCheckedChange : EventEmitter<boolean> = new EventEmitter();
-
   constructor(
     private controller : BasketControllerService
   ) { }
