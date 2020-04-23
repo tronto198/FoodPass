@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationData } from 'src/app/data/location';
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 // Kakao Map API
 declare var kakao;
@@ -19,23 +20,55 @@ export class MapPage implements OnInit {
 
   message: any;
   infowindow: any;
+
+  geocoder: any;
   location: LocationData;
-  @Input() loc: object;
+  options: NativeGeocoderOptions;
+  //사용 안하면 삭제
+  //@Input() loc: object;
   
   constructor(
     private geo: Geolocation,
     private modalCtrl : ModalController,
+    private nativeGeocoder: NativeGeocoder,
     navParams : NavParams
   ) { 
+    this.options = {
+      useLocale: true,
+      maxResults: 5
+  };
     this.location =navParams.get('loc');
     alert("lat: "+this.location.lat +"\n"+"lng: "+ this.location.lng);
-  }
-  
+}
+
   ngOnInit() {
     this.getCurrentPosition();
   }
 
-  displayMarker(locPosition, message) {
+  // getGeocoder(){
+  //   this.geocoder = new kakao.maps.services.Geocoder();
+  //   this.geocoder.coord2Address(this.location.lat, this.location.lng, (result, status) =>{
+  //           if (status === kakao.maps.services.Status.OK) {
+  //               var detailAddr = !!result[0].road_address ? '도로명주소 : ' + result[0].road_address.address_name + '' : '';
+  //               detailAddr += '지번 주소 : ' + result[0].address.address_name;
+  //                           alert(detailAddr);
+      
+  //           }   
+  //       });
+  // }
+
+  getGeocoderfromLatLng(){
+    this.nativeGeocoder.reverseGeocode(this.location.lat,this.location.lng, this.options)
+    .then((result: NativeGeocoderResult[]) => alert(JSON.stringify(result[0])))
+    .catch((error: any) => alert(error));
+  }
+   getLatLngfromGeocoder(){
+    this.nativeGeocoder.forwardGeocode('Berlin', this.options)
+      .then((result: NativeGeocoderResult[]) => alert('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude))
+      .catch((error: any) => console.log(error));
+  }
+
+  displayMarker(locPosition) {
     const marker = new kakao.maps.Marker({  
         map: this.map, 
         draggable: true,
@@ -45,12 +78,13 @@ export class MapPage implements OnInit {
       var latlng = marker.getPosition();
       this.location.lat = latlng.getLat();
       this.location.lng =latlng.getLng();
+      //this.getGeocoder();
+      //this.getGeocoderfromLatLng();
 
-  });
+    });
     this.map.setCenter(locPosition);  
-
   }
-
+//4-1, 4-3
   async getCurrentPosition() {
     var geoOptions = {
       enableHighAccuracy: true,
@@ -67,8 +101,7 @@ export class MapPage implements OnInit {
       level: 3
     };
     this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
-    this.message = '<div style="padding:5px;">현재 위치</div>';
-    this.displayMarker(this.position, this.message);
+    this.displayMarker(this.position);
   }
 
   get getLatitude(){
@@ -78,11 +111,10 @@ export class MapPage implements OnInit {
   get getLongitude(){
     return "lng : "+this.location.lng;
   }
-
+//4-2
   dismiss(){
     this.modalCtrl.dismiss();
   }
-  
   dismissWithLoc(){
     this.modalCtrl.dismiss(this.location);
   }
