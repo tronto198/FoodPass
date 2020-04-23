@@ -1,7 +1,15 @@
-<p>
-  {{foodtruckName}}
-  <!-- <ion-list *ngFor="let menu of menuList">
-    <order-ordered-menu></order-ordered-menu>
-  </ion-list> -->
-</p>
+<ion-card>
+  <ion-card-header>
+    
+    <ion-card-title>
+      <ion-checkbox (click)="checkboxClicked()" [checked]="allChecked" [indeterminate]="indeterminate"></ion-checkbox>
+      {{foodtruckName}} {{allChecked}}  {{indeterminate}}
+    </ion-card-title>
+  </ion-card-header>
 
+  <ion-card-content>
+    <ion-list *ngFor="let menu of menuList">
+      <order-ordered-menu></order-ordered-menu>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

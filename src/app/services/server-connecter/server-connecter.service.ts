@@ -28,9 +28,9 @@ export class ServerConnecterService {
   }
 
   getMenuData(foodtruckid: number) : MenuData[]{
-    this.MenuDummyData.push({id: foodtruckid, name: "dummy Menu 111"});
-    this.MenuDummyData.push({id: foodtruckid, name: "dummy Menu 112"});
-    this.MenuDummyData.push({id: foodtruckid, name: "dummy Menu 115"});
+    // this.MenuDummyData.push({id: foodtruckid, name: "dummy Menu 111"});
+    // this.MenuDummyData.push({id: foodtruckid, name: "dummy Menu 112"});
+    // this.MenuDummyData.push({id: foodtruckid, name: "dummy Menu 115"});
     return this.MenuDummyData;
   }
 }

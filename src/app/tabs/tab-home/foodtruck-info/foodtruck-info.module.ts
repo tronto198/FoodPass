@@ -15,6 +15,9 @@ import { FoodtruckInfoPage } from './foodtruck-info.page';
     IonicModule,
     FoodtruckInfoPageRoutingModule
   ],
+  exports: [
+    FoodtruckInfoPage
+  ],
   declarations: [FoodtruckInfoPage]
 })
 export class FoodtruckInfoPageModule {}

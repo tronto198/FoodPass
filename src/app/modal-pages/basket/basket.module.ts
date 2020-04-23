@@ -16,16 +16,17 @@ import { OrderComponent } from 'src/app/component/order/order.component';
     FormsModule,
     IonicModule,
     // BasketPageRoutingModule,
-    // OrderComponentModule
+    OrderComponentModule
   ],
   exports: [
     BasketPage
-    // OrderComponent
   ],
   declarations: [
     BasketPage,
-    // OrderComponent
   ],
-  providers: [ModalController]
+  providers: [
+    ModalController,
+    
+  ]
 })
 export class BasketPageModule {}

@@ -1,8 +1,8 @@
-<p>
-  {{menuName}}
+<ion-item>
+  <ion-title>{{menuName}}</ion-title>
   <ion-list *ngFor="let option of optionList">
-    <!-- <order-ordered-menu>
-      
-    </order-ordered-menu> -->
+    <ion-item lines="none">
+      <ion-label><h4>{{option}}</h4></ion-label>
+    </ion-item>
   </ion-list>
-</p>
+</ion-item>

@@ -5,16 +5,11 @@ import { OrderData } from 'src/app/data/order';
 @Injectable()
 export class TabHomeControllerService {
   foodtruckData: FoodtruckData;
-  basket: OrderData[] = [];
   test: string;
   order : OrderData;
 
   
   constructor() {
-    
-  }
-
-  push(){
     
   }
 }

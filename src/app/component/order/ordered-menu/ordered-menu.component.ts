@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 
 @Component({
   selector: 'order-ordered-menu',
@@ -10,8 +11,13 @@ export class OrderedMenuComponent implements OnInit {
   menuName : string;
   optionList : string[];
 
-  constructor() { }
+  constructor(
+    private controller : BasketControllerService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.menuName = "test menu";
+    this.optionList = ["te", "tt", "dd"];
+  }
 
 }

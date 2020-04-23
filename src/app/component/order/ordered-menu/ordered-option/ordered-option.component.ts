@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ordered-option.component.scss'],
 })
 export class OrderedOptionComponent implements OnInit {
-  optionName : string;
+  optionName : string = "testoptionsName";
   oprionPrice : number = 1000;
   count : number = 1;
 

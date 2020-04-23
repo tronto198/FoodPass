@@ -1,4 +1,5 @@
 export interface MenuData{
     id: number,
-    name: string
+    name: string,
+    price: number
 }

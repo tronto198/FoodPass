@@ -1,4 +1,8 @@
+import { MenuData } from './menu';
+
 export interface OptionData {
     id: number,
-    name: string
+    menu: MenuData,
+    name: string,
+    extraPrice: number
 }

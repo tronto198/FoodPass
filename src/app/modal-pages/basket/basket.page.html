@@ -5,18 +5,13 @@
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    장바구니 글씨체나 크기같은거 바꿀까
+    장바구니
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
-  <!-- <app-order></app-order> -->
+  <app-order></app-order>
 
-  <ion-list *ngFor="let order of basket">
-    <ion-item>{{order.name}}</ion-item>
-  </ion-list>
-
-  <ion-button></ion-button>
+  <ion-button>{{totalPrice}}원 주문하기</ion-button>
 
 </ion-content>

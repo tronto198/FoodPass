@@ -20,6 +20,10 @@ import { CardviewComponent } from 'src/app/component/cardview/cardview.component
 import { MapPage } from 'src/app/modal-pages/map/map.page';
 import { OrderComponent } from 'src/app/component/order/order.component';
 import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
+import { FoodtruckListPageModule } from './foodtruck-list/foodtruck-list.module';
+import { FoodtruckInfoPageModule } from './foodtruck-info/foodtruck-info.module';
+import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
+
 
 @NgModule({
   imports: [
@@ -28,15 +32,15 @@ import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
     IonicModule,
     //순서 바꾸면 장바구니만 나옴 ??
     TabHomePageRoutingModule,
+    FoodtruckListPageModule,
+    FoodtruckInfoPageModule,
     BasketPageModule,
   ],
   declarations: [
     TabHomePage,
-    CardviewComponent,
     MapPage,
     // BasketPage,
-    FoodtruckListPage,
-    FoodtruckInfoPage,
+    // FoodtruckInfoPage,
     MenuListComponent
     // OrderComponent
   ],
@@ -44,7 +48,8 @@ import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
     TabHomeControllerService,
     ToastController,
     ModalController,
-    NavController
+    NavController,
+    BasketControllerService
   ]
 })
 export class TabHomePageModule {}
