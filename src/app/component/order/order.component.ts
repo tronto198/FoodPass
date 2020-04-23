@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
+import { CheckboxValue } from 'src/app/data/checkbox-value';
 
 @Component({
   selector: 'app-order',
@@ -9,6 +10,7 @@ import { BasketControllerService } from 'src/app/services/basket-controller/bask
 export class OrderComponent implements OnInit {
   foodtruckName : string;
   menuList : string[];
+  checkboxValues : CheckboxValue;
 
   constructor(
     private controller : BasketControllerService
@@ -17,14 +19,15 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
     this.foodtruckName = "testftname";
     this.menuList = ["tt", "dd", "ss"];
+    this.checkboxValues = new CheckboxValue();
   }
 
   checkboxClicked(){
-    this.allChecked = !this.allChecked;
+    this.checkboxValues.toggle();
   }
 
   get allChecked(){
-    return this.controller.allCheck;
+    return this.checkboxValues.allCheck;
   }
 
   set allChecked(checked : boolean){
