@@ -26,9 +26,10 @@ export class ServerConnecterService {
   }
 
   getMenuData(foodtruckid: number) : MenuData[]{
-    this.MenuDummyData.push({id: foodtruckid, name: "dummy Menu 111"});
-    this.MenuDummyData.push({id: foodtruckid, name: "dummy Menu 112"});
-    this.MenuDummyData.push({id: foodtruckid, name: "dummy Menu 115"});
+    // 윗줄의 파라미터로 들어갈것들 , foodtruckName:string, foodtruckInform:string, foodtruckGrade:number
+    this.MenuDummyData.push({id: foodtruckid, name: "foodtruckName"});
+    this.MenuDummyData.push({id: foodtruckid, name: "foodtruckName"});
+    this.MenuDummyData.push({id: foodtruckid, name: "foodtruckName"});
     return this.MenuDummyData;
   }
 }

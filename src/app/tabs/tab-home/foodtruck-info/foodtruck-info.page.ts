@@ -4,7 +4,7 @@ import { TabHomeControllerService } from 'src/app/services/tab-home-controller/t
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
 import { MenuData } from 'src/app/data/menu';
-
+import {FoodtruckData} from'src/app/data/foodtruck';
 @Component({
   selector: 'app-foodtruck-info',
   templateUrl: './foodtruck-info.page.html',
@@ -13,6 +13,7 @@ import { MenuData } from 'src/app/data/menu';
 })
 export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
   routedata: number;
+  //routedata:FoodtruckData[];
   menuList: MenuData[];
 
   constructor(

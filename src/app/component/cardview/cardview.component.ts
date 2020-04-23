@@ -7,14 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardviewComponent implements OnInit {
   
-   @Input() name:string;
-   @Input() locate:string;
+  @Input() name:string;
+  @Input() locate:string;
   @Input() inform:string;
   @Input() wating: number;
   @Input() grade:number;
   @Input() notice:string;
   @Input() distance:number;
-  @Input() truckImage:string;
+  @Input() truckImage: string;
+
   constructor() { }
 
   ngOnInit() {
