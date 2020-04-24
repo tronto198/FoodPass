@@ -18,7 +18,6 @@ import { MenuListComponent } from 'src/app/component/menu-list/menu-list.compone
  
 import { CardviewComponent } from 'src/app/component/cardview/cardview.component';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
-import { OrderComponent } from 'src/app/component/order/order.component';
 import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
 import { FoodtruckListPageModule } from './foodtruck-list/foodtruck-list.module';
 import { FoodtruckInfoPageModule } from './foodtruck-info/foodtruck-info.module';
