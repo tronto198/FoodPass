@@ -10,7 +10,6 @@ import { CheckboxValue } from 'src/app/data/checkbox-value';
 export class OrderComponent implements OnInit {
   foodtruckName : string;
   menuList : string[];
-  checkboxValues : CheckboxValue;
 
   constructor(
     private controller : BasketControllerService
@@ -19,31 +18,30 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
     this.foodtruckName = "testftname";
     this.menuList = ["tt", "dd", "ss"];
-    this.checkboxValues = new CheckboxValue();
   }
 
   checkboxClicked(){
-    this.checkboxValues.toggle();
+    this.controller.rootCheckboxValue.toggle();
   }
 
-  get allChecked(){
-    return this.checkboxValues.allCheck;
-  }
+  // get allChecked(){
+  //   return this.checkboxValues.allCheck;
+  // }
 
-  set allChecked(checked : boolean){
-    this.controller.allCheck = checked;
-    if(this.controller.allCheck){
-      this.controller.indeterminate = false;
-    }
+  // set allChecked(checked : boolean){
+  //   this.controller.allCheck = checked;
+  //   if(this.controller.allCheck){
+  //     this.controller.indeterminate = false;
+  //   }
 
-    this.foodtruckName = "test";
-  }
+  //   this.foodtruckName = "test";
+  // }
 
-  get indeterminate(){
-    return this.controller.indeterminate;
-  }
-  set indeterminate(indeterminate : boolean){
-    this.controller.indeterminate = indeterminate;
-  }
+  // get indeterminate(){
+  //   return this.controller.indeterminate;
+  // }
+  // set indeterminate(indeterminate : boolean){
+  //   this.controller.indeterminate = indeterminate;
+  // }
 
 }

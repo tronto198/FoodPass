@@ -26,10 +26,10 @@ export class CheckboxValue implements CheckValue{
     }
 
     get indeterminate(){
-        return this.indeterminate;
+        return this.indeterminated;
     }
 
-    setting(items: any[]){
+    setting(items: any[]) : CheckValue[] {
         items.forEach((value, index, arr)=>{
             if(value.checked == undefined){
                 value.checked = true;

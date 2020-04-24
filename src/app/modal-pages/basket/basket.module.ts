@@ -7,8 +7,7 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { BasketPageRoutingModule } from './basket-routing.module';
 
 import { BasketPage } from './basket.page';
-import { OrderComponentModule } from 'src/app/component/order/order.module';
-import { OrderComponent } from 'src/app/component/order/order.component';
+import { OrderComponentModule } from './order/order.module';
 
 @NgModule({
   imports: [
