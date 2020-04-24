@@ -1,8 +1,8 @@
 <ion-card>
   <ion-card-header>
       <img src="../assets/icon/foodtruck.png" alt="ion" >
-    <ion-card-title>간식 트럭</ion-card-title>
-    <ion-card-subtitle>도넛/와플</ion-card-subtitle>
+    <ion-card-title>간식 트럭{{id}}{{name}}</ion-card-title>
+    <ion-card-subtitle>도넛/와플{{inform}}</ion-card-subtitle>
 
   </ion-card-header>
 
@@ -12,21 +12,21 @@
       <ion-icon name="star"></ion-icon>
       <ion-icon name="star"></ion-icon>
       <ion-icon name="star-half"></ion-icon>
-      4.5점
+      4.5점{{grade}}
   </ion-card-content>
 </ion-card>
 
 <ion-card name="menu">
   <ion-card-header>
       <img src="../assets/icon/waffle.png" alt="ion">
-    <ion-card-title>와플  {{menuList}}</ion-card-title>
-    <ion-card-subtitle>직접만든 반죽으로 만든 와플</ion-card-subtitle>
-    <ion-label>기본가격: 3000원</ion-label>
+    <ion-card-title>와플{{menuID}}  {{menuName}}</ion-card-title>
+    <ion-card-subtitle>직접만든 반죽으로 만든 와플{{menuInform}}</ion-card-subtitle>
+    <ion-label>기본가격: 3000{{price}}원</ion-label>
    
   </ion-card-header>
 
 
-</ion-card>
+<!-- </ion-card>
 <ion-card name="menu">
   <ion-card-header>
       <img src="../assets/icon/donut.png" alt="ion">
@@ -38,5 +38,5 @@
   </ion-card-header>
 
   
-</ion-card>
+</ion-card> -->
 

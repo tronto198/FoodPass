@@ -1,15 +1,15 @@
-<ion-card>
-  <ion-item>
-    <h4 name=location, slot="start"> A{{locate}} 500m{{distance}}</h4>
+<ion-card >
+  <ion-item >
+    <h4 name=location, slot="start"> {{locate}}  {{distance}}m</h4>
    
   </ion-item>
   <img src="../assets/icon/foodtruck.png" alt="ion">
+  <!-- <img src="truckImage.src" alt="ion"> -->
   <ion-card-header>
     
-    <ion-card-title>{{str}}</ion-card-title>
+    <ion-card-title>{{name}}</ion-card-title>
     <ion-card-subtitle>
        {{inform}}
-      치즈 닭발, 매운닭발(1~3 단계), 무뼈닭발/뼈닭발 있습니다.
     </ion-card-subtitle>
       <button>
         <ion-icon name="star"></ion-icon>
@@ -17,16 +17,16 @@
         <ion-icon name="star"></ion-icon>
         <ion-icon name="star"></ion-icon>
         <ion-icon name="star-half"></ion-icon>
-        4.5점
-       
+      
+       {{grade}}점
       </button>
-      <ion-label>대기 {{wating}}5명</ion-label>
+      <ion-label>대기 {{wating}}명</ion-label>
   </ion-card-header>
 
 
   <ion-footer>
    
-    <ion-label> 공지사항 없음</ion-label>
+    <ion-label>{{notice}}</ion-label>
       
 
   </ion-footer>
