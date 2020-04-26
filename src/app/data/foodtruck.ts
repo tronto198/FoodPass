@@ -8,5 +8,4 @@ export interface FoodtruckData {
     wating?: number,
     notice?: string,
     truckImage?: string
-
 }

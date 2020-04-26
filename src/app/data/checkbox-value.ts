@@ -1,7 +1,11 @@
-export class CheckboxValue implements CheckValue{
+export class CheckboxValue<T extends CheckValue> implements CheckValue{
     private allChecked: boolean;
     private indeterminated: boolean;
-    private items: CheckValue[];
+    private items: T[];
+    constructor(){
+        this.allChecked = true;
+        this.indeterminated = false;
+    }
 
     get checked(){
         return this.allCheck;
@@ -29,17 +33,7 @@ export class CheckboxValue implements CheckValue{
         return this.indeterminated;
     }
 
-    setting(items: any[]) : CheckValue[] {
-        items.forEach((value, index, arr)=>{
-            if(value.checked == undefined){
-                value.checked = true;
-            }
-        })
-
-        return items;
-    }
-
-    setItems(items: CheckValue[]){
+    setItems(items: T[]){
         this.items = items;
     }
 

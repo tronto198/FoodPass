@@ -10,15 +10,14 @@ import { BasketControllerService } from 'src/app/services/basket-controller/bask
   styleUrls: ['./basket.page.scss'],
 })
 export class BasketPage implements OnInit {
-  teststr : string;
 
   constructor(
     private modalCtrl: ModalController,
-    private pageCtrl: TabHomeControllerService,
     private basketCtrl: BasketControllerService
   ) { }
 
   ngOnInit() {
+    this.basketCtrl.makeTestdata();
   }
 
   dismiss(){
@@ -27,6 +26,24 @@ export class BasketPage implements OnInit {
 
   get totalPrice(){
     return this.basketCtrl.totalPrice;
+  }
+
+  get allChecked(){
+    return this.basketCtrl.allCheck;
+  }
+  set allChecked(checked: boolean){
+    this.basketCtrl.allCheck = checked;
+  }
+  get indeterminated(){
+    return this.basketCtrl.indeterminate;
+  }
+
+  get orderKeys(){
+    return this.basketCtrl.basketarr;
+  }
+
+  checkboxClicked(){
+    this.basketCtrl.toggle();
   }
 
 }

@@ -1,47 +1,50 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { CheckboxValue } from 'src/app/data/checkbox-value';
+import { FoodtruckData } from 'src/app/data/foodtruck';
+import { cbOrderData } from 'src/app/data/order';
 
 @Component({
-  selector: 'app-order',
+  selector: 'basket-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
-  foodtruckName : string;
-  menuList : string[];
+  @Input() foodtruckIndex : number;
 
   constructor(
     private controller : BasketControllerService
   ) { }
 
   ngOnInit() {
-    this.foodtruckName = "testftname";
-    this.menuList = ["tt", "dd", "ss"];
   }
 
   checkboxClicked(){
-    this.controller.rootCheckboxValue.toggle();
+    this.controller.toggle();
   }
 
-  // get allChecked(){
-  //   return this.checkboxValues.allCheck;
-  // }
+  get foodtruckInfo(){
+    return this.controller.basketarr[this.foodtruckIndex].foodtruckinfo;
+  }
 
-  // set allChecked(checked : boolean){
-  //   this.controller.allCheck = checked;
-  //   if(this.controller.allCheck){
-  //     this.controller.indeterminate = false;
-  //   }
+  get order(){
+    return this.controller.basketarr[this.foodtruckIndex];
+  }
 
-  //   this.foodtruckName = "test";
-  // }
+  get allChecked(){
+    return this.order.allCheck;
+  }
 
-  // get indeterminate(){
-  //   return this.controller.indeterminate;
-  // }
-  // set indeterminate(indeterminate : boolean){
-  //   this.controller.indeterminate = indeterminate;
-  // }
+  set allChecked(checked : boolean){
+    this.order.allCheck = checked;
+  }
+
+  get indeterminate(){
+    return this.order.indeterminate;
+  }
+
+  get menuList(){
+    return this.order.orderedMenu;
+  }
 
 }

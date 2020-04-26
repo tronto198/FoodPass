@@ -66,9 +66,6 @@ export class TabHomePage implements OnInit {
 
     this.modalController.create({
       component: BasketPage,
-      componentProps: {
-        teststr: "testestestes"
-      },
       cssClass: "modal-fullscreen"
     }
     ).then(s =>{

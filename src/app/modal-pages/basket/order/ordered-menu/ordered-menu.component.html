@@ -1,8 +1,11 @@
 <ion-item>
-  <ion-title>{{menuName}}</ion-title>
-  <ion-list *ngFor="let option of optionList">
+  <ion-title>{{menuInfo.name}}</ion-title>
+  <!-- <ion-list *ngFor="let option of optionList"> -->
     <ion-item lines="none">
-      <ion-label><h4>{{option}}</h4></ion-label>
+      <ion-label><h4>{{optionInfo.name}}</h4></ion-label>
     </ion-item>
-  </ion-list>
+    <ion-item lines="none">
+      <ion-label>{{price}}</ion-label>
+    </ion-item>
+  <!-- </ion-list> -->
 </ion-item>
