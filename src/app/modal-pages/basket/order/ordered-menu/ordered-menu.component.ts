@@ -16,36 +16,30 @@ export class OrderedMenuComponent implements OnInit {
     private controller : BasketControllerService
   ) { }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {  }
 
-  checkboxClicked(){
-    this.controller.basket[this.foodtruckIndex].toggleItem(this.orderedMenuIndex);
-  }
-
+  // checkboxClicked(){
+  //   this.controller.basket[this.foodtruckIndex].toggleItem(this.orderedMenuIndex);
+  // }
   
 
   get orderedMenuInfo(){
     return this.controller.basket[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
   }
-
   get menuInfo(){
     return this.orderedMenuInfo.menuinfo;
   }
-
-  get checked(){
-    return this.orderedMenuInfo.check;
-  }
-
-  set checked(b : boolean){
-    this.orderedMenuInfo.check = b;
-  }
-
   get optionInfo(){
     return this.orderedMenuInfo.optioninfo;
-    // return this.controller.basket.get(this.foodtruckId).orderedMenu[this.orderedMenuIndex].optioninfo;
   }
+
+  get checkValue(){
+    return this.orderedMenuInfo.checkValue;
+  }
+  set checkValue(b : boolean){
+    this.orderedMenuInfo.value = b;
+  }
+
 
   get price(){
     return this.menuInfo.price + this.optionInfo.extraPrice;

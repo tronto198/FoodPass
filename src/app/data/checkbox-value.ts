@@ -1,107 +1,116 @@
 export class CheckValue{
     protected checked: boolean;
-    private parent? : CheckboxValue;
-    private itemIndex?: number;
+    protected indeterminated: boolean;
+    protected parent? : CheckboxValue;
+    protected itemIndex?: number; //노필요 예정 밑으로 다
 
     constructor(parent : CheckboxValue, itemIndex: number){
         this.checked = true;
+        this.indeterminated = false;
         this.parent = parent;
         this.itemIndex = itemIndex;
     }
 
-    get check(){
+    get checkValue(){
         return this.checked;
     }
-    set check(b: boolean){
-        // console.log(this.parent);
-        // console.log(this.itemIndex + "checked");
+    get indeterminate(){
+        // return !this.allChecked && this.checked;
+        return this.indeterminated;
+    }
+
+    get value(){
+        return this.checked;
+    }
+    set value(b : boolean){
+        this.checked = b;
+        this.valueChanged();
+    }
+
+    toggle(){
+        this.value = !this.value;
+    }
+    
+    protected valueChanged(){
         if(this.parent != null){
-            this.parent.setItemValue(this.itemIndex,b);
-        }
-        else{
-            this.checked = b;
+            this.parent.applyValueChanged(this.checked);
         }
     }
 
-    valueChange(b : boolean){
+    protected valueChangeFromParent(b : boolean){
         this.checked = b;
     }
 
-
-    toggle(){
-        if(this.parent != null){
-            this.parent.toggleItem(this.itemIndex);
-        }
-        else{
-            this.check = !this.check;
-        }
-        
-    }
 }
 
 
 export class CheckboxValue extends CheckValue{
-    protected indeterminated: boolean;
+    // protected allChecked: boolean;
     protected items: CheckValue[];
 
     constructor(parent: CheckboxValue = null, itemIndex: number = 0){
         super(parent, itemIndex);
-        this.indeterminated = false;
+        // this.allChecked = true;
     }
 
-    
-    get indeterminate(){
-        return this.indeterminated;
+    get checkValue(){
+        // return this.allChecked;
+        return this.checked !== this.indeterminated;
     }
 
-    get allCheck(){
+    get value(){
         return this.checked;
     }
-
-    set allCheck(b: boolean){
-        this.check = b;
-        this.checkAll(b);
+    set value(b : boolean){
+        this.changeAll(b);
+        this.valueChanged();
     }
-
-    checkAll(b : boolean){
+    changeAll(b : boolean){
+        // this.allChecked = b;
         this.indeterminated = false;
+        this.checked = b;
         this.items.forEach((value, index, arr)=>{
-            value.valueChange(b);
+            value.value = b;
         });
     }
 
-    valueChange(b : boolean){
-        this.checked = b;
-        this.checkAll(b);
-    }
-
-    toggleItem(index: number){
-        this.setItemValue(index, !this.items[index].check);
-    }
-
-    setItems(items: CheckValue[]){
-        this.items = items;
-    }
-
-    setItemValue(index: number, b: boolean){
-        this.items[index].valueChange(b);
+    applyValueChanged(b : boolean){
         if(this.items.every((el, index, arr)=>{
-            return el.check == b;
+            if(el.indeterminate){
+                return false;
+            }
+            return el.value == b;
         })){
             //모두 체크 or 모두 해제
+            // this.allChecked = b;
             this.indeterminated = false;
             if(b){
-                this.check = true;
+                // console.log("all check");
+                
+                this.checked = true;
             }
             else{
-                this.check = false;
+                // console.log("all not check");
+                this.checked = false;
             }
         }
         else{
             //하나 이상 and 다는 아니게 체크됨
-            this.check = false;
+            // console.log("1 ~ max - 1");
+            // this.allChecked = false;
             this.indeterminated = true;
+            this.checked = true;
         }
+
+        this.valueChanged();
+    }
+
+    valueChangeFromParent(b : boolean){
+        this.changeAll(b);
+    }
+
+    setItems(items: CheckValue[]){
+        this.items = items;
     }
 }
 
