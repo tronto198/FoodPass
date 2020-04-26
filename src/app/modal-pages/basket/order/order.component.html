@@ -1,15 +1,15 @@
 <ion-card>
   <ion-card-header>
-    
     <ion-card-title>
-      <ion-checkbox (click)="checkboxClicked()" [checked]="allChecked" [indeterminate]="indeterminate"></ion-checkbox>
-      {{foodtruckName}} {{allChecked}}  {{indeterminate}}
+      <!-- <ion-checkbox (click)="checkboxClicked()" [checked]="allChecked" [indeterminate]="indeterminate"></ion-checkbox> -->
+      <ion-checkbox [(ngModel)]="checked" [indeterminate]="indeterminated"></ion-checkbox>
+      {{foodtruckInfo.name}} {{checked}}  {{indeterminated}}
     </ion-card-title>
   </ion-card-header>
 
   <ion-card-content>
-    <ion-list *ngFor="let menu of menuList">
-      <order-ordered-menu></order-ordered-menu>
+    <ion-list *ngFor="let menu of menuList; let i = index">
+      <basket-ordered-menu foodtruckIndex="{{foodtruckIndex}}" orderedMenuIndex="{{i}}"></basket-ordered-menu>
     </ion-list>
   </ion-card-content>
 </ion-card>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FoodtruckData } from 'src/app/data/foodtruck';
 
 @Component({
   selector: 'app-cardview',
@@ -6,11 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./cardview.component.scss'],
 })
 export class CardviewComponent implements OnInit {
-  @Input() str:string;
+  
+  @Input() name:string;
   @Input() locate:string;
-
-  @Input() wating: string;
   @Input() inform:string;
+  @Input() wating: number;
+  @Input() grade:number;
+  @Input() notice:string;
+  @Input() distance:number;
+  @Input() truckImage: string;
+  //@Input() foodtruck:FoodtruckData;
   constructor() { }
 
   ngOnInit() {

@@ -19,7 +19,6 @@ import { OrderedOptionComponent } from './ordered-menu/ordered-option/ordered-op
   declarations: [
     OrderComponent,
     OrderedMenuComponent,
-    OrderedOptionComponent
   ],
   providers: []
 })

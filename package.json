@@ -62,5 +62,9 @@
   "resolutions": {
     "@babel/preset-env": "^7.8.7"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "config": {
+    "ionic_bundler": "webpack",
+    "ionic_source_map": "source-map"
+  }
 }

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="ion-text-center" color="dark" (click)="onToolbarClicked()">
+  <ion-toolbar class="ion-text-center" color="dark">
     <ion-buttons slot="start">
       <ion-button (click)="dismiss()">
         <ion-icon name="arrow-back-outline"></ion-icon>
@@ -10,7 +10,11 @@
 </ion-header>
 
 <ion-content>
-  <app-order></app-order>
+  <!-- <ion-checkbox (click)="checkboxClicked()" [checked]="allChecked" [indeterminate]="indeterminated"></ion-checkbox> -->
+  <ion-checkbox [(ngModel)]="checked" [indeterminate]="indeterminated"></ion-checkbox>
+  <span *ngFor="let foodtruckInfo of orderKeys; let i = index">
+    <basket-order foodtruckIndex="{{i}}"></basket-order>
+  </span>
 
   <ion-button>{{totalPrice}}원 주문하기</ion-button>
 
