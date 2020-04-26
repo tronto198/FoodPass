@@ -20,14 +20,26 @@ export class OrderedMenuComponent implements OnInit {
     
   }
 
+  checkboxClicked(){
+    this.controller.basket[this.foodtruckIndex].toggleItem(this.orderedMenuIndex);
+  }
+
   
 
   get orderedMenuInfo(){
-    return this.controller.basketarr[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
+    return this.controller.basket[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
   }
 
   get menuInfo(){
     return this.orderedMenuInfo.menuinfo;
+  }
+
+  get checked(){
+    return this.orderedMenuInfo.check;
+  }
+
+  set checked(b : boolean){
+    this.orderedMenuInfo.check = b;
   }
 
   get optionInfo(){

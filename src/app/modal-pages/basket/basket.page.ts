@@ -18,6 +18,7 @@ export class BasketPage implements OnInit {
 
   ngOnInit() {
     this.basketCtrl.makeTestdata();
+    
   }
 
   dismiss(){
@@ -28,10 +29,10 @@ export class BasketPage implements OnInit {
     return this.basketCtrl.totalPrice;
   }
 
-  get allChecked(){
+  get checked(){
     return this.basketCtrl.allCheck;
   }
-  set allChecked(checked: boolean){
+  set checked(checked: boolean){
     this.basketCtrl.allCheck = checked;
   }
   get indeterminated(){
@@ -39,7 +40,7 @@ export class BasketPage implements OnInit {
   }
 
   get orderKeys(){
-    return this.basketCtrl.basketarr;
+    return this.basketCtrl.basket;
   }
 
   checkboxClicked(){

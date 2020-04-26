@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { CheckboxValue } from 'src/app/data/checkbox-value';
 import { FoodtruckData } from 'src/app/data/foodtruck';
-import { cbOrderData } from 'src/app/data/order';
+import { OrderData } from 'src/app/data/order';
 
 @Component({
   selector: 'basket-order',
@@ -20,26 +20,26 @@ export class OrderComponent implements OnInit {
   }
 
   checkboxClicked(){
-    this.controller.toggle();
+    this.controller.toggleItem(this.foodtruckIndex);
   }
 
   get foodtruckInfo(){
-    return this.controller.basketarr[this.foodtruckIndex].foodtruckinfo;
+    return this.controller.basket[this.foodtruckIndex].foodtruckinfo;
   }
 
   get order(){
-    return this.controller.basketarr[this.foodtruckIndex];
+    return this.controller.basket[this.foodtruckIndex];
   }
 
-  get allChecked(){
-    return this.order.allCheck;
+  get checked(){
+    return this.order.allCheck
   }
 
-  set allChecked(checked : boolean){
+  set checked(checked : boolean){
     this.order.allCheck = checked;
   }
 
-  get indeterminate(){
+  get indeterminated(){
     return this.order.indeterminate;
   }
 

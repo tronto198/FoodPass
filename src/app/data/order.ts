@@ -4,24 +4,16 @@ import { OptionData } from './option';
 import { OrderedMenuData } from './ordered-menu';
 import { CheckValue, CheckboxValue } from './checkbox-value';
 
-export interface OrderData extends CheckValue {
-    id?: number,
-    foodtruckinfo: FoodtruckData,
-    orderedMenu: OrderedMenuData[],
-}
-
-export class cbOrderData extends CheckboxValue<OrderedMenuData> implements OrderData{
+export class OrderData extends CheckboxValue{
     id?: number;
     foodtruckinfo: FoodtruckData;
     orderedMenu: OrderedMenuData[];
 
-    constructor(orderdata: OrderData){
-        super();
-        super.setItems(this.orderedMenu);
-        this.id = orderdata.id;
-        this.foodtruckinfo = orderdata.foodtruckinfo;
-        this.orderedMenu = orderdata.orderedMenu;
+    constructor(parent: CheckboxValue, itemIndex: number){
+        super(parent, itemIndex);
     }
 
-
+    get items(){
+        return this.orderedMenu;
+    }
 }

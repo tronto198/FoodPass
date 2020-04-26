@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OrderData, cbOrderData } from 'src/app/data/order';
+import { OrderData } from 'src/app/data/order';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
@@ -10,12 +10,16 @@ import { CheckboxValue, CheckValue } from 'src/app/data/checkbox-value';
 @Injectable({
   providedIn: 'root'
 })
-export class BasketControllerService extends CheckboxValue<cbOrderData>{
-  basket : Map<FoodtruckData, cbOrderData> = new Map<FoodtruckData, cbOrderData>();
-  // basket : cbOrderData[] = [];
+export class BasketControllerService extends CheckboxValue{
+  // basket : Map<FoodtruckData, cbOrderData> = new Map<FoodtruckData, cbOrderData>();
+  basket : OrderData[] = [];
 
   constructor() {
     super();
+  }
+
+  get items(){
+    return this.basket;
   }
 
   makeTestdata(){
@@ -42,24 +46,36 @@ export class BasketControllerService extends CheckboxValue<cbOrderData>{
   }
 
   push(foodtruck : FoodtruckData, menu: MenuData, option: OptionData, amount: number = 1){
-    let orderedMenu : OrderedMenuData = {
-      menuinfo: menu,
-      optioninfo: option,
-      amount: amount,
-      checked: true
-    };
 
-    if(this.basket.has(foodtruck)){
-      this.basket.get(foodtruck).orderedMenu.push(orderedMenu);
+    const existIndex = this.basket.find(el=>{
+      el.foodtruckinfo.id == foodtruck.id;
+    });
+
+    if(existIndex == undefined){
+      //푸드트럭 첫 주문
+      
+      let newOrder : OrderData = new OrderData(this, this.basket.length);
+
+      let newOrderedMenu : OrderedMenuData = new OrderedMenuData(newOrder, 0);
+      newOrderedMenu.menuinfo = menu;
+      newOrderedMenu.optioninfo = option;
+      newOrderedMenu.amount = amount;
+
+
+      newOrder.foodtruckinfo = foodtruck;
+      newOrder.orderedMenu = [newOrderedMenu];
+
+      this.basket.push(newOrder);
     }
     else{
-      let newOrder : OrderData = {
-        foodtruckinfo: foodtruck,
-        orderedMenu: [orderedMenu],
-        checked: true 
-      };
-      this.basket.set(foodtruck, new cbOrderData(newOrder));
-      
+      //이미 같은 푸드트럭의 주문이 있음
+      let existOrder : OrderData = this.basket[Number(existIndex)];
+      let newOrderedMenu : OrderedMenuData = new OrderedMenuData(existOrder, existOrder.items.length);
+      newOrderedMenu.menuinfo = menu;
+      newOrderedMenu.optioninfo = option;
+      newOrderedMenu.amount = amount;
+
+      existOrder.orderedMenu.push(newOrderedMenu);
     }
 
   }
@@ -67,10 +83,10 @@ export class BasketControllerService extends CheckboxValue<cbOrderData>{
   get totalPrice(){
     let price : number = 0;
     this.basket.forEach((value, key, obj) =>{
-      if(value.checked)
+      if(value.check)
       value.orderedMenu.forEach((value, index, arr)=>{
         //여기에서 체크되잇는지 확인 
-        if(value.checked){
+        if(value.check){
           price += value.amount * (value.menuinfo.price + value.optioninfo.extraPrice);
         }
       })
@@ -79,8 +95,8 @@ export class BasketControllerService extends CheckboxValue<cbOrderData>{
     return price;
   }
 
-  get basketarr() : cbOrderData[]{
-    return Array.from(this.basket.values());
-  }
+  // get basket() : OrderData[]{
+  //   return Array.from(this.basket.values());
+  // }
 }
 

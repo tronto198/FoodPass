@@ -1,5 +1,9 @@
 <ion-item>
-  <ion-title>{{menuInfo.name}}</ion-title>
+  <ion-title>
+    <!-- <ion-checkbox (click)="checkboxClicked()" checked="{{optionInfo.checked}}" indeterminate="{{optionInfo.indeterminate}}"></ion-checkbox> -->
+    <ion-checkbox [(ngModel)]="checked"></ion-checkbox>
+    {{menuInfo.name}}
+  </ion-title>
   <!-- <ion-list *ngFor="let option of optionList"> -->
     <ion-item lines="none">
       <ion-label><h4>{{optionInfo.name}}</h4></ion-label>
