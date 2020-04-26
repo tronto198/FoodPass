@@ -29,11 +29,11 @@ export class BasketPage implements OnInit {
     return this.basketCtrl.totalPrice;
   }
 
-  get checked(){
-    return this.basketCtrl.allCheck;
+  get checkValue(){
+    return this.basketCtrl.checkValue;
   }
-  set checked(checked: boolean){
-    this.basketCtrl.allCheck = checked;
+  set checkValue(checked: boolean){
+    this.basketCtrl.value = checked;
   }
   get indeterminated(){
     return this.basketCtrl.indeterminate;

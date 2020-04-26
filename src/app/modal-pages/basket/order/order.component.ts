@@ -19,10 +19,6 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkboxClicked(){
-    this.controller.toggleItem(this.foodtruckIndex);
-  }
-
   get foodtruckInfo(){
     return this.controller.basket[this.foodtruckIndex].foodtruckinfo;
   }
@@ -31,12 +27,12 @@ export class OrderComponent implements OnInit {
     return this.controller.basket[this.foodtruckIndex];
   }
 
-  get checked(){
-    return this.order.allCheck
+  get checkValue(){
+    return this.order.checkValue
   }
 
-  set checked(checked : boolean){
-    this.order.allCheck = checked;
+  set checkValue(checked : boolean){
+    this.order.value = checked;
   }
 
   get indeterminated(){
@@ -47,4 +43,7 @@ export class OrderComponent implements OnInit {
     return this.order.orderedMenu;
   }
 
+  get price(){
+    return this.order.price;
+  }
 }

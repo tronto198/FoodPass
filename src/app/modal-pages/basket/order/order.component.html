@@ -2,9 +2,11 @@
   <ion-card-header>
     <ion-card-title>
       <!-- <ion-checkbox (click)="checkboxClicked()" [checked]="allChecked" [indeterminate]="indeterminate"></ion-checkbox> -->
-      <ion-checkbox [(ngModel)]="checked" [indeterminate]="indeterminated"></ion-checkbox>
-      {{foodtruckInfo.name}} {{checked}}  {{indeterminated}}
+      <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
+      {{foodtruckInfo.name}}
     </ion-card-title>
+    <ion-note slot="end">{{price}}</ion-note>
+    
   </ion-card-header>
 
   <ion-card-content>

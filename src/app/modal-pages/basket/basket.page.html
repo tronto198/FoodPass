@@ -10,8 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ion-checkbox (click)="checkboxClicked()" [checked]="allChecked" [indeterminate]="indeterminated"></ion-checkbox> -->
-  <ion-checkbox [(ngModel)]="checked" [indeterminate]="indeterminated"></ion-checkbox>
+  <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
   <span *ngFor="let foodtruckInfo of orderKeys; let i = index">
     <basket-order foodtruckIndex="{{i}}"></basket-order>
   </span>

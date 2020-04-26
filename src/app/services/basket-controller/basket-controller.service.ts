@@ -23,35 +23,39 @@ export class BasketControllerService extends CheckboxValue{
   }
 
   makeTestdata(){
-    let id1 = Math.floor(Math.random() * 1000);
-    let id2 = Math.floor(Math.random() * 1000);
-    let price = Math.floor(Math.random() * 100) * 100;
-    let ftdata : FoodtruckData = {
-      id: id1,
-      name: id1 + " ft"
-    };
-    let menudata : MenuData ={
-      id: id2,
-      name: id2 + " menu",
-      price: price
-    };
-    let optiondata : OptionData = {
-      id: id1 + id2,
-      name: id1 + id2 + " option",
-      extraPrice: 500
-    };
+    let ftId = Math.floor(Math.random() * 1000);
+    let menucount = Math.floor(Math.random() * 3) + 1;
 
-    let amount = Math.floor(Math.random() * 4);
-    this.push(ftdata, menudata, optiondata, amount);
+    for(let i = 0; i < menucount; i++){
+      let menuId = Math.floor(Math.random() * 1000);
+      let price = Math.floor(Math.random() * 80) * 100;
+      let ftdata : FoodtruckData = {
+        id: ftId,
+        name: ftId + " foodtruck"
+      };
+      let menudata : MenuData ={
+        id: menuId,
+        name: menuId + " menu",
+        price: price
+      };
+      let optiondata : OptionData = {
+        id: ftId + menuId,
+        name: ftId + menuId + " option",
+        extraPrice: 500
+      };
+  
+      let amount = Math.floor(Math.random() * 2) + 1;
+      this.push(ftdata, menudata, optiondata, amount);
+    }
   }
 
   push(foodtruck : FoodtruckData, menu: MenuData, option: OptionData, amount: number = 1){
 
-    const existIndex = this.basket.find(el=>{
-      el.foodtruckinfo.id == foodtruck.id;
-    });
+    const existIndex : number = this.basket.findIndex((value, index, obj) =>{
+      return value.foodtruckinfo.id == foodtruck.id;
+    })
 
-    if(existIndex == undefined){
+    if(existIndex == -1){
       //푸드트럭 첫 주문
       
       let newOrder : OrderData = new OrderData(this, this.basket.length);
@@ -69,7 +73,7 @@ export class BasketControllerService extends CheckboxValue{
     }
     else{
       //이미 같은 푸드트럭의 주문이 있음
-      let existOrder : OrderData = this.basket[Number(existIndex)];
+      let existOrder : OrderData = this.basket[existIndex];
       let newOrderedMenu : OrderedMenuData = new OrderedMenuData(existOrder, existOrder.items.length);
       newOrderedMenu.menuinfo = menu;
       newOrderedMenu.optioninfo = option;
@@ -82,15 +86,19 @@ export class BasketControllerService extends CheckboxValue{
 
   get totalPrice(){
     let price : number = 0;
-    this.basket.forEach((value, key, obj) =>{
-      if(value.check)
-      value.orderedMenu.forEach((value, index, arr)=>{
-        //여기에서 체크되잇는지 확인 
-        if(value.check){
-          price += value.amount * (value.menuinfo.price + value.optioninfo.extraPrice);
-        }
-      })
-    });
+    // this.basket.forEach((value, key, obj) =>{
+    //   if(value.check)
+    //   value.orderedMenu.forEach((value, index, arr)=>{
+    //     //여기에서 체크되잇는지 확인 
+    //     if(value.check){
+    //       price += value.amount * (value.menuinfo.price + value.optioninfo.extraPrice);
+    //     }
+    //   })
+    // });
+
+    for(let order of this.basket){
+      price += order.price;
+    }
 
     return price;
   }
