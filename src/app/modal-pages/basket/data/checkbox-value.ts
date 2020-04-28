@@ -26,7 +26,13 @@ export class CheckValue{
     }
 
     toggle(){
-        this.value = !this.value;
+        if(this.indeterminated){
+            this.value = true;
+        }
+        else{
+            this.value = !this.value;
+        }
+        
     }
     
     protected valueChanged(){

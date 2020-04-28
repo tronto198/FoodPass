@@ -17,20 +17,21 @@ const routes: Routes = [
   {
     //이거 있어야 modal 가능
     path: 'basket',
-    component: BasketPage
-    // loadChildren: () => import('src/app/modal-pages/basket/basket.module').then( m => m.BasketPageModule)
+    // component: BasketPage
+    loadChildren: () => import('src/app/modal-pages/basket/basket.module').then( m => m.BasketPageModule)
   },
   {
     path: 'map',
-    component: MapPage
+    component: MapPage,
+    // loadChildren: () => import('src/app/modal-pages/map/map.page').then(m=> m.MapPage);
   },
   {
-    path: 'foodtruck-info/:id',
-    component: FoodtruckInfoPage
-    // loadChildren: () => import('./foodtruck-info/foodtruck-info.module').then( m => m.FoodtruckInfoPageModule)
+    path: 'foodtruck/:id',
+    // component: FoodtruckInfoPage,
+    loadChildren: () => import('./foodtruck-info/foodtruck-info.module').then( m => m.FoodtruckInfoPageModule)
   },
   {
-    path: 'menu-info/:id',
+    path: 'foodtruck/:foodtruckId/menu/:id',
     // component: MenuInfoPage
     loadChildren: () => import('./menu-info/menu-info.module').then( m => m.MenuInfoPageModule)
   }

@@ -1,9 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
-import { CheckboxValue } from 'src/app/data/checkbox-value';
-import { FoodtruckData } from 'src/app/data/foodtruck';
-import { OrderData } from 'src/app/data/order';
-import { PopoverController } from '@ionic/angular';
+import { OrderedMenuData } from 'src/app/data/ordered-menu';
 
 @Component({
   selector: 'basket-order',
@@ -58,5 +55,20 @@ export class OrderComponent implements OnInit {
 
   delete(index : number){
     this.basketCtrl.basket[this.foodtruckIndex].deleteItem(this.order.items[index]);
+  }
+
+  ctrlAmount(menuIndex: number, add : boolean){
+    event.stopPropagation();
+
+    let menu : OrderedMenuData = this.order.orderedMenu[menuIndex];
+    
+    if(add){
+      menu.amount++;
+    }
+    else{
+      if(menu.amount > 1){
+        menu.amount--;
+      }
+    }
   }
 }

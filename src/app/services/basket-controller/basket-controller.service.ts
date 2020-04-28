@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { OrderData } from 'src/app/data/order';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
-import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { MenuInfoPageModule } from 'src/app/tabs/tab-home/menu-info/menu-info.module';
-import { CheckboxValue, CheckValue } from 'src/app/data/checkbox-value';
+import { CheckboxValue, CheckValue } from 'src/app/modal-pages/basket/data/checkbox-value';
+import { BasketOrder } from 'src/app/modal-pages/basket/data/basket-order';
+import { BasketOrderedMenu } from 'src/app/modal-pages/basket/data/basket-ordered-menu';
 
 @Injectable()
 export class BasketControllerService extends CheckboxValue{
   // basket : Map<FoodtruckData, cbOrderData> = new Map<FoodtruckData, cbOrderData>();
-  basket : OrderData[] = [];
+  basket : BasketOrder[] = [];
 
   constructor() {
     super();
@@ -78,12 +78,14 @@ export class BasketControllerService extends CheckboxValue{
       return value.foodtruckinfo.id == foodtruck.id;
     })
 
+    // const orderedMenu : 
+
     if(existIndex == -1){
       //푸드트럭 첫 주문
       
-      let newOrder : OrderData = new OrderData(this);
+      let newOrder : BasketOrder = new BasketOrder(this);
 
-      let newOrderedMenu : OrderedMenuData = new OrderedMenuData(newOrder);
+      let newOrderedMenu : BasketOrderedMenu = new BasketOrderedMenu(newOrder);
       newOrderedMenu.menuinfo = menu;
       newOrderedMenu.optioninfo = option;
       newOrderedMenu.amount = amount;
@@ -96,8 +98,8 @@ export class BasketControllerService extends CheckboxValue{
     }
     else{
       //이미 같은 푸드트럭의 주문이 있음
-      let existOrder : OrderData = this.basket[existIndex];
-      let newOrderedMenu : OrderedMenuData = new OrderedMenuData(existOrder);
+      let existOrder : BasketOrder = this.basket[existIndex];
+      let newOrderedMenu : BasketOrderedMenu = new BasketOrderedMenu(existOrder);
       newOrderedMenu.menuinfo = menu;
       newOrderedMenu.optioninfo = option;
       newOrderedMenu.amount = amount;
@@ -117,9 +119,9 @@ export class BasketControllerService extends CheckboxValue{
     return price;
   }
 
-  extractCheckedOrder() : [OrderData[], OrderData[]]{
-    let checkedOrder : OrderData[] = [];
-    let unCheckedOrder : OrderData[] = [];
+  extractCheckedOrder() : [BasketOrder[], BasketOrder[]]{
+    let checkedOrder : BasketOrder[] = [];
+    let unCheckedOrder : BasketOrder[] = [];
 
     this.basket.forEach((val, index, arr)=>{
       if(val.value){

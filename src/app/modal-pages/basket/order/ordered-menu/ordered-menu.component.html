@@ -1,19 +1,20 @@
 <!-- <ion-item-sliding> -->
   <ion-item>
+    <ion-checkbox class="ib" [(ngModel)]="checkValue"></ion-checkbox>
     <ion-title>
-      <ion-checkbox class="ib" [(ngModel)]="checkValue"></ion-checkbox>
         {{menuInfo.name}}
         <ion-note>{{optionInfo.name}}</ion-note>
     </ion-title>
     
     <span class="ion-float-right ib">
-      <ion-icon class="margin5" button name="add-outline" (click)="ctrlAmount(true)"></ion-icon>
-      <ion-label class="ib number2 ion-text-right">
-        {{orderedMenuInfo.amount}}
+      <!-- <ion-icon class="margin5" button name="add-outline" (click)="ctrlAmount($event, true)"></ion-icon> -->
+      <ion-label class="ib ion-text-right">
+        {{orderedMenuInfo.amount}}개
       </ion-label>
-      <ion-icon class="margin5" button name="remove-outline" (click)="ctrlAmount(false)"></ion-icon>
+      <!-- <ion-icon class="margin5" button name="remove-outline" (click)="ctrlAmount($event, false)"></ion-icon> -->
       <ion-label class="ib margin-left number5 ion-text-right">{{price}}</ion-label>
     </span>
+  </ion-item>
 
     <!-- <ion-item-options side="end">
       <ion-item-option >

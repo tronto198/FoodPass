@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { MenuData } from 'src/app/data/menu';
-import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { PopoverController } from '@ionic/angular';
 import { SelectAmountComponent } from '../select-amount/select-amount.component';
 
@@ -59,7 +58,10 @@ export class OrderedMenuComponent implements OnInit {
     });
   }
 
-  ctrlAmount(add : boolean){
+  ctrlAmount(event : Event, add : boolean){
+    console.log(add);
+    event.stopPropagation();
+    
     if(add){
       this.orderedMenuInfo.amount++;
     }
