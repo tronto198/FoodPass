@@ -9,8 +9,17 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-list #slidingList *ngFor="let menu of menuList; let i = index">
-        <basket-ordered-menu foodtruckIndex="{{foodtruckIndex}}" orderedMenuIndex="{{i}}"></basket-ordered-menu>
+      <ion-list #slidingList>
+        <ion-item-sliding *ngFor="let menu of menuList; let i = index">
+          <basket-ordered-menu foodtruckIndex="{{foodtruckIndex}}" orderedMenuIndex="{{i}}"></basket-ordered-menu>
+
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="delete(i)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+
+        </ion-item-sliding>
       </ion-list>
     </ion-card-content>
   </ion-card>

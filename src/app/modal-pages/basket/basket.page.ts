@@ -52,4 +52,8 @@ export class BasketPage implements OnInit {
     return this.basketCtrl.basket.length == 0;
   }
 
+  get orderEnable(){
+    return this.isEmpty || this.totalPrice == 0;
+  }
+
 }

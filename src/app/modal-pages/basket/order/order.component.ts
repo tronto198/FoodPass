@@ -55,4 +55,8 @@ export class OrderComponent implements OnInit {
   test(){
     this.foodtruckInfo.name = "testestes";
   }
+
+  delete(index : number){
+    this.basketCtrl.basket[this.foodtruckIndex].deleteItem(this.order.items[index]);
+  }
 }
