@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { TabOrderPageRoutingModule } from './tab-order-routing.module';
 
 import { TabOrderPage } from './tab-order.page';
-import { WatingOrderListPageModule } from './wating-order-list/wating-order-list.module';
 import { OrderHistoryListPageModule } from './order-history-list/order-history-list.module';
+import { WaitingOrderListPageModule } from './waiting-order-list/waiting-order-list.module';
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { OrderHistoryListPageModule } from './order-history-list/order-history-l
     FormsModule,
     IonicModule,
     TabOrderPageRoutingModule,
-    WatingOrderListPageModule,
+    WaitingOrderListPageModule,
     OrderHistoryListPageModule
   ],
   declarations: [TabOrderPage]

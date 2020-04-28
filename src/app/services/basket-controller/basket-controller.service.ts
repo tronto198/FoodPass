@@ -119,7 +119,7 @@ export class BasketControllerService extends CheckboxValue{
     return price;
   }
 
-  extractCheckedOrder() : [BasketOrder[], BasketOrder[]]{
+  private classifyCheckedOrder() : [BasketOrder[], BasketOrder[]]{
     let checkedOrder : BasketOrder[] = [];
     let unCheckedOrder : BasketOrder[] = [];
 
@@ -135,6 +135,12 @@ export class BasketControllerService extends CheckboxValue{
     });
 
     return [checkedOrder, unCheckedOrder];
+  }
+
+  extractCheckedOrder() : BasketOrder[] {
+    let [checked, unChecked] = this.classifyCheckedOrder();
+    this.setItems(unChecked);
+    return checked;
   }
 
 }

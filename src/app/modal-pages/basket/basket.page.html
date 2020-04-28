@@ -11,6 +11,7 @@
 
 <ion-content >
   <span *ngIf="!isEmpty; then basketList; else emptyBasket"></span>
+  
   <ng-template #basketList>
     <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
     <ion-list *ngFor="let foodtruckInfo of orderKeys; let i = index">
@@ -26,6 +27,6 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="full" [disabled]="orderEnable">{{totalPrice}}원 주문하기</ion-button>
+    <ion-button expand="full" [disabled]="orderEnable" (click)="orderButtonClicked()">{{totalPrice}}원 주문하기</ion-button>
   </ion-toolbar>
 </ion-footer>
