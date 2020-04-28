@@ -4,13 +4,10 @@
       {{menuInfo.name}}
       <ion-note>{{optionInfo.name}}</ion-note>
   </ion-title>
-
-  <span (click)="popoverAmountSelect()">
-    <ion-item lines="none" >
-      <ion-note slot="start">{{orderedMenuInfo.amount}}</ion-note>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label>{{price}}</ion-label>
-    </ion-item>
-  </span>
+  
+  <ion-item lines="none" (click)="popoverAmountSelect()">
+    <ion-note slot="start">{{orderedMenuInfo.amount}}</ion-note>
+    <ion-label>{{price}}</ion-label>
+  </ion-item>
+  
 </ion-item>

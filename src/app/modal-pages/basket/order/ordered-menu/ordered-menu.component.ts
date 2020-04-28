@@ -3,7 +3,7 @@ import { BasketControllerService } from 'src/app/services/basket-controller/bask
 import { MenuData } from 'src/app/data/menu';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { PopoverController } from '@ionic/angular';
-import { SelectAmountComponent } from './select-amount/select-amount.component';
+import { SelectAmountComponent } from '../select-amount/select-amount.component';
 
 @Component({
   selector: 'basket-ordered-menu',

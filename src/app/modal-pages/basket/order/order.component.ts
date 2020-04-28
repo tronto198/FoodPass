@@ -47,4 +47,12 @@ export class OrderComponent implements OnInit {
   get price(){
     return this.order.price;
   }
+
+  checkValueToggle(){
+    this.order.toggle();
+  }
+
+  test(){
+    this.foodtruckInfo.name = "testestes";
+  }
 }
