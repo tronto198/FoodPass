@@ -7,10 +7,10 @@ import { CheckValue, CheckboxValue } from './checkbox-value';
 export class OrderData extends CheckboxValue{
     id?: number;
     foodtruckinfo: FoodtruckData;
-    orderedMenu: OrderedMenuData[];
+    orderedMenu: OrderedMenuData[] = [];
 
-    constructor(parent: CheckboxValue, itemIndex: number){
-        super(parent, itemIndex);
+    constructor(parent: CheckboxValue){
+        super(parent);
     }
 
     get items(){
@@ -25,5 +25,28 @@ export class OrderData extends CheckboxValue{
             }
         }
         return price;
+    }
+
+    extractCheckedMenu() : [boolean, OrderData]{
+        let remainMember : OrderedMenuData[] = [];
+        let extractMember : OrderedMenuData[] = [];
+        this.orderedMenu.forEach((val, index, arr)=>{
+            if(val.value){
+                //체크된것
+                extractMember.push(val);
+            }
+            else{
+                remainMember.push(val);
+            }
+        });
+
+        this.orderedMenu = remainMember;
+        const remainThis : boolean = this.orderedMenu.length != 0;
+
+        const extractOrder = new OrderData(this.parent);
+        extractOrder.orderedMenu = extractMember;
+        extractOrder.foodtruckinfo = this.foodtruckinfo;
+
+        return [remainThis, extractOrder];
     }
 }

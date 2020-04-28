@@ -2,13 +2,11 @@ export class CheckValue{
     protected checked: boolean;
     protected indeterminated: boolean;
     protected parent? : CheckboxValue;
-    protected itemIndex?: number; //노필요 예정 밑으로 다
 
-    constructor(parent : CheckboxValue, itemIndex: number){
+    constructor(parent : CheckboxValue){
         this.checked = true;
         this.indeterminated = false;
         this.parent = parent;
-        this.itemIndex = itemIndex;
     }
 
     get checkValue(){
@@ -40,7 +38,6 @@ export class CheckValue{
     protected valueChangeFromParent(b : boolean){
         this.checked = b;
     }
-
 }
 
 
@@ -48,8 +45,8 @@ export class CheckboxValue extends CheckValue{
     // protected allChecked: boolean;
     protected items: CheckValue[];
 
-    constructor(parent: CheckboxValue = null, itemIndex: number = 0){
-        super(parent, itemIndex);
+    constructor(parent: CheckboxValue = null){
+        super(parent);
         // this.allChecked = true;
     }
 
@@ -111,6 +108,17 @@ export class CheckboxValue extends CheckValue{
 
     setItems(items: CheckValue[]){
         this.items = items;
+    }
+
+    deleteItem(item: CheckValue){
+        this.parent.items.splice(this.parent.items.indexOf(item), 1);
+        this.parent.checkEmpty();
+    }
+
+    checkEmpty(){
+        if(this.items.length == 0){
+            this.parent.deleteItem(this);
+        }
     }
 }
 

@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, PopoverController } from '@ionic/angular';
 import { OrderComponent } from './order.component';
 import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
-import { OrderedOptionComponent } from './ordered-menu/ordered-option/ordered-option.component';
+import { SelectAmountComponent } from './ordered-menu/select-amount/select-amount.component';
 
 @NgModule({
   imports: [
@@ -19,7 +19,10 @@ import { OrderedOptionComponent } from './ordered-menu/ordered-option/ordered-op
   declarations: [
     OrderComponent,
     OrderedMenuComponent,
+    SelectAmountComponent
   ],
-  providers: []
+  providers: [
+    PopoverController
+  ]
 })
 export class OrderComponentModule {}

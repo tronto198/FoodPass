@@ -49,6 +49,31 @@ export class BasketControllerService extends CheckboxValue{
     }
   }
 
+  // push(foodtruck : FoodtruckData, menu: MenuData, option: OptionData, amount: number = 1){
+
+  //   const existIndex : number = this.basket.findIndex((value, index, obj) =>{
+  //     return value.foodtruckinfo.id == foodtruck.id;
+  //   })
+
+  //   let order : OrderData;
+  //   if(existIndex == -1){
+  //     //푸드트럭 첫 주문
+  //     order = new OrderData(this);
+  //     this.basket.push(order);
+  //   }
+  //   else{
+  //     //이미 같은 푸드트럭의 주문이 있음
+  //     order = this.basket[existIndex];
+  //   }
+
+  //   let newOrderedMenu : OrderedMenuData = new OrderedMenuData(order);
+  //   newOrderedMenu.menuinfo = menu;
+  //   newOrderedMenu.optioninfo = option;
+  //   newOrderedMenu.amount = amount;
+
+  //   order.orderedMenu.push(newOrderedMenu);
+  // }
+
   push(foodtruck : FoodtruckData, menu: MenuData, option: OptionData, amount: number = 1){
 
     const existIndex : number = this.basket.findIndex((value, index, obj) =>{
@@ -58,9 +83,9 @@ export class BasketControllerService extends CheckboxValue{
     if(existIndex == -1){
       //푸드트럭 첫 주문
       
-      let newOrder : OrderData = new OrderData(this, this.basket.length);
+      let newOrder : OrderData = new OrderData(this);
 
-      let newOrderedMenu : OrderedMenuData = new OrderedMenuData(newOrder, 0);
+      let newOrderedMenu : OrderedMenuData = new OrderedMenuData(newOrder);
       newOrderedMenu.menuinfo = menu;
       newOrderedMenu.optioninfo = option;
       newOrderedMenu.amount = amount;
@@ -74,7 +99,7 @@ export class BasketControllerService extends CheckboxValue{
     else{
       //이미 같은 푸드트럭의 주문이 있음
       let existOrder : OrderData = this.basket[existIndex];
-      let newOrderedMenu : OrderedMenuData = new OrderedMenuData(existOrder, existOrder.items.length);
+      let newOrderedMenu : OrderedMenuData = new OrderedMenuData(existOrder);
       newOrderedMenu.menuinfo = menu;
       newOrderedMenu.optioninfo = option;
       newOrderedMenu.amount = amount;
@@ -86,15 +111,6 @@ export class BasketControllerService extends CheckboxValue{
 
   get totalPrice(){
     let price : number = 0;
-    // this.basket.forEach((value, key, obj) =>{
-    //   if(value.check)
-    //   value.orderedMenu.forEach((value, index, arr)=>{
-    //     //여기에서 체크되잇는지 확인 
-    //     if(value.check){
-    //       price += value.amount * (value.menuinfo.price + value.optioninfo.extraPrice);
-    //     }
-    //   })
-    // });
 
     for(let order of this.basket){
       price += order.price;
@@ -103,8 +119,23 @@ export class BasketControllerService extends CheckboxValue{
     return price;
   }
 
-  // get basket() : OrderData[]{
-  //   return Array.from(this.basket.values());
-  // }
+  extractCheckedOrder() : [OrderData[], OrderData[]]{
+    let checkedOrder : OrderData[] = [];
+    let unCheckedOrder : OrderData[] = [];
+
+    this.basket.forEach((val, index, arr)=>{
+      if(val.value){
+        let [remaining, extractOrder] = val.extractCheckedMenu();
+        if(remaining){
+          unCheckedOrder.push(val);
+        }
+        checkedOrder.push(extractOrder);
+      }
+      
+    });
+
+    return [checkedOrder, unCheckedOrder];
+  }
+
 }
 

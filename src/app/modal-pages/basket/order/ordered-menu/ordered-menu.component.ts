@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { MenuData } from 'src/app/data/menu';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';
+import { PopoverController } from '@ionic/angular';
+import { SelectAmountComponent } from './select-amount/select-amount.component';
 
 @Component({
   selector: 'basket-ordered-menu',
@@ -13,14 +15,11 @@ export class OrderedMenuComponent implements OnInit {
   @Input() orderedMenuIndex: number;
 
   constructor(
-    private controller : BasketControllerService
+    private controller : BasketControllerService,
+    private popoverCtrl : PopoverController 
   ) { }
 
   ngOnInit() {  }
-
-  // checkboxClicked(){
-  //   this.controller.basket[this.foodtruckIndex].toggleItem(this.orderedMenuIndex);
-  // }
   
 
   get orderedMenuInfo(){
@@ -43,6 +42,21 @@ export class OrderedMenuComponent implements OnInit {
 
   get price(){
     return this.menuInfo.price + this.optionInfo.extraPrice;
+  }
+
+  popoverAmountSelect(ev){
+    console.log(ev);
+    this.popoverCtrl.create({
+      component: SelectAmountComponent,
+      componentProps: {
+        foodtruckIndex: this.foodtruckIndex,
+        orderedMenuIndex: this.orderedMenuIndex
+      },
+      event: ev,
+      translucent: true
+    }).then(val =>{
+      val.present();
+    });
   }
 
 }

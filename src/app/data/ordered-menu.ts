@@ -6,4 +6,6 @@ export class OrderedMenuData extends CheckValue {
     menuinfo: MenuData;
     optioninfo: OptionData;
     amount: number;
+
+    
 }

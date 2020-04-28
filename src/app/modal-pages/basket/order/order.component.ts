@@ -3,6 +3,7 @@ import { BasketControllerService } from 'src/app/services/basket-controller/bask
 import { CheckboxValue } from 'src/app/data/checkbox-value';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { OrderData } from 'src/app/data/order';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'basket-order',
@@ -13,18 +14,18 @@ export class OrderComponent implements OnInit {
   @Input() foodtruckIndex : number;
 
   constructor(
-    private controller : BasketControllerService
+    private basketCtrl : BasketControllerService
   ) { }
 
   ngOnInit() {
   }
 
   get foodtruckInfo(){
-    return this.controller.basket[this.foodtruckIndex].foodtruckinfo;
+    return this.basketCtrl.basket[this.foodtruckIndex].foodtruckinfo;
   }
 
   get order(){
-    return this.controller.basket[this.foodtruckIndex];
+    return this.basketCtrl.basket[this.foodtruckIndex];
   }
 
   get checkValue(){

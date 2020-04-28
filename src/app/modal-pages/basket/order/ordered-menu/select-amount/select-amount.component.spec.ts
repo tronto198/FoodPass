@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { OrderedOptionComponent } from './ordered-option.component';
+import { SelectAmountComponent } from './select-amount.component';
 
-describe('OrderedOptionComponent', () => {
-  let component: OrderedOptionComponent;
-  let fixture: ComponentFixture<OrderedOptionComponent>;
+describe('SelectAmountComponent', () => {
+  let component: SelectAmountComponent;
+  let fixture: ComponentFixture<SelectAmountComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderedOptionComponent ],
+      declarations: [ SelectAmountComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OrderedOptionComponent);
+    fixture = TestBed.createComponent(SelectAmountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
