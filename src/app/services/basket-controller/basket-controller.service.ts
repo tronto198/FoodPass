@@ -7,9 +7,7 @@ import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { MenuInfoPageModule } from 'src/app/tabs/tab-home/menu-info/menu-info.module';
 import { CheckboxValue, CheckValue } from 'src/app/data/checkbox-value';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BasketControllerService extends CheckboxValue{
   // basket : Map<FoodtruckData, cbOrderData> = new Map<FoodtruckData, cbOrderData>();
   basket : OrderData[] = [];

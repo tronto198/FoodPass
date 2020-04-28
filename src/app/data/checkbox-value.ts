@@ -110,12 +110,15 @@ export class CheckboxValue extends CheckValue{
         this.items = items;
     }
 
-    deleteItem(item: CheckValue){
-        this.parent.items.splice(this.parent.items.indexOf(item), 1);
-        this.parent.checkEmpty();
+    deleteItem(child: CheckValue){
+        this.items.splice(this.items.indexOf(child), 1);
+        this.checkEmpty();
     }
 
     checkEmpty(){
+        if(this.parent == null){
+            return;
+        }
         if(this.items.length == 0){
             this.parent.deleteItem(this);
         }
