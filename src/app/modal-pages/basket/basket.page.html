@@ -13,9 +13,9 @@
   <span *ngIf="!isEmpty; then basketList; else emptyBasket"></span>
   <ng-template #basketList>
     <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
-    <span *ngFor="let foodtruckInfo of orderKeys; let i = index">
+    <ion-list *ngFor="let foodtruckInfo of orderKeys; let i = index">
       <basket-order foodtruckIndex="{{i}}"></basket-order>
-    </span>
+    </ion-list>
   </ng-template>
 
   <ng-template #emptyBasket class="ion-text-center">

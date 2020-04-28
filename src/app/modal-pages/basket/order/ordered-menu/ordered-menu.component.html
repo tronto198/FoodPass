@@ -1,13 +1,24 @@
-<ion-item>
-  <ion-title>
-    <ion-checkbox [(ngModel)]="checkValue"></ion-checkbox>
-      {{menuInfo.name}}
-      <ion-note>{{optionInfo.name}}</ion-note>
-  </ion-title>
-  
-  <ion-item lines="none" (click)="popoverAmountSelect()">
-    <ion-note slot="start">{{orderedMenuInfo.amount}}</ion-note>
-    <ion-label>{{price}}</ion-label>
-  </ion-item>
-  
-</ion-item>
+<!-- <ion-item-sliding> -->
+  <ion-item>
+    <ion-title>
+      <ion-checkbox class="ib" [(ngModel)]="checkValue"></ion-checkbox>
+        {{menuInfo.name}}
+        <ion-note>{{optionInfo.name}}</ion-note>
+    </ion-title>
+    
+    <span class="ion-float-right ib">
+      <ion-icon class="margin5" button name="add-outline" (click)="ctrlAmount(true)"></ion-icon>
+      <ion-label class="ib">
+        {{orderedMenuInfo.amount}}
+      </ion-label>
+      <ion-icon class="margin5" button name="remove-outline" (click)="ctrlAmount(false)"></ion-icon>
+      <ion-label class="ib margin-left number5 ion-text-right">{{price}}</ion-label>
+    </span>
+
+    <!-- <ion-item-options side="end">
+      <ion-item-option >
+        <button color="danger" (click)="delete()">제거</button>  
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item> -->
+<!-- </ion-item-sliding> -->

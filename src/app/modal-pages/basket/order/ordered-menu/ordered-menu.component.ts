@@ -15,7 +15,7 @@ export class OrderedMenuComponent implements OnInit {
   @Input() orderedMenuIndex: number;
 
   constructor(
-    private controller : BasketControllerService,
+    private basketCtrl : BasketControllerService,
     private popoverCtrl : PopoverController 
   ) { }
 
@@ -23,7 +23,7 @@ export class OrderedMenuComponent implements OnInit {
   
 
   get orderedMenuInfo(){
-    return this.controller.basket[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
+    return this.basketCtrl.basket[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
   }
   get menuInfo(){
     return this.orderedMenuInfo.menuinfo;
@@ -41,7 +41,7 @@ export class OrderedMenuComponent implements OnInit {
 
 
   get price(){
-    return this.menuInfo.price + this.optionInfo.extraPrice;
+    return (this.menuInfo.price + this.optionInfo.extraPrice) * this.orderedMenuInfo.amount;
   }
 
   popoverAmountSelect(ev){
@@ -57,6 +57,21 @@ export class OrderedMenuComponent implements OnInit {
     }).then(val =>{
       val.present();
     });
+  }
+
+  ctrlAmount(add : boolean){
+    if(add){
+      this.orderedMenuInfo.amount++;
+    }
+    else{
+      if(this.orderedMenuInfo.amount > 1){
+        this.orderedMenuInfo.amount--;
+      }
+    }
+  }
+
+  delete(){
+    this.basketCtrl.basket[this.foodtruckIndex].deleteItem(this.orderedMenuInfo);
   }
 
 }
