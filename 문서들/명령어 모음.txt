@@ -31,3 +31,10 @@ ionic capacitor run android
 https://forum.ionicframework.com/t/could-not-find-plugin-proposal-numeric-separator/185556/5
 맨 마지막에 있는 resolutions 하는걸로 난 해결했음
 packcage.json 건드는 걸로 해결한거라 에러 안날지도
+
+추가 해결방안 :
+Change your tsconfig.json file target value
+
+form { "target": "es2015" } to { "target": "es5" }
+
+this work for me.

@@ -47,4 +47,9 @@ export class BasketPage implements OnInit {
     this.basketCtrl.toggle();
   }
 
+  get isEmpty(){
+    //비었을때 비었다고 따로 표시하기
+    return this.basketCtrl.basket.length == 0;
+  }
+
 }

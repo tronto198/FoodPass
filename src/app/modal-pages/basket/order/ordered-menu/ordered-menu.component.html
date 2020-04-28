@@ -1,16 +1,16 @@
 <ion-item>
-  <ion-checkbox [(ngModel)]="checkValue"></ion-checkbox>
   <ion-title>
-    {{menuInfo.name}}
-    <!-- <ion-label><h4>{{optionInfo.name}}</h4></ion-label> -->
-    <ion-note>{{optionInfo.name}}</ion-note>
+    <ion-checkbox [(ngModel)]="checkValue"></ion-checkbox>
+      {{menuInfo.name}}
+      <ion-note>{{optionInfo.name}}</ion-note>
   </ion-title>
-  <!-- <ion-list *ngFor="let option of optionList"> -->
-    <ion-item lines="none">
+
+  <span (click)="popoverAmountSelect()">
+    <ion-item lines="none" >
       <ion-note slot="start">{{orderedMenuInfo.amount}}</ion-note>
     </ion-item>
     <ion-item lines="none">
       <ion-label>{{price}}</ion-label>
     </ion-item>
-  <!-- </ion-list> -->
+  </span>
 </ion-item>

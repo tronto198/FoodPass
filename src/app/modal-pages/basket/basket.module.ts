@@ -8,13 +8,14 @@ import { BasketPageRoutingModule } from './basket-routing.module';
 
 import { BasketPage } from './basket.page';
 import { OrderComponentModule } from './order/order.module';
+import { SelectAmountComponent } from './order/ordered-menu/select-amount/select-amount.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    // BasketPageRoutingModule,
+    BasketPageRoutingModule,
     OrderComponentModule
   ],
   exports: [
@@ -22,10 +23,10 @@ import { OrderComponentModule } from './order/order.module';
   ],
   declarations: [
     BasketPage,
+    // SelectAmountComponent
   ],
   providers: [
     ModalController,
-    
   ]
 })
 export class BasketPageModule {}

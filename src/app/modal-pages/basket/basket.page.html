@@ -9,12 +9,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
-  <span *ngFor="let foodtruckInfo of orderKeys; let i = index">
-    <basket-order foodtruckIndex="{{i}}"></basket-order>
-  </span>
+<ion-content >
+  <span *ngIf="!isEmpty; then basketList; else emptyBasket"></span>
+  <ng-template #basketList>
+    <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
+    <span *ngFor="let foodtruckInfo of orderKeys; let i = index">
+      <basket-order foodtruckIndex="{{i}}"></basket-order>
+    </span>
+  </ng-template>
 
-  <ion-button>{{totalPrice}}원 주문하기</ion-button>
+  <ng-template #emptyBasket class="ion-text-center">
+    장바구니가 비었어요..
+  </ng-template>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" [disabled]="isEmpty">{{totalPrice}}원 주문하기</ion-button>
+
+  </ion-toolbar>
+</ion-footer>
