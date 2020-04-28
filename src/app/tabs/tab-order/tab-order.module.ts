@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { TabOrderPageRoutingModule } from './tab-order-routing.module';
 
 import { TabOrderPage } from './tab-order.page';
+import { WatingOrderListPageModule } from './wating-order-list/wating-order-list.module';
+import { OrderHistoryListPageModule } from './order-history-list/order-history-list.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TabOrderPageRoutingModule
+    TabOrderPageRoutingModule,
+    WatingOrderListPageModule,
+    OrderHistoryListPageModule
   ],
   declarations: [TabOrderPage]
 })

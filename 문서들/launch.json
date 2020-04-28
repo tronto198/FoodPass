@@ -23,7 +23,7 @@
             "port": 9222,
             "sourceMaps": true,
             "webRoot": "${workspaceRoot}/www",
-            "url": "http://localhost:8100/tabs/tab-home"
+            "url": "http://localhost:8100/tabs/home"
         }
     ]
 }
