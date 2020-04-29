@@ -89,11 +89,11 @@ getInputAddress(){
   }
 
   get getLatitude(){
-    return "dataLocation : "+this.dataLocation.lat+"  newLocation: "+this.newLocation.lat;
+    return " lat: "+this.newLocation.lat;
   }
 
   get getLongitude(){
-    return "dataLocation : "+this.dataLocation.lng+"  newLocation: "+this.newLocation.lng;
+    return " lng: "+this.newLocation.lng;
   }
 
   dismissCancel(){

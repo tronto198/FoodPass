@@ -15,13 +15,9 @@
 
 <ion-content>
   <div id="map" class="map"></div>
+  <p>
+    <ion-button (click)="dismissOK()">OK</ion-button>
+    <ion-button (click)="getNowLocation()">현위치</ion-button>
+  </p>
 </ion-content>
 
-<h3>map works!</h3>
-<p>
-  {{getLatitude}}<br>
-  {{getLongitude}}<br>
-  <ion-button (click)="dismissOK()">OK</ion-button>
-  <ion-button (click)="getNowLocation()">현위치</ion-button>
-
-</p>
