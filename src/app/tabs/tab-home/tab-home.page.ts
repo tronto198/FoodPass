@@ -29,6 +29,7 @@ export class TabHomePage implements OnInit {
     this.location = "위치를 선택하세요";
     this.basket = false;
     this.test = 1;
+    console.log("tab-home");
   }
 
   get testlocation(){

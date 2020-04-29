@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,8 +16,10 @@ export class BasketPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private basketCtrl: BasketControllerService,
-    private waitingOrderCtrl: WaitingOrderControllerService
+    private waitingOrderCtrl: WaitingOrderControllerService,
+    private router: Router
   ) { }
+
 
   ngOnInit() {
     this.basketCtrl.makeTestdata();
@@ -66,7 +69,14 @@ export class BasketPage implements OnInit {
 
   orderSuccess(){
     let checkedOrderList = this.basketCtrl.extractCheckedOrder();
-    this.waitingOrderCtrl.addItemList(checkedOrderList);
+    checkedOrderList.forEach((val, index, arr)=>{
+      console.log(val, "push");
+      this.waitingOrderCtrl.addItem(val.orderData);
+    });
+
+    console.log(this.waitingOrderCtrl.orderList.length);
+    this.dismiss();
+    this.router.navigateByUrl("/tabs/order");
   }
 
 }

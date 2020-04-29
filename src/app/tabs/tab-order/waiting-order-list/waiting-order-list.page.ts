@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'order-waiting-order-list',
@@ -8,8 +9,10 @@ import { WaitingOrderControllerService } from 'src/app/services/waiting-order-co
 })
 export class WaitingOrderListPage implements OnInit {
 
+
   constructor(
-    private waitingOrderCtrl: WaitingOrderControllerService
+    private waitingOrderCtrl: WaitingOrderControllerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -19,4 +22,11 @@ export class WaitingOrderListPage implements OnInit {
     return this.waitingOrderCtrl.orderList;
   }
 
+  isEmpty(){
+    return this.waitingOrderCtrl.orderList.length == 0;
+  }
+
+  gotoFoodtruckInfo(foodtruckId: number){
+    this.router.navigateByUrl(`/tabs/home/foodtruck/${foodtruckId}`);
+  }
 }

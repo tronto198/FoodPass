@@ -49,4 +49,12 @@ export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
   }
 
   //버튼에 라우팅하기
+
+  gotoOrder(){
+    this.router.navigateByUrl("/tabs/order");
+  }
+
+  gotoHome(){
+    this.router.navigateByUrl("/tabs/home");
+  }
 }

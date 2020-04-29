@@ -5,9 +5,10 @@ import { OrderData } from 'src/app/data/order';
   providedIn: 'root'
 })
 export class WaitingOrderControllerService {
-  private waitingOrderList : OrderData[];
+  waitingOrderList : OrderData[] = [];
 
-  constructor() { }
+  constructor() {
+   }
 
   removeItem(item: OrderData){
     this.waitingOrderList.splice(this.waitingOrderList.indexOf(item), 1);
@@ -21,7 +22,7 @@ export class WaitingOrderControllerService {
     this.waitingOrderList.push(...items);
   }
 
-  get orderList(){
+  get orderList() : OrderData[] {
     return this.waitingOrderList;
   }
 }

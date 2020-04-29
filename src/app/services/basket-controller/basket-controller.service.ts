@@ -149,6 +149,7 @@ export class BasketControllerService extends CheckboxValue{
     let [checked, unChecked] = this.classifyCheckedOrder();
     this.basket = unChecked;
     this.orderListChanged();
+    this.value = true;
     return checked;
   }
 

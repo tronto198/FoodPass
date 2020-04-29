@@ -1,11 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>waiting-order-list</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content *ngFor="let orderdata of orderList">
-
-  <ion-label>{{orderdata.id}}</ion-label>
-
-</ion-content>
+<div *ngIf="isEmpty()" (click)="gotoFoodtruckInfo(11)"> 주문한 목록이 없어요.... </div>
+<ion-list *ngFor="let orderdata of orderList">
+  <ion-item>
+    <ion-label>{{orderdata.foodtruckinfo.name}}</ion-label>
+  </ion-item>
+</ion-list>
+  
