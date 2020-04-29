@@ -48,6 +48,7 @@ export class BasketOrder extends CheckboxValue implements OrderData{
         });
 
         this.orderedMenu = remainMember;
+        // this.setItems(remainMember);
         const remainThis : boolean = this.orderedMenu.length != 0;
 
         const extractOrder = new BasketOrder(this.parent);

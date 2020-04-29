@@ -134,12 +134,21 @@ export class BasketControllerService extends CheckboxValue{
       
     });
 
+    this.toggle();
+
     return [checkedOrder, unCheckedOrder];
+  }
+
+  private orderListChanged(){
+    this.basket.forEach((val, index, arr)=>{
+      val.checkEmpty();
+    })
   }
 
   extractCheckedOrder() : BasketOrder[] {
     let [checked, unChecked] = this.classifyCheckedOrder();
-    this.setItems(unChecked);
+    this.basket = unChecked;
+    this.orderListChanged();
     return checked;
   }
 

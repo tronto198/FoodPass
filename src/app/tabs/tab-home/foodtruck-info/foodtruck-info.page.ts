@@ -41,9 +41,12 @@ export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
     //만약 웹으로 받아왔다면 여기에는 없는 자료, 그걸로 판별
 
     //foodtruckinfo를 서버에서 다운로드 후 history에 루트주소부터 넣기
+    
   }
 
   get data(){
     return this.pageCtrl.test;
   }
+
+  //버튼에 라우팅하기
 }
