@@ -18,7 +18,7 @@ export class TabHomeControllerService {
   setLocation(location){
     this.locationData = location;
   }
- getLocation() : object{
+ getLocation() : LocationData{
     return this.locationData;
   }
 

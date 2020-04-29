@@ -42,12 +42,8 @@ export class TabHomePage implements OnInit {
   }
 
   onToolbarClicked(){
-    let location = this.pageController.getLocation();
     this.modalController.create({
       component: MapPage,
-      componentProps: {
-        'loc': location
-      },
       cssClass: "modal-fullscreen"
     }
     ).then(s =>{
