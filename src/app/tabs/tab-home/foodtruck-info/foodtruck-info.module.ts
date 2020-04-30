@@ -7,13 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { FoodtruckInfoPageRoutingModule } from './foodtruck-info-routing.module';
 
 import { FoodtruckInfoPage } from './foodtruck-info.page';
+import { MenuInfoPageModule } from '../menu-info/menu-info.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FoodtruckInfoPageRoutingModule
+    FoodtruckInfoPageRoutingModule,
+    MenuInfoPageModule
+  ],
+  exports: [
+    FoodtruckInfoPage
   ],
   declarations: [FoodtruckInfoPage]
 })

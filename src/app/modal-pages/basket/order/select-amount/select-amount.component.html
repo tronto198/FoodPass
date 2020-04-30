@@ -1,0 +1,11 @@
+<ion-list>
+  <ion-list-header>{{menuInfo.name}}</ion-list-header>
+  <ion-item class="ion-text-center">
+    수량 : 
+    <ion-icon button name="remove-outline" (click)="ctrlAmount(false)"></ion-icon>
+    {{orderedMenuInfo.amount}}
+    <ion-icon button name="add-outline" (click)="ctrlAmount(true)"></ion-icon>
+  </ion-item>
+  <ion-item button class="ion-text-center" (click)="delete()">제거</ion-item>
+  <ion-item button (click)="dismiss()">닫기</ion-item>
+</ion-list>

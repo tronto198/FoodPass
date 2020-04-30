@@ -1,9 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/tab-home"></ion-back-button>
+      <!-- <ion-back-button defaultHref="/tabs/home"></ion-back-button> -->
+      <ion-button (click)="gotoHome()">
+        <ion-icon slot="icon-only" name="trash" ></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>foodtruck-info</ion-title>
+    <ion-title>{{name}}foodtruck-info</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-list>
@@ -15,6 +18,6 @@
 <ion-content>
 routing : {{routedata}}
 <ion-list *ngFor="let menu of menuList">
-  <ion-item routerLink="../../menu-info/{{menu.id}}">{{menu.id}}: {{menu.name}}</ion-item>
+  <ion-item routerLink="menu/{{menu.id}}">{{menu.id}}: {{menu.name}}</ion-item>
 </ion-list>
 </ion-content>

@@ -1,0 +1,36 @@
+
+  <ion-card>
+    <ion-card-header (click)="checkValueToggle()">
+      <ion-card-title>
+        <!-- [(ngModel)]="checkValue" -->
+        <ion-checkbox [checked]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
+        {{foodtruckInfo.name}}
+      </ion-card-title>
+      <ion-label class="endfloat"><h3>{{price}}</h3></ion-label>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list #slidingList>
+        <ion-item-sliding *ngFor="let menu of menuList; let i = index">
+
+          <ion-item-options side="start">
+            <ion-item-option color="danger" (click)="delete(i)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+          
+          <basket-ordered-menu foodtruckIndex="{{foodtruckIndex}}" orderedMenuIndex="{{i}}"></basket-ordered-menu>
+
+          <ion-item-options side="end">
+            <ion-item-option color="success" (click)="ctrlAmount(i, true)">
+              <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+            </ion-item-option>
+            <ion-item-option color="warning" (click)="ctrlAmount(i, false)">
+              <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+
+        </ion-item-sliding>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>

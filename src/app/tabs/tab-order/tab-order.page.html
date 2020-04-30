@@ -1,9 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>tab-order</ion-title>
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="slideValue">
+      <ion-segment-button value="0">
+        <ion-label>주문 목록</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="1">
+        <ion-label>주문 이력</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-slides pager="true" class="fullscreen" (ionSlideWillChange)="slideChanged()" [options]="slideOpts">
+    <ion-slide>
+      <order-waiting-order-list></order-waiting-order-list>
+    </ion-slide>
+    <ion-slide>
+      <order-order-history-list></order-order-history-list>
+    </ion-slide>
+  </ion-slides>
 
 </ion-content>

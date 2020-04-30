@@ -29,6 +29,7 @@ export class TabHomePage implements OnInit {
   ngOnInit() {
     this.basket = false;
     this.test = 1;
+    console.log("tab-home");
   }
 
   get testlocation(){
@@ -62,7 +63,7 @@ export class TabHomePage implements OnInit {
     
     // this.toast(text);
 
-    this.pageController.push();
+    //this.pageController.push();
 
     this.modalController.create({
       component: BasketPage,

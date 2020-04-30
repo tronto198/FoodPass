@@ -18,28 +18,37 @@ import { MenuListComponent } from 'src/app/component/menu-list/menu-list.compone
  
 import { CardviewComponent } from 'src/app/component/cardview/cardview.component';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
+import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
+import { FoodtruckListPageModule } from './foodtruck-list/foodtruck-list.module';
+import { FoodtruckInfoPageModule } from './foodtruck-info/foodtruck-info.module';
+import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TabHomePageRoutingModule
+    //순서 바꾸면 장바구니만 나옴 ??
+    TabHomePageRoutingModule,
+    FoodtruckListPageModule,
+    FoodtruckInfoPageModule,
+    BasketPageModule,
   ],
   declarations: [
     TabHomePage,
-    CardviewComponent,
     MapPage,
-    BasketPage,
-    FoodtruckListPage,
-    FoodtruckInfoPage,
-    MenuListComponent
+    // BasketPage,
+    // FoodtruckInfoPage,
+    // MenuListComponent
+    // OrderComponent
   ],
   providers: [
     TabHomeControllerService,
     ToastController,
     ModalController,
-    NavController
+    NavController,
+    BasketControllerService
   ]
 })
 export class TabHomePageModule {}

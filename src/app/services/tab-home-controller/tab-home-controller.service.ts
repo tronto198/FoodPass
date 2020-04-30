@@ -9,8 +9,6 @@ export class TabHomeControllerService {
   locationData: LocationData;
   basket: OrderData[] = [];
   test: string;
-  order : OrderData;
-
   
   constructor() {
     this.locationData ={lat: 36.3504563333333, lng:127.38481833333333};
@@ -20,11 +18,6 @@ export class TabHomeControllerService {
   }
  getLocation() : LocationData{
     return this.locationData;
-  }
-
-  push(){
-    let order = {id: 1, name: "testname"};
-    this.basket.push(order);
   }
 }
 
