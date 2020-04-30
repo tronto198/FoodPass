@@ -4,15 +4,27 @@ ion-title ion-checkbox {
     margin: 0px;
 }
 
-ion-title ion-label {
+.ib{
     display: inline-block;
 }
 
-ion-label ion-checkbox {
-    display: inline-block;
-    
+.margin5 {
+    margin: 5px;
 }
 
-span ion-item {
-    display: inline-block;
+.margin-left{
+    margin-left: 10px;
 }
+
+.number2{
+    width: 18px;
+}
+
+.number5 {
+    width: 45px;
+}
+
+// ion-note ion-icon {
+//     margin-top: 0px;
+//     margin-bottom: 0px;
+// }

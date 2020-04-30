@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, PopoverController } from '@ionic/angular';
 import { OrderComponent } from './order.component';
 import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
-import { SelectAmountComponent } from './ordered-menu/select-amount/select-amount.component';
+import { SelectAmountComponent } from './select-amount/select-amount.component';
+import { LongPressModule } from 'ionic-long-press';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    LongPressModule
   ],
   exports: [
     OrderComponent

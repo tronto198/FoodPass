@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
+import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,12 +15,14 @@ export class BasketPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private basketCtrl: BasketControllerService
+    private basketCtrl: BasketControllerService,
+    private waitingOrderCtrl: WaitingOrderControllerService,
+    private router: Router
   ) { }
+
 
   ngOnInit() {
     this.basketCtrl.makeTestdata();
-    
   }
 
   dismiss(){
@@ -48,8 +52,31 @@ export class BasketPage implements OnInit {
   }
 
   get isEmpty(){
-    //비었을때 비었다고 따로 표시하기
+    //장바구니가 비었을때
     return this.basketCtrl.basket.length == 0;
+  }
+
+  get orderEnable(){
+    //주문하기 버튼의 활성화 여부 지정
+    return this.isEmpty || this.totalPrice == 0;
+  }
+
+  orderButtonClicked(){
+    //서버통신부분
+    //일단 바로 성공하는걸로 
+    this.orderSuccess();
+  }
+
+  orderSuccess(){
+    let checkedOrderList = this.basketCtrl.extractCheckedOrder();
+    checkedOrderList.forEach((val, index, arr)=>{
+      console.log(val, "push");
+      this.waitingOrderCtrl.addItem(val.orderData);
+    });
+
+    console.log(this.waitingOrderCtrl.orderList.length);
+    this.dismiss();
+    this.router.navigateByUrl("/tabs/order");
   }
 
 }

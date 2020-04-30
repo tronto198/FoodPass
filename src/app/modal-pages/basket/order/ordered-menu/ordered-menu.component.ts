@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { MenuData } from 'src/app/data/menu';
-import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { PopoverController } from '@ionic/angular';
-import { SelectAmountComponent } from './select-amount/select-amount.component';
+import { SelectAmountComponent } from '../select-amount/select-amount.component';
 
 @Component({
   selector: 'basket-ordered-menu',
@@ -15,7 +14,7 @@ export class OrderedMenuComponent implements OnInit {
   @Input() orderedMenuIndex: number;
 
   constructor(
-    private controller : BasketControllerService,
+    private basketCtrl : BasketControllerService,
     private popoverCtrl : PopoverController 
   ) { }
 
@@ -23,7 +22,7 @@ export class OrderedMenuComponent implements OnInit {
   
 
   get orderedMenuInfo(){
-    return this.controller.basket[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
+    return this.basketCtrl.basket[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
   }
   get menuInfo(){
     return this.orderedMenuInfo.menuinfo;
@@ -41,7 +40,7 @@ export class OrderedMenuComponent implements OnInit {
 
 
   get price(){
-    return this.menuInfo.price + this.optionInfo.extraPrice;
+    return (this.menuInfo.price + this.optionInfo.extraPrice) * this.orderedMenuInfo.amount;
   }
 
   popoverAmountSelect(ev){
@@ -57,6 +56,24 @@ export class OrderedMenuComponent implements OnInit {
     }).then(val =>{
       val.present();
     });
+  }
+
+  ctrlAmount(event : Event, add : boolean){
+    console.log(add);
+    event.stopPropagation();
+    
+    if(add){
+      this.orderedMenuInfo.amount++;
+    }
+    else{
+      if(this.orderedMenuInfo.amount > 1){
+        this.orderedMenuInfo.amount--;
+      }
+    }
+  }
+
+  delete(){
+    this.basketCtrl.basket[this.foodtruckIndex].deleteItem(this.orderedMenuInfo);
   }
 
 }

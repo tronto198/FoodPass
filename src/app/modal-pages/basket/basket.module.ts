@@ -8,7 +8,7 @@ import { BasketPageRoutingModule } from './basket-routing.module';
 
 import { BasketPage } from './basket.page';
 import { OrderComponentModule } from './order/order.module';
-import { SelectAmountComponent } from './order/ordered-menu/select-amount/select-amount.component';
+import { SelectAmountComponent } from './order/select-amount/select-amount.component';
 
 @NgModule({
   imports: [

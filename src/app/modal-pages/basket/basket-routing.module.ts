@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BasketPage } from './basket.page';
-import { SelectAmountComponent } from './order/ordered-menu/select-amount/select-amount.component';
+import { SelectAmountComponent } from './order/select-amount/select-amount.component';
 
 const routes: Routes = [
   {

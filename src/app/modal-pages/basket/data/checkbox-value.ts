@@ -26,7 +26,13 @@ export class CheckValue{
     }
 
     toggle(){
-        this.value = !this.value;
+        if(this.indeterminated){
+            this.value = true;
+        }
+        else{
+            this.value = !this.value;
+        }
+        
     }
     
     protected valueChanged(){
@@ -106,9 +112,10 @@ export class CheckboxValue extends CheckValue{
         this.changeAll(b);
     }
 
-    setItems(items: CheckValue[]){
-        this.items = items;
-    }
+    // setItems(items: CheckValue[]){
+    //     this.items = items;
+    //     // this.checkEmpty();
+    // }
 
     deleteItem(child: CheckValue){
         this.items.splice(this.items.indexOf(child), 1);

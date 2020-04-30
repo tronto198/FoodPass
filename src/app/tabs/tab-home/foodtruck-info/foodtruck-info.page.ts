@@ -12,7 +12,7 @@ import {FoodtruckData} from'src/app/data/foodtruck';
   styleUrls: ['./foodtruck-info.page.scss'],
 })
 export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
-  routedata: number;
+  foodtruckId: number;
   //routedata:FoodtruckData[];
   menuList: MenuData[];
 
@@ -24,17 +24,37 @@ export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
   ) { }
 
   ngOnInit() {
-    this.routedata = Number(this.route.snapshot.paramMap.get("id"));
-    this.menuList = this.serverConnecter.getMenuData(this.routedata);
+    this.foodtruckId = Number(this.route.snapshot.paramMap.get("id"));
+    this.menuList = this.serverConnecter.getMenuData(this.foodtruckId);
+
+    this.comeByWebAddress();
   }
 
   ngAfterContentInit(){
-    if(isNaN(this.routedata)){
-      this.router.navigateByUrl('/tabs/tab-home');
+    if(isNaN(this.foodtruckId)){
+      this.router.navigateByUrl('/tabs/home');
     }
+  }
+
+  comeByWebAddress(){
+    //foodtruckinfo 를 원래는 위에서 받아오지만
+    //만약 웹으로 받아왔다면 여기에는 없는 자료, 그걸로 판별
+
+    //foodtruckinfo를 서버에서 다운로드 후 history에 루트주소부터 넣기
+    
   }
 
   get data(){
     return this.pageCtrl.test;
+  }
+
+  //버튼에 라우팅하기
+
+  gotoOrder(){
+    this.router.navigateByUrl("/tabs/order");
+  }
+
+  gotoHome(){
+    this.router.navigateByUrl("/tabs/home");
   }
 }

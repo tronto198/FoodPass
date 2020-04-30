@@ -40,7 +40,7 @@ import { BasketControllerService } from 'src/app/services/basket-controller/bask
     MapPage,
     // BasketPage,
     // FoodtruckInfoPage,
-    MenuListComponent
+    // MenuListComponent
     // OrderComponent
   ],
   providers: [
