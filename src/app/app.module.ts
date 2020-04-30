@@ -23,7 +23,7 @@ import { IonicGestureConfig } from 'src/IonicGestureConfig';
     NativeGeocoder,
   
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig}
+    // { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig}
   ],
   bootstrap: [AppComponent]
 })
