@@ -6,14 +6,14 @@ import { IonicModule, PopoverController } from '@ionic/angular';
 import { OrderComponent } from './order.component';
 import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
 import { SelectAmountComponent } from './select-amount/select-amount.component';
-import { LongPressModule } from 'ionic-long-press';
+// import { LongPressModule } from 'ionic-long-press';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LongPressModule
+    // LongPressModule
   ],
   exports: [
     OrderComponent
