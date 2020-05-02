@@ -16,7 +16,7 @@
   </ion-item>   -->
 </ion-list>
 <ion-content>
-routing : {{routedata}}
+routing : {{foodtruckId}}
 <ion-list *ngFor="let menu of menuList">
   <ion-item routerLink="menu/{{menu.id}}">{{menu.id}}: {{menu.name}}</ion-item>
 </ion-list>

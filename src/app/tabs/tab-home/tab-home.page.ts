@@ -7,6 +7,7 @@ import { ServerConnecterService } from '../../services/server-connecter/server-c
 import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
+import { LocationData } from 'src/app/data/location';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { MapPage } from 'src/app/modal-pages/map/map.page';
   styleUrls: ['./tab-home.page.scss']
 })
 export class TabHomePage implements OnInit {
-  location : string;
+  location: object;
   basket : boolean;
   test: number;
 
@@ -26,7 +27,6 @@ export class TabHomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.location = "위치를 선택하세요";
     this.basket = false;
     this.test = 1;
     console.log("tab-home");
