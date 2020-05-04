@@ -14,8 +14,10 @@
   
   <ng-template #basketList>
     <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
-    <ion-list *ngFor="let foodtruckInfo of orderKeys; let i = index">
-      <basket-order foodtruckIndex="{{i}}"></basket-order>
+    <ion-list>
+      <basket-order 
+      *ngFor="let foodtruckInfo of orderKeys; let i = index" 
+      foodtruckIndex="{{i}}"></basket-order>
     </ion-list>
   </ng-template>
 

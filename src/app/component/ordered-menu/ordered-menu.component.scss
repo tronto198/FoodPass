@@ -1,10 +1,9 @@
 
-ion-title ion-checkbox {
-    display: inline-block;
-    margin: 0px;
+.display-block{
+   display: block; 
 }
 
-.ib{
+.display-inlineblock{
     display: inline-block;
 }
 
@@ -19,12 +18,17 @@ ion-title ion-checkbox {
 .number2{
     width: 18px;
 }
-
+.number2-count{
+    width: 34px;
+}
 .number5 {
     width: 45px;
 }
 
-// ion-note ion-icon {
-//     margin-top: 0px;
-//     margin-bottom: 0px;
-// }
+ion-item{
+    flex-flow: column;
+}
+
+.width100{
+    width: 100%;
+}

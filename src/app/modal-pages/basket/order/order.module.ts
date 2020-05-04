@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule, PopoverController } from '@ionic/angular';
 import { OrderComponent } from './order.component';
-import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
-import { SelectAmountComponent } from './select-amount/select-amount.component';
+import { OrderedMenuComponent } from '../../../component/ordered-menu/ordered-menu.component';
 // import { LongPressModule } from 'ionic-long-press';
 
 @NgModule({
@@ -20,8 +19,6 @@ import { SelectAmountComponent } from './select-amount/select-amount.component';
   ],
   declarations: [
     OrderComponent,
-    OrderedMenuComponent,
-    SelectAmountComponent
   ],
   providers: [
     PopoverController

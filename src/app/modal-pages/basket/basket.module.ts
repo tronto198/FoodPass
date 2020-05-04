@@ -8,22 +8,24 @@ import { BasketPageRoutingModule } from './basket-routing.module';
 
 import { BasketPage } from './basket.page';
 import { OrderComponentModule } from './order/order.module';
-import { SelectAmountComponent } from './order/select-amount/select-amount.component';
+import { SharedComponentModule } from 'src/app/component/shared-component.module';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedComponentModule,
     BasketPageRoutingModule,
-    OrderComponentModule
+    // OrderComponentModule,
   ],
   exports: [
     BasketPage
   ],
   declarations: [
     BasketPage,
-    // SelectAmountComponent
+    OrderComponent
   ],
   providers: [
     ModalController,
