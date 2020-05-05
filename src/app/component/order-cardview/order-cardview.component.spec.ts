@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { OrderCardviewComponent22 } from './order-cardview.component';
+import { OrderCardviewComponent } from './order-cardview.component';
 
 describe('OrderCardviewComponent', () => {
-  let component: OrderCardviewComponent22;
-  let fixture: ComponentFixture<OrderCardviewComponent22>;
+  let component: OrderCardviewComponent;
+  let fixture: ComponentFixture<OrderCardviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderCardviewComponent22 ],
+      declarations: [ OrderCardviewComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OrderCardviewComponent22);
+    fixture = TestBed.createComponent(OrderCardviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

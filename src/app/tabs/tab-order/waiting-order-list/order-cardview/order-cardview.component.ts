@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
-import { MenuType } from 'src/app/component/ordered-menu/menu-type.enum';
+import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 
 @Component({
   selector: 'waiting-order-cardview',
   templateUrl: './order-cardview.component.html',
   styleUrls: ['./order-cardview.component.scss'],
 })
-export class OrderCardviewComponent implements OnInit {
+export class OrderCardviewComponent22 implements OnInit {
   @Input() orderIndex : number;
 
   constructor(
@@ -29,6 +29,6 @@ export class OrderCardviewComponent implements OnInit {
   }
 
   get menuType(){
-    return MenuType.waiting;
+    return OrderType.waiting;
   }
 }

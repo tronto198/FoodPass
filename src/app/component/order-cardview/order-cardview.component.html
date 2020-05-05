@@ -1,0 +1,26 @@
+
+  <ion-card>
+    <ion-card-header *ngIf="isBasket()">
+      <order-header-basket orderIndex="{{orderIndex}}"></order-header-basket>
+    </ion-card-header>
+
+    <ion-card-header *ngIf="isWaiting()">
+      <order-header-waiting orderIndex="{{orderIndex}}"></order-header-waiting>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list #slidingList>
+        <ion-item-sliding *ngFor="let menu of menuList; let i = index">
+
+          <order-ordered-menu orderIndex="{{orderIndex}}" orderedMenuIndex="{{i}}"></order-ordered-menu>
+
+          <ion-item-options *ngIf="isBasket()" side="end">
+            <ion-item-option color="danger" (click)="deleteItem(i)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+
+        </ion-item-sliding>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>

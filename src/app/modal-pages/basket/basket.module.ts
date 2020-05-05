@@ -25,7 +25,7 @@ import { OrderComponent } from './order/order.component';
   ],
   declarations: [
     BasketPage,
-    OrderComponent
+    // OrderComponent
   ],
   providers: [
     ModalController,

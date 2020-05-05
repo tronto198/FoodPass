@@ -2,43 +2,29 @@ import { Component, OnInit, Input, Optional } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
-import { MenuType } from './menu-type.enum';
+import { OrderType } from '../order-type.enum';
+import { OrderControllerService } from '../order-controller/order-controller.service';
 
 @Component({
-  selector: 'component-ordered-menu',
+  selector: 'order-ordered-menu',
   templateUrl: './ordered-menu.component.html',
   styleUrls: ['./ordered-menu.component.scss'],
 })
 export class OrderedMenuComponent implements OnInit {
-  @Input() menuType: MenuType;
-  @Input() foodtruckIndex?: number = undefined;
+  @Input() orderIndex: number;
   @Input() orderedMenuIndex: number;
 
   constructor(
-    @Optional() private basketCtrl : BasketControllerService,
-    @Optional() private waitingorderCtrl : WaitingOrderControllerService
+    private orderCtrl : OrderControllerService
   ) { }
 
-  ngOnInit() {  }
+  ngOnInit() { 
+    
+  }
   
 
   get orderedMenuInfo() : OrderedMenuData{
-    let data : OrderedMenuData = null;
-    // if(this.foodtruckIndex == undefined){
-
-    // }
-    // else{
-    //   data = this.basketCtrl.basket[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
-    // }
-
-    if(this.menuType == MenuType.basket){
-      data = this.basketCtrl.basket[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
-    }
-    else if(this.menuType == MenuType.waiting){
-      data = this.waitingorderCtrl.orderList[this.foodtruckIndex].orderedMenu[this.orderedMenuIndex];
-    }
-
-    return data;
+    return this.orderCtrl.items[this.orderIndex].orderedMenu[this.orderedMenuIndex];
   }
   get menuInfo(){
     return this.orderedMenuInfo.menuinfo;
@@ -59,9 +45,7 @@ export class OrderedMenuComponent implements OnInit {
     return (this.menuInfo.price + this.optionInfo.extraPrice) * this.orderedMenuInfo.amount;
   }
 
-  ctrlAmount(event : Event, add : boolean){
-    console.log(add);
-    event.stopPropagation();
+  ctrlAmount(add : boolean){
     
     if(add){
       this.orderedMenuInfo.amount++;

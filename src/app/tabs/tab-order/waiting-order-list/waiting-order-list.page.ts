@@ -29,4 +29,9 @@ export class WaitingOrderListPage implements OnInit {
   gotoFoodtruckInfo(foodtruckId: number){
     this.router.navigateByUrl(`/tabs/home/foodtruck/${foodtruckId}`);
   }
+
+  //수령 완료
+  orderPickedUp(){
+    
+  }
 }

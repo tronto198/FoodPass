@@ -4,6 +4,7 @@ import { TabHomeControllerService } from 'src/app/services/tab-home-controller/t
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { Router } from '@angular/router';
+import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 
 
 @Component({
@@ -45,6 +46,10 @@ export class BasketPage implements OnInit {
 
   get orderKeys(){
     return this.basketCtrl.basket;
+  }
+
+  get orderType(){
+    return OrderType.basket;
   }
 
   checkboxClicked(){

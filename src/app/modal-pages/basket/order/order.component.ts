@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';
-import { MenuType } from 'src/app/component/ordered-menu/menu-type.enum';
+import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 
 @Component({
   selector: 'basket-order',
@@ -55,7 +55,7 @@ export class OrderComponent implements OnInit {
   }
 
   get menuType(){
-    return MenuType.basket;
+    return OrderType.basket;
   }
   // ctrlItemAmount(menuIndex: number, add : boolean){
 

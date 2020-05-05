@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule, PopoverController } from '@ionic/angular';
 import { OrderComponent } from './order.component';
-import { OrderedMenuComponent } from '../../../component/ordered-menu/ordered-menu.component';
+import { OrderedMenuComponent } from '../../../component/order-cardview/ordered-menu/ordered-menu.component';
 // import { LongPressModule } from 'ionic-long-press';
 
 @NgModule({
