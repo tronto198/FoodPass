@@ -3,21 +3,31 @@
     <ion-buttons slot="start">
       <!-- <ion-back-button defaultHref="/tabs/home"></ion-back-button> -->
       <ion-button (click)="gotoHome()">
-        <ion-icon slot="icon-only" name="trash" ></ion-icon>
+        <!-- <ion-icon slot="icon-only" name="trash" ></ion-icon> -->
+        <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>{{name}}foodtruck-info</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-list>
-   <!-- <ion-item *ngFor="let menu of menuList">
-    <app-menu-list menuList="{{menu}}"></app-menu-list>
 
-  </ion-item>   -->
-</ion-list>
+
+
 <ion-content>
+
 routing : {{foodtruckId}}
-<ion-list *ngFor="let menu of menuList">
-  <ion-item routerLink="menu/{{menu.id}}">{{menu.id}}: {{menu.name}}</ion-item>
-</ion-list>
+
+<ion-grid no-padding>
+  <ion-row no-padding>
+    <ion-col no padding col-2 *ngFor="let menu of menuList" class="foodtruck-info-cards">
+      <app-menu-list id="{{menu.menuID}}" name="{{menu.menuName}}" inform="{{menu.menuInform}}"
+      price="{{menu.price}}" menuImage="{{menu.src}}"
+      routerLink="menu/{{menu.id}}">
+      {{menu.id}}
+      </app-menu-list>
+     
+    </ion-col>
+  </ion-row>
+</ion-grid> 
+
 </ion-content>

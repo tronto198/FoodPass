@@ -10,13 +10,18 @@
         <ion-card-subtitle>
           {{inform}}
         </ion-card-subtitle>
-          <button>
+          <ion-badge color="danger">
             <ion-icon name="star"></ion-icon>
           
           {{grade}}점
-          </button>
-          <ion-label>대기 {{wating}}명</ion-label>
+          </ion-badge>
+
+          <ion-badge color="warning">
+         
+           <ion-label>대기 {{wating}}명</ion-label>
+          </ion-badge>
       </ion-card-header>
+
 
   <ion-footer>
       <p class="slide-notice">{{notice}} </p>

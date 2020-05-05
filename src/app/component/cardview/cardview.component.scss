@@ -1,13 +1,15 @@
 ion-card{
  
-    width: 170px !important;
+    width: 100% !important;
     height: 280px;
     background: #fff;
     border-radius: 10px;
   
 }
 ion-item{
-    height:20%;    
+    width:100%;
+    height:20%;   
+   
 }
 ion-img{
     width: 100%;
@@ -26,7 +28,4 @@ ion-footer{
      height:10%;
     
  }
- .slide-title{
-     font-size: medium;
- }
- 
+
