@@ -2,9 +2,8 @@
 <ion-item>
     <h5 class="slide-title" name=location, slot="start"> {{locate}}  {{distance}}m</h5>
   </ion-item>
-  <img src="../assets/icon/foodtruck.png" alt="ion">
-  <!-- <img src="truckImage.src" alt="ion"> -->
-    <!-- <ion-virtual-scroll approxItemHeight="100px"> -->
+  <img src="{{truckImage}}" alt="ion">
+  
       <ion-card-header>
         
         <ion-card-title>{{name}}</ion-card-title>
@@ -18,11 +17,8 @@
           </button>
           <ion-label>대기 {{wating}}명</ion-label>
       </ion-card-header>
-    <!-- </ion-virtual-scroll> -->
 
   <ion-footer>
-   
-    <!-- <ion-label>{{notice}}</ion-label> -->
       <p class="slide-notice">hello {{notice}} </p>
 
   </ion-footer>

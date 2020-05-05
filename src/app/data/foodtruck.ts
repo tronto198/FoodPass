@@ -7,5 +7,5 @@ export interface FoodtruckData {
     grade?:number,
     wating?: number,
     notice?: string,
-    truckImage?: string
+    src?: string;
 }
