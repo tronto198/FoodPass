@@ -1,8 +1,8 @@
 <ion-card >
 <ion-item>
-    <h5 class="slide-title" name=location, slot="start"> {{locate}}  {{distance}}m</h5>
+    <ion-label id="slide-title" name=location, slot="start"> {{locate}}  {{distance}}m</ion-label>
   </ion-item>
-  <img src="{{truckImage}}" alt="ion">
+  <ion-img class="slide-img" src="{{truckImage}}" alt="ion"></ion-img>
   
       <ion-card-header>
         
@@ -19,7 +19,7 @@
       </ion-card-header>
 
   <ion-footer>
-      <p class="slide-notice">hello {{notice}} </p>
+      <p class="slide-notice">{{notice}} </p>
 
   </ion-footer>
 
