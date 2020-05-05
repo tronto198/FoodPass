@@ -1,33 +1,29 @@
 <ion-card >
-  <ion-item >
-    <h4 name=location, slot="start"> {{locate}}  {{distance}}m</h4>
-   
+<ion-item>
+    <h5 class="slide-title" name=location, slot="start"> {{locate}}  {{distance}}m</h5>
   </ion-item>
   <img src="../assets/icon/foodtruck.png" alt="ion">
   <!-- <img src="truckImage.src" alt="ion"> -->
-  <ion-card-header>
-    
-    <ion-card-title>{{name}}</ion-card-title>
-    <ion-card-subtitle>
-       {{inform}}
-    </ion-card-subtitle>
-      <button>
-        <ion-icon name="star"></ion-icon>
-        <ion-icon name="star"></ion-icon>
-        <ion-icon name="star"></ion-icon>
-        <ion-icon name="star"></ion-icon>
-        <ion-icon name="star-half"></ion-icon>
-      
-       {{grade}}점
-      </button>
-      <ion-label>대기 {{wating}}명</ion-label>
-  </ion-card-header>
-
+    <!-- <ion-virtual-scroll approxItemHeight="100px"> -->
+      <ion-card-header>
+        
+        <ion-card-title>{{name}}</ion-card-title>
+        <ion-card-subtitle>
+          {{inform}}
+        </ion-card-subtitle>
+          <button>
+            <ion-icon name="star"></ion-icon>
+          
+          {{grade}}점
+          </button>
+          <ion-label>대기 {{wating}}명</ion-label>
+      </ion-card-header>
+    <!-- </ion-virtual-scroll> -->
 
   <ion-footer>
    
-    <ion-label>{{notice}}</ion-label>
-      
+    <!-- <ion-label>{{notice}}</ion-label> -->
+      <p class="slide-notice">hello {{notice}} </p>
 
   </ion-footer>
 

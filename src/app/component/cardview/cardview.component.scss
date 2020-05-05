@@ -1,5 +1,20 @@
 ion-card{
  
-    width: 270px;
-    height: 350px;
+    width: 170px !important;
+    height: 280px;
+    background: #fff;
+    border-radius: 10px;
 }
+ion-card-title{
+    font-size:medium;
+}
+ion-item{
+    height:50px;
+}
+ ion-card-header{
+     height:95px;
+ }
+ion-footer{
+     height:50px;
+    
+ }
