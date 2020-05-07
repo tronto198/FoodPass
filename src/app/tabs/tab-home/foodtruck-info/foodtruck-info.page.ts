@@ -27,7 +27,7 @@ export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
 
   ngOnInit() {
     this.foodtruckId = Number(this.route.snapshot.paramMap.get("id"));
-  
+    //this.foodtruckImage=FoodtruckData.src;
     this.menuList = this.serverConnecter.getMenuData(this.foodtruckId);
 
     this.comeByWebAddress();
