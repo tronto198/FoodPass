@@ -11,10 +11,10 @@ import { OrderCardviewComponent } from './order-cardview/order-cardview.componen
         CommonModule,
         FormsModule,
         IonicModule,
-        OrderCardviewComponentModule
+        // OrderCardviewComponentModule
     ], 
     exports: [
-        OrderCardviewComponent
+        // OrderCardviewComponent
     ],
     declarations: [
     ],

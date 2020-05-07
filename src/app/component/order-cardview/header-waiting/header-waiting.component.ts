@@ -15,4 +15,15 @@ export class HeaderWaitingComponent implements OnInit {
 
   ngOnInit() {}
 
+  get order(){
+    return this.orderCtrl.items[this.orderIndex];
+  }
+
+  get foodtruckInfo(){
+    return this.order.foodtruckinfo;
+  }
+
+  get orderedMenuList(){
+    return this.order.orderedMenu;
+  }
 }

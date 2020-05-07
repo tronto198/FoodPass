@@ -1,19 +1,24 @@
 {
-    // .vscode/launch.json 으로 사용할 설정 - port 9222 사용
+    // .vscode/launch.json 에 이 파일로 설정
     // chrome 바로가기 에서 대상에 --remote-debugging-port=9222 추가, 그 바로가기로 다시 실행해야 디버깅 가능
-    // 디버깅 탭에서 attach to chrome 으로 연결 가능
+    // 정상적으로 되면 디버깅 탭에서 attach to chrome 으로 연결 가능
+    // 홈 화면도 아예 안뜨면 Attach error localhost 로 연결
 
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "trace": true,
+            "request": "attach",
+            "name": "Attach error localhost",
+            "url": "http://localhost:8100",
+            "port": 9222,
+            "sourceMaps": true,
+            "webRoot": "${workspaceFolder}/www"
         },
         {
             "type": "chrome",
@@ -24,6 +29,6 @@
             "sourceMaps": true,
             "webRoot": "${workspaceRoot}/www",
             "url": "http://localhost:8100/tabs/home"
-        }
+        },
     ]
 }

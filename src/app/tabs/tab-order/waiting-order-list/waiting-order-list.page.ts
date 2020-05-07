@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { Router } from '@angular/router';
+import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 
 @Component({
   selector: 'order-waiting-order-list',
@@ -20,6 +21,10 @@ export class WaitingOrderListPage implements OnInit {
 
   get orderList(){
     return this.waitingOrderCtrl.orderList;
+  }
+
+  get orderType(){
+    return OrderType.waiting;
   }
 
   isEmpty(){

@@ -8,8 +8,8 @@ import { WaitingOrderListPageRoutingModule } from './waiting-order-list-routing.
 
 import { WaitingOrderListPage } from './waiting-order-list.page';
 import { OrderCardviewComponent22 } from './order-cardview/order-cardview.component';
-import { OrderedMenuComponent } from 'src/app/component/order-cardview/ordered-menu/ordered-menu.component';
 import { SharedComponentModule } from 'src/app/component/shared-component.module';
+import { OrderCardviewComponentModule } from 'src/app/component/order-cardview/order-cardview.module';
 
 @NgModule({
   imports: [
@@ -17,14 +17,13 @@ import { SharedComponentModule } from 'src/app/component/shared-component.module
     FormsModule,
     IonicModule,
     WaitingOrderListPageRoutingModule,
-    SharedComponentModule,
+    OrderCardviewComponentModule
   ],
   exports:[
     WaitingOrderListPage
   ],
   declarations: [
     WaitingOrderListPage,
-    OrderCardviewComponent22,
   ]
 })
 export class WaitingOrderListPageModule {}

@@ -10,6 +10,7 @@ import { BasketPage } from './basket.page';
 import { OrderComponentModule } from './order/order.module';
 import { SharedComponentModule } from 'src/app/component/shared-component.module';
 import { OrderComponent } from './order/order.component';
+import { OrderCardviewComponentModule } from 'src/app/component/order-cardview/order-cardview.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { OrderComponent } from './order/order.component';
     IonicModule,
     SharedComponentModule,
     BasketPageRoutingModule,
+    OrderCardviewComponentModule
     // OrderComponentModule,
   ],
   exports: [
