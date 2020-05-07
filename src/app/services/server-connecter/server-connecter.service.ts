@@ -30,8 +30,8 @@ export class ServerConnecterService {
   getMenuData(foodtruckid: number) : MenuData[]{
     // 나중에 윗줄의 파라미터로 들어갈것들 , foodtruckName:string, foodtruckInform:string, foodtruckGrade:number
 
-    this.MenuDummyData.push({menuID:10, menuName:"도넛1", menuInform:"치즈맛 도넛", price:5000, src:"../assets/icon/dounut.png"});
-    this.MenuDummyData.push({menuID:10, menuName:"도넛2", menuInform:"초코맛 도넛", price:6000, src:"../assets/icon/dounut.png"});
+    this.MenuDummyData.push({menuID:10, menuName:"도넛1", menuInform:"치즈맛 도넛", price:5000, src:"../assets/icon/donut.png"});
+    this.MenuDummyData.push({menuID:10, menuName:"도넛2", menuInform:"초코맛 도넛", price:6000, src:"../assets/icon/donut.png"});
     this.MenuDummyData.push({menuID:10, menuName:"와플1", menuInform:"바나나 와플", price:7000, src:"../assets/icon/waffle.png"});
     this.MenuDummyData.push({menuID:10, menuName:"와플2", menuInform:"딸기와플", price:8000, src:"../assets/icon/waffle.png"});
 
