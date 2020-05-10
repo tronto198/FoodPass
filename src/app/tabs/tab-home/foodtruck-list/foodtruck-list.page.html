@@ -1,5 +1,5 @@
- <!-- <ion-list> -->
-   <ion-grid no-padding>
+
+   <!-- <ion-grid no-padding>
      <ion-row no-padding>
       <ion-col no-padding col-2 *ngFor="let foodtruck of foodtruckList" class="foodtruck-list-cards">
   
@@ -12,8 +12,22 @@
      
       </ion-col>
     </ion-row>
-    </ion-grid>
-<!-- </ion-list> -->
+    </ion-grid> -->
 
+<ion-list class="foodtruck-list">
+  
+  <!-- <ion-item class="foodtruck-list-cards"> -->
+    <app-cardview *ngFor="let foodtruck of foodtruckList"
+    class="foodtruck-item"
+    name="{{foodtruck.name}}" locate="{{foodtruck.locate}}"
+     inform="{{foodtruck.inform}}" distance="{{foodtruck.distance}}"
+    grade="{{foodtruck.grade}}" wating="{{foodtruck.wating}}" notice="{{foodtruck.notice}}"
+    truckImage="{{foodtruck.truckImage}}"
+   routerLink="foodtruck/{{foodtruck.id}}" >
+    </app-cardview>
+  
+    <!-- id: {{foodtruck.id}}, name: {{foodtruck.name}}  -->
+  <!-- </ion-item> -->
+</ion-list>
 
 

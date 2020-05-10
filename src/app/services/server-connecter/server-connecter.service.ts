@@ -32,7 +32,6 @@ export class ServerConnecterService {
     // let object : FoodtruckData = {../assets/icon/foodtruck.png
     //     id: 1,
     // }
-
     return this.FoodtruckDummyData;
   }
 
