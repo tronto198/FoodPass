@@ -10,12 +10,7 @@ export class ServerConnecterService {
   FoodtruckDummyData: FoodtruckData[] = [];
   MenuDummyData: MenuData[]=[];
 
-  constructor() { }
-
-  getFoodtruckData() : FoodtruckData[]{
-    // let object : FoodtruckData = {../assets/icon/foodtruck.png
-    //     id: 1,
-    // }
+  constructor() {
     this.FoodtruckDummyData.push({id: 10, name: "닭발집 10", locate:"A", distance:500,inform:"치즈닭발, 무뼈닭발있습니다.", 
     grade:3.5, wating:5, notice:"화요일은 충남대 갑니다" , src:"../assets/icon/foodtruck.png"});
     this.FoodtruckDummyData.push({id: 11, name: "와플집 11", locate:"B", distance:600, inform:" 초코와플, 바나나와플, 딸기와플,  빙수",
@@ -24,17 +19,27 @@ export class ServerConnecterService {
     grade:4, wating:3, notice:"이번주 토요일 엑스포 행사장 갑니다.", src:"../assets/icon/foodtruck3.png"});
     this.FoodtruckDummyData.push({id: 13, name: "13", locate:"default", distance:0, inform:"짝수 맞추기 위한 카드뷰",
     grade:0, wating:0, notice:"카드가 홀수일 경우 공간만 차지하게 해야 함"});
+
+    
+    this.MenuDummyData.push({menuID:10, menuName:"도넛1", menuInform:"치즈맛 도넛", price:5000, src:"../assets/icon/donut.png"});
+    this.MenuDummyData.push({menuID:10, menuName:"도넛2", menuInform:"초코맛 도넛", price:6000, src:"../assets/icon/donut.png"});
+    this.MenuDummyData.push({menuID:10, menuName:"와플1", menuInform:"바나나 와플", price:7000, src:"../assets/icon/waffle.png"});
+    this.MenuDummyData.push({menuID:10, menuName:"와플2", menuInform:"딸기와플", price:8000, src:"../assets/icon/waffle.png"});
+
+   }
+
+  getFoodtruckData() : FoodtruckData[]{
+    // let object : FoodtruckData = {../assets/icon/foodtruck.png
+    //     id: 1,
+    // }
+
     return this.FoodtruckDummyData;
   }
 
   getMenuData(foodtruckid: number) : MenuData[]{
     // 나중에 윗줄의 파라미터로 들어갈것들 , foodtruckName:string, foodtruckInform:string, foodtruckGrade:number
 
-    this.MenuDummyData.push({menuID:10, menuName:"도넛1", menuInform:"치즈맛 도넛", price:5000, src:"../assets/icon/donut.png"});
-    this.MenuDummyData.push({menuID:10, menuName:"도넛2", menuInform:"초코맛 도넛", price:6000, src:"../assets/icon/donut.png"});
-    this.MenuDummyData.push({menuID:10, menuName:"와플1", menuInform:"바나나 와플", price:7000, src:"../assets/icon/waffle.png"});
-    this.MenuDummyData.push({menuID:10, menuName:"와플2", menuInform:"딸기와플", price:8000, src:"../assets/icon/waffle.png"});
-
+  
     return this.MenuDummyData;
   }
 }

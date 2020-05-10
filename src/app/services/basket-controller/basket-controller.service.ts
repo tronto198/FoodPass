@@ -32,8 +32,8 @@ export class BasketControllerService extends CheckboxValue{
         name: ftId + " foodtruck"
       };
       let menudata : MenuData ={
-        id: menuId,
-        name: menuId + " menu",
+        menuID: menuId,
+        menuName: menuId + " menu",
         price: price
       };
       let optiondata : OptionData = {
