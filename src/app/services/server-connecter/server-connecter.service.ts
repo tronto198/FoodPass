@@ -28,6 +28,7 @@ export class ServerConnecterService {
   }
 
   getMenuData(foodtruckid: number) : MenuData[]{
+    // 나중에 윗줄의 파라미터로 들어갈것들 , foodtruckName:string, foodtruckInform:string, foodtruckGrade:number
 
     this.MenuDummyData.push({menuID:10, menuName:"도넛1", menuInform:"치즈맛 도넛", price:5000, src:"../assets/icon/donut.png"});
     this.MenuDummyData.push({menuID:10, menuName:"도넛2", menuInform:"초코맛 도넛", price:6000, src:"../assets/icon/donut.png"});
