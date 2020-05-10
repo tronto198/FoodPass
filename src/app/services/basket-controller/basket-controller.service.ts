@@ -32,7 +32,7 @@ export class BasketControllerService extends CheckboxValue implements OrderList{
         name: ftId + " foodtruck"
       };
       let menudata : MenuData ={
-        id: menuId,
+        menuid: menuId,
         name: menuId + " menu",
         price: price
       };

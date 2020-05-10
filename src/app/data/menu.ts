@@ -1,5 +1,5 @@
 export interface MenuData{
-    id:number,//푸드트럭 아이디
+    menuid:number,//푸드트럭 아이디
     name:string,//푸드트럭 이름
     menuID?:number,
     menuName?:string,
