@@ -34,6 +34,7 @@ export class OrderCardviewComponent implements OnInit {
     //   default:
     //     throw Error("invalid orderType");
     // }
+    this.orderCtrl.Type = this.orderType;
     if(this.orderType == OrderType.basket){
       this.orderCtrl.Controller = this.basketCtrl;
     }
