@@ -1,17 +1,30 @@
 import { Injectable } from '@angular/core';
 import { OrderList } from './order-list.interface';
 import { OrderData } from 'src/app/data/order';
+import { OrderType } from '../order-type.enum';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class OrderControllerService {
-  orderList : OrderList;
+  private orderType : OrderType;
+  private orderList : OrderList;
   constructor() { }
 
   set Controller(orderList : OrderList){
     this.orderList = orderList;
   }
+
+  set Type(orderType : OrderType){
+    this.orderType = orderType;
+  }
+
+  get isBasket() : boolean {
+    return this.orderType == OrderType.basket;
+  }
+
+  get isWaiting() : boolean {
+    return this.orderType == OrderType.waiting;
+  }
+  
 
   get items() : OrderData[] {
     return this.orderList.items;

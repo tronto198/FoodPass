@@ -4,6 +4,8 @@ import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { OrderType } from '../order-type.enum';
 import { OrderControllerService } from '../order-controller/order-controller.service';
+import { OptionData } from 'src/app/data/option';
+import { MenuData } from 'src/app/data/menu';
 
 @Component({
   selector: 'order-ordered-menu',
@@ -26,11 +28,15 @@ export class OrderedMenuComponent implements OnInit {
   get orderedMenuInfo() : OrderedMenuData{
     return this.orderCtrl.items[this.orderIndex].orderedMenu[this.orderedMenuIndex];
   }
-  get menuInfo(){
+  get menuInfo() : MenuData{
     return this.orderedMenuInfo.menuinfo;
   }
-  get optionInfo(){
+  get optionInfo() : OptionData{
     return this.orderedMenuInfo.optioninfo;
+  }
+
+  get isBasket() : boolean{
+    return this.orderCtrl.isBasket;
   }
 
   // get checkValue(){
@@ -41,7 +47,7 @@ export class OrderedMenuComponent implements OnInit {
   // }
 
 
-  get price(){
+  get price() : number{
     return (this.menuInfo.price + this.optionInfo.extraPrice) * this.orderedMenuInfo.amount;
   }
 
