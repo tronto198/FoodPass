@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SelectAmountComponent } from './select-amount.component';
+import { HeaderWaitingComponent } from './header-waiting.component';
 
-describe('SelectAmountComponent', () => {
-  let component: SelectAmountComponent;
-  let fixture: ComponentFixture<SelectAmountComponent>;
+describe('HeaderWaitingComponent', () => {
+  let component: HeaderWaitingComponent;
+  let fixture: ComponentFixture<HeaderWaitingComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectAmountComponent ],
+      declarations: [ HeaderWaitingComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SelectAmountComponent);
+    fixture = TestBed.createComponent(HeaderWaitingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

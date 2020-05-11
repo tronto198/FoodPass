@@ -6,10 +6,10 @@ import { MenuInfoPageModule } from 'src/app/tabs/tab-home/menu-info/menu-info.mo
 import { CheckboxValue, CheckValue } from 'src/app/modal-pages/basket/data/checkbox-value';
 import { BasketOrder } from 'src/app/modal-pages/basket/data/basket-order';
 import { BasketOrderedMenu } from 'src/app/modal-pages/basket/data/basket-ordered-menu';
+import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
 
 @Injectable()
-export class BasketControllerService extends CheckboxValue{
-  // basket : Map<FoodtruckData, cbOrderData> = new Map<FoodtruckData, cbOrderData>();
+export class BasketControllerService extends CheckboxValue implements OrderList{
   basket : BasketOrder[] = [];
 
   constructor() {
@@ -32,8 +32,8 @@ export class BasketControllerService extends CheckboxValue{
         name: ftId + " foodtruck"
       };
       let menudata : MenuData ={
-        id: menuId,
-        name: menuId + " menu",
+        menuID: menuId,
+        menuName: menuId + " menu",
         price: price
       };
       let optiondata : OptionData = {
@@ -77,8 +77,6 @@ export class BasketControllerService extends CheckboxValue{
     const existIndex : number = this.basket.findIndex((value, index, obj) =>{
       return value.foodtruckinfo.id == foodtruck.id;
     })
-
-    // const orderedMenu : 
 
     if(existIndex == -1){
       //푸드트럭 첫 주문

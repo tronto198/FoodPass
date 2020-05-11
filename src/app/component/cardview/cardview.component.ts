@@ -15,7 +15,7 @@ export class CardviewComponent implements OnInit {
   @Input() grade:number;
   @Input() notice:string;
   @Input() distance:number;
-  @Input() truckImage: string;
+  @Input() truckImage:string;
   //@Input() foodtruck:FoodtruckData;
   constructor() { }
 

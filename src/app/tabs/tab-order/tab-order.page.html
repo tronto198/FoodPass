@@ -13,12 +13,17 @@
 
 <ion-content>
 
-  <ion-slides pager="true" class="fullscreen" (ionSlideWillChange)="slideChanged()" [options]="slideOpts">
+  <ion-slides class="fullscreen" (ionSlideWillChange)="slideChanged()" [options]="slideOpts">
     <ion-slide>
-      <order-waiting-order-list></order-waiting-order-list>
+      <ion-content>
+        <order-waiting-order-list class="center"></order-waiting-order-list>
+      </ion-content>
     </ion-slide>
+
     <ion-slide>
-      <order-order-history-list></order-order-history-list>
+      <ion-content>
+        <order-order-history-list class="center"></order-order-history-list>
+      </ion-content>
     </ion-slide>
   </ion-slides>
 

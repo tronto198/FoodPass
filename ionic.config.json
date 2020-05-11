@@ -1,7 +1,8 @@
 {
   "name": "FoodPass",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

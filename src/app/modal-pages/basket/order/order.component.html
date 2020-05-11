@@ -6,17 +6,17 @@
         <ion-checkbox [checked]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
         {{foodtruckInfo.name}}
       </ion-card-title>
-      <ion-label class="endfloat"><h3>{{price}}</h3></ion-label>
+      <ion-label class="endfloat"><h3>{{price}}원</h3></ion-label>
     </ion-card-header>
 
     <ion-card-content>
       <ion-list #slidingList>
         <ion-item-sliding *ngFor="let menu of menuList; let i = index">
 
-          <basket-ordered-menu foodtruckIndex="{{foodtruckIndex}}" orderedMenuIndex="{{i}}"></basket-ordered-menu>
+          <component-ordered-menu menuType="{{menuType}}" foodtruckIndex="{{foodtruckIndex}}" orderedMenuIndex="{{i}}"></component-ordered-menu>
 
           <ion-item-options side="end">
-            <ion-item-option color="danger" (click)="delete(i)">
+            <ion-item-option color="danger" (click)="deleteItem(i)">
               <ion-icon slot="icon-only" name="trash"></ion-icon>
             </ion-item-option>
           </ion-item-options>

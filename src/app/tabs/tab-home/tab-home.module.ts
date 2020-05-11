@@ -22,6 +22,7 @@ import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
 import { FoodtruckListPageModule } from './foodtruck-list/foodtruck-list.module';
 import { FoodtruckInfoPageModule } from './foodtruck-info/foodtruck-info.module';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
+import { SharedComponentModule } from 'src/app/component/shared-component.module';
 
 
 @NgModule({

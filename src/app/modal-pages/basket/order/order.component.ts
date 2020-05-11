@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';
+import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 
 @Component({
   selector: 'basket-order',
@@ -49,26 +50,24 @@ export class OrderComponent implements OnInit {
     this.order.toggle();
   }
 
-  test(){
-    this.foodtruckInfo.name = "testestes";
-  }
-
-  delete(index : number){
+  deleteItem(index : number){
     this.basketCtrl.basket[this.foodtruckIndex].deleteItem(this.order.items[index]);
   }
 
-  ctrlAmount(menuIndex: number, add : boolean){
-    event.stopPropagation();
-
-    let menu : OrderedMenuData = this.order.orderedMenu[menuIndex];
-    
-    if(add){
-      menu.amount++;
-    }
-    else{
-      if(menu.amount > 1){
-        menu.amount--;
-      }
-    }
+  get menuType(){
+    return OrderType.basket;
   }
+  // ctrlItemAmount(menuIndex: number, add : boolean){
+
+  //   let menu : OrderedMenuData = this.order.orderedMenu[menuIndex];
+    
+  //   if(add){
+  //     menu.amount++;
+  //   }
+  //   else{
+  //     if(menu.amount > 1){
+  //       menu.amount--;
+  //     }
+  //   }
+  // }
 }

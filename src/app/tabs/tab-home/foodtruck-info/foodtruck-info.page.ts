@@ -13,6 +13,8 @@ import {FoodtruckData} from'src/app/data/foodtruck';
 })
 export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
   foodtruckId: number;
+  foodtruckName:string;
+  foodtruckImage:string;
   //routedata:FoodtruckData[];
   menuList: MenuData[];
 
@@ -25,6 +27,7 @@ export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
 
   ngOnInit() {
     this.foodtruckId = Number(this.route.snapshot.paramMap.get("id"));
+    //this.foodtruckImage=FoodtruckData.src;
     this.menuList = this.serverConnecter.getMenuData(this.foodtruckId);
 
     this.comeByWebAddress();
