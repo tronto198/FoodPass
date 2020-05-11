@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { MapPage } from './map.page';
 
-describe('MapComponent', () => {
+describe('MapPage', () => {
   let component: MapPage;
   let fixture: ComponentFixture<MapPage>;
 

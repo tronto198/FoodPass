@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
-// import { Plugins } from '@capacitor/core';
-// const { Geolocation } = Plugins;
+import { LocationData } from 'src/app/data/location';
+import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 
 // Kakao Map API
 declare var kakao;
@@ -18,26 +17,30 @@ export class MapPage implements OnInit {
   map: any;
 
   position: any;
-  lat: any;
-  lon: any;
+  inputAddress: string;
 
-  message: any;
-  infowindow: any;
-  
+  dataLocation: LocationData;
+  newLocation: LocationData;
+  nowLocation: LocationData;
+
   constructor(
     private geo: Geolocation,
     private modalCtrl : ModalController,
-
+    private pageCtrl: TabHomeControllerService,
   ) { 
-    this.lat = 36.350456;
-    this.lon = 127.384818;
-  }
-  
+    this.dataLocation = pageCtrl.getLocation();
+    this.newLocation = {lat: this.dataLocation.lat, lng:this.dataLocation.lng};
+    this.nowLocation ={lat: this.dataLocation.lat, lng:this.dataLocation.lng};
+    alert("lat: "+this.dataLocation.lat +"\n"+"lng: "+ this.dataLocation.lng);
+}
+
   ngOnInit() {
     this.getCurrentPosition();
   }
-
-  displayMarker(locPosition, message) {
+getInputAddress(){
+  alert(this.inputAddress);
+}
+  displayMarker(locPosition) {
     const marker = new kakao.maps.Marker({  
         map: this.map, 
         draggable: true,
@@ -45,13 +48,17 @@ export class MapPage implements OnInit {
     }); 
     kakao.maps.event.addListener(marker, 'dragend', () => {
       var latlng = marker.getPosition();
-      this.lat = latlng.getLat();
-      this.lon =latlng.getLng();
-      //alert("getLat : "+latlng.getLat()+"  getLon : "+latlng.getLng());
-
-  });
+      this.newLocation.lat = latlng.getLat();
+      this.newLocation.lng =latlng.getLng();
+    });
     this.map.setCenter(locPosition);  
-
+  }
+  
+  getNowLocation(){
+    this.newLocation.lat = this.nowLocation.lat;
+    this.newLocation.lng =this.nowLocation.lng;
+    this.position = new kakao.maps.LatLng(this.newLocation.lat, this.newLocation.lng);
+    this.displayMarker(this.position);
   }
 
   async getCurrentPosition() {
@@ -60,30 +67,44 @@ export class MapPage implements OnInit {
       timeout: 5000,
       maximumAge: 0
     };
-    const coordinates = await this.geo.getCurrentPosition(geoOptions);
-    this.lat = coordinates.coords.latitude;
-    this.lon = coordinates.coords.longitude;
-    this.position = new kakao.maps.LatLng(this.lat, this.lon);
+    const coordinates = await this.geo.getCurrentPosition(geoOptions)
+    //.then(()=>{
+    //   alert("getCurrentPosition = true");
+    // }).catch(()=>{
+    //   alert("getCurrentPosition = false");
+    // });
+    this.nowLocation.lat = coordinates.coords.latitude;
+    this.nowLocation.lng = coordinates.coords.longitude;
+    this.makeMap();
+  }
+  makeMap(){
+    this.position = new kakao.maps.LatLng(this.dataLocation.lat, this.dataLocation.lng);
 
     const mapOptions = {
       center: this.position,
       level: 3
     };
     this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
-    this.message = '<div style="padding:5px;">현재 위치</div>';
-    this.displayMarker(this.position, this.message);
+    this.displayMarker(this.position);
   }
 
   get getLatitude(){
-    return "lat : "+this.lat;
+    return " lat: "+this.newLocation.lat;
   }
 
   get getLongitude(){
-    return "lon : "+this.lon;
+    return " lng: "+this.newLocation.lng;
   }
 
-  dismiss(){
+  dismissCancel(){
+    this.pageCtrl.setLocation(this.dataLocation);
+    alert("dismissCancel");
     this.modalCtrl.dismiss();
   }
 
+  dismissOK(){
+    this.pageCtrl.setLocation(this.newLocation);
+    alert("dismissOK");
+    this.modalCtrl.dismiss();
+  }
 }

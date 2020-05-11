@@ -1,20 +1,23 @@
 <ion-header>
   <ion-toolbar class="ion-text-center" color="dark" (click)="onToolbarClicked()">
     <ion-buttons slot="start">
-      <ion-button (click)="dismiss()">
+      <ion-button (click)="dismissCancel()">
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
-    </ion-buttons>    
-      <ion-input placeholder={{getLatitude}}{{getLongitude}}></ion-input>
+    </ion-buttons>     
+    <ion-item>
+      <ion-label floating>주소 입력 : </ion-label>
+      <ion-input type="text" [(ngModel)]="inputAddress" text-right id="inputAddress" placeholder={{getLatitude}}{{getLongitude}}></ion-input>
+      <ion-button (click)="getInputAddress()"> > </ion-button>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div id="map" class="map"></div>
+  <p>
+    <ion-button (click)="dismissOK()">OK</ion-button>
+    <ion-button (click)="getNowLocation()">현위치</ion-button>
+  </p>
 </ion-content>
 
-<h3>map works!</h3>
-<p>
-  {{getLatitude}}<br>
-  {{getLongitude}}<br>
-</p>

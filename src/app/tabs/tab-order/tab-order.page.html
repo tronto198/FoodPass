@@ -13,7 +13,7 @@
 
 <ion-content>
 
-  <ion-slides class="fullscreen" (ionSlideWillChange)="slideChanged()" [options]="slideOpts">
+  <ion-slides pager="true" class="fullscreen" (ionSlideWillChange)="slideChanged()" [options]="slideOpts">
     <ion-slide>
       <order-waiting-order-list></order-waiting-order-list>
     </ion-slide>
