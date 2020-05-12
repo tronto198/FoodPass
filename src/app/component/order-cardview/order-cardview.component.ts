@@ -3,6 +3,7 @@ import { OrderType } from './order-type.enum';
 import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { OrderControllerService } from './order-controller/order-controller.service';
+import { OrderHistoryService } from 'src/app/services/order-history/order-history.service';
 
 @Component({
   selector: 'component-order-cardview',
@@ -17,6 +18,7 @@ export class OrderCardviewComponent implements OnInit {
     @Optional() private basketCtrl : BasketControllerService,
     @Optional() private waitingCtrl : WaitingOrderControllerService,
     private orderCtrl : OrderControllerService,
+    private historyCtrl : OrderHistoryService
   ) { }
 
   ngOnInit() {
@@ -63,8 +65,14 @@ export class OrderCardviewComponent implements OnInit {
   }
 
 
+  orderReceived(){
+    //받앗어요
+    let order = this.order;
+    this.orderCtrl.removeOrder(this.orderIndex);
+    this.historyCtrl.save(order);
+  }
 
   deleteMenu(index : number){
-    this.orderCtrl.deleteMenu(this.orderIndex, index);
+    this.orderCtrl.removeMenu(this.orderIndex, index);
   }
 }

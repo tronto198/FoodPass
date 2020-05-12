@@ -17,7 +17,7 @@ export class BasketOrderedMenu extends CheckValue implements OrderedMenuData {
         }
     }
 
-    get orderedMenuData(){
+    extractData(){
         let orderedMenuData : OrderedMenuData = {
             menuinfo : this.menuinfo,
             optioninfo : this.optioninfo,

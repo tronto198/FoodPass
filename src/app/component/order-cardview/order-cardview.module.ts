@@ -21,7 +21,7 @@ import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
         OrderCardviewComponent,
         HeaderBasketComponent,
         HeaderWaitingComponent,
-        OrderedMenuComponent
+        OrderedMenuComponent,
     ],
     providers: [
         OrderControllerService

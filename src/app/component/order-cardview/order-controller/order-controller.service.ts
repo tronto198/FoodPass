@@ -39,14 +39,14 @@ export class OrderControllerService {
     return price;
   }
 
-  deleteOrder(orderIndex : number){
+  removeOrder(orderIndex : number){
     this.orderList.items.splice(orderIndex, 1);
   }
 
-  deleteMenu(orderIndex : number, menuIndex : number){
+  removeMenu(orderIndex : number, menuIndex : number){
     this.orderList.items[orderIndex].orderedMenu.splice(menuIndex, 1);
     if(this.orderList.items[orderIndex].orderedMenu.length == 0){
-      this.deleteOrder(orderIndex);
+      this.removeOrder(orderIndex);
     }
   }
 

@@ -29,6 +29,7 @@ export class OrderedMenuComponent implements OnInit {
     return this.orderCtrl.items[this.orderIndex].orderedMenu[this.orderedMenuIndex];
   }
   get menuInfo() : MenuData{
+    // console.log(this.orderedMenuInfo.menuinfo);
     return this.orderedMenuInfo.menuinfo;
   }
   get optionInfo() : OptionData{

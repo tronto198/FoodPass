@@ -75,7 +75,7 @@ export class BasketPage implements OnInit {
   orderSuccess(){
     let checkedOrderList = this.basketCtrl.extractCheckedOrder();
     checkedOrderList.forEach((val, index, arr)=>{
-      this.waitingOrderCtrl.addItem(val.orderData);
+      this.waitingOrderCtrl.addItem(val.extractData());
     });
 
     console.log(this.waitingOrderCtrl.orderList.length);

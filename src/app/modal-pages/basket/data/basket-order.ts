@@ -2,6 +2,7 @@ import { CheckboxValue } from 'src/app/modal-pages/basket/data/checkbox-value';
 import { OrderData } from 'src/app/data/order';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { BasketOrderedMenu } from './basket-ordered-menu';
+import { OrderedMenuData } from 'src/app/data/ordered-menu';
 
 export class BasketOrder extends CheckboxValue implements OrderData{
     id?: number;
@@ -58,11 +59,15 @@ export class BasketOrder extends CheckboxValue implements OrderData{
         return [remainThis, extractOrder];
     }
 
-    get orderData(){
+    extractData() : OrderData {
+        let orderedMenuData : OrderedMenuData[] = [];
+        this.orderedMenu.forEach((val, index, arr) =>{
+            orderedMenuData.push(val.extractData());
+        })
         let orderData : OrderData = {
             id : this.id,
             foodtruckinfo: this.foodtruckinfo,
-            orderedMenu: this.orderedMenu
+            orderedMenu: orderedMenuData
         };
 
         return orderData;
