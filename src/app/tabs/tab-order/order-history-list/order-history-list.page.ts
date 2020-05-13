@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderHistoryService } from 'src/app/services/order-history/order-history.service';
+import { OrderData } from 'src/app/data/order';
 
 @Component({
   selector: 'order-order-history-list',
@@ -8,12 +9,15 @@ import { OrderHistoryService } from 'src/app/services/order-history/order-histor
 })
 export class OrderHistoryListPage implements OnInit {
 
+  orderList : OrderData[] = [];
+
   constructor(
     private historyCtrl : OrderHistoryService
   ) { }
 
   ngOnInit() {
-    
+     this.orderList = this.historyCtrl.load();
   }
 
+  
 }
