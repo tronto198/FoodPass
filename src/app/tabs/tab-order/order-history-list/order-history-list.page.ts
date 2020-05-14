@@ -9,15 +9,19 @@ import { OrderData } from 'src/app/data/order';
 })
 export class OrderHistoryListPage implements OnInit {
 
-  orderList : OrderData[] = [];
-
   constructor(
     private historyCtrl : OrderHistoryService
   ) { }
 
   ngOnInit() {
-     this.orderList = this.historyCtrl.load();
+     this.historyCtrl.load();
   }
 
-  
+  get orderList(){
+    return this.historyCtrl.orderList;
+  }
+
+  get isEmpty(){
+    return this.historyCtrl.isEmpty;
+  }
 }

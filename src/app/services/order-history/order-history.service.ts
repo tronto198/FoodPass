@@ -7,24 +7,31 @@ import { Storage } from '@ionic/storage';
 })
 export class OrderHistoryService {
 
-  private orderList : OrderData[] = [];
+  orderList : OrderData[] = [];
 
   constructor(
     private st : Storage
   ) {
     
-    this.st.get('orderList').then(val =>{
-      this.orderList = val;
-    });
+    // this.load();
   }
 
-  load() : OrderData[] {
-    return this.orderList;
+  load() : void {
+    this.st.get('orderList').then(val =>{
+      this.orderList = val;
+      if(this.orderList == null){
+        this.orderList = [];
+      }      
+    });
   }
 
   save(order : OrderData){
 
     this.orderList.push(order);
     this.st.set('orderList', this.orderList);
+  }
+
+  get isEmpty(){
+    return this.orderList.length == 0;
   }
 }

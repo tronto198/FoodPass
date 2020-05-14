@@ -23,6 +23,7 @@ export class BasketPage implements OnInit {
 
 
   ngOnInit() {
+    console.log("basketPage");
     this.basketCtrl.makeTestdata();
   }
 
