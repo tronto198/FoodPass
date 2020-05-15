@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { OrderHistoryService } from './services/order-history/order-history.service';
+import { UserConfigService } from './services/user-config/user-config.service';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router : Router,
-    private historyCtrl : OrderHistoryService
+    private historyCtrl : OrderHistoryService,
+    private config : UserConfigService,
   ) {
     this.initializeApp();
   }
@@ -28,9 +29,16 @@ export class AppComponent {
       this.splashScreen.hide();
       console.log("app start");
 
-      this.historyCtrl.load();
+      this.loadConfig();
     });
 
     // this.router.navigateByUrl("/tabs/order");
+  }
+
+  loadConfig(){
+    this.historyCtrl.load();
+    this.config.init();
+
+    console.log("loading config");
   }
 }

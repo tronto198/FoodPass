@@ -2,9 +2,7 @@
 <div class="center">
     <ion-label *ngIf="isEmpty">order-history</ion-label>
 
-    <div>
-        <ion-label *ngFor="let order of orderList">
-            {{order.foodtruckinfo.name}}
-        </ion-label>
-    </div>
+    <ion-label *ngFor="let order of orderList">
+        {{order.foodtruckinfo.name}}
+    </ion-label>
 </div>

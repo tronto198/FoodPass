@@ -21,6 +21,7 @@ export class OrderHistoryListPage implements OnInit {
   }
 
   get isEmpty(){
-    return true;
+    return this.historyCtrl.isEmpty;
   }
+  
 }

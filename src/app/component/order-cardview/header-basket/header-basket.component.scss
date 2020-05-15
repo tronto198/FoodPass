@@ -9,6 +9,7 @@ ion-checkbox{
 }
 
 ion-card-title{
-    display: inline-block;
+    display: flex;
+    align-items: center;
     font-size: large;
 }

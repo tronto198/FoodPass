@@ -2,9 +2,14 @@
   <ion-card-title>
     <!-- [(ngModel)]="checkValue" -->
     <ion-checkbox [checked]="checkValue" [indeterminate]="indeterminated"></ion-checkbox>
-    <component-owner-edit class="test" [(valueModel)]="ftname">
-      
+    
+    <component-owner-edit class="test" [(valueModel)]="foodtruckInfo.name">
     </component-owner-edit>
+
   </ion-card-title>
-  <ion-label class="endfloat"><h3>{{price}}원</h3></ion-label>
+
+  <ion-card-subtitle>
+    <ion-label class="endfloat"><h3>{{price}}원</h3></ion-label>
+
+  </ion-card-subtitle>
 </div>

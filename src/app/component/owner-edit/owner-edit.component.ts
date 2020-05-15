@@ -19,7 +19,7 @@ export class OwnerEditComponent implements OnInit {
   }
 
   get isOwner() : boolean {
-    return true;
+    return this.config.foodtruckOwner;
   }
 
   get value(){

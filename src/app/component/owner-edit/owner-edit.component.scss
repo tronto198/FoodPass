@@ -1,5 +1,16 @@
+
+ion-item {
+    visibility: inherit;
+    opacity: inherit;
+    font: inherit;
+    color: inherit;
+    line-height: inherit;
+    text-align: inherit;
+    white-space: inherit;
+}
+
 ion-input {
-    display: inline-block;
+    display: inline;
     visibility: inherit;
     opacity: inherit;
     font: inherit;
@@ -17,4 +28,8 @@ ion-label{
     line-height: inherit;
     text-align: inherit;
     white-space: inherit;
+}
+
+ion-icon{
+    display: inline-block;
 }

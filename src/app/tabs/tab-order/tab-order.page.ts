@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { TabOrderControllerService } from 'src/app/services/tab-order-controller/tab-order-controller.service';
+import { orderSlide } from 'src/app/services/tab-order-controller/tab-order.enum';
 
 @Component({
   selector: 'app-tab-order',
@@ -8,22 +10,31 @@ import { IonSlides } from '@ionic/angular';
 })
 export class TabOrderPage implements OnInit {
   @ViewChild(IonSlides, {static: false}) slider : IonSlides;
-  private pageValue: slide = slide.waitingOrder;
 
   slideOpts = {
     initialSlide: 0,
     speed: 400
   };
 
-  constructor() { }
+  constructor(
+    private pageCtrl : TabOrderControllerService
+  ) { }
 
   ngOnInit() {
+    this.pageValue = orderSlide.waitingOrder;
+  }
+
+  get pageValue(){
+    return this.pageCtrl.pageValue;
+  }
+  set pageValue(no : orderSlide){
+    this.pageCtrl.pageValue = no;
   }
 
   get slideValue(){
     return this.pageValue;
   }
-  set slideValue(value : slide){
+  set slideValue(value : orderSlide){
     this.pageValue = value;
     this.slider.slideTo(this.pageValue);
   }
@@ -38,10 +49,4 @@ export class TabOrderPage implements OnInit {
     });
   }
 
-
 }
-
-enum slide {
-  waitingOrder,
-  orderHistory,
-};

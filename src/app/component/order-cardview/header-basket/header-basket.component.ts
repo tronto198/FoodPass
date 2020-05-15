@@ -32,20 +32,11 @@ export class HeaderBasketComponent implements OnInit {
     return this.order.indeterminate;
   }
 
-  
   get foodtruckInfo(){
     return this.order.foodtruckinfo;
   }
   get price(){
     return this.orderCtrl.orderPrice(this.orderIndex);
-  }
-
-  get ftname(){
-    return this.foodtruckInfo.name;
-  }
-  set ftname(val : string){
-    console.log("setting name");
-    this.foodtruckInfo.name = val;
   }
 
   checkValueToggle(){

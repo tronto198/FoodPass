@@ -5,6 +5,8 @@ import { BasketControllerService } from 'src/app/services/basket-controller/bask
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { Router } from '@angular/router';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
+import { TabOrderControllerService } from 'src/app/services/tab-order-controller/tab-order-controller.service';
+import { orderSlide } from 'src/app/services/tab-order-controller/tab-order.enum';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class BasketPage implements OnInit {
     private modalCtrl: ModalController,
     private basketCtrl: BasketControllerService,
     private waitingOrderCtrl: WaitingOrderControllerService,
-    private router: Router
+    private orderPageCtrl : TabOrderControllerService,
   ) { }
 
 
@@ -81,7 +83,8 @@ export class BasketPage implements OnInit {
 
     console.log(this.waitingOrderCtrl.orderList.length);
     this.dismiss();
-    this.router.navigateByUrl("/tabs/order");
+    // this.router.navigateByUrl("/tabs/order");
+    this.orderPageCtrl.routing(orderSlide.waitingOrder);
   }
 
 }
