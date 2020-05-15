@@ -12,11 +12,12 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder} from '@ionic-native/native-geocoder/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicGestureConfig } from 'src/IonicGestureConfig';
+import { SharedComponentModule } from './component/shared-component.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot()],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), SharedComponentModule],
   providers: [
     StatusBar,
     SplashScreen,

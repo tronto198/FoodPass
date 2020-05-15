@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserConfigService {
   myAccountId: number;
-  foodtruckOwner: boolean;
+  foodtruckOwner: boolean = true;
 
   constructor() { }
 

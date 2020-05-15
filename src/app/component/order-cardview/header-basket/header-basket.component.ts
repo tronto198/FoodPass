@@ -40,6 +40,14 @@ export class HeaderBasketComponent implements OnInit {
     return this.orderCtrl.orderPrice(this.orderIndex);
   }
 
+  get ftname(){
+    return this.foodtruckInfo.name;
+  }
+  set ftname(val : string){
+    console.log("setting name");
+    this.foodtruckInfo.name = val;
+  }
+
   checkValueToggle(){
     this.order.toggle();
   }
