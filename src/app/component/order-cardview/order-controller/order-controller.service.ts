@@ -7,6 +7,7 @@ import { OrderType } from '../order-type.enum';
 export class OrderControllerService {
   private orderType : OrderType;
   private orderList : OrderList;
+  
   constructor() { }
 
   set Controller(orderList : OrderList){

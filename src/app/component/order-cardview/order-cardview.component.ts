@@ -22,20 +22,6 @@ export class OrderCardviewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log("orderType : " + this.orderType);
-    // console.log(OrderType.basket);
-    // switch (this.orderType){
-    //   case OrderType.basket:
-    //     this.orderCtrl.Controller = this.basketCtrl;
-    //     break;
-
-    //   case OrderType.waiting:
-    //     this.orderCtrl.Controller = this.waitingCtrl;
-    //     break;
-      
-    //   default:
-    //     throw Error("invalid orderType");
-    // }
     this.orderCtrl.Type = this.orderType;
     if(this.orderType == OrderType.basket){
       this.orderCtrl.Controller = this.basketCtrl;

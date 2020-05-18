@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { orderSlide } from './tab-order.enum';
+import { orderSlide } from './order-slide.enum';
 
 
 @Injectable({

@@ -6,7 +6,7 @@ import { WaitingOrderControllerService } from 'src/app/services/waiting-order-co
 import { Router } from '@angular/router';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { TabOrderControllerService } from 'src/app/services/tab-order-controller/tab-order-controller.service';
-import { orderSlide } from 'src/app/services/tab-order-controller/tab-order.enum';
+import { orderSlide } from 'src/app/services/tab-order-controller/order-slide.enum';
 
 
 @Component({

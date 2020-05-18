@@ -40,13 +40,6 @@ export class OrderedMenuComponent implements OnInit {
     return this.orderCtrl.isBasket;
   }
 
-  // get checkValue(){
-  //   return this.orderedMenuInfo.checkValue;
-  // }
-  // set checkValue(b : boolean){
-  //   this.orderedMenuInfo.value = b;
-  // }
-
 
   get price() : number{
     return (this.menuInfo.price + this.optionInfo.extraPrice) * this.orderedMenuInfo.amount;
