@@ -6,6 +6,7 @@ import { ServerConnecterService } from 'src/app/services/server-connecter/server
 import { MenuData } from 'src/app/data/menu';
 import {FoodtruckData} from'src/app/data/foodtruck';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 @Component({
   selector: 'app-foodtruck-info',
   templateUrl: './foodtruck-info.page.html',
@@ -18,34 +19,30 @@ export class FoodtruckInfoPage implements OnInit  {
   foodtruckImage:string;
 
   //routedata:FoodtruckData[];
-  menuList: MenuData[];
 
   constructor(
-    private homeCtrl : TabHomeControllerService,
-    private serverConnecter : ServerConnecterService,
     private route : ActivatedRoute,
     private pageCtrl : PageControllerService,
+    private pageData : PageDataStorageService,
   ) { }
 
   ngOnInit() {
     this.getBaseData();
-    this.getMenuList();
-
+    this.pageData.tabHome.menuListCtrl.getMenuList();
   }
 
   get foodtruckData(){
-    return this.pageCtrl.home_currentFoodtruck;
+    return this.pageData.tabHome.routeDataCtrl.currentFoodtruck;
   }
-  set foodtruckData(data: FoodtruckData){
-    this.pageCtrl.home_currentFoodtruck = data;
-    
+
+  get menuList(){
+    return this.pageData.tabHome.menuListCtrl.menuList;
   }
 
   getBaseData(){
     //여기에서 foodtruckinfo 가 있는지 보고
     // 없으면 getRoutingData로 foodtruckinfo를 웹에서 받아오기
     // 있으면 생략
-    this.foodtruckData = this.pageCtrl.home_currentFoodtruck;
     if(this.foodtruckData == undefined){
       this.getRoutingData();
     }
@@ -56,11 +53,7 @@ export class FoodtruckInfoPage implements OnInit  {
     if(isNaN(foodtruckId)){
       this.pageCtrl.routingHome();
     }
-    this.foodtruckData = this.serverConnecter.getFoodtruckData(foodtruckId);
-  }
-
-  getMenuList(){
-    this.menuList = this.serverConnecter.getMenuList(this.foodtruckData.id);
+    this.pageData.tabHome.routeDataCtrl.getFoodtruckData(foodtruckId);
   }
 
   menuClicked(index: number){

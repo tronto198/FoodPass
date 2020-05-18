@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { orderSlide } from './tab-order-slide.enum';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
+import { PageDataStorageService } from '../page-data-storage/page-data-storage.service';
 
 @Injectable()
 export class PageControllerService {
@@ -13,7 +14,8 @@ export class PageControllerService {
   orderSlideValue: orderSlide;
 
   constructor(
-    private router : Router
+    private router : Router,
+    private pageData : PageDataStorageService,
   ) { }
 
   routingHome(foodtruckData? : FoodtruckData, menuData? : MenuData){
@@ -21,10 +23,10 @@ export class PageControllerService {
     let url = '/tabs/home';
     if(foodtruckData != null){
       url += `/foodtruck/${foodtruckData.id}`;
-      this.home_currentFoodtruck = foodtruckData;
+      this.pageData.tabHome.routeDataCtrl.currentFoodtruck = foodtruckData;
       if(menuData != null){
         url += `/menu/${menuData.menuID}`;
-        this.home_currentMenu = menuData;
+        this.pageData.tabHome.routeDataCtrl.currentMenu = menuData;
       }
     }
 

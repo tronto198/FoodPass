@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataStoreService } from './data-store/data-store.service';
+import { PageDataStorageService } from './page-data-storage/page-data-storage.service';
 import { PageControllerService } from './page-controller/page-controller.service';
 
 
@@ -11,7 +11,7 @@ import { PageControllerService } from './page-controller/page-controller.service
     CommonModule,
   ],
   providers: [
-    DataStoreService,
+    PageDataStorageService,
     PageControllerService,
   ]
 })

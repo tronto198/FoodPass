@@ -6,7 +6,7 @@ import { BasketOrder } from 'src/app/modal-pages/basket/data/basket-order';
 import { BasketOrderedMenu } from 'src/app/modal-pages/basket/data/basket-ordered-menu';
 import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
 
-export class Basket extends CheckboxValue implements OrderList{
+export class TabHomeBasket extends CheckboxValue implements OrderList{
   basket : BasketOrder[] = [];
 
   constructor() {
@@ -76,6 +76,8 @@ export class Basket extends CheckboxValue implements OrderList{
 
       existOrder.orderedMenu.push(newOrderedMenu);
     }
+
+    console.log("menu pushed into basket");
 
   }
 

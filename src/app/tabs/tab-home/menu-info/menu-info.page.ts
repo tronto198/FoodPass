@@ -6,6 +6,8 @@ import { BasketControllerService } from 'src/app/tabs/tab-home/basket-controller
 import { OptionData } from 'src/app/data/option';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
+import { TabHomeRoute } from 'src/app/services/app-data/page-data-storage/tab-home-data/route.data';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 
 @Component({
   selector: 'app-menu-info',
@@ -13,32 +15,34 @@ import { ServerConnecterService } from 'src/app/services/server-connecter/server
   styleUrls: ['./menu-info.page.scss'],
 })
 export class MenuInfoPage implements OnInit {
-  optionList: OptionData[];
   amount: number = 1;
 
   constructor(
     private route: ActivatedRoute,
     private basketCtrl: BasketControllerService,
     private pageCtrl : PageControllerService,
-    private server : ServerConnecterService,
+    private pageData : PageDataStorageService,
   ) { }
 
   ngOnInit() {
     this.getBaseData();
+    this.pageData.tabHome.optionListCtrl.getOptionList(this.foodtruckData.id, this.menuData.menuID);
+  }
+
+  get routeCtrl(): TabHomeRoute{
+    return this.pageData.tabHome.routeDataCtrl;
   }
 
   get foodtruckData() : FoodtruckData{
-    return this.pageCtrl.home_currentFoodtruck;
-  }
-  set foodtruckData(data: FoodtruckData){
-    this.pageCtrl.home_currentFoodtruck = data;
+    return this.routeCtrl.currentFoodtruck;
   }
 
   get menuData() : MenuData{
-    return this.pageCtrl.home_currentMenu;
+    return this.routeCtrl.currentMenu;
   }
-  set menuData(data : MenuData){
-    this.pageCtrl.home_currentMenu = data;
+
+  get optionList() : OptionData[]{
+    return this.pageData.tabHome.optionListCtrl.optionList;
   }
 
   getBaseData(){
@@ -54,14 +58,9 @@ export class MenuInfoPage implements OnInit {
       this.pageCtrl.routingHome();
     }
 
-    this.foodtruckData = this.server.getFoodtruckData(foodtruckId);
-    this.menuData = this.server.getMenuData(foodtruckId, menuId);
+    this.routeCtrl.getFoodtruckData(foodtruckId);
+    this.routeCtrl.getMenuData(foodtruckId, menuId);
   }
-
-  getOptionList(){
-    this.optionList = this.server.getOptionList(this.foodtruckData.id, this.menuData.menuID);
-  }
-
 
   orderToBasket(){
     this.basketCtrl.push(this.foodtruckData, this.menuData, this.optionList[0], this.amount);

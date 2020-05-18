@@ -3,6 +3,7 @@ import { TabHomeControllerService } from 'src/app/services/tab-home-controller/t
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 
 @Component({
   selector: 'home-foodtruck-list',
@@ -10,18 +11,22 @@ import { PageControllerService } from 'src/app/services/app-data/page-controller
   styleUrls: ['./foodtruck-list.page.scss'],
 })
 export class FoodtruckListPage implements OnInit {
-  foodtruckList: FoodtruckData[];
  
 
   constructor(
     private pageCtrl : PageControllerService,
-    private serverConnecter : ServerConnecterService
+    private serverConnecter : ServerConnecterService,
+    private pageData : PageDataStorageService,
   ) { }
 
   ngOnInit() {
-    
-    this.foodtruckList = this.serverConnecter.getFoodtruckList();
+    this.pageData.tabHome.foodtruckListCtrl.foodtruckList = this.serverConnecter.getFoodtruckList();
   }
+
+  get foodtruckList() : FoodtruckData[]{
+    return this.pageData.tabHome.foodtruckListCtrl.foodtruckList;
+  }
+
 
   foodtruckClicked(index: number){
     this.pageCtrl.routingHome(this.foodtruckList[index]);
