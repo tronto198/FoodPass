@@ -6,6 +6,7 @@ import { orderSlide } from 'src/app/services/app-data/page-controller/tab-order-
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { TabHomeBasket } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.data';
+import { TabOrderWaitingList } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.data';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class BasketPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     // private basketCtrl: BasketControllerService,
-    private waitingOrderCtrl: WaitingOrderControllerService,
+    // private waitingOrderCtrl: WaitingOrderControllerService,
     private PageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
   ) { }
@@ -77,6 +78,10 @@ export class BasketPage implements OnInit {
     //서버통신부분
     //일단 바로 성공하는걸로 
     this.orderSuccess();
+  }
+
+  get waitingOrderCtrl() : TabOrderWaitingList {
+    return this.pageData.tabOrder.waitingCtrl;
   }
 
   orderSuccess(){
