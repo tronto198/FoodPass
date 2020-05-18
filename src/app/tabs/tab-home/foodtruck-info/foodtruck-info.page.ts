@@ -5,13 +5,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
 import { MenuData } from 'src/app/data/menu';
 import {FoodtruckData} from'src/app/data/foodtruck';
+import { PageControllerService } from 'src/app/services/page-controller/page-controller.service';
 @Component({
   selector: 'app-foodtruck-info',
   templateUrl: './foodtruck-info.page.html',
 
   styleUrls: ['./foodtruck-info.page.scss'],
 })
-export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
+export class FoodtruckInfoPage implements OnInit  {
   foodtruckId: number;
   foodtruckName:string;
   foodtruckImage:string;
@@ -19,45 +20,37 @@ export class FoodtruckInfoPage implements OnInit, AfterContentInit  {
   menuList: MenuData[];
 
   constructor(
-    private pageCtrl : TabHomeControllerService,
+    private homeCtrl : TabHomeControllerService,
     private serverConnecter : ServerConnecterService,
     private route : ActivatedRoute,
-    private router : Router
+    private pageCtrl : PageControllerService,
   ) { }
 
   ngOnInit() {
-    this.foodtruckId = Number(this.route.snapshot.paramMap.get("id"));
-    //this.foodtruckImage=FoodtruckData.src;
-    this.menuList = this.serverConnecter.getMenuData(this.foodtruckId);
+    this.getFoodtruckInfo();
+    this.getMenuList();
 
-    this.comeByWebAddress();
   }
 
-  ngAfterContentInit(){
-    if(isNaN(this.foodtruckId)){
-      this.router.navigateByUrl('/tabs/home');
-    }
+  getFoodtruckInfo(){
+    //여기에서 foodtruckinfo 가 있는지 보고
+    // 없으면 getRoutingData로 foodtruckinfo를 웹에서 받아오기
+    // 있으면 생략
+    this.getRoutingData();
   }
 
-  comeByWebAddress(){
-    //foodtruckinfo 를 원래는 위에서 받아오지만
-    //만약 웹으로 받아왔다면 여기에는 없는 자료, 그걸로 판별
-
-    //foodtruckinfo를 서버에서 다운로드 후 history에 루트주소부터 넣기
+  getRoutingData(){
     
+    this.foodtruckId = Number(this.route.snapshot.paramMap.get("id"));
+
+    if(isNaN(this.foodtruckId)){
+      this.pageCtrl.routingHome();
+    }
+    //foodtruckinfo 가져오기
   }
 
-  get data(){
-    return this.pageCtrl.test;
+  getMenuList(){
+    this.menuList = this.serverConnecter.getMenuData(this.foodtruckId);
   }
 
-  //버튼에 라우팅하기
-
-  gotoOrder(){
-    this.router.navigateByUrl("/tabs/order");
-  }
-
-  gotoHome(){
-    this.router.navigateByUrl("/tabs/home");
-  }
 }

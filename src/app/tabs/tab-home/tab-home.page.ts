@@ -53,18 +53,6 @@ export class TabHomePage implements OnInit {
   }
 
   onFabClicked(){
-    // this.toast(text).then(() =>{
-    //   console.log('test');
-    //   //t는 toast의 객체인듯
-    //   }
-    // ).catch((e)=>{
-    //   console.log('error: ' + e);
-    // });
-    
-    // this.toast(text);
-
-    //this.pageController.push();
-
     this.modalController.create({
       component: BasketPage,
       cssClass: "modal-fullscreen"
@@ -91,6 +79,7 @@ export class TabHomePage implements OnInit {
     });
     toast.present();
   }
+
   toastsync(message : string){
     const toast = this.toastController.create({
       header: "new text pushed",
@@ -109,11 +98,4 @@ export class TabHomePage implements OnInit {
     })
   }
 
-  //todo: fab : 장바구니 가기
-  //todo: 상단바 : 지도 가기
-  //todo: 서비스 연결
-
-  //todo: 여기에 남는거
-  //1. fab버튼 -> modal 장바구니 페이지
-  //2. 페이지 전환
 }

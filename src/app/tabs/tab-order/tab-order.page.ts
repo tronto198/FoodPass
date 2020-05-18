@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
-import { TabOrderControllerService } from 'src/app/services/tab-order-controller/tab-order-controller.service';
-import { orderSlide } from 'src/app/services/tab-order-controller/order-slide.enum';
+import { orderSlide } from 'src/app/services/page-controller/tab-order-slide.enum';
+import { PageControllerService } from 'src/app/services/page-controller/page-controller.service';
 
 @Component({
   selector: 'app-tab-order',
@@ -17,7 +17,7 @@ export class TabOrderPage implements OnInit {
   };
 
   constructor(
-    private pageCtrl : TabOrderControllerService
+    private pageCtrl : PageControllerService
   ) { }
 
   ngOnInit() {
@@ -25,10 +25,10 @@ export class TabOrderPage implements OnInit {
   }
 
   get pageValue(){
-    return this.pageCtrl.pageValue;
+    return this.pageCtrl.orderSlideValue;
   }
   set pageValue(no : orderSlide){
-    this.pageCtrl.pageValue = no;
+    this.pageCtrl.orderSlideValue = no;
   }
 
   get slideValue(){
