@@ -2,56 +2,69 @@ import { Component, OnInit, AfterViewChecked, AfterContentChecked, AfterContentI
 import { ActivatedRoute, Router } from '@angular/router';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
-import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
+import { BasketControllerService } from 'src/app/tabs/tab-home/basket-controller/basket-controller.service';
 import { OptionData } from 'src/app/data/option';
+import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
+import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
 
 @Component({
   selector: 'app-menu-info',
   templateUrl: './menu-info.page.html',
   styleUrls: ['./menu-info.page.scss'],
 })
-export class MenuInfoPage implements OnInit, AfterContentInit {
-  foodtruckId: number;
-  menuId: number;
-
-  foodtruckInfo: FoodtruckData;
-  menuInfo: MenuData;
-  optionInfo: OptionData;
+export class MenuInfoPage implements OnInit {
+  optionList: OptionData[];
   amount: number = 1;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private basketCtrl: BasketControllerService,
+    private pageCtrl : PageControllerService,
+    private server : ServerConnecterService,
   ) { }
 
   ngOnInit() {
-    this.foodtruckId = Number(this.route.snapshot.paramMap.get("foodtruckId"));
-    this.menuId = Number(this.route.snapshot.paramMap.get("id"));
-    // this.menuList = this.serverConnecter.getMenuData(this.routedata);
-    // console.log(this.route.snapshot.paramMap.get("foodtruckId"));
-    // console.log(this.route.snapshot.paramMap.get("id"));
-
-    // history.pushState(null, "foodtruck", `/tabs/home/foodtruck/${this.foodtruckId}`);
-    this.comeByWebAddress();
+    this.getBaseData();
   }
 
-  comeByWebAddress(){
-    //foodtruckinfo 를 원래는 위에서 받아오지만
-    //만약 웹으로 받아왔다면 여기에는 없는 자료, 그걸로 판별
-
-    //foodtruckinfo를 서버에서 다운로드
+  get foodtruckData() : FoodtruckData{
+    return this.pageCtrl.home_currentFoodtruck;
+  }
+  set foodtruckData(data: FoodtruckData){
+    this.pageCtrl.home_currentFoodtruck = data;
   }
 
-  ngAfterContentInit(){
-    if(isNaN(this.menuId) || isNaN(this.foodtruckId)){
-      this.router.navigateByUrl('/tabs/home');
+  get menuData() : MenuData{
+    return this.pageCtrl.home_currentMenu;
+  }
+  set menuData(data : MenuData){
+    this.pageCtrl.home_currentMenu = data;
+  }
+
+  getBaseData(){
+    if(this.menuData == undefined || this.foodtruckData == undefined){
+      this.getRoutingData();
     }
+  }
+
+  getRoutingData(){
+    let foodtruckId = Number(this.route.snapshot.paramMap.get("foodtruckId"));
+    let menuId = Number(this.route.snapshot.paramMap.get("id"));
+    if(isNaN(menuId) || isNaN(foodtruckId)){
+      this.pageCtrl.routingHome();
+    }
+
+    this.foodtruckData = this.server.getFoodtruckData(foodtruckId);
+    this.menuData = this.server.getMenuData(foodtruckId, menuId);
+  }
+
+  getOptionList(){
+    this.optionList = this.server.getOptionList(this.foodtruckData.id, this.menuData.menuID);
   }
 
 
   orderToBasket(){
-    this.basketCtrl.push(this.foodtruckInfo, this.menuInfo, this.optionInfo, this.amount);
+    this.basketCtrl.push(this.foodtruckData, this.menuData, this.optionList[0], this.amount);
   }
 
 

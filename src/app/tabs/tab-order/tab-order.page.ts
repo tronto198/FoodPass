@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
-import { orderSlide } from 'src/app/services/page-controller/tab-order-slide.enum';
-import { PageControllerService } from 'src/app/services/page-controller/page-controller.service';
+import { orderSlide } from 'src/app/services/app-data/page-controller/tab-order-slide.enum';
+import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 
 @Component({
   selector: 'app-tab-order',

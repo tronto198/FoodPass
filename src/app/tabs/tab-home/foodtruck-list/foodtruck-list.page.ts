@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
+import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 
 @Component({
   selector: 'home-foodtruck-list',
@@ -13,13 +14,16 @@ export class FoodtruckListPage implements OnInit {
  
 
   constructor(
-    private pageController : TabHomeControllerService,
+    private pageCtrl : PageControllerService,
     private serverConnecter : ServerConnecterService
   ) { }
 
   ngOnInit() {
     
-    this.foodtruckList = this.serverConnecter.getFoodtruckData();
+    this.foodtruckList = this.serverConnecter.getFoodtruckList();
   }
 
+  foodtruckClicked(index: number){
+    this.pageCtrl.routingHome(this.foodtruckList[index]);
+  }
 }

@@ -17,13 +17,13 @@
 <ion-list class="foodtruck-list">
   
   <!-- <ion-item class="foodtruck-list-cards"> -->
-    <app-cardview *ngFor="let foodtruck of foodtruckList"
+    <app-cardview *ngFor="let foodtruck of foodtruckList; let i = index"
     class="foodtruck-item"
     name="{{foodtruck.name}}" locate="{{foodtruck.locate}}"
      inform="{{foodtruck.inform}}" distance="{{foodtruck.distance}}"
     grade="{{foodtruck.grade}}" wating="{{foodtruck.wating}}" notice="{{foodtruck.notice}}"
     truckImage="{{foodtruck.src}}"
-   routerLink="foodtruck/{{foodtruck.id}}" >
+    (click)="foodtruckClicked(i)">
     </app-cardview>
   
     <!-- id: {{foodtruck.id}}, name: {{foodtruck.name}}  -->

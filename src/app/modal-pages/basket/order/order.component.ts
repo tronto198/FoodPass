@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
+import { BasketControllerService } from 'src/app/tabs/tab-home/basket-controller/basket-controller.service';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 

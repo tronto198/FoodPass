@@ -17,8 +17,6 @@ import { LocationData } from 'src/app/data/location';
 })
 export class TabHomePage implements OnInit {
   location: object;
-  basket : boolean;
-  test: number;
 
   constructor(
     private toastController : ToastController,
@@ -27,19 +25,11 @@ export class TabHomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.basket = false;
-    this.test = 1;
     console.log("tab-home");
   }
 
   get testlocation(){
-    return this.pageController.test;
-  }
-
-  routingbt(){
-    // this.basket = !this.basket;
-    // this.router.navigateByUrl('/tabs/tab-home/foodtruckInfo/11');
-    
+    return "test";
   }
 
   onToolbarClicked(){

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Optional } from '@angular/core';
 import { OrderType } from './order-type.enum';
-import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
+import { BasketControllerService } from 'src/app/tabs/tab-home/basket-controller/basket-controller.service';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { OrderControllerService } from './order-controller/order-controller.service';
 import { OrderHistoryService } from 'src/app/services/order-history/order-history.service';

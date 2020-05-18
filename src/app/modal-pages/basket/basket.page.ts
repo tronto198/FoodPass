@@ -1,12 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
-import { BasketControllerService } from 'src/app/services/basket-controller/basket-controller.service';
+import { BasketControllerService } from 'src/app/tabs/tab-home/basket-controller/basket-controller.service';
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { Router } from '@angular/router';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
-import { orderSlide } from 'src/app/services/page-controller/tab-order-slide.enum';
-import { PageControllerService } from 'src/app/services/page-controller/page-controller.service';
+import { orderSlide } from 'src/app/services/app-data/page-controller/tab-order-slide.enum';
+import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 
 
 @Component({
