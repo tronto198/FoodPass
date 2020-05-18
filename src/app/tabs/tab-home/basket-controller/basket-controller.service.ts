@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
-import { CheckboxValue, CheckValue } from 'src/app/modal-pages/basket/data/checkbox-value';
-import { BasketOrder } from 'src/app/modal-pages/basket/data/basket-order';
-import { BasketOrderedMenu } from 'src/app/modal-pages/basket/data/basket-ordered-menu';
 import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
+import { CheckboxValue } from 'src/app/data/basket-data/checkbox-value';
+import { BasketOrder } from 'src/app/data/basket-data/basket-order';
+import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu';
 
 @Injectable()
 export class BasketControllerService extends CheckboxValue implements OrderList{

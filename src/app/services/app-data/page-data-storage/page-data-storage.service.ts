@@ -6,8 +6,6 @@ export class PageDataStorageService {
 
   //---home
   tabHome : TabHomeData;
-  //basket
-  //home
 
   //---order
   //history

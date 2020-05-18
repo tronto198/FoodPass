@@ -4,6 +4,8 @@ import { BasketControllerService } from 'src/app/tabs/tab-home/basket-controller
 import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { OrderControllerService } from './order-controller/order-controller.service';
 import { OrderHistoryService } from 'src/app/services/order-history/order-history.service';
+import { TabHomeBasket } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.data';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 
 @Component({
   selector: 'component-order-cardview',
@@ -15,11 +17,16 @@ export class OrderCardviewComponent implements OnInit {
   @Input() orderIndex : number;
 
   constructor(
-    @Optional() private basketCtrl : BasketControllerService,
+    // @Optional() private basketCtrl : BasketControllerService,
     @Optional() private waitingCtrl : WaitingOrderControllerService,
     private orderCtrl : OrderControllerService,
-    private historyCtrl : OrderHistoryService
+    private historyCtrl : OrderHistoryService,
+    private pageData : PageDataStorageService,
   ) { }
+
+  get basketCtrl() : TabHomeBasket {
+    return this.pageData.tabHome.basketCtrl;
+  }
 
   ngOnInit() {
     this.orderCtrl.Type = this.orderType;
