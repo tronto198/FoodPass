@@ -33,11 +33,11 @@ import { BasketControllerService } from 'src/app/tabs/tab-home/basket-controller
     MapPage,
   ],
   providers: [
-    TabHomeControllerService,
+    // TabHomeControllerService,
     ToastController,
     ModalController,
     NavController,
-    BasketControllerService
+    // BasketControllerService
   ]
 })
 export class TabHomePageModule {}

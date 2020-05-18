@@ -21,7 +21,7 @@ export class TabHomePage implements OnInit {
   constructor(
     private toastController : ToastController,
     public modalController : ModalController,
-    public pageController : TabHomeControllerService
+    // public pageController : TabHomeControllerService
   ) { }
 
   ngOnInit() {

@@ -19,7 +19,7 @@ export class MenuInfoPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private basketCtrl: BasketControllerService,
+    // private basketCtrl: BasketControllerService,
     private pageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
   ) { }
@@ -62,6 +62,9 @@ export class MenuInfoPage implements OnInit {
     this.routeCtrl.getMenuData(foodtruckId, menuId);
   }
 
+  get basketCtrl() {
+    return this.pageData.tabHome.basketCtrl;
+  }
   orderToBasket(){
     this.basketCtrl.push(this.foodtruckData, this.menuData, this.optionList[0], this.amount);
   }
