@@ -6,6 +6,7 @@ import { OrderControllerService } from './order-controller/order-controller.serv
 import { OrderHistoryService } from 'src/app/services/order-history/order-history.service';
 import { TabHomeBasket } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.data';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { TabOrderWaitingList } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.data';
 
 @Component({
   selector: 'component-order-cardview',
@@ -18,7 +19,7 @@ export class OrderCardviewComponent implements OnInit {
 
   constructor(
     // @Optional() private basketCtrl : BasketControllerService,
-    @Optional() private waitingCtrl : WaitingOrderControllerService,
+    // @Optional() private waitingCtrl : WaitingOrderControllerService,
     private orderCtrl : OrderControllerService,
     private historyCtrl : OrderHistoryService,
     private pageData : PageDataStorageService,
@@ -26,6 +27,10 @@ export class OrderCardviewComponent implements OnInit {
 
   get basketCtrl() : TabHomeBasket {
     return this.pageData.tabHome.basketCtrl;
+  }
+
+  get waitingCtrl() : TabOrderWaitingList {
+    return this.pageData.tabOrder.waitingCtrl;
   }
 
   ngOnInit() {

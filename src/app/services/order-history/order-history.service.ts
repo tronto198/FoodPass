@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { OrderData } from 'src/app/data/order';
 import { Storage } from '@ionic/storage';
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 export class OrderHistoryService {
 
   orderList : OrderData[] = [];
