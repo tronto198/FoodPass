@@ -17,8 +17,8 @@ export class OrderCardviewComponent implements OnInit {
   constructor(
     @Optional() private basketCtrl : BasketControllerService,
     @Optional() private waitingCtrl : WaitingOrderControllerService,
+    @Optional() private historyCtrl : OrderHistoryService,
     private orderCtrl : OrderControllerService,
-    private historyCtrl : OrderHistoryService
   ) { }
 
   ngOnInit() {
@@ -28,6 +28,9 @@ export class OrderCardviewComponent implements OnInit {
     }
     else if(this.orderType == OrderType.waiting){
       this.orderCtrl.Controller = this.waitingCtrl;
+    }
+    else if(this.orderType == OrderType.history){
+      this.orderCtrl.Controller = this.historyCtrl;
     }
     else{
       throw Error("invalid orderType");
@@ -48,6 +51,10 @@ export class OrderCardviewComponent implements OnInit {
 
   isWaiting(){
     return this.orderType == OrderType.waiting;
+  }
+  
+  isHistory(){
+    return this.orderType == OrderType.history;
   }
 
 

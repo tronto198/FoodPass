@@ -7,14 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { OrderHistoryListPageRoutingModule } from './order-history-list-routing.module';
 
 import { OrderHistoryListPage } from './order-history-list.page';
-import { OrderHistoryService } from 'src/app/services/order-history/order-history.service';
+import { OrderCardviewComponentModule } from 'src/app/component/order-cardview/order-cardview.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OrderHistoryListPageRoutingModule
+    OrderHistoryListPageRoutingModule,
+    OrderCardviewComponentModule
   ],
   exports:[
     OrderHistoryListPage
