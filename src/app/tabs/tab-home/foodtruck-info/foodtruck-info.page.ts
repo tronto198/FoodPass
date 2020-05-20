@@ -1,10 +1,5 @@
-import { Component, OnInit, AfterContentInit, DoCheck } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
-import { MenuData } from 'src/app/data/menu';
-import {FoodtruckData} from'src/app/data/foodtruck';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 @Component({

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
-import { FoodtruckInfoPage } from 'src/app/tabs/tab-home/foodtruck-info/foodtruck-info.page';
 import { OptionData } from 'src/app/data/option';
 
+// 삭제예정
 @Injectable({
   providedIn: 'root'
 })

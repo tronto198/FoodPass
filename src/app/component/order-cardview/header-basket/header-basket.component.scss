@@ -8,8 +8,9 @@ ion-checkbox{
     --size: 20px
 }
 
-ion-card-title{
+.title{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     font-size: large;
 }

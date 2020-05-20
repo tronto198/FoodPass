@@ -1,7 +1,7 @@
 import { OrderData } from 'src/app/data/order';
 import { Storage } from '@ionic/storage';
 
-export class TabOrderHistoryList {
+export class TabOrderHistoryListCtrl {
 
   orderList : OrderData[] = [];
 

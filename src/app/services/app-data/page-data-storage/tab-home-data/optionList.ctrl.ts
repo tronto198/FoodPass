@@ -1,6 +1,6 @@
 import { OptionData } from 'src/app/data/option';
 
-export class TabHomeOptionList {
+export class TabHomeOptionListCtrl {
     optionList : OptionData[];
 
     getOptionList(foodtruckId: number, menuId: number) : OptionData[]{

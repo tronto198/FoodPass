@@ -1,12 +1,9 @@
-import { Component, OnInit, Input, Optional } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OrderType } from './order-type.enum';
-import { BasketControllerService } from 'src/app/tabs/tab-home/basket-controller/basket-controller.service';
-import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { OrderControllerService } from './order-controller/order-controller.service';
-import { OrderHistoryService } from 'src/app/services/order-history/order-history.service';
-import { TabHomeBasket } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.data';
+import { TabHomeBasketCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.ctrl';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { TabOrderWaitingList } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.data';
+import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
 
 @Component({
   selector: 'component-order-cardview',
@@ -21,15 +18,15 @@ export class OrderCardviewComponent implements OnInit {
     // @Optional() private basketCtrl : BasketControllerService,
     // @Optional() private waitingCtrl : WaitingOrderControllerService,
     private orderCtrl : OrderControllerService,
-    private historyCtrl : OrderHistoryService,
+    // private historyCtrl : OrderHistoryService,
     private pageData : PageDataStorageService,
   ) { }
 
-  get basketCtrl() : TabHomeBasket {
+  get basketCtrl() : TabHomeBasketCtrl {
     return this.pageData.tabHome.basketCtrl;
   }
 
-  get waitingCtrl() : TabOrderWaitingList {
+  get waitingCtrl() : TabOrderWaitingListCtrl {
     return this.pageData.tabOrder.waitingCtrl;
   }
 
@@ -67,7 +64,7 @@ export class OrderCardviewComponent implements OnInit {
     //받앗어요
     let order = this.order;
     this.orderCtrl.removeOrder(this.orderIndex);
-    this.historyCtrl.save(order);
+    // this.historyCtrl.save(order);
   }
 
   deleteMenu(index : number){

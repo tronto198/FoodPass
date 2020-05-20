@@ -1,6 +1,6 @@
 import { MenuData } from 'src/app/data/menu';
 
-export class TabHomeMenuList {
+export class TabHomeMenuListCtrl {
     menuList : MenuData[];
 
     getMenuList(){

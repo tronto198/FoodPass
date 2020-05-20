@@ -10,8 +10,6 @@ export class PageDataStorageService {
 
   //---order
   tabOrder : TabOrderData;
-  //history
-  //waiting
 
   
   constructor() {

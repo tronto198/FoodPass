@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-
 import { ToastController, ModalController } from '@ionic/angular';
-import { ServerConnecterService } from '../../services/server-connecter/server-connecter.service';
 
 import { BasketPage } from '../../modal-pages/basket/basket.page';
-import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
-import { LocationData } from 'src/app/data/location';
 
 
 @Component({
@@ -21,7 +17,6 @@ export class TabHomePage implements OnInit {
   constructor(
     private toastController : ToastController,
     public modalController : ModalController,
-    // public pageController : TabHomeControllerService
   ) { }
 
   ngOnInit() {

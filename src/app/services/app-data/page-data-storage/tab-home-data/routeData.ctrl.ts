@@ -1,7 +1,7 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 
-export class TabHomeRoute {
+export class TabHomeRouteDataCtrl {
     currentFoodtruck: FoodtruckData;
     currentMenu: MenuData;
 

@@ -1,22 +1,22 @@
-import { TabHomeBasket } from './basket.data';
-import { TabHomeFoodtruckList } from './foodtruckList.data';
-import { TabHomeRoute as TabHomeRouteData } from './route.data';
-import { TabHomeMenuList } from './menuList.data';
-import { TabHomeOptionList } from './optionList.data';
+import { TabHomeBasketCtrl } from './basket.ctrl';
+import { TabHomeFoodtruckListCtrl } from './foodtruckList.ctrl';
+import { TabHomeRouteDataCtrl } from './routeData.ctrl';
+import { TabHomeMenuListCtrl } from './menuList.ctrl';
+import { TabHomeOptionListCtrl } from './optionList.ctrl';
 
 export class TabHomeData {
-    basketCtrl : TabHomeBasket;
-    routeDataCtrl: TabHomeRouteData;
-    foodtruckListCtrl: TabHomeFoodtruckList;
-    menuListCtrl: TabHomeMenuList;
-    optionListCtrl: TabHomeOptionList;
+    basketCtrl : TabHomeBasketCtrl;
+    routeDataCtrl: TabHomeRouteDataCtrl;
+    foodtruckListCtrl: TabHomeFoodtruckListCtrl;
+    menuListCtrl: TabHomeMenuListCtrl;
+    optionListCtrl: TabHomeOptionListCtrl;
     
     constructor() {
-      this.basketCtrl = new TabHomeBasket();
-      this.foodtruckListCtrl = new TabHomeFoodtruckList();
-      this.routeDataCtrl = new TabHomeRouteData();
-      this.menuListCtrl = new TabHomeMenuList();
-      this.optionListCtrl = new TabHomeOptionList();
+      this.basketCtrl = new TabHomeBasketCtrl();
+      this.foodtruckListCtrl = new TabHomeFoodtruckListCtrl();
+      this.routeDataCtrl = new TabHomeRouteDataCtrl();
+      this.menuListCtrl = new TabHomeMenuListCtrl();
+      this.optionListCtrl = new TabHomeOptionListCtrl();
     }
 
 }

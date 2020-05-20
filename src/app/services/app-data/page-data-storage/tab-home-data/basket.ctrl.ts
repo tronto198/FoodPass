@@ -6,7 +6,7 @@ import { CheckboxValue } from 'src/app/data/basket-data/checkbox-value';
 import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu';
 
-export class TabHomeBasket extends CheckboxValue implements OrderList{
+export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
   basket : BasketOrder[] = [];
 
   constructor() {

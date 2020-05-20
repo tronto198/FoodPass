@@ -18,10 +18,10 @@ export class PageControllerService {
 
     let url = '/tabs/home';
     if(foodtruckData != null){
-      url += `/foodtruck/${foodtruckData.id}`;
+      url += `/foodtruck/${String(foodtruckData.id)}`;
       this.pageData.tabHome.routeDataCtrl.currentFoodtruck = foodtruckData;
       if(menuData != null){
-        url += `/menu/${menuData.menuID}`;
+        url += `/menu/${String(menuData.menuID)}`;
         this.pageData.tabHome.routeDataCtrl.currentMenu = menuData;
       }
     }

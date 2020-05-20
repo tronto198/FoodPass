@@ -1,12 +1,10 @@
-import { Component, OnInit, AfterViewChecked, AfterContentChecked, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
-import { BasketControllerService } from 'src/app/tabs/tab-home/basket-controller/basket-controller.service';
 import { OptionData } from 'src/app/data/option';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
-import { ServerConnecterService } from 'src/app/services/server-connecter/server-connecter.service';
-import { TabHomeRoute } from 'src/app/services/app-data/page-data-storage/tab-home-data/route.data';
+import { TabHomeRouteDataCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/routeData.ctrl';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 
 @Component({
@@ -29,7 +27,7 @@ export class MenuInfoPage implements OnInit {
     this.pageData.tabHome.optionListCtrl.getOptionList(this.foodtruckData.id, this.menuData.menuID);
   }
 
-  get routeCtrl(): TabHomeRoute{
+  get routeCtrl(): TabHomeRouteDataCtrl{
     return this.pageData.tabHome.routeDataCtrl;
   }
 

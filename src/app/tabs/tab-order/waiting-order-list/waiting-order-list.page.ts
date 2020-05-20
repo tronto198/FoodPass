@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { Router } from '@angular/router';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { TabOrderWaitingList } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.data';
+import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
 
 @Component({
   selector: 'order-waiting-order-list',
@@ -21,7 +20,7 @@ export class WaitingOrderListPage implements OnInit {
   ngOnInit() {
   }
 
-  get waitingCtrl() : TabOrderWaitingList{
+  get waitingCtrl() : TabOrderWaitingListCtrl{
     return this.pageData.tabOrder.waitingCtrl;
   }
 

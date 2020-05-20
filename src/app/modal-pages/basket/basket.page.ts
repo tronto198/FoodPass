@@ -1,12 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { WaitingOrderControllerService } from 'src/app/services/waiting-order-controller/waiting-order-controller.service';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { orderSlide } from 'src/app/services/app-data/page-data-storage/tab-order-data/tab-order-slide.enum';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { TabHomeBasket } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.data';
-import { TabOrderWaitingList } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.data';
+import { TabHomeBasketCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.ctrl';
+import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
 
 
 @Component({
@@ -18,8 +17,6 @@ export class BasketPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    // private basketCtrl: BasketControllerService,
-    // private waitingOrderCtrl: WaitingOrderControllerService,
     private PageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
   ) { }
@@ -30,7 +27,7 @@ export class BasketPage implements OnInit {
     this.basketCtrl.makeTestdata();
   }
 
-  get basketCtrl() : TabHomeBasket {
+  get basketCtrl() : TabHomeBasketCtrl {
     return this.pageData.tabHome.basketCtrl;
   }
 
@@ -80,7 +77,7 @@ export class BasketPage implements OnInit {
     this.orderSuccess();
   }
 
-  get waitingOrderCtrl() : TabOrderWaitingList {
+  get waitingOrderCtrl() : TabOrderWaitingListCtrl {
     return this.pageData.tabOrder.waitingCtrl;
   }
 

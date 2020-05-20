@@ -1,6 +1,6 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 
-export class TabHomeFoodtruckList {
+export class TabHomeFoodtruckListCtrl {
     foodtruckList: FoodtruckData[];
 
     getFoodtruckList(){

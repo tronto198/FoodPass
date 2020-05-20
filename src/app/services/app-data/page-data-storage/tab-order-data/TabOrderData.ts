@@ -1,17 +1,17 @@
-import { TabOrderWaitingList } from './waitingList.data';
-import { TabOrderHistoryList } from './orderHistoryList.data';
-import { TabOrderSlideCtrl } from './slideCtrl.data';
+import { TabOrderWaitingListCtrl } from './waitingList.ctrl';
+import { TabOrderHistoryListCtrl } from './orderHistoryList.ctrl';
+import { TabOrderSlideCtrl } from './slide.ctrl';
 
 
 export class TabOrderData {
 
-    waitingCtrl : TabOrderWaitingList
-    historyCtrl : TabOrderHistoryList;
+    waitingCtrl : TabOrderWaitingListCtrl
+    historyCtrl : TabOrderHistoryListCtrl;
     slideCtrl : TabOrderSlideCtrl;
 
     constructor() {
-        this.waitingCtrl = new TabOrderWaitingList();
-        this.historyCtrl = new TabOrderHistoryList();
+        this.waitingCtrl = new TabOrderWaitingListCtrl();
+        this.historyCtrl = new TabOrderHistoryListCtrl();
         this.slideCtrl = new TabOrderSlideCtrl();
     }
 
