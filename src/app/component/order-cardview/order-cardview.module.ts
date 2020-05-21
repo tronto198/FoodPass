@@ -8,6 +8,7 @@ import { HeaderWaitingComponent } from './header-waiting/header-waiting.componen
 import { OrderControllerService } from './order-controller/order-controller.service';
 import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
 import { OwnerEditComponentModule } from '../owner-edit/owner-edit.module';
+import { HeaderHistoryComponent } from './header-history/header-history.component';
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { OwnerEditComponentModule } from '../owner-edit/owner-edit.module';
         OrderCardviewComponent,
         HeaderBasketComponent,
         HeaderWaitingComponent,
+        HeaderHistoryComponent,
         OrderedMenuComponent,
     ],
     providers: [
