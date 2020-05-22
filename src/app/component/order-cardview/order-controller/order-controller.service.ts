@@ -26,6 +26,10 @@ export class OrderControllerService {
     return this.orderType == OrderType.waiting;
   }
   
+  get isHistory() : boolean {
+    return this.orderType == OrderType.history;
+  }
+  
 
   get items() : OrderData[] {
     return this.orderList.items;
