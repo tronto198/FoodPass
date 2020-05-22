@@ -4,6 +4,7 @@ import { OrderControllerService } from './order-controller/order-controller.serv
 import { TabHomeBasketCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.ctrl';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
+import { TabOrderHistoryListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/orderHistoryList.ctrl';
 
 @Component({
   selector: 'component-order-cardview',
@@ -30,6 +31,10 @@ export class OrderCardviewComponent implements OnInit {
     return this.pageData.tabOrder.waitingCtrl;
   }
 
+  get historyCtrl() : TabOrderHistoryListCtrl {
+    return this.pageData.tabOrder.historyCtrl;
+  }
+
   ngOnInit() {
     this.orderCtrl.Type = this.orderType;
     if(this.orderType == OrderType.basket){
@@ -37,6 +42,9 @@ export class OrderCardviewComponent implements OnInit {
     }
     else if(this.orderType == OrderType.waiting){
       this.orderCtrl.Controller = this.waitingCtrl;
+    }
+    else if(this.orderType == OrderType.history){
+      this.orderCtrl.Controller = this.historyCtrl;
     }
     else{
       throw Error("invalid orderType");
@@ -58,6 +66,10 @@ export class OrderCardviewComponent implements OnInit {
   isWaiting(){
     return this.orderType == OrderType.waiting;
   }
+  
+  isHistory(){
+    return this.orderType == OrderType.history;
+  }
 
 
   orderReceived(){
@@ -65,6 +77,7 @@ export class OrderCardviewComponent implements OnInit {
     let order = this.order;
     this.orderCtrl.removeOrder(this.orderIndex);
     // this.historyCtrl.save(order);
+    this.historyCtrl.addItem(order);
   }
 
   deleteMenu(index : number){

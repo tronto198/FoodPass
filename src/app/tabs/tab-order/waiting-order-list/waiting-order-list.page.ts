@@ -36,9 +36,9 @@ export class WaitingOrderListPage implements OnInit {
     return this.waitingCtrl.orderList.length == 0;
   }
 
-  gotoFoodtruckInfo(foodtruckId: number){
-    this.router.navigateByUrl(`/tabs/home/foodtruck/${foodtruckId}`);
-  }
+  // gotoFoodtruckInfo(foodtruckId: number){
+  //   this.router.navigateByUrl(`/tabs/home/foodtruck/${foodtruckId}`);
+  // }
 
   //수령 완료
   orderPickedUp(){

@@ -6,6 +6,9 @@
 
       <order-header-waiting *ngIf="isWaiting()"
        orderIndex="{{orderIndex}}"></order-header-waiting>
+
+       <order-header-history *ngIf="isHistory()"
+       orderIndex="{{orderIndex}}"></order-header-history>
     </ion-card-header>
 
     <ion-card-content>
@@ -23,7 +26,7 @@
         </ion-item-sliding>
       </ion-list>
 
-      <div class="card-footer">
+      <div class="card-footer" *ngIf="isBasket() || isWaiting()">
         <!-- <span> -->
           <ion-badge color="secondary" class="badges">
             <ion-icon name="people"></ion-icon>
@@ -35,6 +38,9 @@
           </ion-badge>
         <!-- </span> -->
         <ion-button *ngIf="isWaiting()" (click)="orderReceived()">수령 확인</ion-button>
+      </div>
+      <div class="card-footer" *ngIf="isHistory()">
+        <ion-button > 평가하기 </ion-button>
       </div>
       
 
