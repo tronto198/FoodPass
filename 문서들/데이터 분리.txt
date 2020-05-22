@@ -1,0 +1,16 @@
+앞으로 데이터를 다루는 곳하고 보여주는 곳하고 최대한 분리하는 식으로 구현하기
+모든 데이터는 services/app-data에 있고 tab별로 구분, 기능별로 구분
+컴포넌트에서는 데이터를 직접 저장하기보다 여기에서 꺼내서 쓰는 것을 권장
+
+서비스 이름 : PageDataStorageService
+대부분의 컴포넌트에서 pageData로 선언되어 있음
+
+pageData.tabhome.locationCtrl   <- 이런식으로 탭별, 기능별로 구분되어 있음
+이름이 길어지기에 get함수로 줄여쓰면 좋음
+
+다 합쳐서 곧 없어질 서비스들
+orderHistory
+ServerConnecter
+TabHomeController
+WaitingOrderController
+BasketController
