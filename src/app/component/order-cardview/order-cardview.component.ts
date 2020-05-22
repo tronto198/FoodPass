@@ -77,6 +77,7 @@ export class OrderCardviewComponent implements OnInit {
     let order = this.order;
     this.orderCtrl.removeOrder(this.orderIndex);
     // this.historyCtrl.save(order);
+    this.historyCtrl.addItem(order);
   }
 
   deleteMenu(index : number){
