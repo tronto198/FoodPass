@@ -1,32 +1,42 @@
 import { OrderData } from 'src/app/data/order';
 import { Storage } from '@ionic/storage';
+import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
 
-export class TabOrderHistoryListCtrl {
+export class TabOrderHistoryListCtrl implements OrderList {
 
-  orderList : OrderData[] = [];
+  orderhistoryList : OrderData[] = [];
 
   constructor(
   ) {
     
-    // this.load();
   }
 
-//   load() : void {
-//     this.st.get('orderList').then(val =>{
-//       this.orderList = val;
-//       if(this.orderList == null){
-//         this.orderList = [];
-//       }      
-//     });
-//   }
 
-//   save(order : OrderData){
+  get items(){
+    return this.orderhistoryList;
+  }
 
-//     this.orderList.push(order);
-//     this.st.set('orderList', this.orderList);
-//   }
+  get price(){
+    return this.orderhistoryList;
+  }
 
-  get isEmpty(){
-    return this.orderList.length == 0;
+  remove(item: OrderData){
+    this.orderhistoryList.splice(this.orderhistoryList.indexOf(item), 1);
+  }
+
+  removeItem(index: number){
+    this.orderhistoryList.splice(index, 1);
+  }
+
+  addItem(item: OrderData){
+    this.orderhistoryList.push(item);
+  }
+
+  addItemList(items: OrderData[]){
+    this.orderhistoryList.push(...items);
+  }
+
+  get orderList() : OrderData[] {
+    return this.orderhistoryList;
   }
 }
