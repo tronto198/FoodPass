@@ -3,6 +3,7 @@ import { TabHomeFoodtruckListCtrl } from './foodtruckList.ctrl';
 import { TabHomeRouteDataCtrl } from './routeData.ctrl';
 import { TabHomeMenuListCtrl } from './menuList.ctrl';
 import { TabHomeOptionListCtrl } from './optionList.ctrl';
+import { TabHomeLocationCtrl } from './location.ctrl';
 
 export class TabHomeData {
     basketCtrl : TabHomeBasketCtrl;
@@ -10,6 +11,7 @@ export class TabHomeData {
     foodtruckListCtrl: TabHomeFoodtruckListCtrl;
     menuListCtrl: TabHomeMenuListCtrl;
     optionListCtrl: TabHomeOptionListCtrl;
+    locationCtrl: TabHomeLocationCtrl;
     
     constructor() {
       this.basketCtrl = new TabHomeBasketCtrl();
@@ -17,6 +19,7 @@ export class TabHomeData {
       this.routeDataCtrl = new TabHomeRouteDataCtrl();
       this.menuListCtrl = new TabHomeMenuListCtrl();
       this.optionListCtrl = new TabHomeOptionListCtrl();
+      this.locationCtrl = new TabHomeLocationCtrl();
     }
 
 }

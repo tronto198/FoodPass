@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationData } from 'src/app/data/location';
 import { TabHomeControllerService } from 'src/app/services/tab-home-controller/tab-home-controller.service';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { TabHomeLocationCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/location.ctrl';
 
 // Kakao Map API
 declare var kakao;
@@ -26,12 +28,17 @@ export class MapPage implements OnInit {
   constructor(
     private geo: Geolocation,
     private modalCtrl : ModalController,
-    private pageCtrl: TabHomeControllerService,
+    // private pageCtrl: TabHomeControllerService,
+    private pageData: PageDataStorageService,
   ) { 
-    this.dataLocation = pageCtrl.getLocation();
+    this.dataLocation = this.pageCtrl.getLocation();
     this.newLocation = {lat: this.dataLocation.lat, lng:this.dataLocation.lng};
     this.nowLocation ={lat: this.dataLocation.lat, lng:this.dataLocation.lng};
     alert("lat: "+this.dataLocation.lat +"\n"+"lng: "+ this.dataLocation.lng);
+}
+
+get pageCtrl() : TabHomeLocationCtrl {
+  return this.pageData.tabHome.locationCtrl;
 }
 
   ngOnInit() {
