@@ -7,13 +7,14 @@ import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu';
 import { OrderData } from 'src/app/data/order';
 import { resolve } from 'url';
+import { DataControllerService } from '../../data-controller/data-controller.service';
 
 const reqType = "order";
 
 export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
   basket : BasketOrder[] = [];
 
-  constructor() {
+  constructor(private dataCtrl : DataControllerService) {
     super();
   }
 
@@ -134,12 +135,29 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
     
     return new Promise((resolve, reject) =>{
       
-      let result = [];
-      checkedOrderList.forEach((val, index, arr)=>{
-        result.push(val.extractData());
-      });
-      resolve(result);
+      // setTimeout(() =>{
+      //   let result = [];
+      //   checkedOrderList.forEach((val, index, arr)=>{
+      //     result.push(val.extractData());
+      //   });
+      //   console.log("주문완료");
+      //   resolve(result);
+      // }, 2000);
       //id가 없으면 실패
+      
+      let orderList : OrderData[] = [];
+      checkedOrderList.forEach((val, index, arr)=>{
+        orderList.push(val.extractData());
+      });
+
+      orderList.forEach((val, index) =>{
+        val.id = index;
+      });
+
+      this.dataCtrl.testRequest(reqType, {orderList : orderList}, true, {orderList : orderList}, 1500)
+      .then(data =>{
+        resolve(data.orderList);
+      })
     })
   }
 

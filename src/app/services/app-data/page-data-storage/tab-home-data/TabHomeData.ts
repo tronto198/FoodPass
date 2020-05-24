@@ -16,7 +16,7 @@ export class TabHomeData {
     locationCtrl: TabHomeLocationCtrl;
     
     constructor(dataCtrl : DataControllerService) {
-      this.basketCtrl = new TabHomeBasketCtrl();
+      this.basketCtrl = new TabHomeBasketCtrl(dataCtrl);
       this.foodtruckListCtrl = new TabHomeFoodtruckListCtrl();
       this.routeDataCtrl = new TabHomeRouteDataCtrl();
       this.menuListCtrl = new TabHomeMenuListCtrl();

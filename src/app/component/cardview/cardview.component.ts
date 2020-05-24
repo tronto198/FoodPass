@@ -7,6 +7,8 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
   styleUrls: ['./cardview.component.scss'],
 })
 export class CardviewComponent implements OnInit {
+
+  @Input() foodtruckIndex : number;
   
   @Input() name:string;
   @Input() locate:string;

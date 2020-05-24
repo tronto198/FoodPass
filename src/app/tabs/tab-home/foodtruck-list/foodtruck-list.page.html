@@ -19,6 +19,7 @@
   <!-- <ion-item class="foodtruck-list-cards"> -->
     <app-cardview *ngFor="let foodtruck of foodtruckList; let i = index"
     class="foodtruck-item"
+    foodtruckIndex="{{i}}"
     name="{{foodtruck.name}}" locate="{{foodtruck.locate}}"
      inform="{{foodtruck.inform}}" distance="{{foodtruck.distance}}"
     grade="{{foodtruck.grade}}" wating="{{foodtruck.wating}}" notice="{{foodtruck.notice}}"

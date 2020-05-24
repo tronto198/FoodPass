@@ -4,6 +4,7 @@ import { ToastController, ModalController } from '@ionic/angular';
 
 import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class TabHomePage implements OnInit {
   constructor(
     private toastController : ToastController,
     public modalController : ModalController,
+    private pageData : PageDataStorageService,
   ) { }
 
   ngOnInit() {
@@ -24,7 +26,7 @@ export class TabHomePage implements OnInit {
   }
 
   get testlocation(){
-    return "test";
+    return this.pageData.tabHome.locationCtrl.locationData.name;
   }
 
   onToolbarClicked(){

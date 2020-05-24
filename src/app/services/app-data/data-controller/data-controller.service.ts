@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { httpResponse, httpError, req } from './http-communication.interface';
+import { Storage } from '@ionic/storage';
 
 const url : string = "";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DataControllerService {
 
   constructor(
-    private http : HttpClient,
+    public httpClient : HttpClient,
+    public localStorage : Storage
   ) { }
-
-  get httpClient() : HttpClient{
-    return this.http;
-  }
 
   dd(){
     /*
@@ -30,5 +27,58 @@ export class DataControllerService {
 
     */
     
+  }
+
+  request<T extends object>(reqType : string, data : object) : Promise<T>{
+    let request : req = {
+      reqType : reqType,
+      data : data
+    };
+
+    return new Promise((resolve, reject) =>{
+      this.httpClient.post(url, request).subscribe(data =>{
+        this.connectSuccess(resolve, reject, data as httpResponse);
+      },
+      err =>{
+        console.log(err);
+        this.connectFailure(reject);
+      });
+    });
+    
+  }
+
+  private connectSuccess(resolve, reject, res : httpResponse){
+    if(res.result){
+      resolve(res.data);
+    }
+    else{
+      let error : httpError = {
+        reason : res.reason ? res.reason : "문제가 발생했습니다.",
+        data : res.data
+      };
+      reject(error);
+    }
+  }
+
+  private connectFailure(reject){
+    let error : httpError = {
+      reason : "통신에 실패했습니다."
+    };
+    reject(error);
+  }
+
+  testRequest<T extends object>(reqType: string, data : object, success : boolean, expectedData : T, receiveInterval : number) : Promise<T>{
+    
+    return new Promise((resolve, reject) =>{
+      setTimeout(() =>{
+        let res : httpResponse = {
+          result : success,
+          data : expectedData,
+          reason : "테스트중"
+        };
+        this.connectSuccess(resolve, reject, res);
+      }, receiveInterval);
+    });
+
   }
 }

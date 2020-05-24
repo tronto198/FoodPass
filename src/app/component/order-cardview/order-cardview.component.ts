@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { OrderType } from './order-type.enum';
 import { OrderControllerService } from './order-controller/order-controller.service';
 import { TabHomeBasketCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.ctrl';
@@ -14,6 +14,7 @@ import { TabOrderHistoryListCtrl } from 'src/app/services/app-data/page-data-sto
 export class OrderCardviewComponent implements OnInit {
   @Input() orderType : OrderType;
   @Input() orderIndex : number;
+  @Output() received = new EventEmitter<number>();
 
   constructor(
     // @Optional() private basketCtrl : BasketControllerService,
@@ -74,9 +75,10 @@ export class OrderCardviewComponent implements OnInit {
 
   orderReceived(){
     //받앗어요
-    let order = this.order;
+    //외부에서 처리할것 todo
+    console.log(`receivedOrder : ${this.orderIndex}`);
+    this.historyCtrl.addItem(this.order);
     this.orderCtrl.removeOrder(this.orderIndex);
-    this.historyCtrl.addItem(order);
   }
 
   deleteMenu(index : number){

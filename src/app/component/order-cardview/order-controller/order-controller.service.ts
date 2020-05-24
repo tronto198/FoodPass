@@ -49,10 +49,15 @@ export class OrderControllerService {
   }
 
   removeMenu(orderIndex : number, menuIndex : number){
+    //todo splice하고 뒤의 index들이 당겨지는 현상 수정해야함
     this.orderList.items[orderIndex].orderedMenu.splice(menuIndex, 1);
     if(this.orderList.items[orderIndex].orderedMenu.length == 0){
       this.removeOrder(orderIndex);
     }
+  }
+
+  orderReceived(orderIndex : number){
+
   }
 
 }
