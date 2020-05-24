@@ -4,6 +4,8 @@ import { TabHomeRouteDataCtrl } from './routeData.ctrl';
 import { TabHomeMenuListCtrl } from './menuList.ctrl';
 import { TabHomeOptionListCtrl } from './optionList.ctrl';
 import { TabHomeLocationCtrl } from './location.ctrl';
+import { HttpClient } from '@angular/common/http';
+import { DataControllerService } from '../../data-controller/data-controller.service';
 
 export class TabHomeData {
     basketCtrl : TabHomeBasketCtrl;
@@ -13,7 +15,7 @@ export class TabHomeData {
     optionListCtrl: TabHomeOptionListCtrl;
     locationCtrl: TabHomeLocationCtrl;
     
-    constructor() {
+    constructor(dataCtrl : DataControllerService) {
       this.basketCtrl = new TabHomeBasketCtrl();
       this.foodtruckListCtrl = new TabHomeFoodtruckListCtrl();
       this.routeDataCtrl = new TabHomeRouteDataCtrl();

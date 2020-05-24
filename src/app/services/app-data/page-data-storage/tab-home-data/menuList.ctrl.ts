@@ -1,5 +1,7 @@
 import { MenuData } from 'src/app/data/menu';
 
+const reqType = "menuList";
+
 export class TabHomeMenuListCtrl {
     menuList : MenuData[];
 

@@ -1,11 +1,13 @@
 import { OrderData } from 'src/app/data/order';
 import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
 
+const reqType : string = "waiting";
 
 export class TabOrderWaitingListCtrl implements OrderList{
   waitingList : OrderData[] = [];
 
   constructor() {
+    
   }
 
   get items(){

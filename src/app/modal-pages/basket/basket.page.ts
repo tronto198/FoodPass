@@ -87,7 +87,6 @@ export class BasketPage implements OnInit {
       this.waitingOrderCtrl.addItem(val.extractData());
     });
 
-    console.log(this.waitingOrderCtrl.orderList.length);
     this.dismiss();
     // this.router.navigateByUrl("/tabs/order");
     this.PageCtrl.routingOrder(orderSlide.waitingOrder);

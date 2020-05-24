@@ -5,6 +5,10 @@ import { OrderList } from 'src/app/component/order-cardview/order-controller/ord
 import { CheckboxValue } from 'src/app/data/basket-data/checkbox-value';
 import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu';
+import { OrderData } from 'src/app/data/order';
+import { resolve } from 'url';
+
+const reqType = "order";
 
 export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
   basket : BasketOrder[] = [];
@@ -123,6 +127,20 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
     this.orderListChanged();
     this.value = true;
     return checked;
+  }
+
+  orderCheckedItem() : Promise<OrderData[]> {
+    let checkedOrderList = this.extractCheckedOrder();
+    
+    return new Promise((resolve, reject) =>{
+      
+      let result = [];
+      checkedOrderList.forEach((val, index, arr)=>{
+        result.push(val.extractData());
+      });
+      resolve(result);
+      //id가 없으면 실패
+    })
   }
 
 }

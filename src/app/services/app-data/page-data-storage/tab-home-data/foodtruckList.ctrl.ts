@@ -1,5 +1,7 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 
+const reqType = "ftList";
+
 export class TabHomeFoodtruckListCtrl {
     foodtruckList: FoodtruckData[];
 

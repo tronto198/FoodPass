@@ -1,6 +1,8 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 
+const reqType = "routeData";  //인수가 하나인지 둘인지로 구분
+
 export class TabHomeRouteDataCtrl {
     currentFoodtruck: FoodtruckData;
     currentMenu: MenuData;

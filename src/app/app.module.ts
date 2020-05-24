@@ -14,11 +14,14 @@ import { IonicStorageModule } from '@ionic/storage';
 import { IonicGestureConfig } from 'src/IonicGestureConfig';
 import { SharedComponentModule } from './component/shared-component.module';
 import { AppDataModule } from './services/app-data/app-data.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(),
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+      IonicStorageModule.forRoot(),
+      HttpClientModule,
       SharedComponentModule,
       AppDataModule,
     ],

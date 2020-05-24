@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TabHomeData as TabHomeData } from './tab-home-data/TabHomeData';
 import { TabOrderData } from './tab-order-data/TabOrderData';
+import { DataControllerService } from '../data-controller/data-controller.service';
 
 @Injectable()
 export class PageDataStorageService {
@@ -12,9 +13,9 @@ export class PageDataStorageService {
   tabOrder : TabOrderData;
 
   
-  constructor() {
-    this.tabHome = new TabHomeData();
-    this.tabOrder = new TabOrderData();
+  constructor(dataCtrl : DataControllerService) {
+    this.tabHome = new TabHomeData(dataCtrl);
+    this.tabOrder = new TabOrderData(dataCtrl);
   }
 
 }

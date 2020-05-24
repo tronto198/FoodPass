@@ -1,5 +1,7 @@
 import { OptionData } from 'src/app/data/option';
 
+const reqType = "optionList";
+
 export class TabHomeOptionListCtrl {
     optionList : OptionData[];
 
