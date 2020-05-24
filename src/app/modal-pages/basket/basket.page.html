@@ -18,7 +18,7 @@
       <!-- <basket-order 
       *ngFor="let foodtruckInfo of orderKeys; let i = index" 
       foodtruckIndex="{{i}}"></basket-order> -->
-      <component-order-cardview *ngFor="let foodtruckInfo of orderKeys; let i = index" 
+      <component-order-cardview *ngFor="let foodtruckInfo of basket; let i = index" 
       orderType="{{orderType}}" orderIndex="{{i}}" ></component-order-cardview>
     </ion-list>
   </ng-template>

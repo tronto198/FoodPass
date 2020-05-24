@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { orderSlide } from 'src/app/services/app-data/page-data-storage/tab-order-data/tab-order-slide.enum';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
@@ -19,6 +19,7 @@ export class BasketPage implements OnInit {
     private modalCtrl: ModalController,
     private PageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
+    private loadingCtrl : LoadingController,
   ) { }
 
 
@@ -49,7 +50,7 @@ export class BasketPage implements OnInit {
     return this.basketCtrl.indeterminate;
   }
 
-  get orderKeys(){
+  get basket(){
     return this.basketCtrl.basket;
   }
 

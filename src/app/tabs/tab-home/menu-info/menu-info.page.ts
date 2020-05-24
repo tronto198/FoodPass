@@ -6,9 +6,10 @@ import { OptionData } from 'src/app/data/option';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 import { TabHomeRouteDataCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/routeData.ctrl';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { TabHomeOptionListCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/optionList.ctrl';
 
 @Component({
-  selector: 'app-menu-info',
+  selector: 'home-menu-info',
   templateUrl: './menu-info.page.html',
   styleUrls: ['./menu-info.page.scss'],
 })
@@ -17,14 +18,13 @@ export class MenuInfoPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    // private basketCtrl: BasketControllerService,
     private pageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
   ) { }
 
   ngOnInit() {
     this.getBaseData();
-    this.pageData.tabHome.optionListCtrl.getOptionList(this.foodtruckData.id, this.menuData.menuID);
+    this.optionListCtrl.getOptionList(this.foodtruckData.id, this.menuData.menuID);
   }
 
   get routeCtrl(): TabHomeRouteDataCtrl{
@@ -39,8 +39,12 @@ export class MenuInfoPage implements OnInit {
     return this.routeCtrl.currentMenu;
   }
 
+  get optionListCtrl() : TabHomeOptionListCtrl {
+    return this.pageData.tabHome.optionListCtrl;
+  }
+
   get optionList() : OptionData[]{
-    return this.pageData.tabHome.optionListCtrl.optionList;
+    return this.optionListCtrl.optionList;
   }
 
   getBaseData(){
