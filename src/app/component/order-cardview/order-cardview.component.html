@@ -18,7 +18,7 @@
           <order-ordered-menu orderIndex="{{orderIndex}}" orderedMenuIndex="{{i}}"></order-ordered-menu>
 
           <ion-item-options *ngIf="isBasket()" side="end">
-            <ion-item-option color="danger" (click)="deleteItem(i)">
+            <ion-item-option color="danger" (click)="deleteMenu(i)">
               <ion-icon slot="icon-only" name="trash"></ion-icon>
             </ion-item-option>
           </ion-item-options>
