@@ -12,7 +12,7 @@ export class TabOrderData {
     slideCtrl : TabOrderSlideCtrl;
 
     constructor(dataCtrl : DataControllerService) {
-        this.waitingCtrl = new TabOrderWaitingListCtrl();
+        this.waitingCtrl = new TabOrderWaitingListCtrl(dataCtrl);
         this.historyCtrl = new TabOrderHistoryListCtrl();
         this.slideCtrl = new TabOrderSlideCtrl();
     }

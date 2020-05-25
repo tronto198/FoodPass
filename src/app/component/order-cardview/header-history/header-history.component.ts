@@ -1,22 +1,27 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OrderControllerService } from '../order-controller/order-controller.service';
+import { OrderType } from '../order-type.enum';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { orderListComponent } from '../orderList.component';
 
 @Component({
   selector: 'order-header-history',
   templateUrl: './header-history.component.html',
   styleUrls: ['./header-history.component.scss'],
 })
-export class HeaderHistoryComponent implements OnInit {
+export class HeaderHistoryComponent extends orderListComponent implements OnInit {
+  @Input() orderType : OrderType;
   @Input() orderIndex : number;
 
   constructor(
-    private orderCtrl : OrderControllerService
-  ) { }
+    pageData : PageDataStorageService
+  ) {
+    super(pageData);
+   }
 
   ngOnInit() {}
 
   get order(){
-    return this.orderCtrl.items[this.orderIndex];
+    return this.orderList[this.orderIndex];
   }
 
   get foodtruckInfo(){
@@ -28,7 +33,7 @@ export class HeaderHistoryComponent implements OnInit {
   }
 
   get price(){
-    return this.orderCtrl.orderPrice(this.orderIndex);
+    return this.orderPrice(this.orderIndex);
   }
 }
 

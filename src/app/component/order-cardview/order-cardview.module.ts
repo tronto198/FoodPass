@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { OrderCardviewComponent } from './order-cardview.component';
 import { HeaderBasketComponent } from './header-basket/header-basket.component';
 import { HeaderWaitingComponent } from './header-waiting/header-waiting.component';
-import { OrderControllerService } from './order-controller/order-controller.service';
 import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
 import { OwnerEditComponentModule } from '../owner-edit/owner-edit.module';
 import { HeaderHistoryComponent } from './header-history/header-history.component';
@@ -28,7 +27,6 @@ import { HeaderHistoryComponent } from './header-history/header-history.componen
         OrderedMenuComponent,
     ],
     providers: [
-        OrderControllerService
     ]
 })
 export class OrderCardviewComponentModule {}

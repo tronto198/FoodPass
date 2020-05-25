@@ -1,13 +1,12 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
-import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
 import { CheckboxValue } from 'src/app/data/basket-data/checkbox-value';
 import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu';
 import { OrderData } from 'src/app/data/order';
-import { resolve } from 'url';
 import { DataControllerService } from '../../data-controller/data-controller.service';
+import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 
 const reqType = "order";
 
@@ -158,7 +157,7 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
       .then(data =>{
         resolve(data.orderList);
       })
-    })
+    });
   }
 
 }

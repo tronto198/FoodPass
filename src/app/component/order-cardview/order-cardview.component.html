@@ -2,20 +2,20 @@
   <ion-card>
     <ion-card-header >
       <order-header-basket *ngIf="isBasket()"
-       orderIndex="{{orderIndex}}"></order-header-basket>
+       orderType="{{orderType}}" orderIndex="{{orderIndex}}"></order-header-basket>
 
       <order-header-waiting *ngIf="isWaiting()"
-       orderIndex="{{orderIndex}}"></order-header-waiting>
+       orderType="{{orderType}}" orderIndex="{{orderIndex}}"></order-header-waiting>
 
        <order-header-history *ngIf="isHistory()"
-       orderIndex="{{orderIndex}}"></order-header-history>
+       orderType="{{orderType}}" orderIndex="{{orderIndex}}"></order-header-history>
     </ion-card-header>
 
     <ion-card-content>
       <ion-list #slidingList>
         <ion-item-sliding *ngFor="let menu of menuList; let i = index">
 
-          <order-ordered-menu orderIndex="{{orderIndex}}" orderedMenuIndex="{{i}}"></order-ordered-menu>
+          <order-ordered-menu orderType={{orderType}} orderIndex="{{orderIndex}}" orderedMenuIndex="{{i}}"></order-ordered-menu>
 
           <ion-item-options *ngIf="isBasket()" side="end">
             <ion-item-option color="danger" (click)="deleteMenu(i)">

@@ -23,6 +23,7 @@ export class OrderHistoryListPage implements OnInit {
   }
 
   get orderList(){
+    // console.log("history : ", this.historyCtrl.orderList);
     return this.historyCtrl.orderList;
   }
 

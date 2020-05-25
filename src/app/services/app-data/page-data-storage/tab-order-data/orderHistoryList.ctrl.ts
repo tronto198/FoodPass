@@ -1,6 +1,6 @@
 import { OrderData } from 'src/app/data/order';
 import { Storage } from '@ionic/storage';
-import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
+import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 
 const reqType : string = "history";
 
