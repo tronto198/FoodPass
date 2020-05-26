@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
   <span *ngIf="!isEmpty; then basketList; else emptyBasket"></span>
   
   <ng-template #basketList>
@@ -24,7 +24,9 @@
   </ng-template>
 
   <ng-template #emptyBasket class="ion-text-center">
-    장바구니가 비었어요..
+    <div class="center">
+      <ion-label>장바구니가 비었어요..</ion-label>
+    </div>
   </ng-template>
 
 </ion-content>

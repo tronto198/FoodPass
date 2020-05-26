@@ -1,4 +1,5 @@
 export interface req {
+    userId : number;
     reqType: string,
     data : object
 };

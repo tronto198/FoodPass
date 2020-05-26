@@ -14,7 +14,9 @@ import { orderListComponent } from './orderList.component';
 export class OrderCardviewComponent extends orderListComponent implements OnInit {
   @Input() orderType : OrderType;
   @Input() orderIndex : number;
+
   @Output() received = new EventEmitter<number>();
+  @Output() giveRating = new EventEmitter<number>();
 
   constructor(
     pageData : PageDataStorageService,
@@ -24,7 +26,6 @@ export class OrderCardviewComponent extends orderListComponent implements OnInit
 
 
   ngOnInit() {
-    // this.orderCtrl.Type = this.orderType;
   }
 
   get order(){
@@ -38,11 +39,13 @@ export class OrderCardviewComponent extends orderListComponent implements OnInit
 
   orderReceived(){
     //받앗어요
-    //외부에서 처리할것 todo
     console.log(`receivedOrder : ${this.orderIndex}`);
     this.received.emit(this.orderIndex);
-    // this.historyCtrl.addItem(this.order);
-    // this.orderCtrl.removeOrder(this.orderIndex);
+  }
+
+  rating(){
+    console.log(`rating`);
+    this.giveRating.emit(this.orderIndex);
   }
 
   deleteMenu(index : number){

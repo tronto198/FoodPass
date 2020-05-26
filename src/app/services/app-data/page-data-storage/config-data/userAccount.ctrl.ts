@@ -1,13 +1,25 @@
 import { DataControllerService } from '../../data-controller/data-controller.service';
+import { UserConfigService } from 'src/app/services/user-config/user-config.service';
 
 const reqType = "account";
 const StorageID = "id";
 
 export class UserAccountCtrl {
-    myAccountId : number;
+    // myAccountId : number;
 
-    constructor(private dataCtrl : DataControllerService){
+    constructor(
+        private userConfig : UserConfigService,
+        private dataCtrl : DataControllerService,
+        ){
 
+    }
+
+    get myAccountId() : number{
+        return this.userConfig.myAccountId;
+    }
+
+    set myAccountId(id : number){
+        this.userConfig.myAccountId = id;
     }
 
     init() : Promise<void>{

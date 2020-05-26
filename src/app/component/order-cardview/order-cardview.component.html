@@ -40,7 +40,7 @@
         <ion-button *ngIf="isWaiting()" (click)="orderReceived()">수령 확인</ion-button>
       </div>
       <div class="card-footer" *ngIf="isHistory()">
-        <ion-button > 평가하기 </ion-button>
+        <ion-button (click)="rating()"> 평가하기 </ion-button>
       </div>
       
 

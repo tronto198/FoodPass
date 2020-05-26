@@ -1,6 +1,6 @@
 import { OrderData } from 'src/app/data/order';
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqType } from '../../data-controller/req-type.enum';
+import { reqType } from '../../data-controller/reqType/req-type.enum';
 import { resolve } from 'url';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 

@@ -84,10 +84,10 @@ export class BasketPage implements OnInit {
     // this.orderSuccess();
 
     //2초후 성공
-    this.loading = await this.loadingCtrl.create({
-      message: '주문 요청 중입니다...',
-    });
-    this.loading.present();
+    // this.loading = await this.loadingCtrl.create({
+    //   message: '주문 요청 중입니다...',
+    // });
+    // this.loading.present();
 
     this.basketCtrl.orderCheckedItem().then((val) =>{
       this.orderSuccess(val);
@@ -99,7 +99,7 @@ export class BasketPage implements OnInit {
   }
 
   orderSuccess(orderDatas : OrderData[]){
-    this.loading.dismiss();
+    // this.loading.dismiss();
     this.waitingOrderCtrl.addItemList(orderDatas);
     this.dismiss();
     this.PageCtrl.routingOrder(orderSlide.waitingOrder);

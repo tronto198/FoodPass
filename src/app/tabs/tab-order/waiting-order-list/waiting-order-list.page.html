@@ -1,5 +1,5 @@
 
-<div *ngIf="isEmpty()" (click)="gotoFoodtruckInfo(11)"> 주문한 목록이 없어요.... </div>
+<div *ngIf="isEmpty()"> 주문한 목록이 없어요.... </div>
 <ion-list>
     <component-order-cardview *ngFor="let orderdata of orderList; let i = index"
       orderType="{{orderType}}" orderIndex="{{i}}" (received)="orderPickedUp($event)"></component-order-cardview>

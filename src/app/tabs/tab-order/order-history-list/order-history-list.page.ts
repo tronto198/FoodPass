@@ -34,5 +34,9 @@ export class OrderHistoryListPage implements OnInit {
   get orderType(){
     return OrderType.history;
   }
+
+  giveRating(index : number){
+    
+  }
   
 }

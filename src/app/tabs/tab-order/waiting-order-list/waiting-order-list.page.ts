@@ -1,5 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
@@ -14,7 +13,6 @@ export class WaitingOrderListPage implements OnInit {
 
   constructor(
     private pageData: PageDataStorageService,
-    private cd : ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
@@ -48,7 +46,7 @@ export class WaitingOrderListPage implements OnInit {
     this.waitingCtrl.orderReceived(index).then( ()=>{
       let order = this.waitingCtrl.removeItem(index);
       this.pageData.tabOrder.historyCtrl.addItem(order);
-      // this.cd.detectChanges();
+      
     });
   }
 }

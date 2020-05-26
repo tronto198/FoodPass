@@ -13,6 +13,7 @@ import { MapPage } from 'src/app/modal-pages/map/map.page';
 import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
 import { FoodtruckListPageModule } from './foodtruck-list/foodtruck-list.module';
 import { FoodtruckInfoPageModule } from './foodtruck-info/foodtruck-info.module';
+import { MapPagePageModule } from 'src/app/modal-pages/map/map.module';
 
 
 @NgModule({
@@ -25,10 +26,11 @@ import { FoodtruckInfoPageModule } from './foodtruck-info/foodtruck-info.module'
     FoodtruckListPageModule,
     FoodtruckInfoPageModule,
     BasketPageModule,
+    MapPagePageModule,
   ],
   declarations: [
     TabHomePage,
-    MapPage,
+    // MapPage,
   ],
   providers: [
     // TabHomeControllerService,

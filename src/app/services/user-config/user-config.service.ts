@@ -9,13 +9,13 @@ export class UserConfigService {
 
   constructor() { }
 
-  init(){
-    this.foodtruckOwner = false;
-    this.receiveId();
-  }
+  // init(){
+  //   this.foodtruckOwner = false;
+  //   this.receiveId();
+  // }
 
-  receiveId(){
-    this.myAccountId = 1000;
-  }
+  // receiveId(){
+  //   this.myAccountId = 1000;
+  // }
 
 }

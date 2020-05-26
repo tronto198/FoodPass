@@ -2,15 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { httpResponse, httpError, req } from './http-communication.interface';
 import { Storage } from '@ionic/storage';
+import { LoadingController } from '@ionic/angular';
+import { UserConfigService } from '../../user-config/user-config.service';
 
 const url : string = "";
 
 @Injectable()
 export class DataControllerService {
 
+  private loading;
   constructor(
     public httpClient : HttpClient,
-    public localStorage : Storage
+    public localStorage : Storage,
+    private loadingCtrl : LoadingController,
+    private userConfig : UserConfigService,
   ) { }
 
   dd(){
@@ -31,6 +36,7 @@ export class DataControllerService {
 
   request<T extends object>(reqType : string, data : object) : Promise<T>{
     let request : req = {
+      userId : this.userConfig.myAccountId,
       reqType : reqType,
       data : data
     };
@@ -58,6 +64,7 @@ export class DataControllerService {
       };
       reject(error);
     }
+    this.loading.dismiss();
   }
 
   private connectFailure(reject){
@@ -65,10 +72,15 @@ export class DataControllerService {
       reason : "통신에 실패했습니다."
     };
     reject(error);
+    this.loading.dismiss();
   }
 
-  testRequest<T extends object>(reqType: string, data : object, success : boolean, expectedData : T, receiveInterval : number) : Promise<T>{
-    
+  async testRequest<T extends object>(reqType: string, data : object, success : boolean, expectedData : T, receiveInterval : number) : Promise<T>{
+    this.loading = await this.loadingCtrl.create({
+      message: '요청 중입니다...',
+    });
+    this.loading.present();
+
     return new Promise((resolve, reject) =>{
       setTimeout(() =>{
         let res : httpResponse = {
