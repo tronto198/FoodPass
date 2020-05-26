@@ -1,9 +1,9 @@
 import { OrderData } from 'src/app/data/order';
 
 export interface reqOrder {
-    order : OrderData[];
+    orderList : OrderData[];
 }
 
 export interface resOrder {
-    order : OrderData[];
+    orderList : OrderData[];
 }

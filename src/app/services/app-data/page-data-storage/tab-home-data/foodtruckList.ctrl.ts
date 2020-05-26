@@ -1,5 +1,7 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { LocationData } from 'src/app/data/location';
+import { DataControllerService } from '../../data-controller/data-controller.service';
+import { reqFoodtruckList } from '../../data-controller/reqType/foodtruckList.req';
 
 const reqType = "ftList";
 
@@ -10,9 +12,11 @@ export class TabHomeFoodtruckListCtrl {
 
     }
 
-    getFoodtruckList(){
+    getFoodtruckList(location? : LocationData){
 
-        // let 
+        let req : reqFoodtruckList = {
+            location: location
+        };
 
 
         let FoodtruckDummyData = [];
@@ -27,8 +31,4 @@ export class TabHomeFoodtruckListCtrl {
         
         this.foodtruckList = FoodtruckDummyData;
     }
-}
-
-export interface reqFoodtruckListData{
-    location: LocationData
 }

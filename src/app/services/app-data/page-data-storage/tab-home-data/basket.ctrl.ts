@@ -7,6 +7,7 @@ import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu'
 import { OrderData } from 'src/app/data/order';
 import { DataControllerService } from '../../data-controller/data-controller.service';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
+import { reqOrder, resOrder } from '../../data-controller/reqType/order.req';
 
 const reqType = "order";
 
@@ -121,7 +122,7 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
     })
   }
 
-  extractCheckedOrder() : BasketOrder[] {
+  private extractCheckedOrder() : BasketOrder[] {
     let [checked, unChecked] = this.classifyCheckedOrder();
     this.basket = unChecked;
     this.orderListChanged();
@@ -134,15 +135,6 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
     
     return new Promise((resolve, reject) =>{
       
-      // setTimeout(() =>{
-      //   let result = [];
-      //   checkedOrderList.forEach((val, index, arr)=>{
-      //     result.push(val.extractData());
-      //   });
-      //   console.log("주문완료");
-      //   resolve(result);
-      // }, 2000);
-      //id가 없으면 실패
       
       let orderList : OrderData[] = [];
       checkedOrderList.forEach((val, index, arr)=>{
@@ -152,11 +144,22 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
       orderList.forEach((val, index) =>{
         val.id = index;
       });
+      
+      let req : reqOrder = {
+        orderList : orderList
+      };
 
-      this.dataCtrl.testRequest(reqType, {orderList : orderList}, true, {orderList : orderList}, 1500)
+      let resExpect : resOrder = {
+        orderList : orderList
+      };
+
+      this.dataCtrl.testRequest<resOrder>(reqType, req, true, resExpect, 1500)
       .then(data =>{
         resolve(data.orderList);
+      }).catch(e =>{
+        reject(e);
       })
+
     });
   }
 

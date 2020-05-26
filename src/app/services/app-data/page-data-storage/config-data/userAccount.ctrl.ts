@@ -41,6 +41,7 @@ export class UserAccountCtrl {
            
     }
 
+    //로컬에 저장된 id 검색, 있으면 id값, 없으면 -1 반환
     private findLocalId() : Promise<number>{
         
         return new Promise((resolve, reject) =>{
@@ -57,6 +58,7 @@ export class UserAccountCtrl {
         })
     }
 
+    //id를 서버에서 받아와 저장
     private createId(resolve){
         //서버에서 받아오기
         this.dataCtrl.testRequest(reqType, null, true, {id : 1000}, 300).then((val) =>{
@@ -66,6 +68,7 @@ export class UserAccountCtrl {
         })
     }
 
+    //아이디 저장
     private idSave(resolve, id : number){
         this.myAccountId = id;
         this.dataCtrl.localStorage.set(StorageID, id);

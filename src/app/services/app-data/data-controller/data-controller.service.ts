@@ -34,22 +34,28 @@ export class DataControllerService {
     
   }
 
-  request<T extends object>(reqType : string, data : object) : Promise<T>{
-    let request : req = {
-      userId : this.userConfig.myAccountId,
-      reqType : reqType,
-      data : data
-    };
+  request<T extends object>(reqType : string, data : object,
+    loadingScreen : boolean = true, loadingMessage? : string) : Promise<T>{
+    
+      if(loadingScreen){
+        this.presentLoadingScreen(loadingMessage);
+      }
 
-    return new Promise((resolve, reject) =>{
-      this.httpClient.post(url, request).subscribe(data =>{
-        this.connectSuccess(resolve, reject, data as httpResponse);
-      },
-      err =>{
-        console.log(err);
-        this.connectFailure(reject);
+      let request : req = {
+        userId : this.userConfig.myAccountId,
+        reqType : reqType,
+        data : data
+      };
+
+      return new Promise((resolve, reject) =>{
+        this.httpClient.post(url, request).subscribe(data =>{
+          this.connectSuccess(resolve, reject, data as httpResponse);
+        },
+        err =>{
+          console.log(err);
+          this.connectFailure(reject);
+        });
       });
-    });
     
   }
 
@@ -59,12 +65,12 @@ export class DataControllerService {
     }
     else{
       let error : httpError = {
-        reason : res.reason ? res.reason : "문제가 발생했습니다.",
+        reason : res.reason != null ? res.reason : "문제가 발생했습니다.",
         data : res.data
       };
       reject(error);
     }
-    this.loading.dismiss();
+    this.dismissLoadingScreen();
   }
 
   private connectFailure(reject){
@@ -72,25 +78,46 @@ export class DataControllerService {
       reason : "통신에 실패했습니다."
     };
     reject(error);
-    this.loading.dismiss();
+    this.dismissLoadingScreen();
   }
 
-  async testRequest<T extends object>(reqType: string, data : object, success : boolean, expectedData : T, receiveInterval : number) : Promise<T>{
-    this.loading = await this.loadingCtrl.create({
-      message: '요청 중입니다...',
-    });
-    this.loading.present();
+  async testRequest<T extends object>(reqType: string, data : object,
+    success : boolean, expectedData : T, receiveInterval : number,
+    loadingScreen : boolean = true, loadingMessage? : string) : Promise<T>{
+    
+      if(loadingScreen){
+        this.presentLoadingScreen(loadingMessage);
+      }
+      
+      return new Promise((resolve, reject) =>{
+        setTimeout(() =>{
+          let res : httpResponse = {
+            result : success,
+            data : expectedData,
+            reason : "테스트중"
+          };
+          this.connectSuccess(resolve, reject, res);
+        }, receiveInterval);
+      });
 
-    return new Promise((resolve, reject) =>{
-      setTimeout(() =>{
-        let res : httpResponse = {
-          result : success,
-          data : expectedData,
-          reason : "테스트중"
-        };
-        this.connectSuccess(resolve, reject, res);
-      }, receiveInterval);
-    });
+  }
 
+
+
+  
+  private async presentLoadingScreen(message? : string){
+    if(this.loading != null){
+      this.loading = await this.loadingCtrl.create({
+        message: message != null ? message : '요청 중입니다...',
+      });
+      this.loading.present();
+    }
+  }
+
+  private dismissLoadingScreen(){
+    if(this.loading != null){
+      this.loading.dismiss();
+      this.loading = null;
+    }
   }
 }
