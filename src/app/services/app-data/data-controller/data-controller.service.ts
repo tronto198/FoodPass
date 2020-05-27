@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { httpResponse, httpError, req } from './http-communication.interface';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
 import { UserConfigService } from '../../user-config/user-config.service';
 
 const url : string = "";
+const httpOption = {
+  headers: new HttpHeaders({
+    'Content-Type' : 'application/json'
+    //나중에 보안토큰 추가
+  })
+};
 
 @Injectable()
 export class DataControllerService {
@@ -48,7 +54,7 @@ export class DataControllerService {
       };
 
       return new Promise((resolve, reject) =>{
-        this.httpClient.post(url, request).subscribe(data =>{
+        this.httpClient.post(url, request, httpOption).subscribe(data =>{
           this.connectSuccess(resolve, reject, data as httpResponse);
         },
         err =>{
