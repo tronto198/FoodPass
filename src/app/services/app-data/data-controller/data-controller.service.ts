@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
 import { UserConfigService } from '../../user-config/user-config.service';
 
-const url : string = "";
+const url : string = "http://localhost:80/test";
 const httpOption = {
   headers: new HttpHeaders({
     'Content-Type' : 'application/json'
@@ -22,7 +22,10 @@ export class DataControllerService {
     public localStorage : Storage,
     private loadingCtrl : LoadingController,
     private userConfig : UserConfigService,
-  ) { }
+  ) { 
+    //cors
+    httpOption.headers.set('Access-Control-Allow-Origin', '*');
+  }
 
   dd(){
     /*
