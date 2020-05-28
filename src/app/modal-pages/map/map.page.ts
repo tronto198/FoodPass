@@ -16,6 +16,7 @@ declare var kakao;
 
 export class MapPage implements OnInit {
   map: any;
+  marker: any;
 
   position: any;
   inputAddress: string;
@@ -45,13 +46,9 @@ getInputAddress(){
   alert(this.inputAddress);
 }
   displayMarker(locPosition) {
-    const marker = new kakao.maps.Marker({  
-        map: this.map, 
-        draggable: true,
-        position: locPosition
-    }); 
-    kakao.maps.event.addListener(marker, 'dragend', () => {
-      var latlng = marker.getPosition();
+    this.marker.setPosition(locPosition);
+    kakao.maps.event.addListener(this.marker, 'dragend', () => {
+      var latlng = this.marker.getPosition();
       this.newLocation.lat = latlng.getLat();
       this.newLocation.lng =latlng.getLng();
     });
@@ -71,12 +68,7 @@ getInputAddress(){
       timeout: 5000,
       maximumAge: 0
     };
-    const coordinates = await this.geo.getCurrentPosition(geoOptions)
-    //.then(()=>{
-    //   alert("getCurrentPosition = true");
-    // }).catch(()=>{
-    //   alert("getCurrentPosition = false");
-    // });
+    const coordinates = await this.geo.getCurrentPosition(geoOptions);
     this.nowLocation.lat = coordinates.coords.latitude;
     this.nowLocation.lng = coordinates.coords.longitude;
     this.makeMap();
@@ -89,6 +81,11 @@ getInputAddress(){
       level: 3
     };
     this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
+    this.marker = new kakao.maps.Marker({  
+      map: this.map, 
+      draggable: true,
+      position: this.position
+  }); 
     this.displayMarker(this.position);
   }
 
