@@ -3,10 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { httpResponse, httpError, httpRequest } from './http-communication.interface';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
-import { UserConfigService } from '../../user-config/user-config.service';
+import { SharedDataService } from '../../shared-data/shared-data.service';
 import { reqUrl } from './reqType/req-url.enum';
 
-const url : string = "http://localhost:80/test";
+
+const host = "http://localhost:80/test";
 const httpOption = {
   headers: new HttpHeaders({
     'Content-Type' : 'application/json'
@@ -14,40 +15,21 @@ const httpOption = {
   })
 };
 
+
 @Injectable()
 export class DataControllerService {
 
   private loading;
   constructor(
     public httpClient : HttpClient,
-    public localStorage : Storage,
+    public localStorage : Storage,  //빼자
+    public sharedData : SharedDataService,
     private loadingCtrl : LoadingController,
-    private userConfig : UserConfigService,
+    
   ) { 
     //cors
     httpOption.headers.set('Access-Control-Allow-Origin', '*');
   }
-
-  dd(){
-    /*
-      json 방식으로 통신
-      
-      보낼때
-        reqType : 각 데이터에서 지정
-        data : 있으면, 여럿이면 객체로 하나로 전송
-
-      받을때
-        result : 실패인지 성공인지 (true, false)
-        data : 객체형태, 반환은 이것만
-
-    */
-
-  }
-
-  setUrl(reqType: reqUrl){
-
-  }
-
 
   request<T extends object>(reqUrl : reqUrl, data : object,
     loadingScreen : boolean = true, loadingMessage? : string) : Promise<T>{
@@ -56,13 +38,15 @@ export class DataControllerService {
         this.presentLoadingScreen(loadingMessage);
       }
 
-      let request : httpRequest = {
-        userId : this.userConfig.myAccountId,
+      const request : httpRequest = {
+        userId : this.sharedData.myAccountId,
         data : data
       };
 
+      const url = host.concat(reqUrl);
+
       return new Promise((resolve, reject) =>{
-        this.httpClient.post(url, request, httpOption).subscribe(data =>{
+        this.httpClient.post(host, request, httpOption).subscribe(data =>{
           this.connectSuccess(resolve, reject, data as httpResponse);
         },
         err =>{
@@ -89,7 +73,7 @@ export class DataControllerService {
 
   private connectFailure(reject){
     let error : httpError = {
-      reason : "통신에 실패했습니다."
+      reason : "통신에 실패했습니다. 연결 실패" //서버가 없거나, 인터넷이 없거나
     };
     reject(error);
     this.dismissLoadingScreen();

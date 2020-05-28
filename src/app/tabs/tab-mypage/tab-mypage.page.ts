@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserConfigService } from 'src/app/services/user-config/user-config.service';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 @Component({
   selector: 'app-tab-mypage',
@@ -9,7 +9,7 @@ import { UserConfigService } from 'src/app/services/user-config/user-config.serv
 export class TabMypagePage implements OnInit {
 
   constructor(
-    private config : UserConfigService,
+    private config : SharedDataService,
   ) { }
 
   ngOnInit() {

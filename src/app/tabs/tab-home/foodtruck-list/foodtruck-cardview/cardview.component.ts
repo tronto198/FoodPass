@@ -26,8 +26,8 @@ export class CardviewComponent implements OnInit {
     return this.foodtruckInfo.name;
   }
 
-  get locate(){
-    return this.foodtruckInfo.locate;
+  get locate() : string{
+    return this.foodtruckInfo.localData? this.foodtruckInfo.localData.sign : '';
   }
 
   get inform(){
@@ -38,19 +38,19 @@ export class CardviewComponent implements OnInit {
     return this.foodtruckInfo.wating.person;
   }
 
-  get grade(){
-    return this.foodtruckInfo.rating;
+  get rating() : number{
+    return this.foodtruckInfo.rating ? this.foodtruckInfo.rating : 0;
   }
 
-  get notice(){
+  get notice() : string{
     return this.foodtruckInfo.notice;
   }
 
-  get distance(){
-    return this.foodtruckInfo.distance;
+  get distance() : string {
+    return this.foodtruckInfo.localData ? String(this.foodtruckInfo.localData.distance) : '';
   }
 
-  get truckImage(){
+  get truckImage() : string{
     return this.foodtruckInfo.imgSrc;
   }
 

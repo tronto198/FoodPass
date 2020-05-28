@@ -4,6 +4,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationData } from 'src/app/data/location';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { TabHomeLocationCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/location.ctrl';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 // Kakao Map API
 declare var kakao;
@@ -29,6 +30,7 @@ export class MapPage implements OnInit {
     private modalCtrl : ModalController,
     // private pageCtrl: TabHomeControllerService,
     private pageData: PageDataStorageService,
+    private sharedData : SharedDataService,
   ) { 
     this.dataLocation = this.pageCtrl.getLocation();
     this.newLocation = {lat: this.dataLocation.lat, lng:this.dataLocation.lng};
@@ -52,6 +54,7 @@ getInputAddress(){
         draggable: true,
         position: locPosition
     }); 
+
     kakao.maps.event.addListener(marker, 'dragend', () => {
       var latlng = marker.getPosition();
       this.newLocation.lat = latlng.getLat();

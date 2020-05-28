@@ -1,5 +1,5 @@
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { UserConfigService } from 'src/app/services/user-config/user-config.service';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 const reqType = "account";
 const StorageID = "id";
@@ -8,7 +8,7 @@ export class UserAccountCtrl {
     // myAccountId : number;
 
     constructor(
-        private userConfig : UserConfigService,
+        private userConfig : SharedDataService,
         private dataCtrl : DataControllerService,
         ){
 
@@ -31,6 +31,7 @@ export class UserAccountCtrl {
 
             this.findLocalId().then(id => {
                 if(id == -1){
+                    this.myAccountId = -1;
                     this.createId(resolve);
                 }
                 else{
@@ -59,7 +60,7 @@ export class UserAccountCtrl {
     }
 
     //id를 서버에서 받아와 저장
-    private createId(resolve){
+    private createId(resolve) : void{
         //서버에서 받아오기
         this.dataCtrl.testRequest(reqType, null, true, {id : 1000}, 300).then((val) =>{
             console.log('create id');
@@ -69,7 +70,7 @@ export class UserAccountCtrl {
     }
 
     //아이디 저장
-    private idSave(resolve, id : number){
+    private idSave(resolve, id : number) : void{
         this.myAccountId = id;
         this.dataCtrl.localStorage.set(StorageID, id);
         console.log(`my id : ${id}`);
