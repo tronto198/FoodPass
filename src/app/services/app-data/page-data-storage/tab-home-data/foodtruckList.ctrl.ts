@@ -1,9 +1,9 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { LocationData } from 'src/app/data/location';
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqFoodtruckList } from '../../data-controller/reqType/foodtruckList.req';
+import { reqFoodtruckList, resFoodtruckList } from '../../data-controller/reqType/foodtruckList.req';
+import { reqType } from '../../data-controller/reqType/req-type.enum';
 
-const reqType = "ftList";
 
 export class TabHomeFoodtruckListCtrl {
     foodtruckList: FoodtruckData[];
@@ -12,12 +12,11 @@ export class TabHomeFoodtruckListCtrl {
 
     }
 
-    getFoodtruckList(location? : LocationData){
+    getFoodtruckList(location? : LocationData) : void{
 
         let req : reqFoodtruckList = {
             location: location
         };
-
 
         let FoodtruckDummyData = [];
         FoodtruckDummyData.push({id: 10, name: "닭발집 10", locate:"A", distance:500,inform:"치즈닭발, 무뼈닭발있습니다.", 
@@ -29,6 +28,17 @@ export class TabHomeFoodtruckListCtrl {
         FoodtruckDummyData.push({id: 13, name: "13", locate:"default", distance:0, inform:"짝수 맞추기 위한 카드뷰",
         grade:0, wating:0, notice:"카드가 홀수일 경우 공간만 차지하게 해야 함"});
         
-        this.foodtruckList = FoodtruckDummyData;
+        // this.foodtruckList = FoodtruckDummyData;
+        let res : resFoodtruckList = {
+            foodtruckList : FoodtruckDummyData
+        };
+
+        this.dataCtrl.testRequest<resFoodtruckList>(reqType.foodtruckList, req, true, res, 150, false)
+        .then(data =>{
+            this.foodtruckList = data.foodtruckList;
+            console.log('get foodtrucklist');
+        });
+
+
     }
 }

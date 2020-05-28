@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { httpResponse, httpError, req } from './http-communication.interface';
+import { httpResponse, httpError, httpRequest } from './http-communication.interface';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
 import { UserConfigService } from '../../user-config/user-config.service';
@@ -50,7 +50,7 @@ export class DataControllerService {
         this.presentLoadingScreen(loadingMessage);
       }
 
-      let request : req = {
+      let request : httpRequest = {
         userId : this.userConfig.myAccountId,
         reqType : reqType,
         data : data

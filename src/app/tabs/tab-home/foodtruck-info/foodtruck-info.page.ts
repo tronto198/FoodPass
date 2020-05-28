@@ -25,7 +25,7 @@ export class FoodtruckInfoPage implements OnInit  {
 
   ngOnInit() {
     this.getBaseData();
-    this.pageData.tabHome.menuListCtrl.getMenuList();
+    this.pageData.tabHome.menuListCtrl.getMenuList(this.foodtruckData.id);
   }
 
   get foodtruckData() : FoodtruckData{

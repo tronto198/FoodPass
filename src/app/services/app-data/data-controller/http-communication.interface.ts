@@ -1,4 +1,4 @@
-export interface req {
+export interface httpRequest {
     userId : number;
     reqType: string,
     data : object

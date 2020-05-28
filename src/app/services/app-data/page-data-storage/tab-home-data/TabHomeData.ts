@@ -19,8 +19,8 @@ export class TabHomeData {
       this.basketCtrl = new TabHomeBasketCtrl(dataCtrl);
       this.foodtruckListCtrl = new TabHomeFoodtruckListCtrl(dataCtrl);
       this.routeDataCtrl = new TabHomeRouteDataCtrl(dataCtrl);
-      this.menuListCtrl = new TabHomeMenuListCtrl();
-      this.optionListCtrl = new TabHomeOptionListCtrl();
+      this.menuListCtrl = new TabHomeMenuListCtrl(dataCtrl);
+      this.optionListCtrl = new TabHomeOptionListCtrl(dataCtrl);
       this.locationCtrl = new TabHomeLocationCtrl();
     }
 
