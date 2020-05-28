@@ -104,13 +104,13 @@ getInputAddress(){
 
   dismissCancel(){
     this.pageCtrl.setLocation(this.dataLocation);
-    alert("dismissCancel");
+    //alert("dismissCancel");
     this.modalCtrl.dismiss();
   }
 
   dismissOK(){
     this.pageCtrl.setLocation(this.newLocation);
-    alert("dismissOK");
+    //alert("dismissOK");
     this.modalCtrl.dismiss();
   }
 }
