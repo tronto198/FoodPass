@@ -11,6 +11,7 @@ export class PickMenuOptionComponent implements OnInit {
   // @Input() extraPrice:number;
   @Input() menu_id:number;
   @Input() menu_price:number;
+  @Input() imgsrc:number;
   
   constructor() { }
 

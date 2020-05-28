@@ -13,10 +13,12 @@
   
           <ion-list class="row header">
             <ion-label>옵션명    추가가격   개수 </ion-label>
-          
-            <app-option-list>
-            </app-option-list>
+
+            <ion-item *ngFor="let opt of optionList; let i = index" 
+             ><div class="col">딸기   +0원   1개</div></ion-item>
           </ion-list>
+
+        
           
           
           <!-- 

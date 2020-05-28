@@ -27,18 +27,16 @@ export class MapPage implements OnInit {
   constructor(
     private geo: Geolocation,
     private modalCtrl : ModalController,
-    // private pageCtrl: TabHomeControllerService,
     private pageData: PageDataStorageService,
   ) { 
     this.dataLocation = this.pageCtrl.getLocation();
     this.newLocation = {lat: this.dataLocation.lat, lng:this.dataLocation.lng};
     this.nowLocation ={lat: this.dataLocation.lat, lng:this.dataLocation.lng};
-    //alert("lat: "+this.dataLocation.lat +"\n"+"lng: "+ this.dataLocation.lng);
-}
+  }
 
-get pageCtrl() : TabHomeLocationCtrl {
-  return this.pageData.tabHome.locationCtrl;
-}
+  get pageCtrl() : TabHomeLocationCtrl {
+    return this.pageData.tabHome.locationCtrl;
+  }
 
   ngOnInit() {
     this.getCurrentPosition();
