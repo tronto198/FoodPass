@@ -1,15 +1,20 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
-import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
 import { CheckboxValue } from 'src/app/data/basket-data/checkbox-value';
 import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu';
+import { OrderData } from 'src/app/data/order';
+import { DataControllerService } from '../../data-controller/data-controller.service';
+import { OrderList } from 'src/app/component/order-cardview/orderList.component';
+import { reqOrder, resOrder } from '../../data-controller/reqType/order.req';
+import { reqType } from '../../data-controller/reqType/req-type.enum';
+
 
 export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
   basket : BasketOrder[] = [];
 
-  constructor() {
+  constructor(private dataCtrl : DataControllerService) {
     super();
   }
 
@@ -117,12 +122,49 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
     })
   }
 
-  extractCheckedOrder() : BasketOrder[] {
+  private extractCheckedOrder() : BasketOrder[] {
     let [checked, unChecked] = this.classifyCheckedOrder();
     this.basket = unChecked;
     this.orderListChanged();
     this.value = true;
     return checked;
+  }
+
+  orderCheckedItem() : Promise<OrderData[]> {
+    let checkedOrderList = this.extractCheckedOrder();
+    
+    return new Promise((resolve, reject) =>{
+      
+      
+      let orderList : OrderData[] = [];
+      checkedOrderList.forEach((val, index, arr)=>{
+        orderList.push(val.extractData());
+      });
+
+      orderList.forEach((val, index) =>{
+        val.id = index;
+      });
+      
+      let req : reqOrder = {
+        orderList : orderList
+      };
+
+      let resExpect : resOrder = {
+        orderList : orderList
+      };
+
+      // this.dataCtrl.testRequest<resOrder>(reqType, req, true, resExpect, 1500)
+      // .then(data =>{
+      //   resolve(data.orderList);
+      // }).catch(e =>{
+      //   reject(e);
+      // })
+
+      this.dataCtrl.request<resOrder>(reqType.order, req).then(data =>{
+        console.log(data);
+        resolve(data.orderList);
+      });
+    });
   }
 
 }

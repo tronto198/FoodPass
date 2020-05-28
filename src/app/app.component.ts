@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserConfigService } from './services/user-config/user-config.service';
+import { PageDataStorageService } from './services/app-data/page-data-storage/page-data-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private config : UserConfigService,
+    private pageData : PageDataStorageService,
   ) {
     this.initializeApp();
   }
@@ -23,18 +24,15 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
       console.log("app start");
-
-      this.loadConfig();
+      this.pageData.config.userAccountCtrl.init().then(()=>{
+        this.splashScreen.hide();
+      }).catch(e =>{
+        console.log(e);
+      });
+      
     });
 
-    // this.router.navigateByUrl("/tabs/order");
   }
 
-  loadConfig(){
-    this.config.init();
-
-    console.log("loading config");
-  }
 }

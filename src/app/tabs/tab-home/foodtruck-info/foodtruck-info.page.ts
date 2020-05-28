@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { FoodtruckData } from 'src/app/data/foodtruck';
+import { MenuData } from 'src/app/data/menu';
 @Component({
-  selector: 'app-foodtruck-info',
+  selector: 'home-foodtruck-info',
   templateUrl: './foodtruck-info.page.html',
 
   styleUrls: ['./foodtruck-info.page.scss'],
 })
 export class FoodtruckInfoPage implements OnInit  {
   // foodtruckId: number;
-  foodtruckName:string;
-  foodtruckImage:string;
+  // foodtruckName:string;
+  // foodtruckImage:string;
 
   //routedata:FoodtruckData[];
 
@@ -23,14 +25,22 @@ export class FoodtruckInfoPage implements OnInit  {
 
   ngOnInit() {
     this.getBaseData();
-    this.pageData.tabHome.menuListCtrl.getMenuList();
+    this.pageData.tabHome.menuListCtrl.getMenuList(this.foodtruckData.id);
   }
 
-  get foodtruckData(){
+  get foodtruckData() : FoodtruckData{
     return this.pageData.tabHome.routeDataCtrl.currentFoodtruck;
   }
 
-  get menuList(){
+  // get foodtruckName() : string {
+  //   return this.foodtruckData.name;
+  // }
+
+  // get foodtruckImage() : string {
+  //   return this.foodtruckData.imgSrc;
+  // }
+
+  get menuList() : MenuData[]{
     return this.pageData.tabHome.menuListCtrl.menuList;
   }
 

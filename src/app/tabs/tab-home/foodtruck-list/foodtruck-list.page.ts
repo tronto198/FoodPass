@@ -10,7 +10,6 @@ import { PageDataStorageService } from 'src/app/services/app-data/page-data-stor
 })
 export class FoodtruckListPage implements OnInit {
  
-
   constructor(
     private pageCtrl : PageControllerService,
     private pageData : PageDataStorageService,

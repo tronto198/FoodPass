@@ -1,21 +1,25 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';
-import { OrderControllerService } from '../order-controller/order-controller.service';
 import { OptionData } from 'src/app/data/option';
 import { MenuData } from 'src/app/data/menu';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { orderListComponent } from '../orderList.component';
 
 @Component({
   selector: 'order-ordered-menu',
   templateUrl: './ordered-menu.component.html',
   styleUrls: ['./ordered-menu.component.scss'],
 })
-export class OrderedMenuComponent implements OnInit {
+export class OrderedMenuComponent extends orderListComponent implements OnInit {
+  @Input() orderType: number;
   @Input() orderIndex: number;
   @Input() orderedMenuIndex: number;
 
   constructor(
-    private orderCtrl : OrderControllerService
-  ) { }
+    pageData : PageDataStorageService,
+  ) { 
+    super(pageData);
+  }
 
   ngOnInit() { 
     
@@ -23,7 +27,7 @@ export class OrderedMenuComponent implements OnInit {
   
 
   get orderedMenuInfo() : OrderedMenuData{
-    return this.orderCtrl.items[this.orderIndex].orderedMenu[this.orderedMenuIndex];
+    return this.orderList[this.orderIndex].orderedMenu[this.orderedMenuIndex];
   }
   get menuInfo() : MenuData{
     // console.log(this.orderedMenuInfo.menuinfo);
@@ -32,11 +36,6 @@ export class OrderedMenuComponent implements OnInit {
   get optionInfo() : OptionData{
     return this.orderedMenuInfo.optioninfo;
   }
-
-  get isBasket() : boolean{
-    return this.orderCtrl.isBasket;
-  }
-
 
   get price() : number{
     return (this.menuInfo.price + this.optionInfo.extraPrice) * this.orderedMenuInfo.amount;

@@ -1,11 +1,14 @@
 import { OrderData } from 'src/app/data/order';
-import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
-
+import { DataControllerService } from '../../data-controller/data-controller.service';
+import { reqType } from '../../data-controller/reqType/req-type.enum';
+import { resolve } from 'url';
+import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 
 export class TabOrderWaitingListCtrl implements OrderList{
   waitingList : OrderData[] = [];
 
-  constructor() {
+  constructor(private dataCtrl : DataControllerService) {
+    
   }
 
   get items(){
@@ -20,8 +23,8 @@ export class TabOrderWaitingListCtrl implements OrderList{
     this.waitingList.splice(this.waitingList.indexOf(item), 1);
   }
 
-  removeItem(index: number){
-    this.waitingList.splice(index, 1);
+  removeItem(index: number) : OrderData{
+    return this.waitingList.splice(index, 1)[0];
   }
 
   addItem(item: OrderData){
@@ -35,4 +38,20 @@ export class TabOrderWaitingListCtrl implements OrderList{
   get orderList() : OrderData[] {
     return this.waitingList;
   }
+
+  orderReceived(index : number) : Promise<void>{
+    
+    //서버에 전송
+    return new Promise((resolve, reject) =>{
+      this.dataCtrl.testRequest(reqType.orderReceived, this.items[index], true
+        , null, 333).then(val =>{
+          resolve();
+        })
+        .catch(e =>{
+          reject();
+        });
+    });
+    
+  }
+
 }

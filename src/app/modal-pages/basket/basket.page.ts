@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { orderSlide } from 'src/app/services/app-data/page-data-storage/tab-order-data/tab-order-slide.enum';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { TabHomeBasketCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.ctrl';
 import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
+import { OrderData } from 'src/app/data/order';
 
 
 @Component({
@@ -15,10 +16,12 @@ import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-sto
 })
 export class BasketPage implements OnInit {
 
+  private loading;
   constructor(
     private modalCtrl: ModalController,
     private PageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
+    private loadingCtrl : LoadingController,
   ) { }
 
 
@@ -29,10 +32,6 @@ export class BasketPage implements OnInit {
 
   get basketCtrl() : TabHomeBasketCtrl {
     return this.pageData.tabHome.basketCtrl;
-  }
-
-  dismiss(){
-    this.modalCtrl.dismiss();
   }
 
   get totalPrice(){
@@ -49,16 +48,12 @@ export class BasketPage implements OnInit {
     return this.basketCtrl.indeterminate;
   }
 
-  get orderKeys(){
+  get basket(){
     return this.basketCtrl.basket;
   }
 
   get orderType(){
     return OrderType.basket;
-  }
-
-  checkboxClicked(){
-    this.basketCtrl.toggle();
   }
 
   get isEmpty(){
@@ -70,27 +65,48 @@ export class BasketPage implements OnInit {
     //주문하기 버튼의 활성화 여부 지정
     return this.isEmpty || this.totalPrice == 0;
   }
-
-  orderButtonClicked(){
-    //서버통신부분
-    //일단 바로 성공하는걸로 
-    this.orderSuccess();
-  }
-
   get waitingOrderCtrl() : TabOrderWaitingListCtrl {
     return this.pageData.tabOrder.waitingCtrl;
   }
 
-  orderSuccess(){
-    let checkedOrderList = this.basketCtrl.extractCheckedOrder();
-    checkedOrderList.forEach((val, index, arr)=>{
-      this.waitingOrderCtrl.addItem(val.extractData());
-    });
+  
 
-    console.log(this.waitingOrderCtrl.orderList.length);
+  dismiss(){
+    this.modalCtrl.dismiss();
+  }
+  checkboxClicked(){
+    this.basketCtrl.toggle();
+  }
+
+  async orderButtonClicked(){
+    //서버통신부분
+    //일단 바로 성공하는걸로 
+    // this.orderSuccess();
+
+    //2초후 성공
+    // this.loading = await this.loadingCtrl.create({
+    //   message: '주문 요청 중입니다...',
+    // });
+    // this.loading.present();
+
+    this.basketCtrl.orderCheckedItem().then((val) =>{
+      this.orderSuccess(val);
+    }).catch(e =>{
+      console.log(e);
+      //안됫다는 경고창 띄우기
+      this.orderFailed();
+    });
+  }
+
+  orderSuccess(orderDatas : OrderData[]){
+    // this.loading.dismiss();
+    this.waitingOrderCtrl.addItemList(orderDatas);
     this.dismiss();
-    // this.router.navigateByUrl("/tabs/order");
     this.PageCtrl.routingOrder(orderSlide.waitingOrder);
+  }
+
+  orderFailed(){
+
   }
 
 }

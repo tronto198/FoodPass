@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
@@ -14,7 +13,6 @@ export class WaitingOrderListPage implements OnInit {
 
   constructor(
     private pageData: PageDataStorageService,
-    private router: Router
   ) { }
 
   ngOnInit() {
@@ -25,12 +23,14 @@ export class WaitingOrderListPage implements OnInit {
   }
 
   get orderList(){
+    // console.log('waiting : ', this.waitingCtrl.orderList);
     return this.waitingCtrl.orderList;
   }
 
   get orderType(){
     return OrderType.waiting;
   }
+
 
   isEmpty(){
     return this.waitingCtrl.orderList.length == 0;
@@ -41,7 +41,12 @@ export class WaitingOrderListPage implements OnInit {
   // }
 
   //수령 완료
-  orderPickedUp(){
-    
+  orderPickedUp(index : number){
+    console.log(index);
+    this.waitingCtrl.orderReceived(index).then( ()=>{
+      let order = this.waitingCtrl.removeItem(index);
+      this.pageData.tabOrder.historyCtrl.addItem(order);
+      
+    });
   }
 }

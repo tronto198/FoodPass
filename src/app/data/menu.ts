@@ -1,8 +1,7 @@
 export interface MenuData{
-
     menuID:number,
     menuName:string,
-    menuInform?:string,
+    menuInformation?:string,
     price?:number,
-    src?:string
+    imgsrc?:string
 }

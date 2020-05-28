@@ -1,23 +1,28 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OrderControllerService } from '../order-controller/order-controller.service';
 import { BasketOrder } from 'src/app/data/basket-data/basket-order';
+import { OrderType } from '../order-type.enum';
+import { orderListComponent } from '../orderList.component';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 
 @Component({
   selector: 'order-header-basket',
   templateUrl: './header-basket.component.html',
   styleUrls: ['./header-basket.component.scss'],
 })
-export class HeaderBasketComponent implements OnInit {
+export class HeaderBasketComponent extends orderListComponent implements OnInit {
+  @Input() orderType : OrderType;
   @Input() orderIndex : number;
 
   constructor(
-    private orderCtrl : OrderControllerService
-  ) { }
+    pageData : PageDataStorageService
+  ) {
+    super(pageData);
+   }
 
   ngOnInit() {}
 
   get order() : BasketOrder{
-    return this.orderCtrl.items[this.orderIndex] as BasketOrder;
+    return this.orderList[this.orderIndex] as BasketOrder;
   }
 
   get checkValue(){
@@ -36,7 +41,7 @@ export class HeaderBasketComponent implements OnInit {
     return this.order.foodtruckinfo;
   }
   get price(){
-    return this.orderCtrl.orderPrice(this.orderIndex);
+    return this.orderPrice(this.orderIndex);
   }
 
   checkValueToggle(){

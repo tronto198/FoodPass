@@ -1,22 +1,27 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OrderControllerService } from '../order-controller/order-controller.service';
+import { orderListComponent } from '../orderList.component';
+import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { OrderType } from '../order-type.enum';
 
 @Component({
   selector: 'order-header-waiting',
   templateUrl: './header-waiting.component.html',
   styleUrls: ['./header-waiting.component.scss'],
 })
-export class HeaderWaitingComponent implements OnInit {
+export class HeaderWaitingComponent extends orderListComponent implements OnInit {
+  @Input() orderType : OrderType;
   @Input() orderIndex : number;
 
   constructor(
-    private orderCtrl : OrderControllerService
-  ) { }
+    pageData : PageDataStorageService,
+  ) {
+    super(pageData);
+   }
 
   ngOnInit() {}
 
   get order(){
-    return this.orderCtrl.items[this.orderIndex];
+    return this.orderList[this.orderIndex];
   }
 
   get foodtruckInfo(){
@@ -28,6 +33,6 @@ export class HeaderWaitingComponent implements OnInit {
   }
 
   get price(){
-    return this.orderCtrl.orderPrice(this.orderIndex);
+    return this.orderPrice(this.orderIndex);
   }
 }

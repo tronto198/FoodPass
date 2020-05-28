@@ -8,14 +8,14 @@
     </div>
 
     <div class="menu-info">
-      <ion-icon *ngIf="isBasket" class="icon-button" 
+      <ion-icon *ngIf="isBasket()" class="icon-button" 
       name="add-outline" (click)="ctrlAmount(true)"></ion-icon>
 
       <ion-label class="amount-view">
         {{orderedMenuInfo.amount}}개
       </ion-label>
 
-      <ion-icon *ngIf="isBasket" class="icon-button" 
+      <ion-icon *ngIf="isBasket()" class="icon-button" 
       name="remove-outline" (click)="ctrlAmount(false)"></ion-icon>
 
       <ion-label class="price-view">{{price}}</ion-label>

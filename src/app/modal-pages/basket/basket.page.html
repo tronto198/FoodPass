@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
   <span *ngIf="!isEmpty; then basketList; else emptyBasket"></span>
   
   <ng-template #basketList>
@@ -18,13 +18,15 @@
       <!-- <basket-order 
       *ngFor="let foodtruckInfo of orderKeys; let i = index" 
       foodtruckIndex="{{i}}"></basket-order> -->
-      <component-order-cardview *ngFor="let foodtruckInfo of orderKeys; let i = index" 
+      <component-order-cardview *ngFor="let foodtruckInfo of basket; let i = index" 
       orderType="{{orderType}}" orderIndex="{{i}}" ></component-order-cardview>
     </ion-list>
   </ng-template>
 
   <ng-template #emptyBasket class="ion-text-center">
-    장바구니가 비었어요..
+    <div class="center">
+      <ion-label>장바구니가 비었어요..</ion-label>
+    </div>
   </ng-template>
 
 </ion-content>

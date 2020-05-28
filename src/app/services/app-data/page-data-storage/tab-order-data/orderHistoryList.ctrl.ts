@@ -1,17 +1,20 @@
 import { OrderData } from 'src/app/data/order';
 import { Storage } from '@ionic/storage';
-import { OrderList } from 'src/app/component/order-cardview/order-controller/order-list.interface';
+import { OrderList } from 'src/app/component/order-cardview/orderList.component';
+import { DataControllerService } from '../../data-controller/data-controller.service';
+import { reqOrderHistory, resOrderHistory } from '../../data-controller/reqType/orderHistory.req';
 
 export class TabOrderHistoryListCtrl implements OrderList {
 
   orderhistoryList : OrderData[] = [];
 
-  constructor(
-  ) {
-    
+  constructor(private dataCtrl: DataControllerService){
+
   }
 
-
+  get orderList() : OrderData[] {
+    return this.orderhistoryList;
+  }
   get items(){
     return this.orderhistoryList;
   }
@@ -36,7 +39,15 @@ export class TabOrderHistoryListCtrl implements OrderList {
     this.orderhistoryList.push(...items);
   }
 
-  get orderList() : OrderData[] {
-    return this.orderhistoryList;
+  getHistory() : void{
+    let req : reqOrderHistory = {
+
+    }
+    let res : resOrderHistory = {
+      history: []
+    };
+    
   }
+
+
 }
