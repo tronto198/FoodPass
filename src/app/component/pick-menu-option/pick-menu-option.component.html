@@ -2,8 +2,8 @@
   <ion-header>
     
       <img src="../assets/icon/waffle.png" alt="ion" >
-        <ion-card-title>와플</ion-card-title>
-        <ion-card-subtitle>기본가격: 3000원</ion-card-subtitle>
+        <ion-card-title>{{menu_id}}</ion-card-title>
+        <ion-card-subtitle>기본가격: {{menu_price}}원</ion-card-subtitle>
     </ion-header>
     
     <ion-content ng-controller="MyCtrl as ctrl">
@@ -12,12 +12,20 @@
           <ion-list class="row header">
             <ion-label>옵션명    추가가격   개수 </ion-label>
           
+            <app-option-list>
+            </app-option-list>
           </ion-list>
           
-          <div class="col">딸기   +0원   1개</div>
+          
+          <!-- 
+          <app-option-list>
+          </app-option-list>
+          <app-option-list>
+          </app-option-list>  -->
+          <!-- <div class="col">딸기   +0원   1개</div>
           <div class="col">초코   +0원   1개</div>
           <div class="col">바나나  +0원   1개</div>
-          <div class="col">휘핑크림 +500원</div>
+          <div class="col">휘핑크림 +500원</div> -->
           
   
     </ion-content>
