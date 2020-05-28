@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationData } from 'src/app/data/location';
@@ -15,7 +15,7 @@ declare var kakao;
   styleUrls: ['./map.page.scss'],
 })
 
-export class MapPage implements OnInit {
+export class MapPage implements OnInit, AfterViewInit {
   map: any;
 
   position: any;
@@ -32,19 +32,22 @@ export class MapPage implements OnInit {
     private pageData: PageDataStorageService,
     private sharedData : SharedDataService,
   ) { 
-    this.dataLocation = this.pageCtrl.getLocation();
+    this.dataLocation = this.sharedData.geolocation.currentLocation;
     this.newLocation = {lat: this.dataLocation.lat, lng:this.dataLocation.lng};
     this.nowLocation ={lat: this.dataLocation.lat, lng:this.dataLocation.lng};
     //alert("lat: "+this.dataLocation.lat +"\n"+"lng: "+ this.dataLocation.lng);
 }
 
-get pageCtrl() : TabHomeLocationCtrl {
-  return this.pageData.tabHome.locationCtrl;
-}
-
   ngOnInit() {
-    this.getCurrentPosition();
+    // this.getCurrentPosition();
+    setTimeout(() => {
+      this.makeMap();
+    }, 150);
   }
+
+  ngAfterViewInit(){
+  }
+
 getInputAddress(){
   alert(this.inputAddress);
 }
@@ -95,6 +98,7 @@ getInputAddress(){
     };
     this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
     this.displayMarker(this.position);
+    this.map.relayout();
   }
 
   get getLatitude(){
@@ -106,13 +110,13 @@ getInputAddress(){
   }
 
   dismissCancel(){
-    this.pageCtrl.setLocation(this.dataLocation);
+    // this.pageCtrl.setLocation(this.dataLocation);
     //alert("dismissCancel");
     this.modalCtrl.dismiss();
   }
 
   dismissOK(){
-    this.pageCtrl.setLocation(this.newLocation);
+    // this.pageCtrl.setLocation(this.newLocation);
     //alert("dismissOK");
     this.modalCtrl.dismiss();
   }

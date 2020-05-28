@@ -1,5 +1,5 @@
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { UserAccountCtrl } from './userAccount.ctrl';
+// import { UserAccountCtrl } from './userAccount.ctrl';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 export class ConfigData {

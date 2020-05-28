@@ -39,7 +39,7 @@ export class DataControllerService {
       }
 
       const request : httpRequest = {
-        userId : this.sharedData.myAccountId,
+        userId : this.sharedData.account.myAccountId,
         data : data
       };
 

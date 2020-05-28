@@ -31,7 +31,10 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
       let price = Math.floor(Math.random() * 80) * 100;
       let ftdata : FoodtruckData = {
         id: ftId,
-        name: ftId + " foodtruck"
+        name: ftId + " foodtruck",
+        information: "test",
+        notice: "",
+        imgSrc: ""
       };
       let menudata : MenuData ={
         menuID: menuId,

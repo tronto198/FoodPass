@@ -8,9 +8,10 @@ export interface FoodtruckData {
 
     information:string,     //정보
     notice: string,    //공지
-    imgSrc: string;    //이미지
+    
+    imgSrc?: string;    //이미지
 
-    locate? : LocationData,   //위치
+    location? : LocationData,   //위치
     localData?: FoodtruckLocalData,
     
     wating?: WaitingData,    //웨이팅
