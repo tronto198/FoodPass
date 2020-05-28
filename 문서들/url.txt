@@ -3,15 +3,15 @@ account
     orderHistory        -- ordertable에서 userId가 같은 order들을 시간순으로 리턴
 
 listData
-    foodtruck           -- 위치가 있으면 위치 주변 ???m안의 foodtruck들을 리스트로 리턴
-    menu
-    option
+    foodtruck           -- 위치가 있으면 위치 주변 ???m안의 foodtruck들을 리스트로 리턴, 없으면 즐찾?
+    menu                -- foodtruckId 를 받으면 그 푸드트럭의 메뉴리스트를 리턴
+    option              -- foodtruckId, menuId를 받으면 oprion들 리턴
 
 infoData
-    foodtruck
-    menu
+    foodtruck           -- foodtruckId를 받으면 그 푸드트럭의 정보 리턴
+    menu                -- foodtruckId, menuId를 받으면 menu 정보 리턴
 
 order
-    request
-    received
+    request             -- orderList를 받으면 그 order들을 각 푸드트럭에 전달한 뒤, 각 푸드트럭이 응답하면 모으고 orderId를 부여한 뒤 리턴
+    received            -- 수령 확인
 
