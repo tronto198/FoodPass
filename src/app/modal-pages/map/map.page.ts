@@ -24,7 +24,6 @@ export class MapPage implements OnInit {
   
   dataLocation: LocationData;   //불러온 위치 데이터
   newLocation: LocationData;    //새로 지정한 위치 데이터
-  nowLocation: LocationData;    // 현재 위치 데이터
 
 
 
@@ -35,7 +34,6 @@ export class MapPage implements OnInit {
   ) { 
     this.dataLocation = this.pageCtrl.getLocation();
     this.newLocation = {lat: this.dataLocation.lat, lng:this.dataLocation.lng};
-    this.nowLocation ={lat: this.dataLocation.lat, lng:this.dataLocation.lng};
   }
 
   get pageCtrl() : TabHomeLocationCtrl {
