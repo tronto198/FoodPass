@@ -8,6 +8,7 @@ import { MenuInfoPageRoutingModule } from './menu-info-routing.module';
 
 import { MenuInfoPage } from './menu-info.page';
 import { PickMenuOptionComponent } from 'src/app/component/pick-menu-option/pick-menu-option.component';
+import { OptionListComponent } from 'src/app/component/option-list/option-list.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { PickMenuOptionComponent } from 'src/app/component/pick-menu-option/pick
   ],
   declarations: [
     MenuInfoPage,
-    PickMenuOptionComponent
+    PickMenuOptionComponent,
+    OptionListComponent
   ]
 })
 export class MenuInfoPageModule {}
