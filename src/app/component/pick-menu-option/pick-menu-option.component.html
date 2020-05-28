@@ -1,9 +1,11 @@
 <ion-app>
   <ion-header>
-    
-      <img src="../assets/icon/waffle.png" alt="ion" >
+    <ion-card>
+      <img src="{{imgsrc}}" alt="ion" >
         <ion-card-title>{{menu_id}}</ion-card-title>
         <ion-card-subtitle>기본가격: {{menu_price}}원</ion-card-subtitle>
+      
+    </ion-card>
     </ion-header>
     
     <ion-content ng-controller="MyCtrl as ctrl">
