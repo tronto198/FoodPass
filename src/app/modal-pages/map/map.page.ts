@@ -33,7 +33,7 @@ export class MapPage implements OnInit {
     this.dataLocation = this.pageCtrl.getLocation();
     this.newLocation = {lat: this.dataLocation.lat, lng:this.dataLocation.lng};
     this.nowLocation ={lat: this.dataLocation.lat, lng:this.dataLocation.lng};
-    alert("lat: "+this.dataLocation.lat +"\n"+"lng: "+ this.dataLocation.lng);
+    //alert("lat: "+this.dataLocation.lat +"\n"+"lng: "+ this.dataLocation.lng);
 }
 
 get pageCtrl() : TabHomeLocationCtrl {
