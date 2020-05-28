@@ -4,6 +4,7 @@ import { httpResponse, httpError, httpRequest } from './http-communication.inter
 import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
 import { UserConfigService } from '../../user-config/user-config.service';
+import { reqUrl } from './reqType/req-url.enum';
 
 const url : string = "http://localhost:80/test";
 const httpOption = {
@@ -40,10 +41,15 @@ export class DataControllerService {
         data : 객체형태, 반환은 이것만
 
     */
-    
+
   }
 
-  request<T extends object>(reqType : string, data : object,
+  setUrl(reqType: reqUrl){
+
+  }
+
+
+  request<T extends object>(reqUrl : reqUrl, data : object,
     loadingScreen : boolean = true, loadingMessage? : string) : Promise<T>{
     
       if(loadingScreen){
@@ -52,7 +58,6 @@ export class DataControllerService {
 
       let request : httpRequest = {
         userId : this.userConfig.myAccountId,
-        reqType : reqType,
         data : data
       };
 
@@ -90,7 +95,7 @@ export class DataControllerService {
     this.dismissLoadingScreen();
   }
 
-  async testRequest<T extends object>(reqType: string, data : object,
+  async testRequest<T extends object>(reqUrl: string, data : object,
     success : boolean, expectedData : T, receiveInterval : number,
     loadingScreen : boolean = true, loadingMessage? : string) : Promise<T>{
     

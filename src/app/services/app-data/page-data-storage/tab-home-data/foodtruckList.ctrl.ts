@@ -2,7 +2,7 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 import { LocationData } from 'src/app/data/location';
 import { DataControllerService } from '../../data-controller/data-controller.service';
 import { reqFoodtruckList, resFoodtruckList } from '../../data-controller/reqType/foodtruckList.req';
-import { reqType } from '../../data-controller/reqType/req-type.enum';
+import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 
 
 export class TabHomeFoodtruckListCtrl {
@@ -33,7 +33,7 @@ export class TabHomeFoodtruckListCtrl {
             foodtruckList : FoodtruckDummyData
         };
 
-        this.dataCtrl.testRequest<resFoodtruckList>(reqType.foodtruckList, req, true, res, 150, false)
+        this.dataCtrl.testRequest<resFoodtruckList>(reqUrl.foodtruckList, req, true, res, 150, false)
         .then(data =>{
             this.foodtruckList = data.foodtruckList;
             console.log('get foodtrucklist');

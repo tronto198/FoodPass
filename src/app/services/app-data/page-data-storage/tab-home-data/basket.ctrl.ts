@@ -8,7 +8,7 @@ import { OrderData } from 'src/app/data/order';
 import { DataControllerService } from '../../data-controller/data-controller.service';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 import { reqOrder, resOrder } from '../../data-controller/reqType/order.req';
-import { reqType } from '../../data-controller/reqType/req-type.enum';
+import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 
 
 export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
@@ -160,7 +160,7 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
       //   reject(e);
       // })
 
-      this.dataCtrl.request<resOrder>(reqType.order, req).then(data =>{
+      this.dataCtrl.request<resOrder>(reqUrl.order, req).then(data =>{
         console.log(data);
         resolve(data.orderList);
       });

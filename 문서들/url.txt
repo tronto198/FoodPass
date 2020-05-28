@@ -1,0 +1,17 @@
+account
+    create              -- 유저 하나를 만들고 id 리턴
+    orderHistory        -- ordertable에서 userId가 같은 order들을 시간순으로 리턴
+
+listData
+    foodtruck           -- 위치가 있으면 위치 주변 ???m안의 foodtruck들을 리스트로 리턴
+    menu
+    option
+
+infoData
+    foodtruck
+    menu
+
+order
+    request
+    received
+
