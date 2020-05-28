@@ -1,6 +1,6 @@
 account
-    create              -- 유저 하나를 만들고 id 리턴
-    orderHistory        -- ordertable에서 userId가 같은 order들을 시간순으로 리턴
+    create              -- 유저 하나를 만들고 id 리턴   (url : "/account/create")
+    orderHistory        -- ordertable에서 userId가 같은 order들을 시간순으로 리턴   (url : "/account/history")
 
 listData
     foodtruck           -- 위치가 있으면 위치 주변 ???m안의 foodtruck들을 리스트로 리턴, 없으면 즐찾?
@@ -13,5 +13,5 @@ infoData
 
 order
     request             -- orderList를 받으면 그 order들을 각 푸드트럭에 전달한 뒤, 각 푸드트럭이 응답하면 모으고 orderId를 부여한 뒤 리턴
-    received            -- 수령 확인
+    received            -- 수령확인한 orderId를 받아 푸드트럭에 전달하고 응답을 받으면 리턴
 
