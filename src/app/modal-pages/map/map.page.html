@@ -9,7 +9,7 @@
     <ion-item>
       <ion-label floating>주소 입력 : </ion-label>
       <ion-input type="text" [(ngModel)]="inputAddress" text-right id="inputAddress" placeholder={{getLatitude}}{{getLongitude}}></ion-input>
-      <ion-button (click)="getInputAddress()"> > </ion-button>
+      <ion-button (click)="alertAddress()"> > </ion-button>
     </ion-item>
   </ion-toolbar>
 </ion-header>
@@ -18,7 +18,7 @@
   <div id="map" class="map"></div>
   <p>
     <ion-button (click)="dismissOK()">OK</ion-button>
-    <ion-button (click)="getNowLocation()">현위치</ion-button>
+    <ion-button (click)="getCurrentPosition()">현위치</ion-button>
   </p>
 </ion-content>
 

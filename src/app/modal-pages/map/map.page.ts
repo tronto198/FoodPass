@@ -19,62 +19,57 @@ export class MapPage implements OnInit {
   marker: any;
 
   position: any;
+  coordinates:any;
   inputAddress: string;
+  
+  dataLocation: LocationData;   //불러온 위치 데이터
+  newLocation: LocationData;    //새로 지정한 위치 데이터
+  nowLocation: LocationData;    // 현재 위치 데이터
 
-  dataLocation: LocationData;
-  newLocation: LocationData;
-  nowLocation: LocationData;
+
 
   constructor(
     private geo: Geolocation,
     private modalCtrl : ModalController,
-    // private pageCtrl: TabHomeControllerService,
     private pageData: PageDataStorageService,
   ) { 
     this.dataLocation = this.pageCtrl.getLocation();
     this.newLocation = {lat: this.dataLocation.lat, lng:this.dataLocation.lng};
     this.nowLocation ={lat: this.dataLocation.lat, lng:this.dataLocation.lng};
-    //alert("lat: "+this.dataLocation.lat +"\n"+"lng: "+ this.dataLocation.lng);
-}
+  }
 
-get pageCtrl() : TabHomeLocationCtrl {
-  return this.pageData.tabHome.locationCtrl;
-}
+  get pageCtrl() : TabHomeLocationCtrl {
+    return this.pageData.tabHome.locationCtrl;
+  }
+
+  get getLatitude(){
+    return " lat: "+this.newLocation.lat;
+  }
+
+  get getLongitude(){
+    return " lng: "+this.newLocation.lng;
+  }
 
   ngOnInit() {
-    this.getCurrentPosition();
-  }
-getInputAddress(){
-  alert(this.inputAddress);
-}
-  displayMarker(locPosition) {
-    this.marker.setPosition(locPosition);
-    kakao.maps.event.addListener(this.marker, 'dragend', () => {
-      var latlng = this.marker.getPosition();
-      this.newLocation.lat = latlng.getLat();
-      this.newLocation.lng =latlng.getLng();
-    });
-    this.map.setCenter(locPosition);  
-  }
-  
-  getNowLocation(){
-    this.newLocation.lat = this.nowLocation.lat;
-    this.newLocation.lng =this.nowLocation.lng;
-    this.position = new kakao.maps.LatLng(this.newLocation.lat, this.newLocation.lng);
-    this.displayMarker(this.position);
+    this.initPosition();
   }
 
-  async getCurrentPosition() {
+
+  async initPosition() {
     var geoOptions = {
       enableHighAccuracy: true,
       timeout: 5000,
       maximumAge: 0
     };
-    const coordinates = await this.geo.getCurrentPosition(geoOptions);
-    this.nowLocation.lat = coordinates.coords.latitude;
-    this.nowLocation.lng = coordinates.coords.longitude;
+    try {
+      this.coordinates = await this.geo.getCurrentPosition(geoOptions);
+      this.getCurrentPosition();
+
+    }catch{
+    }
     this.makeMap();
   }
+
   makeMap(){
     this.position = new kakao.maps.LatLng(this.dataLocation.lat, this.dataLocation.lng);
 
@@ -91,12 +86,27 @@ getInputAddress(){
     this.displayMarker(this.position);
   }
 
-  get getLatitude(){
-    return " lat: "+this.newLocation.lat;
+  displayMarker(locPosition) {
+    this.marker.setPosition(locPosition);
+    kakao.maps.event.addListener(this.marker, 'dragend', () => {
+      var latlng = this.marker.getPosition();
+      this.newLocation.lat = latlng.getLat();
+      this.newLocation.lng =latlng.getLng();
+    });
+    this.map.setCenter(locPosition);  
+  }
+  
+  getCurrentPosition(){
+    this.newLocation.lat = this.coordinates.coords.latitude;
+    this.newLocation.lng = this.coordinates.coords.longitude;
+    this.position = new kakao.maps.LatLng(this.newLocation.lat, this.newLocation.lng);
+    this.displayMarker(this.position);
   }
 
-  get getLongitude(){
-    return " lng: "+this.newLocation.lng;
+
+  
+  alertAddress(){
+    alert(this.inputAddress);
   }
 
   dismissCancel(){
