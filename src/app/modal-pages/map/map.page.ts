@@ -41,7 +41,7 @@ get pageCtrl() : TabHomeLocationCtrl {
 }
 
   ngOnInit() {
-    //this.getCurrentPosition();
+    this.getCurrentPosition();
   }
 getInputAddress(){
   alert(this.inputAddress);
