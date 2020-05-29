@@ -18,12 +18,13 @@ export class MapPage implements OnInit {
   map: any;
   marker: any;
 
-  position: any;
-  coordinates:any;
-  inputAddress: string;
+  position: any;          // 지정 위치 데이터 : LatLng
+  coordinates:any;        // 현재 위치 관련 데이터 : LatLng
   
-  dataLocation: LocationData;   //불러온 위치 데이터
-  newLocation: LocationData;    //새로 지정한 위치 데이터
+  dataLocation: LocationData;   // 불러온 이전 위치 : LocationData
+  newLocation: LocationData;    // 새로 지정한 위치 : LocationData
+
+  inputAddress: string;
 
 
 
@@ -105,20 +106,33 @@ export class MapPage implements OnInit {
   
   alertAddress(){
     var geocoder = new kakao.maps.services.Geocoder();
-    geocoder.coord2Address(this.newLocation.lat, this.newLocation.lng, (result, status)=>{
-      if (status === kakao.maps.services.Status.OK) {
-        var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-        detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+    // geocoder.coord2Address(this.newLocation.lng, this.newLocation.lat, (result, status)=>{
+    //   if (status === kakao.maps.services.Status.OK) {
+    //     var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+    //     detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
         
-        var content = '<div class="bAddr">' +
-                        '<span class="title">법정동 주소정보</span>' + 
-                        detailAddr + 
-                    '</div>';
-                    console.log(content);
-      }
+    //     var content = '<div class="bAddr">' +
+    //                     '<span class="title">법정동 주소정보</span>' + 
+    //                     detailAddr + 
+    //                 '</div>';
+    //     console.log(content);
+    //     alert();
+    //   }
 
-    });       
+    // });       
     
+    geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+
+      // 정상적으로 검색이 완료됐으면 
+       if (status === kakao.maps.services.Status.OK) {
+  
+          this.position = new kakao.maps.LatLng(result[0].y, result[0].x);
+  
+          // 결과값으로 받은 위치를 마커로 표시합니다
+          this.displayMarker( this.position );
+       }
+      });
+
   }
 
   dismissCancel(){
