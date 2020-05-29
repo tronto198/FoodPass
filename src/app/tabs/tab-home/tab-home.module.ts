@@ -31,14 +31,11 @@ import { SharedComponentModule } from 'src/app/component/shared-component.module
   ],
   declarations: [
     TabHomePage,
-    // MapPage,
   ],
   providers: [
-    // TabHomeControllerService,
     ToastController,
     ModalController,
     NavController,
-    // BasketControllerService
   ]
 })
 export class TabHomePageModule {}
