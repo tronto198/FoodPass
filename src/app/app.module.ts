@@ -21,11 +21,12 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [BrowserModule, IonicModule.forRoot(), 
       IonicStorageModule.forRoot(), //로컬 저장소
       HttpClientModule,       //http 연결용
       SharedComponentModule,  //공통 컴포넌트
       AppDataModule,          //앱 데이터
+      AppRoutingModule,
       ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }), //아마 @angular/pwa 관련
     ],
   providers: [

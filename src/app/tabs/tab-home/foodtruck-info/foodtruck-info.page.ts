@@ -11,12 +11,7 @@ import { MenuData } from 'src/app/data/menu';
   styleUrls: ['./foodtruck-info.page.scss'],
 })
 export class FoodtruckInfoPage implements OnInit  {
-  // foodtruckId: number;
-  // foodtruckName:string;
-  // foodtruckImage:string;
-
-  //routedata:FoodtruckData[];
-
+  
   constructor(
     private route : ActivatedRoute,
     private pageCtrl : PageControllerService,

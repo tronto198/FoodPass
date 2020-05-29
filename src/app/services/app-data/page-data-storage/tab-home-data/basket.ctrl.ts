@@ -34,7 +34,8 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
         name: ftId + " foodtruck",
         information: "test",
         notice: "",
-        imgSrc: ""
+        imgSrc: "",
+        waiting: {person: 3, time: 5}
       };
       let menudata : MenuData ={
         menuID: menuId,

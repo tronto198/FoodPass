@@ -12,8 +12,8 @@ export interface FoodtruckData {
     imgSrc?: string;    //이미지
 
     location? : LocationData,   //위치
-    localData?: FoodtruckLocalData,
+    localData?: FoodtruckLocalData,   //로컬데이터 : sign, distance
     
-    wating?: WaitingData,    //웨이팅
+    waiting?: WaitingData,    //웨이팅
     rating?: number,      //평점
 }

@@ -16,7 +16,6 @@ export class SharedDataService {
   account : SharedAccount;
 
 
-
   foodtruckOwner: boolean;
 
   constructor(

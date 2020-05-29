@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { WaitingData } from 'src/app/data/waiting';
 
 @Component({
   selector: 'app-cardview',
@@ -22,20 +23,23 @@ export class CardviewComponent implements OnInit {
     return this.pageData.tabHome.foodtruckListCtrl.foodtruckList[this.foodtruckIndex];
   }
 
-  get name() {
+  get name() : string {
     return this.foodtruckInfo.name;
   }
 
-  get locate() : string{
+  get sign() : string{
     return this.foodtruckInfo.localData? this.foodtruckInfo.localData.sign : '';
   }
+  get distance() : string {
+    return this.foodtruckInfo.localData ? String(this.foodtruckInfo.localData.distance) : '';
+  }
 
-  get inform(){
+  get inform() : string{
     return this.foodtruckInfo.information;
   }
 
-  get waiting(){
-    return this.foodtruckInfo.wating.person;
+  get waiting() : WaitingData{
+    return this.foodtruckInfo.waiting? this.foodtruckInfo.waiting : {time: 0, person: 0};
   }
 
   get rating() : number{
@@ -46,9 +50,7 @@ export class CardviewComponent implements OnInit {
     return this.foodtruckInfo.notice;
   }
 
-  get distance() : string {
-    return this.foodtruckInfo.localData ? String(this.foodtruckInfo.localData.distance) : '';
-  }
+
 
   get truckImage() : string{
     return this.foodtruckInfo.imgSrc;

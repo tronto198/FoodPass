@@ -26,13 +26,21 @@ export class AppComponent {
       this.statusBar.styleDefault();
       console.log("app start");
       this.sharedData.init().then(()=>{
-        this.splashScreen.hide();
+        this.appReady();
       }).catch(e =>{
         console.log(e);
         //id 받아오지 못함
       });
       
     });
+
+  }
+
+  appReady(){
+    this.splashScreen.hide();
+  }
+
+  appNotReady(){
 
   }
 
