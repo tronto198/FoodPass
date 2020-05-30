@@ -2,5 +2,7 @@ export class AppConfig{
 
 }
 
-export const APP_CONFIG : AppConfig = {
-}
+// export const firebaseConfig = {
+//     production: false,
+    
+// }
