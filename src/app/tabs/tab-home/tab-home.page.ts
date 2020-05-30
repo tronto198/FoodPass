@@ -5,6 +5,7 @@ import { ToastController, ModalController } from '@ionic/angular';
 import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class TabHomePage implements OnInit {
     private toastController : ToastController,
     public modalController : ModalController,
     private pageData : PageDataStorageService,
+    private afMessaging: AngularFireMessaging
   ) { }
 
   ngOnInit() {
@@ -85,4 +87,34 @@ export class TabHomePage implements OnInit {
     })
   }
 
+  requestPushNotificationsPermission(){
+    alert('requestPermission');
+    // this.afMessaging.requestPermission.subscribe(()=>{
+    //   alert('reqPermission');
+    // },
+    // (err) =>{
+    //   alert('reqPermission error: ' + err);
+    // });
+    // Notification.requestPermission().then((permission) =>{
+    //   if(permission === 'granted'){
+    //     alert('granted');
+
+    //   }
+    //   else{
+    //     alert('denied');
+    //   }
+    // })
+    this.afMessaging.requestToken
+    .subscribe(
+      (token) => {
+        console.log('Permission granted! Save to the server!', token);
+        alert('permission granted');
+      },
+      (error) => {
+        console.error(error);
+        alert('permission denied');
+        alert(error);
+      }
+    );
+  }
 }

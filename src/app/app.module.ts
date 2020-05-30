@@ -32,7 +32,8 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging'
       AppRoutingModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireMessagingModule,
-      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }), //아마 @angular/pwa 관련
+      // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }), //아마 @angular/pwa 관련
+      ServiceWorkerModule.register('combined-sw.js', { enabled: environment.production }),
     ],
   providers: [
     StatusBar,
