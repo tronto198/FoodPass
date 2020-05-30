@@ -26,7 +26,7 @@ export class TabHomePage implements OnInit {
   }
 
   get testlocation(){
-    return this.pageData.tabHome.locationCtrl.locationData.name;
+    return "test";
   }
 
   onToolbarClicked(){

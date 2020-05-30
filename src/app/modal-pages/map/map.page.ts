@@ -55,9 +55,9 @@ getInputAddress(){
   alert(this.inputAddress);
 }
 
-  get pageCtrl() : TabHomeLocationCtrl {
-    return this.pageData.tabHome.locationCtrl;
-  }
+  // get pageCtrl() : TabHomeLocationCtrl {
+  //   return this.pageData.tabHome.locationCtrl;
+  // }
 
   get getLatitude(){
     return " lat: "+this.newLocation.lat;
