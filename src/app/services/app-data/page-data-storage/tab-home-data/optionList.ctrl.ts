@@ -1,6 +1,6 @@
 import { OptionData } from 'src/app/data/option';
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqOptionList, resOptionList } from '../../data-controller/reqType/optionList.req';
+import { reqOptionList, resOptionList } from '../../data-controller/reqType/listData/optionList.req';
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 
 export class TabHomeOptionListCtrl {

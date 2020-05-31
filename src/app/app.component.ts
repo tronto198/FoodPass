@@ -31,7 +31,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       console.log("app start");
-      this.sharedData.init().then(()=>{
+      this.sharedData.account.init().then(()=>{
         this.appReady();
       }).catch(e =>{
         console.log(e);

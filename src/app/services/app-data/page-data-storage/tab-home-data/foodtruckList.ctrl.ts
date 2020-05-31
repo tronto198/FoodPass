@@ -1,7 +1,7 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { LocationData } from 'src/app/data/location';
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqFoodtruckList, resFoodtruckList } from '../../data-controller/reqType/foodtruckList.req';
+import { reqFoodtruckList, resFoodtruckList } from '../../data-controller/reqType/listData/foodtruckList.req';
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 import { SharedGeolocation } from 'src/app/services/shared-data/geolocation.shared';
 

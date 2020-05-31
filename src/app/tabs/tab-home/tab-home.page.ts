@@ -21,21 +21,21 @@ export class TabHomePage implements OnInit {
     private toastController : ToastController,
     public modalController : ModalController,
     private pageData : PageDataStorageService,
-    private messaging: NotificationService
+    // private messaging: NotificationService
   ) { }
 
   ngOnInit() {
     console.log("tab-home");
-    this.messaging.requestPermission();
+    // this.messaging.requestPermission();
   }
 
   get testlocation(){
     return "test";
   }
 
-  get token(){
-    return this.messaging.token;
-  }
+  // get token(){
+  //   return this.messaging.token;
+  // }
 
   onToolbarClicked(){
     this.modalController.create({

@@ -1,5 +1,6 @@
 account
     create              -- 유저 하나를 만들고 id 리턴   (url : "/account/create")
+    pushToken           -- 푸시알림을 위한 토큰
     orderHistory        -- ordertable에서 userId가 같은 order들을 시간순으로 리턴   (url : "/account/history")
 
 listData

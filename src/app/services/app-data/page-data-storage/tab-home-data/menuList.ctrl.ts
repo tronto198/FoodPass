@@ -1,5 +1,5 @@
 import { MenuData } from 'src/app/data/menu';
-import { reqMenuList, resMenuList } from '../../data-controller/reqType/menuList.req';
+import { reqMenuList, resMenuList } from '../../data-controller/reqType/listData/menuList.req';
 import { DataControllerService } from '../../data-controller/data-controller.service';
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 

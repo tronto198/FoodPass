@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { httpResponse } from '../app-data/data-controller/http-communication.interface';
-import { resNewAccount } from '../app-data/data-controller/reqType/newAccount.req';
+import { resNewAccount } from '../app-data/data-controller/reqType/account/newAccount.req';
 
 
 const StorageID = "id";

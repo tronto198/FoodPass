@@ -1,9 +1,9 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqFoodtruckData, resFoodtruckData } from '../../data-controller/reqType/foodtruckData.req';
+import { reqFoodtruckData, resFoodtruckData } from '../../data-controller/reqType/infoData/foodtruckData.req';
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
-import { reqMenuData, resMenuData } from '../../data-controller/reqType/menuData.req';
+import { reqMenuData, resMenuData } from '../../data-controller/reqType/infoData/menuData.req';
 
 export class TabHomeRouteDataCtrl {
     currentFoodtruck: FoodtruckData;

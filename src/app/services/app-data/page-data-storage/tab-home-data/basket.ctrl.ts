@@ -7,7 +7,7 @@ import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu'
 import { OrderData } from 'src/app/data/order';
 import { DataControllerService } from '../../data-controller/data-controller.service';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
-import { reqOrder, resOrder } from '../../data-controller/reqType/order.req';
+import { reqOrder, resOrder } from '../../data-controller/reqType/order/order.req';
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 
 

@@ -13,24 +13,29 @@ import { NativeGeocoder} from '@ionic-native/native-geocoder/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicGestureConfig } from 'src/IonicGestureConfig';
 import { SharedComponentModule } from './component/shared-component.module';
-import { AppDataModule } from './services/app-data/app-data.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireMessagingModule } from '@angular/fire/messaging'
+import { RootServicesModule } from './services/root-services.module';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), 
+  imports: [
+      BrowserModule, 
+      IonicModule.forRoot(), 
+      AppRoutingModule,
+
       IonicStorageModule.forRoot(), //로컬 저장소
       HttpClientModule,       //http 연결용
+
       SharedComponentModule,  //공통 컴포넌트
-      AppDataModule,          //앱 데이터
-      AppRoutingModule,
-      AngularFireModule.initializeApp(environment.firebase),
+      RootServicesModule,          //앱 데이터
+
+      AngularFireModule.initializeApp(environment.firebase),  //firebase
       AngularFireMessagingModule,
       // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }), //아마 @angular/pwa 관련
       ServiceWorkerModule.register('combined-sw.js', { enabled: environment.production }),

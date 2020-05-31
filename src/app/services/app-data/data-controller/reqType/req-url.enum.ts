@@ -1,6 +1,7 @@
 
 export enum reqUrl {
     newAccount = "/account/create",
+    pushToken = "/account/pushToken",
     orderHistory = "/account/history",
 
     foodtruckList = "/listData/foodtruck",
