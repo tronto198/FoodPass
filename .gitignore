@@ -35,5 +35,4 @@ npm-debug.log*
 /ios
 capacitor.json
 /src/environments/firebase.*
-/src/firebase-messaging-sw.js
 /src/firebase/*

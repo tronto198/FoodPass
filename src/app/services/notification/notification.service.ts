@@ -1,79 +1,47 @@
 import { Injectable } from '@angular/core';
-
-import {firebase} from '@firebase/app';
-import '@firebase/messaging';
-import { environment } from 'src/environments/environment';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
+    token: string;
 
-  init(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-        navigator.serviceWorker.ready.then((registration) => {
-            // Don't crash an error if messaging not supported
-            if (!firebase.messaging.isSupported()) {
-                   resolve();
-                   return;
+    constructor(
+        private afMessaging: AngularFireMessaging
+    ){
+        this.afMessaging.messaging.subscribe(
+            (_messaging) => {
+            _messaging.onMessage = _messaging.onMessage.bind(_messaging);
+            _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
             }
+        );
+    }
 
-            const messaging = firebase.messaging();
-
-            // Register the Service Worker
-            messaging.useServiceWorker(registration);
-
-            // Initialize your VAPI key
-            messaging.usePublicVapidKey(
-                  environment.firebase.vapidKey
-            );
-
-            // Optional and not covered in the article
-            // Listen to messages when your app is in the foreground
-            messaging.onMessage((payload) => {
-                console.log(payload);
-            });
-            // Optional and not covered in the article
-            // Handle token refresh
-            messaging.onTokenRefresh(() => {
-                messaging.getToken().then(
-                (refreshedToken: string) => {
-                    console.log(refreshedToken);
-                }).catch((err) => {
-                    console.error(err);
-                });
-            });
-
-            resolve();
-        }, (err) => {
-            reject(err);
-        });
-    });
+    
+  requestPermission(pipe? : (token: string) => void, error? : (error) => void){
+    this.afMessaging.requestToken
+    .subscribe(
+      (token) => {
+        console.log('Permission granted! Save to the server!', token);
+        this.token = token;
+        // alert('permission granted');
+        pipe(token);
+      },
+      (err) => {
+        console.error(err);
+        // alert('permission denied');
+        error(err);
+      }
+    );
   }
 
-  requestPermission(): Promise<void> {
-    return new Promise<void>(async (resolve) => {
-        if (!Notification) {
-            resolve();
-            return;
-        }
-        if (!firebase.messaging.isSupported()) {
-            resolve();
-            return;
-        }
-        try {
-            const messaging = firebase.messaging();
-            await messaging.requestPermission();
+  foregroundMessaging(pipe? : (message : any) => void){
+      this.afMessaging.messages.subscribe(message =>{
+          console.log(message);
+          // alert(message);
+          pipe(message);
+      });
 
-            const token: string = await messaging.getToken();
-
-            console.log('User notifications token:', token);
-        } catch (err) {
-            // No notifications granted
-            console.log('not granted');
-        }
-
-        resolve();
-    });
-}
+  }
 }

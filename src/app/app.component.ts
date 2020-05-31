@@ -23,9 +23,6 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private sharedData: SharedDataService,
-    private notification: NotificationService,
-    private afm: AngularFireMessaging
-    
   ) {
     this.initializeApp();
   }
@@ -46,30 +43,9 @@ export class AppComponent {
   }
 
   appReady(){
-    // firebase.initializeApp(environment.firebase);
-    
-    // await this.notification.init();
-    // this.notification.requestPermission().then((val) =>{
-    //   console.log('granted');
-    // }).catch(e =>{
-    //   console.log('not granted');
-    // })
-
-    // this.requestPushPermission();
     this.splashScreen.hide();
   }
   appNotReady(){
-
-  }
-
-  requestPushPermission(){
-    alert('requestPermission');
-    this.afm.requestToken.subscribe((token) =>{
-      console.log('permission granted : ', token);
-      alert('permission granted');
-    }), (error) =>{
-      console.error(error);
-      alert('denied');
-    }
+    alert('id를 받아오지 못했습니다.');
   }
 }
