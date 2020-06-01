@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { httpResponse } from '../app-data/data-controller/http-communication.interface';
 import { resNewAccount } from '../app-data/data-controller/reqType/account/newAccount.req';
+import { environment } from 'src/environments/environment';
+import { reqUrl } from '../app-data/data-controller/reqType/req-url.enum';
 
 
 const StorageID = "id";
-const createIdUrl = "http://localhost:80/account/create"
 
 export class SharedAccount {
 
@@ -43,7 +44,8 @@ export class SharedAccount {
     }
 
     private createId(resolve, reject) : void {
-        this.httpClient.post(createIdUrl, null).subscribe(data  =>{
+        let url = environment.host.concat(reqUrl.newAccount);
+        this.httpClient.post(url, null).subscribe(data  =>{
             let d = data as httpResponse;
             if(d.result){
                 this.myAccountId = (d.data as resNewAccount).accountId;

@@ -37,7 +37,6 @@ import { RootServicesModule } from './services/root-services.module';
 
       AngularFireModule.initializeApp(environment.firebase),  //firebase
       AngularFireMessagingModule,
-      // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }), //아마 @angular/pwa 관련
       ServiceWorkerModule.register('combined-sw.js', { enabled: environment.production }),
     ],
   providers: [

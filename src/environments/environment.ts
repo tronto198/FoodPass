@@ -6,7 +6,8 @@ import { firebase } from '../firebase/firebase.config';
 
 export const environment = {
   production: false,
-  firebase: firebase
+  firebase: firebase,
+  host: "http://localhost:80/test"
 };
 
 /*

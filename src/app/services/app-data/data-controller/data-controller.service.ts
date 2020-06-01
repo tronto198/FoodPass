@@ -5,9 +5,8 @@ import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
 import { SharedDataService } from '../../shared-data/shared-data.service';
 import { reqUrl } from './reqType/req-url.enum';
+import { environment } from 'src/environments/environment';
 
-
-const host = "http://localhost:80/test";
 const httpOption = {
   headers: new HttpHeaders({
     'Content-Type' : 'application/json'
@@ -43,10 +42,10 @@ export class DataControllerService {
         data : data
       };
 
-      const url = host.concat(reqUrl);
+      const url = environment.host.concat(reqUrl);
 
       return new Promise((resolve, reject) =>{
-        this.httpClient.post(host, request, httpOption).subscribe(data =>{
+        this.httpClient.post(environment.host, request, httpOption).subscribe(data =>{
           this.connectSuccess(resolve, reject, data as httpResponse);
         },
         err =>{
@@ -99,9 +98,6 @@ export class DataControllerService {
       });
 
   }
-
-
-
   
   private async presentLoadingScreen(message? : string){
     if(this.loading != null){
