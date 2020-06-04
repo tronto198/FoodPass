@@ -15,6 +15,7 @@ import { TabHomeOptionListCtrl } from 'src/app/services/app-data/page-data-stora
 })
 export class MenuInfoPage implements OnInit {
   amount: number = 1;
+  price: number = 0;
 
   constructor(
     private route: ActivatedRoute,

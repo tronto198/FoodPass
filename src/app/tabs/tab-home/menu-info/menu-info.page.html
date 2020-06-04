@@ -8,15 +8,27 @@
 </ion-header>
 
 <ion-content>
-  <app-pick-menu-option menu_id="히히와플" menu_price="2500" imgsrc="../assets/icon/waffle.png" option_data="">  </app-pick-menu-option>
 
-  <!-- <ion-col no padding col-2 *ngFor="let menu of op; let i = index" class="foodtruck-info-cards">
-    <app-menu-list id="{{menu.menuID}}" name="{{menu.menuName}}" inform="{{menu.menuInform}}"
-  price="{{menu.price}}" menuImage="{{menu.src}}"
-  (click)="menuClicked(i)">
+  <ion-header>
+    <ion-card>
+      <img class="menu_img" src="../assets/icon/waffle.png" alt="ion" >
+        <ion-card-title>{{menuData.menuName}}</ion-card-title>
+        <ion-card-subtitle>기본가격: {{menuData.price}}원</ion-card-subtitle>
+      
+    </ion-card>
+    </ion-header>
+    
+    <ion-content ng-controller="MyCtrl as ctrl">
+     
   
-  </app-menu-list> 
-  
- 
-</ion-col> -->
+          <ion-list class="row header">
+            <ion-label>옵션명    추가가격   개수 </ion-label>
+            <ion-item class="option-list" *ngFor="let option of optionList; let i = index">
+            <app-pick-menu-option id="{{option.id}}" name="{{option.name}}" extraPrice="{{option.extraPrice}}"></app-pick-menu-option>
+            </ion-item>
+          </ion-list>
+
+          <ion-button class="button-to-basket"> {{price}} 원 구매하기
+          </ion-button>
+    </ion-content>
 </ion-content>
