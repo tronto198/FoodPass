@@ -10,7 +10,7 @@ const app=express();
 
 //const {Client}=require('pg');
 app.use(bodyParser.urlencoded({extended: true}))
-
+app.use(bodyParser().json())
 
 //db_configure.json 써먹기
 const db=new (require('./Database_Connecter'))('db_configure.json');
@@ -40,7 +40,7 @@ app.post('/insertTruck',(req,res)=>{
      // res.send('name: '+name)
     }
   })
-
+    res.send('name: '+name)
 });
 
 app.post('/insertMenu',(req,res)=>{
@@ -78,9 +78,10 @@ app.post('/insertOption',(req,res)=>{
       console.log(err.stack)
     }else{
       console.log(res.rows[0])
-     // res.send('menuId: '+menu_id)
+     // 
     }
   })
+  res.send('menuId: '+menu_id)
 });
 
 
@@ -98,9 +99,10 @@ app.post('/account/create',(req,res)=>{
       console.log(err.stack)
     }else{
       console.log(res.rows[0])
-      res.send('userID: '+ user_id)
+     
     }
   })
+  res.send('userID: '+ user_id)
 });
 
 //ordertable에서 userID가 같은 주문들을 시간순으로 리턴
@@ -229,23 +231,23 @@ app.post('/infoData/menu',(req,res)=>{
 });
 
 //order
-//orderList받으면 그 오더들을 각 푸드트럭에 전달한 뒤, 각 푸드트럭이 응답하면 모으고 orderID를 부여한 뒤 리턴
+//orderList받으면 그 오더들을 각 푸드트럭에 전달한 뒤, 각 푸드트럭이 응답하면 
+//신호 모으고 orderID를 부여한 뒤 리턴
 // app.post('/order/request',(req,res)=>{
 //   let foodtruck_id=req.body.foodtruck_id;
-//   let menu_id=req.body.menu_id;
-//   console.log("connect ${foodtruck_id}, ${menu_id}");
+  
+//   console.log("connect ${foodtruck_id}");
 
-//   const optionSql="select * from menu_tb where foodtruck_id=$1 and menu_id=$2";
-//   const values=[foodtruck_id, menu_id];
+//   const Sql="select user_order_menu_id as isvalid from user_order_menu_tb where foodtruck_id=$1";
+//   const values=[foodtruck_id];
 
-//    db.query(optionSql,values,(err,res)=>{
-//     if(err){
-//       console.log(err.stack)
-//     }else{
-//       let result={
-//         orderList: res.rows
-//       };
-//       sendResult(res, result);
+//    db.query(Sql,values,(err,res)=>{
+//     if(res.rows[0].isvalid){
+//       const orderSql="select * from order_tb where user_order_menu_id= $1 "
+//       const values=[foodtruck_id];
+//       db.query(orderSql, values).then(res3={
+
+//       })
 //     }
 //   })
 // });
