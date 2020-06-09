@@ -233,24 +233,24 @@ app.post('/infoData/menu',(req,res)=>{
 //order
 //orderList받으면 그 오더들을 각 푸드트럭에 전달한 뒤, 각 푸드트럭이 응답하면 
 //신호 모으고 orderID를 부여한 뒤 리턴
-// app.post('/order/request',(req,res)=>{
-//   let foodtruck_id=req.body.foodtruck_id;
+app.post('/order/request',(req,res)=>{
+  let foodtruck_id=req.body.foodtruck_id;
   
-//   console.log("connect ${foodtruck_id}");
+  console.log("connect ${foodtruck_id}");
 
-//   const Sql="select user_order_menu_id as isvalid from user_order_menu_tb where foodtruck_id=$1";
-//   const values=[foodtruck_id];
+  const Sql="select user_order_menu_id as isvalid from user_order_menu_tb where foodtruck_id=$1";
+  const values=[foodtruck_id];
 
-//    db.query(Sql,values,(err,res)=>{
-//     if(res.rows[0].isvalid){
-//       const orderSql="select * from order_tb where user_order_menu_id= $1 "
-//       const values=[foodtruck_id];
-//       db.query(orderSql, values).then(res3={
+   db.query(Sql,values,(err,res)=>{
+    if(res.rows[0].isvalid){
+      const orderSql="select * from order_tb where user_order_menu_id= $1 "
+      const values=[foodtruck_id];
+      db.query(orderSql, values).then(res3={
 
-//       })
-//     }
-//   })
-// });
+      })
+    }
+  })
+});
 
 
 
