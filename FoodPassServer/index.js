@@ -117,19 +117,26 @@ app.post('/account/create',(req,res)=>{
 
   const Sql="insert into user_tb values(default) Returning user_id";
  
+   db.query(Sql).then(res2 =>{
+    let result={
+      data:{
+        accountId: 4001
+      }
+    
+    };
+    // res.rows.forEach(element => {
+    //   let userinfo = {
+    //     id: user_id
+    //   }
+    //   result.foodtruckList.push(userinfo);
+    // });
 
-   db.query(Sql,values,(err,res)=>{
-    if(err){
-      console.log(err.stack)
-      sendError(err, {description: ''})
-    }else{
-      let result={
-        id: res.rows//? 이건 형식 모르겠다
-      };
-      sendResult(res, result);
-     
-    }
-  })
+    sendResult(res, result);
+   })
+   .catch(err=>{
+    console.log(err.stack)
+    sendError(err, {description: ''});
+   });
   
 });
 
@@ -141,7 +148,7 @@ app.post('/account/pushToken',(req,res)=>{
   const Sql="insert into user_tb(push_token) values($1)";
   const values=[push_token];
 
-   db.query(Sql,values,(err,res)=>{
+   db.query(Sql,values,(err,res2)=>{
     if(err){
       console.log(err.stack)
       sendError(err, {description: ''})
@@ -180,29 +187,61 @@ app.post('/account/orderHistory',(req,res)=>{
 //ListData
 //위치를 받아서 그 위치 xxm 안의 푸드트럭들을 리스트로 리턴 없으면 즐겨찾기?
 app.post('/listData/foodtruck',(req,res)=>{
-  console.log(req, req.body);
+  console.log(req.body);
 
   let data=req.body.data;
   let location_lat=data.location.lat;//위치 형식 다시 고민해보기
   let location_lng=data.location.lng;
+  //let name=data.foodtruckList.name;
+  //let notice=data.foodtruckList.notice;
   console.log("connect ${location}");
 
-  const listSql="select * from foodtruck_tb where ST_DistanceSphere(location,ST_MakePoint($2, $1))<=500";
+  const listSql="select foodtruck_id, st_x(location) as x, st_y(location) as y, name, image, introduction, notice from foodtruck_tb where ST_DistanceSphere(location,ST_MakePoint($2, $1))<=500";
   const values=[location_lat, location_lng];
 
-   db.query(listSql,values,(err,res)=>{
-    if(err){
-      console.log(err.stack)
-      sendError(err, {description: ''})
-    }else{
+   db.query(listSql,values).then(res2 =>{
+    let result={
+      data: {
+        foodtruckList: []
+      }
+     
+    };
+
+    res2.rows.forEach(element => {
+      let ftinfo = {
+        id: element.foodtruck_id,
+        //imgSrc: element.image,
+        introduction: element.introduction,
+        location:{
+          lng:element.x,
+          lat:element.y
+        },
+        name: element.name,
+        notice: element.notice,
+        //origin_information: element.origin_information
+      }
+      result.data.foodtruckList.push(ftinfo);
+    });
+    sendResult(res, result);
+   })
+   .catch(err=>{
+    console.log(err.stack)
+    sendError(err, {description: ''});
+   });
+   
+  //  ,(err,res)=>{
+  //   if(err){
+  //     console.log(err.stack)
+  //     sendError(err, {description: ''})
+  //   }else{
       
-      let result={
-        foodtruckList: res.rows
-      };
-      sendResult(res, result);
-    }
-  })
-});
+  //     let result={
+  //       foodtruckList: res.rows
+  //     };
+  //     sendResult(res, result);
+  //   }
+  });
+//});
 
 //foodtruckID를 받으면 그 푸드트럭의 메뉴 리스트를 리턴
 app.post('/listData/menu',(req,res)=>{
