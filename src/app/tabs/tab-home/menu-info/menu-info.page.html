@@ -8,5 +8,29 @@
 </ion-header>
 
 <ion-content>
-  <app-pick-menu-option menu_id="히히와플" menu_price="2500">  </app-pick-menu-option>
+
+  <ion-header>
+    <ion-card>
+      <img class="menu_img" src="../assets/icon/waffle.png" alt="ion" >
+        <ion-card-title>{{menuData.menuName}}</ion-card-title>
+        <ion-card-subtitle>기본가격: {{menuData.price}}원</ion-card-subtitle>
+      
+    </ion-card>
+    </ion-header>
+    
+    <ion-content ng-controller="MyCtrl as ctrl">
+          <ion-list class="row header">
+              <ion-radio-group (ionChange)="pickHandler($event)">
+                <ion-list-header>
+                  <ion-label>옵션명    추가가격   개수 {{isCheckedValue}} </ion-label>
+                </ion-list-header>
+                <ion-item class="option-list" *ngFor="let option of optionList; let i = index">
+                  <app-pick-menu-option id="{{option.id}}" name="{{option.name}}" extraPrice="{{option.extraPrice}}"></app-pick-menu-option>
+                </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button expand="full" class="button-to-basket" (click)="orderToBasket()"> {{menuData.menuName}} {{isCheckedValue}}  구매하기
+          </ion-button>
+    </ion-content>
 </ion-content>
