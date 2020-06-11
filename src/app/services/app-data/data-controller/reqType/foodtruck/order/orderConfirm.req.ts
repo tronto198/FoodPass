@@ -1,6 +1,6 @@
 import { FoodtruckReq } from '../foodtruck.req';
 
-export interface reqOrderConfirm extends FoodtruckReq {
+export interface reqOrderConfirm extends FoodtruckReq{
     orderId: number;
 }
 
