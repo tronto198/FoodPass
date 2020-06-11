@@ -1,8 +1,8 @@
 import { FoodtruckReq } from '../foodtruck.req';
-import { OptionData } from 'src/app/data/option';
+import { MenuData } from 'src/app/data/menu';
 
-export interface reqNewMenu extends FoodtruckReq, OptionData {
-    menuId: number;
+export interface reqNewMenu extends FoodtruckReq, MenuData {
+    
 }
 
 export interface resNewMenu {
