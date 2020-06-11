@@ -21,6 +21,12 @@ function sendResult(res, json){
   res.send(JSON.stringify(json));
 }
 
+function sendError(res, json){
+  json.result = false;
+  res.send(JSON.stringify(json));
+}
+
+
 //데이터 입력
 app.post('/insertTruck',(req,res)=>{
   let name=req.body.data.name;
@@ -29,12 +35,16 @@ app.post('/insertTruck',(req,res)=>{
   let notice=req.body.data.notice;
   //let origin_information=req.body.data.origin_information;
   let location=req.body.data.locate;//형태고민
+  
+
 
   const truckInformSql="insert into foodtruck_tb(name, image, introduction, notice, origin_information, location) values($1, $2, $3, $4, $5, $6) Returning *";
   const values=[name,image,introduction,notice,origin_information,location];
   db.query(truckInformSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
+
     }else{
       console.log(res.rows[0])
      // res.send('name: '+name)
@@ -57,6 +67,7 @@ app.post('/insertMenu',(req,res)=>{
    db.query(menuInformSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       console.log(res.rows[0])
     
@@ -77,6 +88,7 @@ app.post('/insertOption',(req,res)=>{
    db.query(optionInformSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       console.log(res.rows[0])
      // 
@@ -97,6 +109,7 @@ app.post('/account/create',(req,res)=>{
    db.query(Sql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       let result={
         id: res.rows//? 이건 형식 모르겠다
@@ -118,6 +131,7 @@ app.post('/account/pushToken',(req,res)=>{
    db.query(Sql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       console.log(res.rows[0])
      
@@ -137,6 +151,7 @@ app.post('/account/orderHistory',(req,res)=>{
    db.query(orderSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       let result={
         orderList: res.rows
@@ -159,6 +174,7 @@ app.post('/listData/foodtruck',(req,res)=>{
    db.query(listSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       let result={
         foodtruckList: res.rows
@@ -179,6 +195,7 @@ app.post('/listData/menu',(req,res)=>{
    db.query(menuSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       let result={
         menuList: res.rows
@@ -200,6 +217,7 @@ app.post('/listData/option',(req,res)=>{
    db.query(optionSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       let result={
        optionList: res.rows
@@ -221,6 +239,7 @@ app.post('/infoData/foodtruck',(req,res)=>{
    db.query(foodtruckSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       let result={
        foodtruckList: res.rows
@@ -242,6 +261,7 @@ app.post('/infoData/menu',(req,res)=>{
    db.query(optionSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
+      sendError(err, {description: ''})
     }else{
       let result={
         menuList: res.rows
