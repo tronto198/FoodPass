@@ -34,8 +34,8 @@ app.post('/insertTruck',(req,res)=>{
   let introduction=req.body.data.information;
   let notice=req.body.data.notice;
   //let origin_information=req.body.data.origin_information;
-  let location_lat=req.body.data.locate.lat;//형태고민
-  let location_lng=req.body.data.locate.lng;
+  let location_lat=req.body.data.location.lat;//형태고민
+  let location_lng=req.body.data.location.lng;
   
 
 
@@ -166,11 +166,12 @@ app.post('/account/orderHistory',(req,res)=>{
 //ListData
 //위치를 받아서 그 위치 xxm 안의 푸드트럭들을 리스트로 리턴 없으면 즐겨찾기?
 app.post('/listData/foodtruck',(req,res)=>{
-  let location=req.body.data.locate;//위치 형식 다시 고민해보기
+  let location_lat=req.body.data.location.lat;//위치 형식 다시 고민해보기
+  let location_lng=req.body.data.location.lng;
   console.log("connect ${location}");
 
-  const listSql="select * from foodtruck_tb where ST_DistanceSphere(location, $1)<=500";
-  const values=[location];
+  const listSql="select * from foodtruck_tb where ST_DistanceSphere(location,ST_MakePoint($2, $1))<=500";
+  const values=[location_lat, location_lng];
 
    db.query(listSql,values,(err,res)=>{
     if(err){
