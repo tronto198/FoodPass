@@ -10,7 +10,7 @@ const app=express();
 
 //const {Client}=require('pg');
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser().json())
+//app.use(bodyParser().json())
 
 //db_configure.json 써먹기
 const db=new (require('./Database_Connecter'))('db_configure.json');
