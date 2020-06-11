@@ -1,6 +1,6 @@
 import { OrderData } from 'src/app/data/order';
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqType } from '../../data-controller/reqType/req-type.enum';
+import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 import { resolve } from 'url';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 
@@ -43,7 +43,7 @@ export class TabOrderWaitingListCtrl implements OrderList{
     
     //서버에 전송
     return new Promise((resolve, reject) =>{
-      this.dataCtrl.testRequest(reqType.orderReceived, this.items[index], true
+      this.dataCtrl.testRequest(reqUrl.orderReceived, this.items[index], true
         , null, 333).then(val =>{
           resolve();
         })

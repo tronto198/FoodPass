@@ -14,6 +14,7 @@ import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
 import { FoodtruckListPageModule } from './foodtruck-list/foodtruck-list.module';
 import { FoodtruckInfoPageModule } from './foodtruck-info/foodtruck-info.module';
 import { MapPagePageModule } from 'src/app/modal-pages/map/map.module';
+import { SharedComponentModule } from 'src/app/component/shared-component.module';
 
 
 @NgModule({
@@ -30,14 +31,11 @@ import { MapPagePageModule } from 'src/app/modal-pages/map/map.module';
   ],
   declarations: [
     TabHomePage,
-    // MapPage,
   ],
   providers: [
-    // TabHomeControllerService,
     ToastController,
     ModalController,
     NavController,
-    // BasketControllerService
   ]
 })
 export class TabHomePageModule {}

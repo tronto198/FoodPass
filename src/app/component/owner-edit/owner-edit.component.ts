@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { UserConfigService } from 'src/app/services/user-config/user-config.service';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 @Component({
   selector: 'component-owner-edit',
@@ -12,7 +12,7 @@ export class OwnerEditComponent implements OnInit {
   @Output() valueModelChange = new EventEmitter<string>();
 
   constructor(
-    private config : UserConfigService
+    private config : SharedDataService
   ) { }
 
   ngOnInit() {

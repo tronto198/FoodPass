@@ -2,7 +2,7 @@ import { OrderData } from 'src/app/data/order';
 import { Storage } from '@ionic/storage';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqOrderHistory, resOrderHistory } from '../../data-controller/reqType/orderHistory.req';
+import { reqOrderHistory, resOrderHistory } from '../../data-controller/reqType/account/orderHistory.req';
 
 export class TabOrderHistoryListCtrl implements OrderList {
 

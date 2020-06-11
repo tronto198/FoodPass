@@ -5,6 +5,8 @@ import { ToastController, ModalController } from '@ionic/angular';
 import { BasketPage } from '../../modal-pages/basket/basket.page';
 import { MapPage } from 'src/app/modal-pages/map/map.page';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 
 @Component({
@@ -19,15 +21,21 @@ export class TabHomePage implements OnInit {
     private toastController : ToastController,
     public modalController : ModalController,
     private pageData : PageDataStorageService,
+    // private messaging: NotificationService
   ) { }
 
   ngOnInit() {
     console.log("tab-home");
+    // this.messaging.requestPermission();
   }
 
   get testlocation(){
-    return this.pageData.tabHome.locationCtrl.locationData.name;
+    return "test";
   }
+
+  // get token(){
+  //   return this.messaging.token;
+  // }
 
   onToolbarClicked(){
     this.modalController.create({

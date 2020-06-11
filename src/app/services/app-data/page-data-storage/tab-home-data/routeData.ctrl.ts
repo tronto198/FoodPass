@@ -1,9 +1,9 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqFoodtruckData, resFoodtruckData } from '../../data-controller/reqType/foodtruckData.req';
-import { reqType } from '../../data-controller/reqType/req-type.enum';
-import { reqMenuData, resMenuData } from '../../data-controller/reqType/menuData.req';
+import { reqFoodtruckData, resFoodtruckData } from '../../data-controller/reqType/infoData/foodtruckData.req';
+import { reqUrl } from '../../data-controller/reqType/req-url.enum';
+import { reqMenuData, resMenuData } from '../../data-controller/reqType/infoData/menuData.req';
 
 export class TabHomeRouteDataCtrl {
     currentFoodtruck: FoodtruckData;
@@ -25,7 +25,7 @@ export class TabHomeRouteDataCtrl {
             foodtruckData: data
         };
 
-        this.dataCtrl.testRequest<resFoodtruckData>(reqType.foodtruckData, req, true, res, 150)
+        this.dataCtrl.request<resFoodtruckData>(reqUrl.foodtruckData, req, true)
         .then(data =>{
             this.currentFoodtruck = data.foodtruckData;
             console.log('get foodtruckData');
@@ -43,7 +43,7 @@ export class TabHomeRouteDataCtrl {
             menuData: menudata
         };
 
-        this.dataCtrl.testRequest<resMenuData>(reqType.menuData, req, true, res, 150)
+        this.dataCtrl.request<resMenuData>(reqUrl.menuData, req, true)
         .then(data =>{
             this.currentMenu = data.menuData;
             console.log('get menuData');

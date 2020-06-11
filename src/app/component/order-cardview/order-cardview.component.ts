@@ -5,6 +5,7 @@ import { PageDataStorageService } from 'src/app/services/app-data/page-data-stor
 import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
 import { TabOrderHistoryListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/orderHistoryList.ctrl';
 import { orderListComponent } from './orderList.component';
+import { WaitingData } from 'src/app/data/waiting';
 
 @Component({
   selector: 'component-order-cardview',
@@ -34,6 +35,15 @@ export class OrderCardviewComponent extends orderListComponent implements OnInit
 
   get menuList(){
     return this.order.orderedMenu;
+  }
+
+  get waiting() : WaitingData{
+    if(this.isBasket){
+      return this.order.foodtruckinfo.waiting ? this.order.foodtruckinfo.waiting : {person: 0, time: 0};
+    }
+    else if(this.isWaiting){
+      return this.order.waiting ? this.order.waiting : {person: 0, time: 0};
+    }
   }
 
 

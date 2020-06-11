@@ -7,6 +7,8 @@ import { PageDataStorageService } from 'src/app/services/app-data/page-data-stor
 import { TabHomeBasketCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.ctrl';
 import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
 import { OrderData } from 'src/app/data/order';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 
 @Component({
@@ -22,6 +24,7 @@ export class BasketPage implements OnInit {
     private PageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
     private loadingCtrl : LoadingController,
+    private push : NotificationService,
   ) { }
 
 
@@ -78,17 +81,17 @@ export class BasketPage implements OnInit {
     this.basketCtrl.toggle();
   }
 
-  async orderButtonClicked(){
-    //서버통신부분
-    //일단 바로 성공하는걸로 
-    // this.orderSuccess();
+  orderButtonClicked(){
 
-    //2초후 성공
-    // this.loading = await this.loadingCtrl.create({
-    //   message: '주문 요청 중입니다...',
-    // });
-    // this.loading.present();
+    if(!this.push.isGranted){
+      alert('주문이 완료되면 푸시 알림을 보내기 위해 권한이 필요합니다.');
+    }
+    this.push.init((token) =>{
+      this.order();
+    });
+  }
 
+  private order() {
     this.basketCtrl.orderCheckedItem().then((val) =>{
       this.orderSuccess(val);
     }).catch(e =>{
@@ -98,15 +101,15 @@ export class BasketPage implements OnInit {
     });
   }
 
-  orderSuccess(orderDatas : OrderData[]){
+  private orderSuccess(orderDatas : OrderData[]){
     // this.loading.dismiss();
     this.waitingOrderCtrl.addItemList(orderDatas);
     this.dismiss();
     this.PageCtrl.routingOrder(orderSlide.waitingOrder);
   }
 
-  orderFailed(){
-
+  private orderFailed(){
+    alert('주문이 처리되지 않았습니다.');
   }
 
 }

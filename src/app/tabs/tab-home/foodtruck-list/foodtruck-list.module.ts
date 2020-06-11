@@ -8,13 +8,15 @@ import { FoodtruckListPageRoutingModule } from './foodtruck-list-routing.module'
 
 import { FoodtruckListPage } from './foodtruck-list.page';
 import { CardviewComponent } from 'src/app/tabs/tab-home/foodtruck-list/foodtruck-cardview/cardview.component';
+import { OrderWaitingComponentModule } from 'src/app/component/order-waiting/order-waiting.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FoodtruckListPageRoutingModule
+    FoodtruckListPageRoutingModule,
+    OrderWaitingComponentModule,
   ],
   exports: [
     FoodtruckListPage

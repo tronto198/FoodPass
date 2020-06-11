@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserConfigService } from './user-config.service';
+import { SharedDataService } from './shared-data.service';
 
 describe('UserConfigService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: UserConfigService = TestBed.get(UserConfigService);
+    const service: SharedDataService = TestBed.get(SharedDataService);
     expect(service).toBeTruthy();
   });
 });
