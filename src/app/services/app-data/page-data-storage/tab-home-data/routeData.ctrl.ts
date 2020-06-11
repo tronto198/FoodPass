@@ -25,7 +25,7 @@ export class TabHomeRouteDataCtrl {
             foodtruckData: data
         };
 
-        this.dataCtrl.testRequest<resFoodtruckData>(reqUrl.foodtruckData, req, true, res, 150)
+        this.dataCtrl.request<resFoodtruckData>(reqUrl.foodtruckData, req, true)
         .then(data =>{
             this.currentFoodtruck = data.foodtruckData;
             console.log('get foodtruckData');
@@ -43,7 +43,7 @@ export class TabHomeRouteDataCtrl {
             menuData: menudata
         };
 
-        this.dataCtrl.testRequest<resMenuData>(reqUrl.menuData, req, true, res, 150)
+        this.dataCtrl.request<resMenuData>(reqUrl.menuData, req, true)
         .then(data =>{
             this.currentMenu = data.menuData;
             console.log('get menuData');

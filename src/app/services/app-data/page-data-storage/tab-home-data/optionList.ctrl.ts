@@ -33,7 +33,7 @@ export class TabHomeOptionListCtrl {
           optionList: options
         };
 
-        this.dataCtrl.testRequest<resOptionList>(reqUrl.optionList, req, true, res, 150, false)
+        this.dataCtrl.request<resOptionList>(reqUrl.optionList, req, true)
         .then(data =>{
           this.optionList = data.optionList;
           console.log('get optionList');
