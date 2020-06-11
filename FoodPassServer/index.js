@@ -180,6 +180,8 @@ app.post('/account/orderHistory',(req,res)=>{
 //ListData
 //위치를 받아서 그 위치 xxm 안의 푸드트럭들을 리스트로 리턴 없으면 즐겨찾기?
 app.post('/listData/foodtruck',(req,res)=>{
+  console.log(req, req.body);
+  
   let data=req.body.data;
   let location_lat=data.location.lat;//위치 형식 다시 고민해보기
   let location_lng=data.location.lng;
@@ -193,6 +195,7 @@ app.post('/listData/foodtruck',(req,res)=>{
       console.log(err.stack)
       sendError(err, {description: ''})
     }else{
+      
       let result={
         foodtruckList: res.rows
       };
