@@ -10,9 +10,9 @@ const cors=require('cors');
 const app=express();
 
 //const {Client}=require('pg');
-app.use(bodyParser.urlencoded({extended: true}))
+//app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors());
-//app.use(bodyParser().json())
+app.use(bodyParser.json({extended: true}))
 
 //db_configure.json 써먹기
 const db=new (require('./Database_Connecter'))('db_configure.json');
@@ -181,7 +181,7 @@ app.post('/account/orderHistory',(req,res)=>{
 //위치를 받아서 그 위치 xxm 안의 푸드트럭들을 리스트로 리턴 없으면 즐겨찾기?
 app.post('/listData/foodtruck',(req,res)=>{
   console.log(req, req.body);
-  
+
   let data=req.body.data;
   let location_lat=data.location.lat;//위치 형식 다시 고민해보기
   let location_lng=data.location.lng;
