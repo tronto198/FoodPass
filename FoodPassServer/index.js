@@ -4,12 +4,14 @@
 const express=require('express');
 const bodyParser=require('body-parser');
 const postgres=require('postgresql');
+const cors=require('cors');
 
 //2.라우팅 객체 만듦.
 const app=express();
 
 //const {Client}=require('pg');
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(cors());
 //app.use(bodyParser().json())
 
 //db_configure.json 써먹기
@@ -26,6 +28,14 @@ function sendError(res, json){
   res.send(JSON.stringify(json));
 }
 
+//cors
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+});
+
+app.listen(8080, function () {
+  console.log('CORS-enabled web server listening on port 8080')
+});
 
 //데이터 입력
 app.post('/insertTruck',(req,res)=>{
