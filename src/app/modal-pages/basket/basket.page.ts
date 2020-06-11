@@ -30,7 +30,7 @@ export class BasketPage implements OnInit {
 
   ngOnInit() {
     console.log("basketPage");
-    this.basketCtrl.makeTestdata();
+    // this.basketCtrl.makeTestdata();
   }
 
   get basketCtrl() : TabHomeBasketCtrl {
