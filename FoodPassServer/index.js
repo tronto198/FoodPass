@@ -33,9 +33,7 @@ app.get('/products/:id', function (req, res, next) {
   res.json({msg: 'This is CORS-enabled for all origins!'})
 });
 
-app.listen(8080, function () {
-  console.log('CORS-enabled web server listening on port 8080')
-});
+
 
 //데이터 입력
 app.post('/insertTruck',(req,res)=>{
@@ -159,6 +157,7 @@ app.post('/account/pushToken',(req,res)=>{
 app.post('/account/orderHistory',(req,res)=>{
   let data=req.body.data;
   let user_id=data.userId;
+  
   console.log("connect ${user_id}");
 
   const orderSql="select order_tb.user_order_menu_id, menu_id, option_id, count from order_tb natural join user_order_menu_tb where user_id=$1  order by order_date_time";
