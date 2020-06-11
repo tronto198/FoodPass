@@ -34,12 +34,13 @@ app.post('/insertTruck',(req,res)=>{
   let introduction=req.body.data.information;
   let notice=req.body.data.notice;
   //let origin_information=req.body.data.origin_information;
-  let location=req.body.data.locate;//형태고민
+  let location_lat=req.body.data.locate.lat;//형태고민
+  let location_lng=req.body.data.locate.lng;
   
 
 
-  const truckInformSql="insert into foodtruck_tb(name, image, introduction, notice, origin_information, location) values($1, $2, $3, $4, $5, $6) Returning *";
-  const values=[name,image,introduction,notice,origin_information,location];
+  const truckInformSql="insert into foodtruck_tb(name, image, introduction, notice, origin_information, location) values($1, $2, $3, $4, $5, st_setsrid(ST_MakePoint($7, $6), 4326)) Returning *";
+  const values=[name,image,introduction,notice,origin_information,location_lat, location_lng];
   db.query(truckInformSql,values,(err,res)=>{
     if(err){
       console.log(err.stack)
@@ -61,7 +62,7 @@ app.post('/insertMenu',(req,res)=>{
   let price=req.body.data.price;
  // let allergy_information=req.body.data.allergy_information;
 
-  const menuInformSql="insert into menu_tb(foodtruck_id, name,image ,introduction ,price ,allergy_information) values($1,$2,$3,$4,$5,$6)";
+  const menuInformSql="insert into menu_tb(foodtruck_id, name,image ,introduction ,price ,allergy_information) values($1,$2,$3,$4,$5,$6) Returning *";
   const values=[foodtruck_id,name,image,introduction,price,allergy_information];
 
    db.query(menuInformSql,values,(err,res)=>{
@@ -82,7 +83,7 @@ app.post('/insertOption',(req,res)=>{
   let name=req.body.data.name;
   let extra_price=req.body.data.extraPrice;
 
-  const optionInformSql="insert into option_tb(menu_id,name,price) values($1,$2,$3)";
+  const optionInformSql="insert into option_tb(menu_id,name,price) values($1,$2,$3) Returning *";
   const values=[menu_id,name,extra_price];
 
    db.query(optionInformSql,values,(err,res)=>{
@@ -103,7 +104,7 @@ app.post('/insertOption',(req,res)=>{
 app.post('/account/create',(req,res)=>{
   
 
-  const Sql="insert into user_tb values(default)";
+  const Sql="insert into user_tb values(default) Returning user_id";
  
 
    db.query(Sql,values,(err,res)=>{
