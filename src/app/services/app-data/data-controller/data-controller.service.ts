@@ -32,6 +32,7 @@ export class DataControllerService {
 
   request<T extends object>(reqUrl : reqUrl, data : object,
     loadingScreen : boolean = true, loadingMessage? : string) : Promise<T>{
+      console.log(reqUrl);
     
       if(loadingScreen){
         this.presentLoadingScreen(loadingMessage);
@@ -42,10 +43,12 @@ export class DataControllerService {
         data : data
       };
 
+      console.log(request);
+
       const url = environment.host.concat(reqUrl);
 
       return new Promise((resolve, reject) =>{
-        this.httpClient.post(environment.host, request, httpOption).subscribe(data =>{
+        this.httpClient.post(url, request, httpOption).subscribe(data =>{
           this.connectSuccess(resolve, reject, data as httpResponse);
         },
         err =>{

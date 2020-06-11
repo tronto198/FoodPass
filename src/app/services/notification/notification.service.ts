@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { DataControllerService } from '../app-data/data-controller/data-controller.service';
 import { reqUrl } from '../app-data/data-controller/reqType/req-url.enum';
-import { reqPushToken } from '../app-data/data-controller/reqType/account/pushToken.req';
+import { reqPushToken, resPushToken } from '../app-data/data-controller/reqType/account/pushToken.req';
 
 @Injectable()
 export class NotificationService {
@@ -68,7 +68,10 @@ export class NotificationService {
     let req : reqPushToken = {
       token: this.token
     }
-    this.dataCtrl.request(reqUrl.pushToken, req, false)
+    this.dataCtrl.request<resPushToken>(reqUrl.pushToken, req, false)
+    .then(v =>{
+      console.log('token send');
+    })
     .catch(e =>{
       console.log('send token failed', e);
     });

@@ -35,7 +35,7 @@ export class CardviewComponent implements OnInit {
   }
 
   get inform() : string{
-    return this.foodtruckInfo.information;
+    return this.foodtruckInfo.introduction;
   }
 
   get waiting() : WaitingData{

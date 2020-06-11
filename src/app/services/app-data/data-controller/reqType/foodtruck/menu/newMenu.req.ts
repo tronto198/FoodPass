@@ -1,7 +1,8 @@
 import { FoodtruckReq } from '../foodtruck.req';
+import { MenuData } from 'src/app/data/menu';
 
-export interface reqNewMenu extends FoodtruckReq {
-    //추가
+export interface reqNewMenu extends FoodtruckReq, MenuData {
+    
 }
 
 export interface resNewMenu {

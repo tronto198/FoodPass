@@ -19,7 +19,7 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.ctrl.getFoodtruckList();
+    this.ctrl.getFoodtruckList(this.sharedData.geolocation.currentLocation);
     this.sharedData.geolocation.watchLocation((coords) =>{
       this.ctrl.calculateFoodtruckDistance();
     });

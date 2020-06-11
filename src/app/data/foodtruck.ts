@@ -6,7 +6,7 @@ export interface FoodtruckData {
     id: number,
     name: string,
 
-    information:string,     //정보
+    introduction:string,     //정보
     notice: string,    //공지
     
     imgSrc?: string;    //이미지

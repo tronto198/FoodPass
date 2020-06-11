@@ -3,11 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 import { firebase } from '../firebase/firebase.config';
+import { host } from './host.config';
 
 export const environment = {
   production: false,
   firebase: firebase,
-  host: "http://localhost:80/test"
+  host: host
 };
 
 /*

@@ -16,7 +16,7 @@ export class SharedGeolocation {
     locationWatcher: Subscription = null;
 
     constructor(private geo: Geolocation){
-        this.currentLocation = { lat: 36.3504563333333, lng:127.38481833333333 };
+        this.currentLocation = { lat: 37.4996, lng:127.0264 };
     }
 
     init() : Promise<Coordinates>{
@@ -28,8 +28,8 @@ export class SharedGeolocation {
 
             this.geo.getCurrentPosition(geoOptions).then(val =>{
                 const coords = val.coords;
-                this.currentLocation.lat = coords.latitude;
-                this.currentLocation.lng = coords.longitude;
+                // this.currentLocation.lat = coords.latitude;
+                // this.currentLocation.lng = coords.longitude;
                 
                 this.isMyLocation = true;
 
