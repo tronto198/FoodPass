@@ -18,12 +18,6 @@ ion-item{
     .option-radio{
         margin: 10px! important;
     }
-
-    .option-view{
-        display: inline-block;
-        font-size: initial;
-        width: 10em;
-    }
         
 }
 .option-info{
@@ -36,3 +30,20 @@ ion-item{
         text-align: right;
     }
 }
+
+
+@media (max-width: 600px) {
+    .option-view{
+        display: inline-block;
+        font-size: initial;
+        width: 8em;
+    }
+}
+
+@media (min-width: 600px) {
+    .option-view{
+        display: inline-block;
+        font-size: initial;
+        width: 18em;
+    }
+  }
