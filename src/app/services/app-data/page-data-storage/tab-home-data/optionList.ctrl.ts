@@ -18,8 +18,8 @@ export class TabHomeOptionListCtrl {
         },
         {
           id: 1002,
-          name: "고오급",
-          extraPrice: 500
+          name: "고오오오오오오오오오오오오오오급",
+          extraPrice: 50000
         }
       ];
     
