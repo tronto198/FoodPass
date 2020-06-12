@@ -16,7 +16,7 @@ import { TabHomeOptionListCtrl } from 'src/app/services/app-data/page-data-stora
 export class MenuInfoPage implements OnInit {
   amount: number = 1;
   price: number = 0;
-  checkedValue: string;
+  checkedValue: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,11 +27,20 @@ export class MenuInfoPage implements OnInit {
   ngOnInit() {
     this.getBaseData();
     this.optionListCtrl.getOptionList(this.foodtruckData.id, this.menuData.menuID);
+    this.checkedValue = 1001;
   }
 
   
-  pickHandler(event){
-    this.checkedValue = event.target.value;
+  ctrlAmount(add : boolean){
+    
+    if(add){
+      this.amount++;
+    }
+    else{
+      if(this.amount > 1){
+        this.amount--;
+      }
+    }
   }
 
   get routeCtrl(): TabHomeRouteDataCtrl{
@@ -76,6 +85,7 @@ export class MenuInfoPage implements OnInit {
   }
   orderToBasket(){
     this.basketCtrl.push(this.foodtruckData, this.menuData, this.optionList[0], this.amount);
+    this.pageCtrl.routingHome();
   }
 
 
