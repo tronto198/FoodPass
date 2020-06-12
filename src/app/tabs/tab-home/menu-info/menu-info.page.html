@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="tabs/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>menu-info</ion-title>
+    <ion-title>{{foodtruckData.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,22 +15,33 @@
         <ion-card-title>{{menuData.menuName}}</ion-card-title>
         <ion-card-subtitle>기본가격: {{menuData.price}}원</ion-card-subtitle>
       
+      <div class="option-info">
+        <ion-icon  class="icon-button" 
+        name="add-outline" (click)="ctrlAmount(true)"></ion-icon>
+
+        <ion-label class="amount-view">
+          {{amount}}개
+        </ion-label>
+
+        <ion-icon class="icon-button" 
+        name="remove-outline" (click)="ctrlAmount(false)"></ion-icon>
+        </div>
     </ion-card>
     </ion-header>
     
     <ion-content ng-controller="MyCtrl as ctrl">
           <ion-list class="row header">
-              <ion-radio-group (ionChange)="pickHandler($event)">
+              <ion-radio-group [(ngModel)]="checkedValue">
                 <ion-list-header>
-                  <ion-label>옵션명    추가가격   개수 {{isCheckedValue}} </ion-label>
+                  <ion-label class="option-name"> 옵션 </ion-label>
                 </ion-list-header>
-                <ion-item class="option-list" *ngFor="let option of optionList; let i = index">
+                <ion-item class="option-list" *ngFor="let option of optionList; let i = index" >
                   <app-pick-menu-option id="{{option.id}}" name="{{option.name}}" extraPrice="{{option.extraPrice}}"></app-pick-menu-option>
                 </ion-item>
             </ion-radio-group>
           </ion-list>
 
-          <ion-button expand="full" class="button-to-basket" (click)="orderToBasket()"> {{menuData.menuName}} {{isCheckedValue}}  구매하기
+          <ion-button expand="full" class="button-to-basket" (click)="orderToBasket()"> {{menuData.menuName}} {{checkedValue}} {{amount}}개 구매하기
           </ion-button>
     </ion-content>
 </ion-content>

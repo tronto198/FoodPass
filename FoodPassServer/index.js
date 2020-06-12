@@ -449,67 +449,77 @@ app.post('/infoData/menu',(req,res)=>{
 //orderList받으면 그 오더들을 각 푸드트럭에 전달한 뒤, 각 푸드트럭이 응답하면 
 //신호 모으고 orderID를 부여한 뒤 리턴
 app.post('/order/request',(req,res)=>{
-  let data=req.body.data;
-  // let foodtruck_id=data.id;
-  let orderList = data.orderList;
+  console.log('/order/request');
+
+  order(req, res);
+
+});
+
+async function order(req, res){
   
-  console.log("connect ${foodtruck_id}");
+  let orderList = req.body.data.orderList;
 
   //일단 넣고 응답만
-  db.query('BEGIN').then(() =>{
-    console.log('begin');
-    let data = {
-      orderList : []
+  await db.query('BEGIN')
+  try {
+  console.log('begin');
+  let data = {
+    orderList : []
+  }
+
+  let relation_valid_sql = `select foodtruck_id from relation_user_foodtruck_tb where user_id=${req.body.userId} and foodtruck_id=${orderList[0].foodtruckId}`;
+  let foodtruckIdList = []
+  let user_order_sql = "insert into user_order_menu_tb(user_order_menu_id, user_id, foodtruck_id) values"
+
+  orderList.forEach((val, index) =>{
+    foodtruckIdList.push(val.foodtruckId);
+    user_order_sql = user_order_sql.concat(` (default, ${req.body.userId}, ${val.foodtruckId})`);
+    if(index > 0){
+      relation_valid_sql = relation_valid_sql.concat(` or user_id=${req.body.userId} and ${val.foodtruckId}`);
     }
+  })
+  user_order_sql = user_order_sql.concat(` returning user_order_menu_id as id`);
+  console.log('sql: ' + user_order_sql);
 
-    let user_order_sql = "insert into user_order_menu_tb( user_id, foodtruck_id) values"
-    orderList.forEach((val) =>{
-      user_order_sql = user_order_sql.concat(` ( ${req.body.userId}, ${val.foodtruckId})`);
+  let rel_val = await db.query(relation_valid_sql)
+  let rel_required = foodtruckIdList.filter(v => !rel_val.rows.includes(v));
+  if(rel_required.length > 0){
+    let rel_create_sql = `insert into relation_user_foodtruck_tb(user_id, foodtruck_id) values`
+    rel_required.forEach(val =>{
+      rel_create_sql = rel_create_sql.concat(` (${req.body.userId}, ${val})`);
     })
-    user_order_sql = user_order_sql.concat(` returning user_order_menu_id as id`);
-    console.log('sql: ' + user_order_sql);
-
-    db.query(user_order_sql).then(user_order_val =>{
-      console.log('order insert');
-      let order_info_sql = "insert into order_tb(user_order_menu_id, menu_id, option_id, count) values"
-      user_order_val.rows.forEach((val, index) =>{
-        orderList[index].id = val.id;
-        orderList[index].orderedMenu.forEach((menuval) =>{
-          order_info_sql.concat(`(${val.id}, ${menuval.menuId}, ${menuval.optionId}, ${menuval.amount})`);
-        })
-
-        data.orderList.push({id: val.id, foodtruckId: orderList[index].foodtruckId});
+    await db.query(rel_create_sql)
+  }
+  
+    
+  db.query(user_order_sql).then(user_order_val =>{
+    let order_info_sql = "insert into order_tb(user_order_menu_id, menu_id, option_id, count) values"
+    user_order_val.rows.forEach((val, index) =>{
+      orderList[index].id = val.id;
+      orderList[index].orderedMenu.forEach((menuval) =>{
+        order_info_sql = order_info_sql.concat(`(${val.id}, ${menuval.menuId}, ${menuval.optionId}, ${menuval.amount})`);
       })
 
-      db.query(order_info_sql).then(() =>{
-        db.query('COMMIT').then(()=>{
-          sendResult(res, data);
-        })
+      data.orderList.push({id: val.id, foodtruckId: orderList[index].foodtruckId});
+    })
+    
+    console.log('order insert: ', order_info_sql);
+
+    db.query(order_info_sql).then(() =>{
+      db.query('COMMIT').then(()=>{
+        sendResult(res, data);
       })
     })
-  }).catch((e)=>{
-    db.query('ROLLBACK');
+  })
+} catch(e){
+  db.query('ROLLBACK');
     console.log(e);
 
     sendError(e, {});
-  })
+  }
+
   
-
-  // const Sql="select user_order_menu_id as isvalid from user_order_menu_tb where foodtruck_id=$1";
-  // const values=[foodtruck_id];
-
-  //  db.query(Sql,values,(err,res)=>{
-  //   if(res.rows[0].isvalid){
-  //     const orderSql="select * from order_tb where user_order_menu_id= $1 "
-  //     const values=[foodtruck_id];
-  //     db.query(orderSql, values).then(res3={
-
-  //     })
-  //   }
-  // })
-});
-
-
+}
 
 //수령확인한 orderID를 받아 푸드트럭에 전달하고 응답을 받으면 리턴
 
