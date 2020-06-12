@@ -462,9 +462,9 @@ app.post('/order/request',(req,res)=>{
       orderList : []
     }
 
-    let user_order_sql = "insert into user_order_menu_tb(user_order_menu_id, user_id, foodtruck_id) values"
+    let user_order_sql = "insert into user_order_menu_tb( user_id, foodtruck_id) values"
     orderList.forEach((val) =>{
-      user_order_sql = user_order_sql.concat(` (default, ${req.body.userId}, ${val.foodtruckId})`);
+      user_order_sql = user_order_sql.concat(` ( ${req.body.userId}, ${val.foodtruckId})`);
     })
     user_order_sql = user_order_sql.concat(` returning user_order_menu_id as id`);
     console.log('sql: ' + user_order_sql);
