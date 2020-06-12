@@ -17,7 +17,7 @@ export class orderListComponent{
             return this.pageData.tabOrder.waitingCtrl.items;
         }
         else if(this.isHistory()){
-            return this.pageData.tabOrder.historyCtrl.items;
+            // return this.pageData.tabOrder.historyCtrl.items;
         }
     }
 

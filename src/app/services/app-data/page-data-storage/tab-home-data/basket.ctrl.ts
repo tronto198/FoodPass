@@ -148,8 +148,9 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
 
         let order : orderRequest = {
           foodtruckId: orderinfo.foodtruckinfo.id,
-          orderedMenu: []
-        }
+          orderedMenu: [],
+          price: orderinfo.price
+        };
         orderinfo.orderedMenu.forEach((val)=>{
           order.orderedMenu.push({
             menuId: val.menuinfo.menuID,

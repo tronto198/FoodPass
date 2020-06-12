@@ -33,7 +33,7 @@
    <ion-row no-padding>
     <ion-col no padding col-2 *ngFor="let menu of menuList; let i = index" class="foodtruck-info-cards">
         <app-menu-list id="{{menu.menuID}}" name="{{menu.menuName}}" inform="{{menu.menuInform}}"
-      price="{{menu.price}}" menuImage="{{menu.src}}"
+      price="{{menu.price}}" menuImage="{{getMenuImg(i)}}"
       (click)="menuClicked(i)">
       
       </app-menu-list> 

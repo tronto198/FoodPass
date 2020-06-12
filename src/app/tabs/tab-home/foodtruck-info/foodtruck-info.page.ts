@@ -40,6 +40,10 @@ export class FoodtruckInfoPage implements OnInit  {
     return this.pageData.tabHome.menuListCtrl.menuList;
   }
 
+  getMenuImg(i : number) : string {
+    return this.menuList[i].imgsrc? this.menuList[i].imgsrc : DefaultValue.MenuImgSrc;
+  }
+
   getBaseData(){
     //여기에서 foodtruckinfo 가 있는지 보고
     // 없으면 getRoutingData로 foodtruckinfo를 웹에서 받아오기

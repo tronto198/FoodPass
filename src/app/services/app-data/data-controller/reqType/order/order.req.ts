@@ -14,7 +14,8 @@ export interface orderRequest {
         menuId: number;
         optionId: number;
         amount: number;
-    }[]
+    }[],
+    price: number;
 }
 
 export interface orderResponse {

@@ -3,6 +3,8 @@ import { DataControllerService } from '../../data-controller/data-controller.ser
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 import { resolve } from 'url';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
+import { resOrderReceived } from '../../data-controller/reqType/order/orderReceived.req';
+import { OrderHistoryData } from 'src/app/data/order-history';
 
 export class TabOrderWaitingListCtrl implements OrderList{
   waitingList : OrderData[] = [];
@@ -39,13 +41,13 @@ export class TabOrderWaitingListCtrl implements OrderList{
     return this.waitingList;
   }
 
-  orderReceived(index : number) : Promise<void>{
+  orderReceived(index : number) : Promise<OrderHistoryData>{
     
     //서버에 전송
     return new Promise((resolve, reject) =>{
-      this.dataCtrl.testRequest(reqUrl.orderReceived, this.items[index], true
-        , null, 333).then(val =>{
-          resolve();
+      this.dataCtrl.request<resOrderReceived>(reqUrl.orderReceived, this.items[index], true)
+      .then(val =>{
+          resolve(null);
         })
         .catch(e =>{
           reject();

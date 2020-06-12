@@ -6,6 +6,7 @@ export interface OrderData{
     id?: number;
     foodtruckinfo: FoodtruckData;
     orderedMenu: OrderedMenuData[];
+    price: number;
     
     orderNo?: number;
     waiting?: WaitingData;

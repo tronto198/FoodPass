@@ -166,67 +166,39 @@ app.post('/account/orderHistory',(req,res)=>{
   let data=req.body.data;
   let user_id=data.userId;
   
-  console.log("connect ${user_id}");
+  console.log("order history");
 
-  const orderSql="select order_tb.user_order_menu_id, menu_id, option_id, count, foodtruck_id from order_tb natural join user_order_menu_tb where user_id=$1  order by order_date_time";
-  const values=[user_id];
+  //줘야하는것 : foodtruckid, price, id
 
-   db.query(orderSql,values).then(res2=>{
+  const historySql = `select user_order_menu_id as id, foodtruck_tb.foodtruck_id as foodtruck_id,
+  price, name, introduction, notice, image
+  from user_order_menu_tb inner join foodtruck_tb
+  on user_order_menu_tb.foodtruck_id=foodtruck_tb.foodtruck_id
+  where user_id=${req.body.userId} order by order_date_time`;
 
-     if(res2.rows!=null){
-       let foodtruck_id=res2.rows[0].id;
-       const detailedSql="select * from foodtruck_tb natural join menu_tb natural join option_tb where foodtruck_id=$1 and menu_tb.menu_id=option_tb.option_id"
-       const values=[foodtruck_id];
-       db.query(detailedSql, values).then(res3=>{
-        let result={
-          data:{
-            orderList:[]
-          }
-        };
-        res3.rows.forEach(element=>{
-          let orderinfo={
-            id: element.user_order_menu_id,
-           foodtruckinfo: {
-             id:element.foodtruck_id,
-             name:element.name,
-             introduction:element.introduction,
-           //  location:{
-            //   lng:element.x,
-             //  lat:element.y
-            // }
-           },
-            orderedMenu:{
-              menuinfo:{
-                menuID:element.menu_id,
-                menuName:element.menu_tb.name,
-                menuInformation: element.menu_tb.introduction,
-                price: element.menu_tb.price,
-             //   imgsrc: element.menu_tb.image
-              } ,
-              optioninfo:{
-                id:element.option_id,
-                name: element.option_tb.name,
-                extraPrice: element.extra_price
-              },
-              amount:element.count
-            },
-           //orderNo,
-           //waiting: element.
-          }
-          result.data.orderList.push(orderinfo);
-        });
-        sendResult(res,result);
+  db.query(historySql).then(val =>{
+    let data = {
+      historyList: []
+    };
 
-       })
-      .catch(err=>{
-      console.log(err.stack)
-      sendError(err, {description:''});
-      });   
-    }
-    else{
-      sendError(res, {description: 'foodtruck_id 가 없거나 받은 데이터가 아무것도 없을때'});
-    }  
-});
+    val.rows.forEach(val =>{
+      console.log(val);
+      data.historyList.push({
+        id: val.id,
+        price: val.price,
+        foodtruckInfo: {
+          id: val.foodtruck_id,
+          name: val.name,
+          // imgSrc: image,
+          introduction: val.introduction,
+          notice: val.notice
+        }
+      })
+    })
+
+    sendResult(res, data);
+  })
+
 });
 
 //ListData
@@ -467,43 +439,64 @@ async function order(req, res){
     orderList : []
   }
 
-  let relation_valid_sql = `select foodtruck_id from relation_user_foodtruck_tb where user_id=${req.body.userId} and foodtruck_id=${orderList[0].foodtruckId}`;
+  let relation_valid_sql = `select foodtruck_id from relation_user_foodtruck_tb where (user_id=${req.body.userId} and foodtruck_id=${orderList[0].foodtruckId})`;
   let foodtruckIdList = []
-  let user_order_sql = "insert into user_order_menu_tb(user_order_menu_id, user_id, foodtruck_id) values"
+  let user_order_sql = "insert into user_order_menu_tb(user_order_menu_id, user_id, foodtruck_id, price) values"
 
   orderList.forEach((val, index) =>{
     foodtruckIdList.push(val.foodtruckId);
-    user_order_sql = user_order_sql.concat(` (default, ${req.body.userId}, ${val.foodtruckId})`);
+    user_order_sql = user_order_sql.concat(` (default, ${req.body.userId}, ${val.foodtruckId}, ${val.price})`);
     if(index > 0){
-      relation_valid_sql = relation_valid_sql.concat(` or user_id=${req.body.userId} and ${val.foodtruckId}`);
+      relation_valid_sql = relation_valid_sql.concat(` or (user_id=${req.body.userId} and ${val.foodtruckId})`);
     }
   })
+  console.log('relation check: ' + relation_valid_sql);
+
   user_order_sql = user_order_sql.concat(` returning user_order_menu_id as id`);
-  console.log('sql: ' + user_order_sql);
 
   let rel_val = await db.query(relation_valid_sql)
-  let rel_required = foodtruckIdList.filter(v => !rel_val.rows.includes(v));
+  console.log(rel_val.rows);
+  console.log(foodtruckIdList);
+  let rel_required = [];
+  rel_val.rows.forEach(relval=>{
+    let isReady = false;
+    foodtruckIdList.forEach(ftId =>{
+      if(relval.foodtruck_id == ftId){
+        isReady = true;
+        // break;
+      }
+    })
+    if(!isReady){
+      console.log('new foodtruck!: relval.foodtruck_id');
+      rel_required.push(relval.foodtruck_id);
+    }
+  })
+  
+  // let rel_required = foodtruckIdList.filter(v => !rel_val.rows.includes({ foodtruck_id: v }));
+  console.log(rel_required);
   if(rel_required.length > 0){
     let rel_create_sql = `insert into relation_user_foodtruck_tb(user_id, foodtruck_id) values`
     rel_required.forEach(val =>{
       rel_create_sql = rel_create_sql.concat(` (${req.body.userId}, ${val})`);
     })
+    console.log('create relation: ' + rel_create_sql);
     await db.query(rel_create_sql)
   }
   
     
+  console.log('order insert : ' + user_order_sql);
   db.query(user_order_sql).then(user_order_val =>{
     let order_info_sql = "insert into order_tb(user_order_menu_id, menu_id, option_id, count) values"
     user_order_val.rows.forEach((val, index) =>{
       orderList[index].id = val.id;
       orderList[index].orderedMenu.forEach((menuval) =>{
-        order_info_sql = order_info_sql.concat(`(${val.id}, ${menuval.menuId}, ${menuval.optionId}, ${menuval.amount})`);
+        order_info_sql = order_info_sql.concat(` (${val.id}, ${menuval.menuId}, ${menuval.optionId}, ${menuval.amount})`);
       })
 
       data.orderList.push({id: val.id, foodtruckId: orderList[index].foodtruckId});
     })
     
-    console.log('order insert: ', order_info_sql);
+    console.log('orderInfo insert: ', order_info_sql);
 
     db.query(order_info_sql).then(() =>{
       db.query('COMMIT').then(()=>{
@@ -520,6 +513,15 @@ async function order(req, res){
 
   
 }
+
+
+app.post('/order/received', (req, res) =>{
+  let orderId = req.body.data.orderId;
+  console.log('order received: ' + orderId);
+  //is_received : true하기
+
+  sendResult(res, {});
+})
 
 //수령확인한 orderID를 받아 푸드트럭에 전달하고 응답을 받으면 리턴
 

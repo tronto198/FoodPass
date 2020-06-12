@@ -3,16 +3,18 @@ import { Storage } from '@ionic/storage';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 import { DataControllerService } from '../../data-controller/data-controller.service';
 import { reqOrderHistory, resOrderHistory } from '../../data-controller/reqType/account/orderHistory.req';
+import { OrderHistoryData } from 'src/app/data/order-history';
+import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 
-export class TabOrderHistoryListCtrl implements OrderList {
+export class TabOrderHistoryListCtrl {
 
-  orderhistoryList : OrderData[] = [];
+  orderhistoryList : OrderHistoryData[] = [];
 
   constructor(private dataCtrl: DataControllerService){
 
   }
 
-  get orderList() : OrderData[] {
+  get orderList() : OrderHistoryData[] {
     return this.orderhistoryList;
   }
   get items(){
@@ -23,7 +25,7 @@ export class TabOrderHistoryListCtrl implements OrderList {
     return this.orderhistoryList;
   }
 
-  remove(item: OrderData){
+  remove(item: OrderHistoryData){
     this.orderhistoryList.splice(this.orderhistoryList.indexOf(item), 1);
   }
 
@@ -31,11 +33,11 @@ export class TabOrderHistoryListCtrl implements OrderList {
     this.orderhistoryList.splice(index, 1);
   }
 
-  addItem(item: OrderData){
+  addItem(item: OrderHistoryData){
     this.orderhistoryList.push(item);
   }
 
-  addItemList(items: OrderData[]){
+  addItemList(items: OrderHistoryData[]){
     this.orderhistoryList.push(...items);
   }
 
@@ -43,9 +45,12 @@ export class TabOrderHistoryListCtrl implements OrderList {
     let req : reqOrderHistory = {
 
     }
-    let res : resOrderHistory = {
-      history: []
-    };
+
+    this.dataCtrl.request<resOrderHistory>(reqUrl.orderHistory, req, false)
+    .then(val =>{
+      console.log("get history");
+      this.orderhistoryList = val.historyList;
+    })
     
   }
 

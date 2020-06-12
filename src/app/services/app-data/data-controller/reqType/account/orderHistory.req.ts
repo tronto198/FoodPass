@@ -1,9 +1,9 @@
-import { OrderData } from 'src/app/data/order';
+import { OrderHistoryData } from 'src/app/data/order-history';
 
 export interface reqOrderHistory{
 
 }
 
 export interface resOrderHistory {
-    history : OrderData[];
+    historyList : OrderHistoryData[];
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
+import { OrderHistoryData } from 'src/app/data/order-history';
 
 @Component({
   selector: 'order-waiting-order-list',
@@ -45,7 +46,12 @@ export class WaitingOrderListPage implements OnInit {
     console.log(index);
     this.waitingCtrl.orderReceived(index).then( ()=>{
       let order = this.waitingCtrl.removeItem(index);
-      this.pageData.tabOrder.historyCtrl.addItem(order);
+      let history : OrderHistoryData ={
+        id: order.id,
+        price: order.price,
+        foodtruckInfo: order.foodtruckinfo
+      }
+      this.pageData.tabOrder.historyCtrl.addItem(history);
       
     });
   }
