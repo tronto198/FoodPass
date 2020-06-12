@@ -224,6 +224,7 @@ app.post('/account/orderHistory',(req,res)=>{
       sendError(res, {description: 'foodtruck_id 가 없거나 받은 데이터가 아무것도 없을때'});
     }  
 });
+});
 
 //ListData
 //위치를 받아서 그 위치 xxm 안의 푸드트럭들을 리스트로 리턴 없으면 즐겨찾기?
@@ -505,5 +506,4 @@ app.get('/pass', function(req,res){
 app.listen(8080, function(){
   console.log("server starting with 8080")
 });
-
 
