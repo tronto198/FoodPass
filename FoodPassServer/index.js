@@ -151,11 +151,8 @@ app.post('/account/pushToken',(req,res)=>{
     //   }
     //   result.data.push(tokeninfo);
     // });
-    let data = {
-      
-    }
   
-  sendResult(res, data);
+  sendResult(res, {});
   //res.send('pushToken: '+ push_token)
 })
 .catch(err=>{
@@ -303,10 +300,10 @@ app.post('/listData/menu',(req,res)=>{
      };
      res2.rows.forEach(element=>{
        let menuinfo={
-         menuID=element.menu_id,
-         menuName=element.name,
-         menuInformation=element.introduction,
-         price=element.price,
+         menuID: element.menu_id,
+         menuName: element.name,
+         menuInformation: element.introduction,
+         price: element.price,
          //imgsrc=element.image
 
        }
@@ -332,7 +329,7 @@ app.post('/listData/option',(req,res)=>{
   const optionSql="select option_id,name, extra_price from option_tb where foodtruck_id=$1 and menu_id=$2";
   const values=[foodtruck_id, menu_id];
 
-   db.query(optionSql,values).then(err2=>{
+   db.query(optionSql,values).then(res2=>{
      let data={
        
          optionList:[]
@@ -365,6 +362,7 @@ app.post('/infoData/foodtruck',(req,res)=>{
   const values=[foodtruck_id];
 
    db.query(foodtruckSql,values).then(res2=>{
+     //여기엔 메뉴리스트 붙일 예정
      const foodtruck = res2.rows[0];
      let data={
          foodtruckData: {
@@ -374,7 +372,7 @@ app.post('/infoData/foodtruck',(req,res)=>{
              lng: foodtruck.x,
              lat: foodtruck.y
            },
-           name = foodtruck.name,
+           name : foodtruck.name,
            notice: foodtruck.notice
          }
      };
@@ -419,10 +417,10 @@ app.post('/infoData/menu',(req,res)=>{
     let element = res2.rows[0];
     let data={
       menuData: {
-        menuID=element.menu_id,
-        menuName=element.name,
-        menuInformation=element.introduction,
-        price=element.price,
+        menuID: element.menu_id,
+        menuName: element.name,
+        menuInformation: element.introduction,
+        price: element.price,
       }
       
       
@@ -457,17 +455,19 @@ app.post('/order/request',(req,res)=>{
   
   console.log("connect ${foodtruck_id}");
 
+  //일단 넣고 응답만
   db.query('BEGIN').then(() =>{
     console.log('begin');
     let data = {
       orderList : []
     }
 
-    let user_order_sql = "insert into user_order_menu_td(user_order_menu_id, user_id, foodtruck_id) values"
+    let user_order_sql = "insert into user_order_menu_tb(user_order_menu_id, user_id, foodtruck_id) values"
     orderList.forEach((val) =>{
-      user_order_sql.concat(` (default, ${req.body.userId}, ${val.foodtruckId})`);
+      user_order_sql = user_order_sql.concat(` (default, ${req.body.userId}, ${val.foodtruckId})`);
     })
-    user_order_sql.concat(` returning user_order_menu_id as id`);
+    user_order_sql = user_order_sql.concat(` returning user_order_menu_id as id`);
+    console.log('sql: ' + user_order_sql);
 
     db.query(user_order_sql).then(user_order_val =>{
       console.log('order insert');
