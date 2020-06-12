@@ -1,6 +1,5 @@
 //기본 라우팅 소스코드
 //1.express모듈 사용하기 위해 require 함수로 불러옴
-//bodyparser.json 추가?
 const express=require('express');
 const bodyParser=require('body-parser');
 const postgres=require('postgresql');
@@ -39,7 +38,7 @@ app.get('/products/:id', function (req, res, next) {
 app.post('/insertTruck',(req,res)=>{
   let data=req.body.data;
   let name=data.name;
-  //let image=data.imgSrc;
+  let image=data.imgSrc;
   let introduction=data.introduction;
   let notice=data.notice;
   //let origin_information=data.origin_information;
@@ -48,8 +47,8 @@ app.post('/insertTruck',(req,res)=>{
   
 
 
-  const truckInformSql="insert into foodtruck_tb(name, image, introduction, notice, origin_information, location) values($1, $2, $3, $4, $5, st_setsrid(ST_MakePoint($7, $6), 4326)) Returning *";
-  const values=[name,image,introduction,notice,origin_information,location_lat, location_lng];
+  const truckInformSql="insert into foodtruck_tb(name, image, introduction, notice, location) values($1, $2, $3, $4, st_setsrid(ST_MakePoint($6, $5), 4326)) Returning *";
+  const values=[name,image,introduction,notice,location_lat, location_lng];
   db.query(truckInformSql,values).then(res2=>{
 
 
@@ -65,13 +64,13 @@ app.post('/insertMenu',(req,res)=>{
   let data=req.body.data;
   let foodtruck_id=data.id;
   let name=data.menuName;
-  let image=data.imgSrc;
-  let introduction=data.menu_information;
+  let image=data.imgsrc;
+  let introduction=data.menuInformation;
   let price=data.price;
  // let allergy_information=data.allergy_information;
 
-  const menuInformSql="insert into menu_tb(foodtruck_id, name,image ,introduction ,price ,allergy_information) values($1,$2,$3,$4,$5,$6) Returning *";
-  const values=[foodtruck_id,name,image,introduction,price,allergy_information];
+  const menuInformSql="insert into menu_tb(foodtruck_id, name,image ,introduction ,price ) values($1,$2,$3,$4,$5) Returning *";
+  const values=[foodtruck_id,name,image,introduction,price];
 
    db.query(menuInformSql,values).then(res2=>{
     sendResult(res,result);
@@ -86,7 +85,7 @@ app.post('/insertMenu',(req,res)=>{
 
 app.post('/insertOption',(req,res)=>{
   let data=req.body.data;
-  let menu_id=data.menuId;
+  let menu_id=data.menuID;
   let name=data.name;
   let extra_price=data.extraPrice;
 
@@ -166,44 +165,64 @@ app.post('/account/orderHistory',(req,res)=>{
   
   console.log("connect ${user_id}");
 
-  const orderSql="select order_tb.user_order_menu_id, menu_id, option_id, count from order_tb natural join user_order_menu_tb where user_id=$1  order by order_date_time";
+  const orderSql="select order_tb.user_order_menu_id, menu_id, option_id, count, foodtruck_id from order_tb natural join user_order_menu_tb where user_id=$1  order by order_date_time";
   const values=[user_id];
 
    db.query(orderSql,values).then(res2=>{
-     let result={
-       data:{
-         orderList:[]
-       }
-     };
-     res2.rows.forEach(element=>{
-       let orderinfo={
-         id: element.user_order_menu_id,
-        // foodtruckinfo: {
-        //   id:
-        //   name:
-        //   introduction:
-        //   location:{
-        //     lng:
-        //     lat:
-        //   }
-        // },
-        // orderedMenu:{
-        //   menuinfo:
-        //   optioninfo:
-        //   amount:element.
-        // }
-        //orderNo,
-        //waiting: element.
-       }
-       result.data.orderList.push(orderinfo);
-     });
-     sendResult(res,result);
-   
-  })
-  .catch(err=>{
-    console.log(err.stack)
-    sendError(err, {description:''});
-  });
+
+     if(res2.rows!=null){
+       let foodtruck_id=res2.rows[0].id;
+       const detailedSql="select * from foodtruck_tb natural join menu_tb natural join option_tb where foodtruck_id=$1 and menu_tb.menu_id=option_tb.option_id"
+       const values=[foodtruck_id];
+       db.query(detailedSql, values).then(res3=>{
+        let result={
+          data:{
+            orderList:[]
+          }
+        };
+        res3.rows.forEach(element=>{
+          let orderinfo={
+            id: element.user_order_menu_id,
+           foodtruckinfo: {
+             id:element.foodtruck_id,
+             name:element.name,
+             introduction:element.introduction,
+           //  location:{
+            //   lng:element.x,
+             //  lat:element.y
+            // }
+           },
+            orderedMenu:{
+              menuinfo:{
+                menuID:element.menu_id,
+                menuName:element.menu_tb.name,
+                menuInformation: element.menu_tb.introduction,
+                price: element.menu_tb.price,
+             //   imgsrc: element.menu_tb.image
+              } ,
+              optioninfo:{
+                id:element.option_id,
+                name: element.option_tb.name,
+                extraPrice: element.extra_price
+              },
+              amount:element.count
+            },
+           //orderNo,
+           //waiting: element.
+          }
+          result.data.orderList.push(orderinfo);
+        });
+        sendResult(res,result);
+
+       })
+      .catch(err=>{
+      console.log(err.stack)
+      sendError(err, {description:''});
+      });   
+    }
+    else{
+      sendError(res, {description: 'foodtruck_id 가 없거나 받은 데이터가 아무것도 없을때'});
+    }  
 });
 
 //ListData
@@ -271,7 +290,7 @@ app.post('/listData/menu',(req,res)=>{
   let foodtruck_id=data.id;
   console.log("connect ${foodtruck_id}");
 
-  const menuSql="select * from menu_tb where foodtruck_id=$1";
+  const menuSql="select menu_id, name, introduction,price,image from menu_tb where foodtruck_id=$1";
   const values=[foodtruck_id];
 
    db.query(menuSql,values).then(res2=>{
@@ -307,7 +326,7 @@ app.post('/listData/option',(req,res)=>{
   let menu_id=data.menuId;
   console.log("connect ${foodtruck_id}, ${menu_id}");
 
-  const optionSql="select * from option_tb where foodtruck_id=$1 and menu_id=$2";
+  const optionSql="select option_id,name, extra_price from option_tb where foodtruck_id=$1 and menu_id=$2";
   const values=[foodtruck_id, menu_id];
 
    db.query(optionSql,values).then(err2=>{
