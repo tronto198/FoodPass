@@ -2,9 +2,32 @@ ion-card {
     padding: 20px 20px;
     
 }
+.option-name{
+    font-size: large;
+}
 
 .menu_img {
     width: 150px;
+}
+
+
+.option-info{
+    float: right;
+    padding: 20px 20px;
+
+    .icon-button{
+        display: inline-block;
+        font-size: large;
+        margin: 5px 10px;
+    }
+    
+    .amount-view{
+        display: inline-block;
+        text-align: center;
+        font-size: large;
+        height: 18px;
+        width: 1.8em;
+    }
 }
 
 .option-list{
