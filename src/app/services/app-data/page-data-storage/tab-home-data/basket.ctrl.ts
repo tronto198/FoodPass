@@ -7,7 +7,7 @@ import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu'
 import { OrderData } from 'src/app/data/order';
 import { DataControllerService } from '../../data-controller/data-controller.service';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
-import { reqOrder, resOrder } from '../../data-controller/reqType/order/order.req';
+import { reqOrder, resOrder, orderRequest } from '../../data-controller/reqType/order/order.req';
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 
 
@@ -140,22 +140,38 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
     return new Promise((resolve, reject) =>{
       
       
-      let orderList : OrderData[] = [];
+      let orderList : orderRequest[] = [];
+      let orderDataList: OrderData[] = [];
       checkedOrderList.forEach((val, index, arr)=>{
-        orderList.push(val.extractData());
+        let orderinfo : OrderData = val.extractData();
+        orderDataList.push(orderinfo);
+
+        let order : orderRequest = {
+          foodtruckId: orderinfo.foodtruckinfo.id,
+          orderedMenu: []
+        }
+        orderinfo.orderedMenu.forEach((val)=>{
+          order.orderedMenu.push({
+            menuId: val.menuinfo.menuID,
+            optionId: val.optioninfo.id,
+            amount: val.amount
+          });
+        });
+        
+        orderList.push(order);
       });
 
-      orderList.forEach((val, index) =>{
-        val.id = index;
-      });
+      // orderList.forEach((val, index) =>{
+      //   val.id = index;
+      // });
       
       let req : reqOrder = {
         orderList : orderList
       };
 
-      let resExpect : resOrder = {
-        orderList : orderList
-      };
+      // let resExpect : resOrder = {
+      //   orderList : orderList
+      // };
 
       // this.dataCtrl.testRequest<resOrder>(reqType, req, true, resExpect, 1500)
       // .then(data =>{
@@ -166,7 +182,20 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
 
       this.dataCtrl.request<resOrder>(reqUrl.order, req).then(data =>{
         console.log(data);
-        resolve(data.orderList);
+        let orderedList : OrderData[] = [];
+        data.orderList.forEach((val, index) =>{
+          for(let i = index; i < orderDataList.length; i++){
+            if(orderDataList[i].foodtruckinfo.id == val.foodtruckId){
+              orderDataList[i].id = val.id;
+              orderedList.push(orderDataList[i]);
+              break;
+            }
+            else{
+              // orderDataList.splice(i, 1);
+            }
+          }
+        })
+        resolve(orderedList);
       });
     });
   }

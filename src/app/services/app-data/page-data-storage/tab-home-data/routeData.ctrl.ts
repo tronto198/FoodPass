@@ -13,7 +13,7 @@ export class TabHomeRouteDataCtrl {
 
     }
 
-    getFoodtruckData(id : number) : void{
+    getFoodtruckData(id : number) : void{//todo : promise로 고치기 => promise 후에 메뉴리스트를 가져오게
         // let data : FoodtruckData = {id: 10, name: "닭발집 10", locate:{name: "A", lat: 0, lng : 0}, distance:500,introduction:"치즈닭발, 무뼈닭발있습니다.", 
         // rating:3.5, wating:{person: 5, time: 10}, notice:"화요일은 충남대 갑니다" , imgSrc:"../assets/icon/foodtruck.png"};
 

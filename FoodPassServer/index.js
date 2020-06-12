@@ -18,8 +18,12 @@ const db=new (require('./Database_Connecter'))('db_configure.json');
 
 //function
 function sendResult(res, json){
-  json.result=true;
-  res.send(JSON.stringify(json));
+  let result = {
+    result : true,
+    data: json
+  }
+  // json.result=true;
+  res.send(JSON.stringify(result));
 }
 
 function sendError(res, json){
@@ -111,20 +115,18 @@ app.post('/account/create',(req,res)=>{
   const Sql="insert into user_tb values(default) Returning user_id";
  
    db.query(Sql).then(res2 =>{
-    let result={
-      data:{
-        accountId: 4001
-      }
+    let data={
+      accountId: res2.rows[0].user_id
     
     };
-    res2.rows.forEach(element => {
-      let userinfo = {
-        id: element.user_id
-      }
-      result.foodtruckList.push(userinfo);
-    });
+    // res2.rows.forEach(element => {
+    //   let userinfo = {
+    //     id: element.user_id
+    //   }
+    //   result.foodtruckList.push(userinfo);
+    // });
 
-    sendResult(res, result);
+    sendResult(res, data);
    })
    .catch(err=>{
     console.log(err.stack)
@@ -142,14 +144,18 @@ app.post('/account/pushToken',(req,res)=>{
   const values=[push_token];
 
    db.query(Sql,values).then(res2=>{
-    res2.rows.forEach(element=>{
-      let tokeninfo={
-        token: element.push_token
-      }
-      result.data.push(tokeninfo);
-    });
+
+    // res2.rows.forEach(element=>{
+    //   let tokeninfo={
+    //     token: element.push_token
+    //   }
+    //   result.data.push(tokeninfo);
+    // });
+    let data = {
+      
+    }
   
-  sendResult(res, result);
+  sendResult(res, data);
   //res.send('pushToken: '+ push_token)
 })
 .catch(err=>{
@@ -242,11 +248,8 @@ app.post('/listData/foodtruck',(req,res)=>{
   const values=[location_lat, location_lng];
 
    db.query(listSql,values).then(res2 =>{
-    let result={
-      data: {
+    let data = {
         foodtruckList: []
-      }
-     
     };
 
     res2.rows.forEach(element => {
@@ -262,9 +265,9 @@ app.post('/listData/foodtruck',(req,res)=>{
         notice: element.notice,
         //origin_information: element.origin_information
       }
-      result.data.foodtruckList.push(ftinfo);
+      data.foodtruckList.push(ftinfo);
     });
-    sendResult(res, result);
+    sendResult(res, data);
    })
    .catch(err=>{
     console.log(err.stack)
@@ -288,17 +291,15 @@ app.post('/listData/foodtruck',(req,res)=>{
 //foodtruckID를 받으면 그 푸드트럭의 메뉴 리스트를 리턴
 app.post('/listData/menu',(req,res)=>{
   let data=req.body.data;
-  let foodtruck_id=data.id;
+  let foodtruck_id=data.foodtruckId;
   console.log("connect ${foodtruck_id}");
 
   const menuSql="select menu_id, name, introduction,price,image from menu_tb where foodtruck_id=$1";
   const values=[foodtruck_id];
 
    db.query(menuSql,values).then(res2=>{
-     let result={
-       data:{
+     let data={
          menuList: []
-       }
      };
      res2.rows.forEach(element=>{
        let menuinfo={
@@ -309,9 +310,9 @@ app.post('/listData/menu',(req,res)=>{
          //imgsrc=element.image
 
        }
-       result.data.menuList.push(menuinfo);
+       data.menuList.push(menuinfo);
      });
-     sendResult(res,result);
+     sendResult(res,data);
    
   })
   .catch(err=>{
@@ -323,18 +324,19 @@ app.post('/listData/menu',(req,res)=>{
 //foodtruckID menuID 받으면 옵션들 리턴
 app.post('/listData/option',(req,res)=>{
   let data=req.body.data;
-  let foodtruck_id=data.id;
+  let foodtruck_id=data.foodtruckId;
   let menu_id=data.menuId;
   console.log("connect ${foodtruck_id}, ${menu_id}");
 
+  //당장은 foodtruckid가 같을 필요가 없음
   const optionSql="select option_id,name, extra_price from option_tb where foodtruck_id=$1 and menu_id=$2";
   const values=[foodtruck_id, menu_id];
 
    db.query(optionSql,values).then(err2=>{
-     let result={
-       data:{
+     let data={
+       
          optionList:[]
-       }
+       
      };
      res2.rows.forEach(element=>{
        let optioninfo={
@@ -342,9 +344,9 @@ app.post('/listData/option',(req,res)=>{
          name: element.name,
          extraPrice: element.extra_price
        }
-       result.data.optionList.push(optioninfo);
+        data.optionList.push(optioninfo);
      })
-  sendResult(res,result);
+    sendResult(res,data);
   })
   .catch(err=>{
     console.log(err.stack)
@@ -356,35 +358,43 @@ app.post('/listData/option',(req,res)=>{
 //foodtruckID받으면 푸드트럭의 정보 리턴
 app.post('/infoData/foodtruck',(req,res)=>{
   let data=req.body.data;
-  let foodtruck_id=data.id;
+  let foodtruck_id=data.foodtruckId;
   console.log("connect ${foodtruck_id}");
 
-  const foodtruckSql="select * from foodtruck_tb where foodtruck_id=$1";
+  const foodtruckSql="select *, st_x(location) as x, st_y(location) as y from foodtruck_tb where foodtruck_id=$1";
   const values=[foodtruck_id];
 
    db.query(foodtruckSql,values).then(res2=>{
-     let result={
-       data:{
-         foodtruckList: []
-       }
+     const foodtruck = res2.rows[0];
+     let data={
+         foodtruckData: {
+           id: foodtruck.foodtruck_id,
+           introduction: foodtruck.introduction,
+           location: {
+             lng: foodtruck.x,
+             lat: foodtruck.y
+           },
+           name = foodtruck.name,
+           notice: foodtruck.notice
+         }
      };
     
-     res2.rows.forEach(element => {
-      let ftinfo = {
-        id: element.foodtruck_id,
-        //imgSrc: element.image,
-        introduction: element.introduction,
-        location:{
-          lng:element.x,
-          lat:element.y
-        },
-        name: element.name,
-        notice: element.notice,
-        //origin_information: element.origin_information
-      }
-      result.data.foodtruckList.push(ftinfo);
-    });
-    sendResult(res, result);
+    //  res2.rows.forEach(element => {
+    //   let ftinfo = {
+    //     id: element.foodtruck_id,
+    //     //imgSrc: element.image,
+    //     introduction: element.introduction,
+    //     location:{
+    //       lng:element.x,
+    //       lat:element.y
+    //     },
+    //     name: element.name,
+    //     notice: element.notice,
+    //     //origin_information: element.origin_information
+    //   }
+      // result.data.foodtruckList.push(ftinfo);
+      sendResult(res, data);
+    
    })
 
 
@@ -397,7 +407,7 @@ app.post('/infoData/foodtruck',(req,res)=>{
 //foodtruckID, menuID받으면 메뉴 정보 리턴
 app.post('/infoData/menu',(req,res)=>{
   let data=req.body.data;
-  let foodtruck_id=data.id;
+  let foodtruck_id=data.foodtruckId;
   let menu_id=data.menuId;
   console.log("connect ${foodtruck_id}, ${menu_id}");
 
@@ -405,23 +415,30 @@ app.post('/infoData/menu',(req,res)=>{
   const values=[foodtruck_id, menu_id];
 
   db.query(menuSql,values).then(res2=>{
-    let result={
-      data:{
-        menuList: []
-      }
-    };
-    res2.rows.forEach(element=>{
-      let menuinfo={
+    //여기에 옵션리스트도 곧 붙일 예정
+    let element = res2.rows[0];
+    let data={
+      menuData: {
         menuID=element.menu_id,
         menuName=element.name,
         menuInformation=element.introduction,
         price=element.price,
-        //imgsrc=element.image
-
       }
-      result.data.menuList.push(menuinfo);
-    });
-    sendResult(res,result);
+      
+      
+    };
+    // res2.rows.forEach(element=>{
+    //   let menuinfo={
+    //     menuID=element.menu_id,
+    //     menuName=element.name,
+    //     menuInformation=element.introduction,
+    //     price=element.price,
+    //     //imgsrc=element.image
+
+    //   }
+    //   result.data.menuList.push(menuinfo);
+    // });
+    sendResult(res,data);
   
  })
  .catch(err=>{
@@ -435,22 +452,61 @@ app.post('/infoData/menu',(req,res)=>{
 //신호 모으고 orderID를 부여한 뒤 리턴
 app.post('/order/request',(req,res)=>{
   let data=req.body.data;
-  let foodtruck_id=data.id;
+  // let foodtruck_id=data.id;
+  let orderList = data.orderList;
   
   console.log("connect ${foodtruck_id}");
 
-  const Sql="select user_order_menu_id as isvalid from user_order_menu_tb where foodtruck_id=$1";
-  const values=[foodtruck_id];
-
-   db.query(Sql,values,(err,res)=>{
-    if(res.rows[0].isvalid){
-      const orderSql="select * from order_tb where user_order_menu_id= $1 "
-      const values=[foodtruck_id];
-      db.query(orderSql, values).then(res3={
-
-      })
+  db.query('BEGIN').then(() =>{
+    console.log('begin');
+    let data = {
+      orderList : []
     }
+
+    let user_order_sql = "insert into user_order_menu_td(user_order_menu_id, user_id, foodtruck_id) values"
+    orderList.forEach((val) =>{
+      user_order_sql.concat(` (default, ${req.body.userId}, ${val.foodtruckId})`);
+    })
+    user_order_sql.concat(` returning user_order_menu_id as id`);
+
+    db.query(user_order_sql).then(user_order_val =>{
+      console.log('order insert');
+      let order_info_sql = "insert into order_tb(user_order_menu_id, menu_id, option_id, count) values"
+      user_order_val.rows.forEach((val, index) =>{
+        orderList[index].id = val.id;
+        orderList[index].orderedMenu.forEach((menuval) =>{
+          order_info_sql.concat(`(${val.id}, ${menuval.menuId}, ${menuval.optionId}, ${menuval.amount})`);
+        })
+
+        data.orderList.push({id: val.id, foodtruckId: orderList[index].foodtruckId});
+      })
+
+      db.query(order_info_sql).then(() =>{
+        db.query('COMMIT').then(()=>{
+          sendResult(res, data);
+        })
+      })
+    })
+  }).catch((e)=>{
+    db.query('ROLLBACK');
+    console.log(e);
+
+    sendError(e, {});
   })
+  
+
+  // const Sql="select user_order_menu_id as isvalid from user_order_menu_tb where foodtruck_id=$1";
+  // const values=[foodtruck_id];
+
+  //  db.query(Sql,values,(err,res)=>{
+  //   if(res.rows[0].isvalid){
+  //     const orderSql="select * from order_tb where user_order_menu_id= $1 "
+  //     const values=[foodtruck_id];
+  //     db.query(orderSql, values).then(res3={
+
+  //     })
+  //   }
+  // })
 });
 
 

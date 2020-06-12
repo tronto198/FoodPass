@@ -42,6 +42,7 @@ export class TabHomeFoodtruckListCtrl {
             this.foodtruckList = data.foodtruckList;
             console.log('get foodtrucklist');
 
+            this.allocateSign();
             this.calculateFoodtruckDistance();
         })
 
@@ -53,11 +54,27 @@ export class TabHomeFoodtruckListCtrl {
         return this.dataCtrl.sharedData.geolocation;
     }
 
+    private allocateSign() : void {
+        console.log('allocate sign');
+        
+        let index = 0;
+        if(this.foodtruckList == null){
+            return;
+        }
+
+        this.foodtruckList.forEach((val) =>{
+            if(val.location != null){
+                val.localData = {
+                    sign: signArr.charAt(index++)
+                }
+            }
+        });
+    }
+
     calculateFoodtruckDistance() : void {
         if(this.geolocation.isMyLocation){
             console.log('update foodtruck distance');
 
-            let index = 0;
             if(this.foodtruckList == null){
                 return;
             }
@@ -70,15 +87,12 @@ export class TabHomeFoodtruckListCtrl {
                     })
                     let dis = Math.round(line.getLength());
                     
-                    val.localData = {
-                        sign: signArr.charAt(index++),
-                        distance: dis
-                    };
+                    val.localData.distance = dis
+                    
                 }
             });
 
             console.log('updated');
-
         }
     }
 }

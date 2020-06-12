@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { WaitingData } from 'src/app/data/waiting';
+import { DefaultValue } from 'src/environments/defaultValue';
 
 @Component({
   selector: 'app-cardview',
@@ -31,7 +32,7 @@ export class CardviewComponent implements OnInit {
     return this.foodtruckInfo.localData? this.foodtruckInfo.localData.sign : '';
   }
   get distance() : string {
-    return this.foodtruckInfo.localData ? String(this.foodtruckInfo.localData.distance) : '';
+    return this.foodtruckInfo.localData.distance ? String(this.foodtruckInfo.localData.distance) + 'm' : '';
   }
 
   get inform() : string{
@@ -53,7 +54,7 @@ export class CardviewComponent implements OnInit {
 
 
   get truckImage() : string{
-    return this.foodtruckInfo.imgSrc;
+    return this.foodtruckInfo.imgSrc? this.foodtruckInfo.imgSrc : DefaultValue.foodtruckImgSrc;
   }
 
 

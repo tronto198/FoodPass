@@ -32,8 +32,7 @@ export class DataControllerService {
 
   request<T extends object>(reqUrl : reqUrl, data : object,
     loadingScreen : boolean = true, loadingMessage? : string) : Promise<T>{
-      console.log(reqUrl);
-    
+
       if(loadingScreen){
         this.presentLoadingScreen(loadingMessage);
       }
@@ -43,7 +42,7 @@ export class DataControllerService {
         data : data
       };
 
-      console.log(request);
+      console.log(`request to : ${reqUrl}`, request);
 
       const url = environment.host.concat(reqUrl);
 
@@ -60,6 +59,7 @@ export class DataControllerService {
   }
 
   private connectSuccess(resolve, reject, res : httpResponse){
+    console.log('response :',res);
     if(res.result){
       resolve(res.data);
     }
@@ -103,6 +103,7 @@ export class DataControllerService {
   }
   
   private async presentLoadingScreen(message? : string){
+    console.log('present loading screen');
     if(this.loading != null){
       this.loading = await this.loadingCtrl.create({
         message: message != null ? message : '요청 중입니다...',
@@ -113,6 +114,7 @@ export class DataControllerService {
 
   private dismissLoadingScreen(){
     if(this.loading != null){
+      console.log('dismiss loading screen');
       this.loading.dismiss();
       this.loading = null;
     }
