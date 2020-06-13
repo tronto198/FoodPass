@@ -1,0 +1,11 @@
+<div class="flex">
+  <ion-badge *ngIf="waitingPerson != 0" color="primary">
+    <ion-icon name="people"></ion-icon>
+    {{waitingPerson}}
+  </ion-badge>
+  <ion-badge *ngIf="waitingTime != 0" color="warning">
+    <ion-icon name="time"></ion-icon>
+    {{waitingTime}}
+  </ion-badge>
+  <ng-content></ng-content>
+</div>

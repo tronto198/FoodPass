@@ -1,7 +1,7 @@
 import { OptionData } from 'src/app/data/option';
 import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqOptionList, resOptionList } from '../../data-controller/reqType/optionList.req';
-import { reqType } from '../../data-controller/reqType/req-type.enum';
+import { reqOptionList, resOptionList } from '../../data-controller/reqType/listData/optionList.req';
+import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 
 export class TabHomeOptionListCtrl {
     optionList : OptionData[];
@@ -18,8 +18,8 @@ export class TabHomeOptionListCtrl {
         },
         {
           id: 1002,
-          name: "고오급",
-          extraPrice: 500
+          name: "고오오오오오오오오오오오오오오급",
+          extraPrice: 50000
         }
       ];
     
@@ -33,7 +33,7 @@ export class TabHomeOptionListCtrl {
           optionList: options
         };
 
-        this.dataCtrl.testRequest<resOptionList>(reqType.optionList, req, true, res, 150, false)
+        this.dataCtrl.request<resOptionList>(reqUrl.optionList, req, true)
         .then(data =>{
           this.optionList = data.optionList;
           console.log('get optionList');

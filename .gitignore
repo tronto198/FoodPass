@@ -34,3 +34,5 @@ npm-debug.log*
 /android
 /ios
 capacitor.json
+/src/environments/*.config.*
+/src/firebase/*

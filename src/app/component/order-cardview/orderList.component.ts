@@ -17,7 +17,7 @@ export class orderListComponent{
             return this.pageData.tabOrder.waitingCtrl.items;
         }
         else if(this.isHistory()){
-            return this.pageData.tabOrder.historyCtrl.items;
+            // return this.pageData.tabOrder.historyCtrl.items;
         }
     }
 
@@ -36,8 +36,8 @@ export class orderListComponent{
     orderPrice(orderIndex : number){
         let price : number = 0;
         this.orderList[orderIndex].orderedMenu.forEach((val, i, arr)=>{
-        price += val.amount * (val.menuinfo.price + val.optioninfo.extraPrice);
-        })
+            price += val.amount * (val.menuinfo.price + val.optioninfo.extraPrice);
+        });
 
         return price;
     }
@@ -47,7 +47,7 @@ export class orderListComponent{
     }
 
     removeMenu(orderIndex : number, menuIndex : number){
-        //todo splice하고 뒤의 index들이 당겨지는 현상 수정해야함
+        
         this.orderList[orderIndex].orderedMenu.splice(menuIndex, 1);
         if(this.orderList[orderIndex].orderedMenu.length == 0){
         this.removeOrder(orderIndex);

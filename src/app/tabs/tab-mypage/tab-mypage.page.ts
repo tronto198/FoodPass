@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserConfigService } from 'src/app/services/user-config/user-config.service';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-tab-mypage',
@@ -9,7 +10,8 @@ import { UserConfigService } from 'src/app/services/user-config/user-config.serv
 export class TabMypagePage implements OnInit {
 
   constructor(
-    private config : UserConfigService,
+    private config : SharedDataService,
+    private push : NotificationService
   ) { }
 
   ngOnInit() {
@@ -22,5 +24,10 @@ export class TabMypagePage implements OnInit {
 
   set admin(b : boolean){
     this.config.foodtruckOwner = b;
+  }
+
+  requestPermission(){
+    // this.push.requestPermission()
+    console.log('requestPermission');
   }
 }

@@ -23,7 +23,7 @@
         ]
       },
       {
-        "source": "ngsw-worker.js",
+        "source": "combined-worker.js",
         "headers": [
           {
             "key": "Cache-Control",
@@ -31,6 +31,7 @@
           }
         ]
       }
+
     ]
   }
 }

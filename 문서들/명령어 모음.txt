@@ -44,3 +44,9 @@ npx cap add android//수동으로 안드로이드 프로젝트 만들기
 npx cap sync//종속성 업데이트
 npx cap copy//웹 자산만 복사하기-종속성 업데이트 할 필요 없는 경우
 npx cap open android//안드로이드에서 프로젝트 열기 API 24, android 7.0 이상에서 가능함
+
+
+
+------web deploy
+ionic build -prod
+firebase deploy

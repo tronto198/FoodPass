@@ -28,16 +28,20 @@
 
       <div class="card-footer" *ngIf="isBasket() || isWaiting()">
         <!-- <span> -->
-          <ion-badge color="secondary" class="badges">
+          <!-- <ion-badge color="secondary" class="badges">
             <ion-icon name="people"></ion-icon>
             5명
           </ion-badge>
           <ion-badge color="warning" class="badges">
             <ion-icon name="time"></ion-icon>
             10분
-          </ion-badge>
+          </ion-badge> -->
         <!-- </span> -->
-        <ion-button *ngIf="isWaiting()" (click)="orderReceived()">수령 확인</ion-button>
+        <component-order-waiting waitingTime={{waiting.time}} waitingPerson={{waiting.person}}>
+          <ion-button *ngIf="isWaiting()" (click)="orderReceived()">수령 확인</ion-button>  
+        </component-order-waiting>
+
+        
       </div>
       <div class="card-footer" *ngIf="isHistory()">
         <ion-button (click)="rating()"> 평가하기 </ion-button>

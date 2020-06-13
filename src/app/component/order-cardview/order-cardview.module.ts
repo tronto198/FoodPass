@@ -8,12 +8,14 @@ import { HeaderWaitingComponent } from './header-waiting/header-waiting.componen
 import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
 import { OwnerEditComponentModule } from '../owner-edit/owner-edit.module';
 import { HeaderHistoryComponent } from './header-history/header-history.component';
+import { OrderWaitingComponentModule } from '../order-waiting/order-waiting.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
+        OrderWaitingComponentModule,
         OwnerEditComponentModule,
     ],
     exports: [

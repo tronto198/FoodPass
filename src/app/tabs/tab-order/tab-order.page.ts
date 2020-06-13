@@ -24,6 +24,7 @@ export class TabOrderPage implements OnInit {
 
   ngOnInit() {
     this.pageValue = orderSlide.waitingOrder;
+    this.pageData.tabOrder.historyCtrl.getHistory();
   }
 
   get pageValue(){

@@ -1,6 +1,6 @@
 <ion-card >
   <ion-item>
-    <ion-label id="slide-title" name=location, slot="start"> {{locate}}  {{distance}}m</ion-label>
+    <ion-label id="slide-title" name=location, slot="start"> {{sign}}  {{distance}}</ion-label>
   </ion-item>
 
   <ion-img class="slide-img" src="{{truckImage}}" alt="ion"></ion-img>
@@ -11,16 +11,18 @@
         <ion-card-subtitle>
           {{inform}}
         </ion-card-subtitle>
-          <ion-badge color="danger">
+
+          <!-- <ion-badge color="danger">
             <ion-icon name="star"></ion-icon>
           
-          {{grade}}점
+          {{rating}}점
           </ion-badge>
 
           <ion-badge color="warning">
          
            <ion-label>대기 {{wating}}명</ion-label>
-          </ion-badge>
+          </ion-badge> -->
+          <component-order-waiting waitingTime={{waiting.time}} waitingPerson={{waiting.person}}></component-order-waiting>
       </ion-card-header>
 
 

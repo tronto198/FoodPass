@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { firebase } from "@firebase/app";
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { UserConfigService } from './services/user-config/user-config.service';
+import { SharedDataService } from './services/shared-data/shared-data.service';
 import { PageDataStorageService } from './services/app-data/page-data-storage/page-data-storage.service';
+
+import { NotificationService } from './services/notification/notification.service';
+import { environment } from 'src/environments/environment';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+
 
 @Component({
   selector: 'app-root',
@@ -16,7 +22,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private pageData : PageDataStorageService,
+    private sharedData: SharedDataService,
   ) {
     this.initializeApp();
   }
@@ -25,14 +31,21 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       console.log("app start");
-      this.pageData.config.userAccountCtrl.init().then(()=>{
-        this.splashScreen.hide();
+      this.sharedData.account.init().then(()=>{
+        this.appReady();
       }).catch(e =>{
         console.log(e);
+        //id 받아오지 못함
       });
       
     });
 
   }
 
+  appReady(){
+    this.splashScreen.hide();
+  }
+  appNotReady(){
+    alert('id를 받아오지 못했습니다.');
+  }
 }

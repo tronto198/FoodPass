@@ -68,7 +68,8 @@ export class BasketOrder extends CheckboxValue implements OrderData{
         let orderData : OrderData = {
             id : this.id,
             foodtruckinfo: this.foodtruckinfo,
-            orderedMenu: orderedMenuData
+            orderedMenu: orderedMenuData,
+            price: this.price
         };
 
         return orderData;
