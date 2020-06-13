@@ -1,0 +1,7 @@
+{
+  "user":"postgres",
+  "host":"foodpassdb3.c8zpfcwi12bx.ap-northeast-2.rds.amazonaws.com",
+  "database":"myDatabase",
+  "password":"postgres",
+  "port":5432
+}
