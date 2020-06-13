@@ -18,7 +18,7 @@ export class OrderHistoryListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-     this.historyCtrl.getHistory();
+    //  this.historyCtrl.getHistory();
   }
 
   get historyCtrl() : TabOrderHistoryListCtrl {

@@ -110,8 +110,8 @@ app.post('/insertOption',(req,res)=>{
 //account
 //user만들고 아이디 리턴
 app.post('/account/create',(req,res)=>{
-  
 
+  
   const Sql="insert into user_tb values(default) Returning user_id";
  
    db.query(Sql).then(res2 =>{
@@ -119,12 +119,7 @@ app.post('/account/create',(req,res)=>{
       accountId: res2.rows[0].user_id
     
     };
-    // res2.rows.forEach(element => {
-    //   let userinfo = {
-    //     id: element.user_id
-    //   }
-    //   result.foodtruckList.push(userinfo);
-    // });
+    console.log(`account created: ${data.accountId}`);
 
     sendResult(res, data);
    })
@@ -138,12 +133,14 @@ app.post('/account/create',(req,res)=>{
 //pushToken
 app.post('/account/pushToken',(req,res)=>{
   let data=req.body.data;
+  let userId = req.body.userId;
   let push_token=data.token;
 
-  const Sql="insert into user_tb(push_token) values($1) returning push_token";
-  const values=[push_token];
+  const Sql = "update user_tb set push_token=$1 where user_id=$2";
+  const values=[push_token, userId];
 
    db.query(Sql,values).then(res2=>{
+     console.log(`push token saved for account: ${userId}`);
 
     // res2.rows.forEach(element=>{
     //   let tokeninfo={
@@ -163,10 +160,9 @@ app.post('/account/pushToken',(req,res)=>{
 
 //ordertable에서 userID가 같은 주문들을 시간순으로 리턴
 app.post('/account/orderHistory',(req,res)=>{
-  let data=req.body.data;
-  let user_id=data.userId;
   
-  console.log("order history");
+  console.log(`order history of account: ${req.body.userId}`);
+  // console.log("order history");
 
   //줘야하는것 : foodtruckid, price, id
 
@@ -182,7 +178,6 @@ app.post('/account/orderHistory',(req,res)=>{
     };
 
     val.rows.forEach(val =>{
-      console.log(val);
       data.historyList.push({
         id: val.id,
         price: val.price,
@@ -211,7 +206,8 @@ app.post('/listData/foodtruck',(req,res)=>{
   let location_lng=data.location.lng;
   //let name=data.foodtruckList.name;
   //let notice=data.foodtruckList.notice;
-  console.log("connect ${location}");
+  // console.log("connect ${location}");
+  console.log(`get foodtruckList location: { lat: ${location_lat}, lng: ${location_lng} }`);
 
   const listSql="select foodtruck_id, st_x(location) as x, st_y(location) as y, name, image, introduction, notice from foodtruck_tb where ST_DistanceSphere(location,ST_MakePoint($2, $1))<=500";
   const values=[location_lat, location_lng];
@@ -261,10 +257,11 @@ app.post('/listData/foodtruck',(req,res)=>{
 app.post('/listData/menu',(req,res)=>{
   let data=req.body.data;
   let foodtruck_id=data.foodtruckId;
-  console.log("connect ${foodtruck_id}");
 
   const menuSql="select menu_id, name, introduction,price,image from menu_tb where foodtruck_id=$1";
   const values=[foodtruck_id];
+
+  console.log(`get menuList of foodtruck: ${foodtruck_id}`);
 
    db.query(menuSql,values).then(res2=>{
      let data={
@@ -295,11 +292,12 @@ app.post('/listData/option',(req,res)=>{
   let data=req.body.data;
   let foodtruck_id=data.foodtruckId;
   let menu_id=data.menuId;
-  console.log("connect ${foodtruck_id}, ${menu_id}");
 
   //당장은 foodtruckid가 같을 필요가 없음
   const optionSql="select option_id,name, extra_price from option_tb where foodtruck_id=$1 and menu_id=$2";
   const values=[foodtruck_id, menu_id];
+
+  console.log(`get optionList of foodtruck: ${foodtruck_id}, menu: ${menu_id}`);
 
    db.query(optionSql,values).then(res2=>{
      let data={
@@ -434,12 +432,12 @@ async function order(req, res){
   //일단 넣고 응답만
   await db.query('BEGIN')
   try {
-  console.log('begin');
+  // console.log('begin');
   let data = {
     orderList : []
   }
 
-  let relation_valid_sql = `select foodtruck_id from relation_user_foodtruck_tb where (user_id=${req.body.userId} and foodtruck_id=${orderList[0].foodtruckId})`;
+  let relation_valid_sql = `select foodtruck_id from relation_user_foodtruck_tb where user_id=${req.body.userId} and foodtruck_id=${orderList[0].foodtruckId}`;
   let foodtruckIdList = []
   let user_order_sql = "insert into user_order_menu_tb(user_order_menu_id, user_id, foodtruck_id, price) values"
 
@@ -447,39 +445,43 @@ async function order(req, res){
     foodtruckIdList.push(val.foodtruckId);
     user_order_sql = user_order_sql.concat(` (default, ${req.body.userId}, ${val.foodtruckId}, ${val.price})`);
     if(index > 0){
-      relation_valid_sql = relation_valid_sql.concat(` or (user_id=${req.body.userId} and ${val.foodtruckId})`);
+      relation_valid_sql = relation_valid_sql.concat(` or user_id=${req.body.userId} and foodtruck_id=${val.foodtruckId}`);
     }
   })
-  console.log('relation check: ' + relation_valid_sql);
+  // console.log('relation check: ' + relation_valid_sql);
 
   user_order_sql = user_order_sql.concat(` returning user_order_menu_id as id`);
 
   let rel_val = await db.query(relation_valid_sql)
-  console.log(rel_val.rows);
-  console.log(foodtruckIdList);
+  console.log(`relation checked`);
   let rel_required = [];
+  if(rel_val.rows.length == 0){
+    rel_required = foodtruckIdList;
+  }
   rel_val.rows.forEach(relval=>{
+    // console.log(relval);
     let isReady = false;
     foodtruckIdList.forEach(ftId =>{
+      // console.log(ftId);
       if(relval.foodtruck_id == ftId){
         isReady = true;
         // break;
       }
     })
     if(!isReady){
-      console.log('new foodtruck!: relval.foodtruck_id');
+      // console.log('new foodtruck!: relval.foodtruck_id');
       rel_required.push(relval.foodtruck_id);
     }
   })
   
   // let rel_required = foodtruckIdList.filter(v => !rel_val.rows.includes({ foodtruck_id: v }));
-  console.log(rel_required);
+  
   if(rel_required.length > 0){
     let rel_create_sql = `insert into relation_user_foodtruck_tb(user_id, foodtruck_id) values`
     rel_required.forEach(val =>{
       rel_create_sql = rel_create_sql.concat(` (${req.body.userId}, ${val})`);
     })
-    console.log('create relation: ' + rel_create_sql);
+    // console.log('create relation: ' + rel_create_sql);
     await db.query(rel_create_sql)
   }
   
@@ -496,10 +498,11 @@ async function order(req, res){
       data.orderList.push({id: val.id, foodtruckId: orderList[index].foodtruckId});
     })
     
-    console.log('orderInfo insert: ', order_info_sql);
+    // console.log('orderInfo insert: ', order_info_sql);
 
     db.query(order_info_sql).then(() =>{
       db.query('COMMIT').then(()=>{
+        console.log('ordered');
         sendResult(res, data);
       })
     })
