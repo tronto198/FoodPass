@@ -41,6 +41,6 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
 
 
   foodtruckClicked(index: number){
-    this.pageCtrl.routingHome(this.foodtruckList[index]);
+    this.pageCtrl.routingFoodtruck(this.foodtruckList[index]);
   }
 }

@@ -3,7 +3,7 @@ import { reqMenuList, resMenuList } from '../../data-controller/reqType/listData
 import { DataControllerService } from '../../data-controller/data-controller.service';
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 
-export class TabHomeMenuListCtrl {
+export class ModalMenuListCtrl {
     menuList : MenuData[];
 
     constructor(private dataCtrl : DataControllerService){

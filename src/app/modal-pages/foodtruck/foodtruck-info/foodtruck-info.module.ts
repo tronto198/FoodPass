@@ -8,7 +8,7 @@ import { FoodtruckInfoPageRoutingModule } from './foodtruck-info-routing.module'
 
 import { FoodtruckInfoPage } from './foodtruck-info.page';
 import { MenuInfoPageModule } from '../menu-info/menu-info.module';
-import { MenuListComponent } from 'src/app/tabs/tab-home/foodtruck-info/menu-list/menu-list.component';
+import { MenuListComponent } from './menu-list/menu-list.component';
 
 @NgModule({
   imports: [

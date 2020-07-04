@@ -22,22 +22,29 @@ export class TabHomeFoodtruckListCtrl {
             location: location
         };
 
-        // let FoodtruckDummyData : FoodtruckData[] = [];
-        // FoodtruckDummyData.push({id: 10, name: "닭발집 10", information:"치즈닭발, 무뼈닭발있습니다.", location: {lat: 36.34643152, lng: 127.30269199},
-        // rating:3.5, waiting:{person: 5, time: 15}, notice:"화요일은 충남대 갑니다" , imgSrc:"../assets/icon/foodtruck.png"});
-        // FoodtruckDummyData.push({id: 11, name: "와플집 11", information:" 초코와플, 바나나와플, 딸기와플,  빙수", location: {lat: 36.34591574, lng: 127.30352547},
-        // rating: 4.5, waiting:{person: 12, time: 30}, notice:"1명당 대기시간 약 3분 소요됩니다.", imgSrc:"../assets/icon/foodtruck2.png"});
-        // FoodtruckDummyData.push({id: 12, name: "떡볶이집 12", information:"떡복이 맵기: 순함, 중간, 매움", location: {lat: 36.34506285, lng: 127.30225225},
-        // rating:4, waiting:{person: 3, time: 5}, notice:"이번주 토요일 엑스포 행사장 갑니다.", imgSrc:"../assets/icon/foodtruck3.png"});
-        // FoodtruckDummyData.push({id: 13, name: "13", information:"짝수 맞추기 위한 카드뷰",
-        // rating:0, wating:{person: 0, time: 3}, notice:"카드가 홀수일 경우 공간만 차지하게 해야 함"});
+        let FoodtruckDummyData : FoodtruckData[] = [];
+        FoodtruckDummyData.push({id: 10, name: "닭발집 10", introduction:"치즈닭발, 무뼈닭발있습니다.", location: {lat: 36.34643152, lng: 127.30269199},
+        rating:3.5, waiting:{person: 5, time: 15}, notice:"화요일은 충남대 갑니다" , imgSrc:"../assets/icon/foodtruck.png"});
+        FoodtruckDummyData.push({id: 11, name: "와플집 11", introduction:" 초코와플, 바나나와플, 딸기와플,  빙수", location: {lat: 36.34591574, lng: 127.30352547},
+        rating: 4.5, waiting:{person: 12, time: 30}, notice:"1명당 대기시간 약 3분 소요됩니다.", imgSrc:"../assets/icon/foodtruck2.png"});
+        FoodtruckDummyData.push({id: 12, name: "떡볶이집 12", introduction:"떡복이 맵기: 순함, 중간, 매움", location: {lat: 36.34506285, lng: 127.30225225},
+        rating:4, waiting:{person: 3, time: 5}, notice:"이번주 토요일 엑스포 행사장 갑니다.", imgSrc:"../assets/icon/foodtruck3.png"});
         
-        // this.foodtruckList = FoodtruckDummyData;
-        // let res : resFoodtruckList = {
-        //     foodtruckList : FoodtruckDummyData
-        // };
+        this.foodtruckList = FoodtruckDummyData;
+        let res : resFoodtruckList = {
+            foodtruckList : FoodtruckDummyData
+        };
 
-        this.dataCtrl.request<resFoodtruckList>(reqUrl.foodtruckList, req, true, "푸드트럭 리스트를 가져오는 중입니다...")
+        // this.dataCtrl.request<resFoodtruckList>(reqUrl.foodtruckList, req, true, "푸드트럭 리스트를 가져오는 중입니다...")
+        // .then(data =>{
+        //     this.foodtruckList = data.foodtruckList;
+        //     console.log('get foodtrucklist');
+
+        //     this.allocateSign();
+        //     this.calculateFoodtruckDistance();
+        // })
+
+        this.dataCtrl.testRequest<resFoodtruckList>(reqUrl.foodtruckList, req, true, res, 500)
         .then(data =>{
             this.foodtruckList = data.foodtruckList;
             console.log('get foodtrucklist');
@@ -45,9 +52,6 @@ export class TabHomeFoodtruckListCtrl {
             this.allocateSign();
             this.calculateFoodtruckDistance();
         })
-
-        
-
     }
 
     get geolocation() : SharedGeolocation{

@@ -1,0 +1,20 @@
+
+<div class="center">
+    <div *ngIf="isEmpty()"> 주문이 없어요.... </div>
+<ion-list>
+    <ion-item *ngFor="let history of orderList">
+        <ion-img [src]="foodtruckImage(history.foodtruckInfo)"></ion-img>
+        <div>
+            <ion-title>{{history.foodtruckInfo.name}}</ion-title>
+            <ion-label>{{history.price}}원</ion-label>
+        </div>
+    </ion-item>
+    <!-- <component-order-cardview *ngFor="let orderdata of orderList; let i = index"
+      orderType="{{orderType}}" orderIndex="{{i}}"
+      (giveRating)="giveRating($event)">
+</component-order-cardview> -->
+</ion-list>
+    <!-- <ion-label *ngFor="let order of orderList">
+        {{order.foodtruckinfo.name}}
+    </ion-label> -->
+</div>

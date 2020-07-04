@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-menu-list',
+  selector: 'foodtruckInfo-menuList',
   templateUrl: './menu-list.component.html',
   styleUrls: ['./menu-list.component.scss'],
 })

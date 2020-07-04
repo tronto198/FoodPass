@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MenuInfoPageRoutingModule } from './menu-info-routing.module';
 
 import { MenuInfoPage } from './menu-info.page';
-import { PickMenuOptionComponent } from 'src/app/tabs/tab-home/menu-info/pick-menu-option/pick-menu-option.component';
+import { PickMenuOptionComponent } from './pick-menu-option/pick-menu-option.component';
 
 @NgModule({
   imports: [

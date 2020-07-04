@@ -4,6 +4,8 @@ import { orderSlide } from '../page-data-storage/tab-order-data/tab-order-slide.
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { PageDataStorageService } from '../page-data-storage/page-data-storage.service';
+import { ModalController } from '@ionic/angular';
+import { FoodtruckPage } from 'src/app/modal-pages/foodtruck/foodtruck.page';
 
 @Injectable()
 export class PageControllerService {
@@ -14,20 +16,35 @@ export class PageControllerService {
     private pageData : PageDataStorageService,
   ) { }
 
-  routingHome(foodtruckData? : FoodtruckData, menuData? : MenuData){
+  routingFoodtruck( foodtruckData? : FoodtruckData, menuData? : MenuData){
+    let url = '/foodtruck';
 
-    let url = '/tabs/home';
     if(foodtruckData != null){
-      url += `/foodtruck/${String(foodtruckData.id)}`;
-      this.pageData.tabHome.routeDataCtrl.currentFoodtruck = foodtruckData;
+      url += `/${String(foodtruckData.id)}`;
+      this.pageData.modal.foodtruckInfoCtrl.currentFoodtruck = foodtruckData;
       if(menuData != null){
-        url += `/menu/${String(menuData.menuID)}`;
-        this.pageData.tabHome.routeDataCtrl.currentMenu = menuData;
+        url += `/${String(menuData.menuID)}`;
+        this.pageData.modal.foodtruckInfoCtrl.currentMenu = menuData;
       }
     }
-
     this.router.navigateByUrl(url);
 
+    // modalCtrl.create({
+    //   component: FoodtruckPage,
+    //   cssClass: "modal-fullscreen"
+    // }
+    // ).then(s =>{
+    //   s.present();
+    // });
+  }
+
+  routingOrderHistory(){
+    this.router.navigateByUrl('/history');
+  }
+
+  routingHome(){
+    let url = '/tabs/home';
+    this.router.navigateByUrl(url);
   }
 
   routingOrder(slideNo : orderSlide){

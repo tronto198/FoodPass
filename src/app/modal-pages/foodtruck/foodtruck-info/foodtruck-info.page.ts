@@ -6,7 +6,7 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { DefaultValue } from 'src/environments/defaultValue';
 @Component({
-  selector: 'home-foodtruck-info',
+  selector: 'foodtruck-foodtruckInfo',
   templateUrl: './foodtruck-info.page.html',
 
   styleUrls: ['./foodtruck-info.page.scss'],
@@ -21,11 +21,11 @@ export class FoodtruckInfoPage implements OnInit  {
 
   ngOnInit() {
     this.getBaseData();
-    this.pageData.tabHome.menuListCtrl.getMenuList(this.foodtruckData.id);
+    this.pageData.modal.menuListCtrl.getMenuList(this.foodtruckData.id);
   }
 
   get foodtruckData() : FoodtruckData{
-    return this.pageData.tabHome.routeDataCtrl.currentFoodtruck;
+    return this.pageData.modal.foodtruckInfoCtrl.currentFoodtruck;
   }
 
   // get foodtruckName() : string {
@@ -37,7 +37,7 @@ export class FoodtruckInfoPage implements OnInit  {
   }
 
   get menuList() : MenuData[]{
-    return this.pageData.tabHome.menuListCtrl.menuList;
+    return this.pageData.modal.menuListCtrl.menuList;
   }
 
   getMenuImg(i : number) : string {
@@ -58,11 +58,11 @@ export class FoodtruckInfoPage implements OnInit  {
     if(isNaN(foodtruckId)){
       this.pageCtrl.routingHome();
     }
-    this.pageData.tabHome.routeDataCtrl.getFoodtruckData(foodtruckId);
+    this.pageData.modal.foodtruckInfoCtrl.getFoodtruckData(foodtruckId);
   }
 
   menuClicked(index: number){
-    this.pageCtrl.routingHome(this.foodtruckData, this.menuList[index]);
+    this.pageCtrl.routingFoodtruck(this.foodtruckData, this.menuList[index]);
   }
 
 }

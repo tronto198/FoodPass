@@ -5,7 +5,7 @@ import { reqFoodtruckData, resFoodtruckData } from '../../data-controller/reqTyp
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 import { reqMenuData, resMenuData } from '../../data-controller/reqType/infoData/menuData.req';
 
-export class TabHomeRouteDataCtrl {
+export class ModalFoodtruckInfoCtrl {
     currentFoodtruck: FoodtruckData;
     currentMenu: MenuData;
 

@@ -3,7 +3,7 @@ import { DataControllerService } from '../../data-controller/data-controller.ser
 import { reqOptionList, resOptionList } from '../../data-controller/reqType/listData/optionList.req';
 import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 
-export class TabHomeOptionListCtrl {
+export class ModalOptionListCtrl {
     optionList : OptionData[];
 
     constructor(private dataCtrl : DataControllerService){

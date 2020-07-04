@@ -4,12 +4,12 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
-import { TabHomeRouteDataCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/routeData.ctrl';
+import { ModalFoodtruckInfoCtrl } from 'src/app/services/app-data/page-data-storage/modal-data/FoodtruckInfo.ctrl';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { TabHomeOptionListCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/optionList.ctrl';
+import { ModalOptionListCtrl } from 'src/app/services/app-data/page-data-storage/modal-data/optionList.ctrl';
 
 @Component({
-  selector: 'home-menu-info',
+  selector: 'foodtruck-menuInfo',
   templateUrl: './menu-info.page.html',
   styleUrls: ['./menu-info.page.scss'],
 })
@@ -43,8 +43,8 @@ export class MenuInfoPage implements OnInit {
     }
   }
 
-  get routeCtrl(): TabHomeRouteDataCtrl{
-    return this.pageData.tabHome.routeDataCtrl;
+  get routeCtrl(): ModalFoodtruckInfoCtrl{
+    return this.pageData.modal.foodtruckInfoCtrl;
   }
 
   get foodtruckData() : FoodtruckData{
@@ -55,8 +55,8 @@ export class MenuInfoPage implements OnInit {
     return this.routeCtrl.currentMenu;
   }
 
-  get optionListCtrl() : TabHomeOptionListCtrl {
-    return this.pageData.tabHome.optionListCtrl;
+  get optionListCtrl() : ModalOptionListCtrl {
+    return this.pageData.modal.optionListCtrl;
   }
 
   get optionList() : OptionData[]{
@@ -85,7 +85,7 @@ export class MenuInfoPage implements OnInit {
   }
   orderToBasket(){
     this.basketCtrl.push(this.foodtruckData, this.menuData, this.optionList[0], this.amount);
-    this.pageCtrl.routingHome(this.foodtruckData);
+    this.pageCtrl.routingFoodtruck(this.foodtruckData);
   }
 
 

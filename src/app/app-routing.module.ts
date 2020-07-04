@@ -5,7 +5,16 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'foodtruck',
+    loadChildren: () => import('./modal-pages/foodtruck/foodtruck.module').then(m => m.FoodtruckPageModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('./modal-pages/order-history/order-history.module').then( m => m.OrderHistoryPageModule)
   }
+
 ];
 @NgModule({
   imports: [
