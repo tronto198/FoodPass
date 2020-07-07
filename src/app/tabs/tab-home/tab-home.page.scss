@@ -1,3 +1,5 @@
+// @import 'src/theme/variables.scss';
+
 .fullscreen {
     position: absolute;
     top: 0;
@@ -9,7 +11,7 @@
 
 
 .searchingBox {
-    border: 1px solid blue;
+    border: 1px solid #3880ff;
 
     position: absolute;
     top: 3%;
@@ -18,22 +20,38 @@
     width: auto;
     height: 48px;
     z-index: 5;
+    --inner-padding-end: 5px;
 }
 
 .searchingButton {
-    padding: 0px !important;
-    background-color: transparent !important;
     float: right;
+    --box-shadow: 0;
 }
 
 .foodtruckList {
-    --padding-start: 0px;
-    --padding-end: 0px;
-    padding: 0px;
     position: absolute;
     right: 5%;
     bottom: 5%;
+    z-index: 5;
+}
+
+.location {
+    position: absolute;
+    left: 5%;
+    bottom: 5%;
+    z-index: 5;
+}
+
+.mapButton {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --background: white;
+    --color: black;
     width: 32px;
     height: 32px;
-    z-index: 5;
+}
+
+.watching {
+    --background: #3880ff;
+    --color: white;
 }

@@ -6,13 +6,20 @@
   <ion-item class="searchingBox">
     <ion-input placeholder="search" [(ngModel)]="inputData">
     </ion-input>
-    <ion-button class="searchingButton" (click)="searching()">
+    <ion-button class="searchingButton mapButton" (click)="searching()">
       <ion-icon slot="icon-only" name="search-outline"></ion-icon>
     </ion-button>
   </ion-item>
 
-  <ion-button class="foodtruckList" (click)="showFoodtruckList()">
+  <!-- 푸드트럭 리스트 버튼 -->
+  <ion-button class="foodtruckList mapButton" (click)="showFoodtruckList()">
     <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+  </ion-button>
+
+  <!-- 현재 위치 버튼 -->
+  <ion-button [ngClass]="{'watching':isWatching}" class="location mapButton"
+  (click)="watchPosition()">
+    <ion-icon slot="icon-only" name="locate-outline"></ion-icon>
   </ion-button>
 
 </ion-content>

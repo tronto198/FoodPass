@@ -1,6 +1,6 @@
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { LocationData } from 'src/app/data/location';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 
 const geoOptions = {
@@ -14,6 +14,7 @@ export class SharedGeolocation {
     isMyLocation: boolean = false;
   
     locationWatcher: Subscription = null;
+    isWatching: boolean = false;
 
     constructor(private geo: Geolocation){
         this.currentLocation = { lat: 37.4996, lng:127.0264 };
@@ -49,6 +50,10 @@ export class SharedGeolocation {
 
 
     watchLocation(pipe? : Function){
+        if(this.isWatching){
+            return;
+        }
+        this.isWatching = true;
         this.locationWatcher = this.geo.watchPosition(geoOptions).subscribe(data =>{
             
             console.log('watching current location');
@@ -60,6 +65,17 @@ export class SharedGeolocation {
                 pipe(coords);
             }
             console.log(this.currentLocation);
+            
+        }, err =>{
+            this.isWatching = false;
+            console.log(err);
         });
     }
+
+    stopWatching(){
+        console.log('stop watching location');
+        this.locationWatcher.unsubscribe();
+        this.isWatching = false;
+    }
+
 }

@@ -13,6 +13,7 @@ import { MapPage } from 'src/app/modal-pages/map/map.page';
 import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
 import { MapPagePageModule } from 'src/app/modal-pages/map/map.module';
 import { SharedComponentModule } from 'src/app/component/shared-component.module';
+import { MapService } from 'src/app/services/map/map.service';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { SharedComponentModule } from 'src/app/component/shared-component.module
     ToastController,
     ModalController,
     NavController,
+    MapService,
   ]
 })
 export class TabHomePageModule {}
