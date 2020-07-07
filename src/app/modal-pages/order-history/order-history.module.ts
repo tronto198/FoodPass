@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { OrderHistoryPageRoutingModule } from './order-history-routing.module';
 
 import { OrderHistoryPage } from './order-history.page';
-import { OrderHistoryListPageModule } from './order-history-list/order-history-list.module';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { OrderHistoryListPageModule } from './order-history-list/order-history-l
     FormsModule,
     IonicModule,
     OrderHistoryPageRoutingModule,
-    OrderHistoryListPageModule
   ],
   declarations: [OrderHistoryPage]
 })

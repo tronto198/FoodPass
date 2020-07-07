@@ -5,6 +5,7 @@ import { PageDataStorageService } from 'src/app/services/app-data/page-data-stor
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { DefaultValue } from 'src/environments/defaultValue';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'foodtruck-foodtruckInfo',
   templateUrl: './foodtruck-info.page.html',
@@ -17,6 +18,7 @@ export class FoodtruckInfoPage implements OnInit  {
     private route : ActivatedRoute,
     private pageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
+    private modalCtrl : ModalController,
   ) { }
 
   ngOnInit() {
@@ -62,7 +64,7 @@ export class FoodtruckInfoPage implements OnInit  {
   }
 
   menuClicked(index: number){
-    this.pageCtrl.routingFoodtruck(this.foodtruckData, this.menuList[index]);
+    this.pageCtrl.presentFoodtruck(this.foodtruckData, this.menuList[index]);
   }
 
 }

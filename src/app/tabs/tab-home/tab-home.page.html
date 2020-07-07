@@ -1,19 +1,18 @@
-<ion-header>
-  <ion-toolbar class="ion-text-center" color="dark" (click)="onToolbarClicked()">
-    {{testlocation}}
-    <ion-icon name="location-outline"></ion-icon>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
-    <div class="ion-text-center"><h4>가까운 푸드트럭</h4></div>
+  <div class="fullscreen" id="map"></div>
 
-    <home-foodtruck-list></home-foodtruck-list>
+  <!-- 검색용 박스 -->
+  <ion-item class="searchingBox">
+    <ion-input placeholder="search" [(ngModel)]="inputData">
+    </ion-input>
+    <ion-button class="searchingButton" (click)="searching()">
+      <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
 
-  <ion-fab vertical="bottom" horizontal="end" name="add" slot="fixed" >
-    <ion-fab-button (click)="onFabClicked()">
-      <ion-icon name="cart"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <ion-button class="foodtruckList" (click)="showFoodtruckList()">
+    <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+  </ion-button>
 
 </ion-content>

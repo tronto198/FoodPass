@@ -10,12 +10,6 @@ import { PageDataStorageService } from 'src/app/services/app-data/page-data-stor
   styleUrls: ['./tab-order.page.scss'],
 })
 export class TabOrderPage implements OnInit {
-  @ViewChild(IonSlides, {static: false}) slider : IonSlides;
-
-  slideOpts = {
-    initialSlide: 0,
-    speed: 400
-  };
 
   constructor(
     private pageCtrl : PageControllerService,
@@ -23,33 +17,7 @@ export class TabOrderPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.pageValue = orderSlide.waitingOrder;
     this.pageData.tabOrder.historyCtrl.getHistory();
-  }
-
-  get pageValue(){
-    return this.pageData.tabOrder.slideCtrl.orderSlideValue;
-  }
-  set pageValue(no : orderSlide){
-    this.pageData.tabOrder.slideCtrl.orderSlideValue = no;
-  }
-
-  get slideValue(){
-    return this.pageValue;
-  }
-  set slideValue(value : orderSlide){
-    this.pageValue = value;
-    this.slider.slideTo(this.pageValue);
-  }
-
-  segmentChanged(ev: CustomEvent) {
-    this.slideValue = Number(ev.detail.value);
-  }
-
-  slideChanged(){
-    this.slider.getActiveIndex().then(v =>{
-      this.slideValue = v;
-    });
   }
 
 }

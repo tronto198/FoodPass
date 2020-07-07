@@ -4,6 +4,7 @@ import { PageControllerService } from 'src/app/services/app-data/page-controller
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { TabHomeFoodtruckListCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/foodtruckList.ctrl';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'home-foodtruck-list',
@@ -16,6 +17,7 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
     private pageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
     private sharedData : SharedDataService,
+    private modalCtrl : ModalController
   ) { }
 
   ngOnInit() {
@@ -29,7 +31,7 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.sharedData.geolocation.locationWatcher.unsubscribe();
+    // this.sharedData.geolocation.locationWatcher.unsubscribe();
   }
 
   get ctrl() : TabHomeFoodtruckListCtrl {
@@ -41,6 +43,6 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
 
 
   foodtruckClicked(index: number){
-    this.pageCtrl.routingFoodtruck(this.foodtruckList[index]);
+    this.pageCtrl.presentFoodtruck(this.foodtruckList[index]);
   }
 }

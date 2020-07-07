@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireMessagingModule } from '@angular/fire/messaging'
 import { RootServicesModule } from './services/root-services.module';
+import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-list.module';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { RootServicesModule } from './services/root-services.module';
 
       SharedComponentModule,  //공통 컴포넌트
       RootServicesModule,          //앱 데이터
+      // FoodtruckListPageModule,
 
       AngularFireModule.initializeApp(environment.firebase),  //firebase
       AngularFireMessagingModule,

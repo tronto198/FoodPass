@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes, Router } from '@angular/router';
+import { FoodtruckListPage } from './modal-pages/foodtruck-list/foodtruck-list.page';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'history',
     loadChildren: () => import('./modal-pages/order-history/order-history.module').then( m => m.OrderHistoryPageModule)
+  },
+  {
+    path: 'foodtruckList',
+    // component: FoodtruckListPage
+    loadChildren: () => import('./modal-pages/foodtruck-list/foodtruck-list.module').then( m => m.FoodtruckListPageModule)
   }
 
 ];

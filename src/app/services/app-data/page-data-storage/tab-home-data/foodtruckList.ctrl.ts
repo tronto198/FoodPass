@@ -11,6 +11,7 @@ const signArr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 export class TabHomeFoodtruckListCtrl {
     foodtruckList: FoodtruckData[];
     private updateFlag = false;
+    presentFlag = false;
 
     constructor(private dataCtrl : DataControllerService){
 

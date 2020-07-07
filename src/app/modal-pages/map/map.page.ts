@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationData } from 'src/app/data/location';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { TabHomeLocationCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/location.ctrl';
+// import { TabHomeLocationCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/location.ctrl';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 // Kakao Map API
@@ -26,8 +26,6 @@ export class MapPage implements OnInit, AfterViewInit {
   newLocation: LocationData;    // 새로 지정한 위치 : LocationData
 
   inputAddress: string;
-
-
 
   constructor(
     private geo: Geolocation,

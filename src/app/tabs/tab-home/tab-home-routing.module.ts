@@ -23,13 +23,7 @@ const routes: Routes = [
     component: MapPage,
     // loadChildren: () => import('src/app/modal-pages/map/map.page').then(m=> m.MapPage);
   }
-  
 
-  // {
-  //   path: 'basket',
-  //   component: BasketPage
-  //   // loadChildren: () => import('./basket/basket.module').then( m => m.BasketPageModule)
-  // }
 ];
 
 @NgModule({

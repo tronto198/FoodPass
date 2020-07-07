@@ -4,8 +4,6 @@ import { orderSlide } from '../page-data-storage/tab-order-data/tab-order-slide.
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { PageDataStorageService } from '../page-data-storage/page-data-storage.service';
-import { ModalController } from '@ionic/angular';
-import { FoodtruckPage } from 'src/app/modal-pages/foodtruck/foodtruck.page';
 
 @Injectable()
 export class PageControllerService {
@@ -16,7 +14,7 @@ export class PageControllerService {
     private pageData : PageDataStorageService,
   ) { }
 
-  routingFoodtruck( foodtruckData? : FoodtruckData, menuData? : MenuData){
+  presentFoodtruck(foodtruckData? : FoodtruckData, menuData? : MenuData){
     let url = '/foodtruck';
 
     if(foodtruckData != null){
@@ -29,18 +27,16 @@ export class PageControllerService {
     }
     this.router.navigateByUrl(url);
 
-    // modalCtrl.create({
-    //   component: FoodtruckPage,
-    //   cssClass: "modal-fullscreen"
-    // }
-    // ).then(s =>{
-    //   s.present();
-    // });
   }
 
-  routingOrderHistory(){
+  presentOrderHistory(){
     this.router.navigateByUrl('/history');
   }
+
+  presentFoodtruckList(){
+    this.router.navigateByUrl('/foodtruckList');
+  }
+
 
   routingHome(){
     let url = '/tabs/home';
@@ -48,9 +44,8 @@ export class PageControllerService {
   }
 
   routingOrder(slideNo : orderSlide){
-    this.orderSlideValue = slideNo;
-    this.pageData.tabOrder.slideCtrl.orderSlideValue = slideNo;
     this.router.navigateByUrl(`/tabs/order`);
   }
+
 }
 

@@ -1,9 +1,39 @@
-ion-fab {
-    size: 21px;
-    padding: 4px;
+.fullscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
 }
 
-ion-scroll {
-    white-space: nowrap;
-    height: 250px;
+
+.searchingBox {
+    border: 1px solid blue;
+
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    right: 3%;
+    width: auto;
+    height: 48px;
+    z-index: 5;
+}
+
+.searchingButton {
+    padding: 0px !important;
+    background-color: transparent !important;
+    float: right;
+}
+
+.foodtruckList {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    padding: 0px;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    width: 32px;
+    height: 32px;
+    z-index: 5;
 }

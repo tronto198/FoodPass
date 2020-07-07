@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToastController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
-import { BasketPage } from '../../modal-pages/basket/basket.page';
-import { MapPage } from 'src/app/modal-pages/map/map.page';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { AngularFireMessaging } from '@angular/fire/messaging';
-import { NotificationService } from 'src/app/services/notification/notification.service';
+import { LocationData } from 'src/app/data/location';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
+import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 
+declare var kakao;
 
 @Component({
   selector: 'app-tab-home',
@@ -15,82 +15,53 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./tab-home.page.scss']
 })
 export class TabHomePage implements OnInit {
-  location: object;
+  map : any;
 
   constructor(
-    private toastController : ToastController,
-    public modalController : ModalController,
+    public modalCtrl : ModalController,
+    private pageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
-    // private messaging: NotificationService
+    private sharedData : SharedDataService,
   ) { }
 
   ngOnInit() {
     console.log("tab-home");
-    // this.messaging.requestPermission();
+    //css가 모두 적용된 이후에 맵을 로딩하기 위한 0.5초 지연실행
+    setTimeout(() =>{
+      this.mapLoad();
+    }, 500);
   }
 
-  get testlocation(){
-    return "test";
+  //LocationData를 카카오 api에서 쓰는 형태로 변환
+  private locationDataToPoint(location: LocationData) : any{
+    return new kakao.maps.LatLng(location.lat, location.lng);
   }
 
-  // get token(){
-  //   return this.messaging.token;
-  // }
-
-  onToolbarClicked(){
-    this.modalController.create({
-      component: MapPage,
-      cssClass: "modal-fullscreen"
-    }
-    ).then(s =>{
-      s.present();
+  //마커를 만들고 맵에 표시
+  private makeMarker(location: LocationData) : any{
+    let marker = new kakao.maps.Marker({
+      map: this.map,
+      position: this.locationDataToPoint(location)
     });
+    return marker;
   }
 
-  onFabClicked(){
-    this.modalController.create({
-      component: BasketPage,
-      cssClass: "modal-fullscreen"
-    }
-    ).then(s =>{
-      s.present();
-    });
+  //id가 'map'인 요소에 카카오맵 api를 이용하여 맵 로딩
+  private mapLoad(){
+    //대전 시청의 위치 정보를 카카오에서 쓰는 형식으로 변환
+    let sampleLocation = this.locationDataToPoint(this.sharedData.geolocation.currentLocation);
+    const mapOptions = {
+      center: sampleLocation,
+      level: 3,
+      draggable: true
+    };
 
+    //id가 'map'인 요소를 가져와 카카오맵 로딩
+    this.map = new kakao.maps.Map(document.getElementById('map'), mapOptions);
   }
 
-  async toast(message : string){
-    const toast = await this.toastController.create({
-      header: "new text pushed",
-      message : message,
-      duration: 2000,
-      position: "bottom",
-      buttons : [
-        {
-          side: 'start',
-          icon: 'star',
-        }
-      ]
 
-    });
-    toast.present();
+  showFoodtruckList() {
+    this.pageCtrl.presentFoodtruckList();
   }
-
-  toastsync(message : string){
-    const toast = this.toastController.create({
-      header: "new text pushed",
-      message : message,
-      duration: 2000,
-      position: "bottom",
-      buttons : [
-        {
-          side: 'start',
-          icon: 'star',
-        }
-      ]
-    }).then((t)=>{
-      t.present();
-      console.log('toast presented');
-    })
-  }
-
 }

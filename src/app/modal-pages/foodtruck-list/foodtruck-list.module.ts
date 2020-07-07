@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { FoodtruckListPageRoutingModule } from './foodtruck-list-routing.module';
 
 import { FoodtruckListPage } from './foodtruck-list.page';
-import { CardviewComponent } from 'src/app/tabs/tab-home/foodtruck-list/foodtruck-cardview/cardview.component';
 import { OrderWaitingComponentModule } from 'src/app/component/order-waiting/order-waiting.module';
+import { CardviewComponent } from './foodtruck-cardview/cardview.component';
 
 @NgModule({
   imports: [

@@ -6,7 +6,7 @@
         <ion-icon slot="icon-only" name="trash" ></ion-icon>
       </ion-button> -->
     </ion-buttons>
-    <ion-title class="ion-text-center">{{foodtruckData.name}}</ion-title>
+    <ion-title>{{foodtruckData.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -32,11 +32,11 @@
  <ion-grid no-padding>
    <ion-row no-padding>
     <ion-col no padding col-2 *ngFor="let menu of menuList; let i = index" class="foodtruck-info-cards">
-        <app-menu-list id="{{menu.menuID}}" name="{{menu.menuName}}" inform="{{menu.menuInform}}"
+        <foodtruckInfo-menuList id="{{menu.menuID}}" name="{{menu.menuName}}" inform="{{menu.menuInform}}"
       price="{{menu.price}}" menuImage="{{getMenuImg(i)}}"
       (click)="menuClicked(i)">
       
-      </app-menu-list> 
+      </foodtruckInfo-menuList> 
       
      
     </ion-col>
