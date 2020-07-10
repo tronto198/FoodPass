@@ -22,7 +22,8 @@ const routes: Routes = [
     path: 'map',
     component: MapPage,
     // loadChildren: () => import('src/app/modal-pages/map/map.page').then(m=> m.MapPage);
-  }
+  },
+
 
 ];
 

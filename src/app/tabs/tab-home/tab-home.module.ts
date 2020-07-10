@@ -33,7 +33,6 @@ import { MapService } from 'src/app/services/map/map.service';
     ToastController,
     ModalController,
     NavController,
-    MapService,
   ]
 })
 export class TabHomePageModule {}

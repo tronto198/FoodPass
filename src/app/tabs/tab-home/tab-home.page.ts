@@ -7,6 +7,7 @@ import { LocationData } from 'src/app/data/location';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 import { MapService } from 'src/app/services/map/map.service';
+import { keywordSearchResult, keywordSearch, addressSearch, addressSearchResult } from 'src/app/services/map/map.searcher';
 
 declare var kakao;
 
@@ -16,7 +17,6 @@ declare var kakao;
   styleUrls: ['./tab-home.page.scss']
 })
 export class TabHomePage implements OnInit, OnDestroy {
-  map : any;
 
   constructor(
     public modalCtrl : ModalController,
@@ -34,6 +34,21 @@ export class TabHomePage implements OnInit, OnDestroy {
     }, 500);
   }
 
+  get searchCtrl(){
+    return this.pageData.modal.searchDataCtrl;
+  }
+  
+  get inputData(){
+    return this.searchCtrl.inputData;
+  }
+  set inputData(val){
+    this.searchCtrl.inputData = val;
+  }
+
+  get currentSearched(){
+    return this.searchCtrl.currentSearched;
+  }
+
   showFoodtruckList() {
     this.pageCtrl.presentFoodtruckList();
   }
@@ -47,8 +62,20 @@ export class TabHomePage implements OnInit, OnDestroy {
       this.sharedData.geolocation.stopWatching();
     }
     else{
-      this.sharedData.geolocation.watchLocation();
+      this.sharedData.geolocation.getLocation().then(
+        (location) =>{
+          this.mapCtrl.makePositionCircle(this.sharedData.geolocation.currentLocation);
+          this.mapCtrl.moveMapToLocation(this.sharedData.geolocation.currentLocation);
+        }
+      );
+      this.sharedData.geolocation.watchLocation((location) =>{
+        this.mapCtrl.movePositionCircleToLocation(location);
+      });
     }
+  }
+
+  searchStart(){
+    this.pageCtrl.presentSearch();
   }
 
   ngOnDestroy(){

@@ -1,4 +1,4 @@
-// @import 'src/theme/variables.scss';
+@import 'src/theme/values.scss';
 
 .fullscreen {
     position: absolute;
@@ -14,12 +14,12 @@
     border: 1px solid #3880ff;
 
     position: absolute;
-    top: 3%;
-    left: 3%;
-    right: 3%;
+    top: $top-space;
+    left: $left-space;
+    right: $right-space;
     width: auto;
-    height: 48px;
-    z-index: 5;
+    height: $searchBox-height;
+    z-index: 20;
     --inner-padding-end: 5px;
 }
 
@@ -30,15 +30,15 @@
 
 .foodtruckList {
     position: absolute;
-    right: 5%;
-    bottom: 5%;
+    right: $right-space;
+    bottom: $bottom-space;
     z-index: 5;
 }
 
 .location {
     position: absolute;
-    left: 5%;
-    bottom: 5%;
+    left: $left-space;
+    bottom: $bottom-space;
     z-index: 5;
 }
 
@@ -54,4 +54,21 @@
 .watching {
     --background: #3880ff;
     --color: white;
+}
+
+.searchResult {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    // top: $top-space + $searchBox-height - 1px;
+    // left: $left-space;
+    // right: $right-space;
+    // max-height: $searchResult-hieght;
+    background: white;
+    z-index: 10;
 }

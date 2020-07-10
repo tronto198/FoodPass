@@ -4,6 +4,7 @@ import { AppDataModule } from './app-data/app-data.module';
 import { NotificationService } from './notification/notification.service';
 import { SharedDataService } from './shared-data/shared-data.service';
 import { SharedDataModule } from './shared-data/shared-data.module';
+import { MapService } from './map/map.service';
 
 
 
@@ -15,7 +16,8 @@ import { SharedDataModule } from './shared-data/shared-data.module';
     AppDataModule,
   ],
   providers: [
-    NotificationService
+    NotificationService,
+    MapService
   ]
 })
 export class RootServicesModule { }

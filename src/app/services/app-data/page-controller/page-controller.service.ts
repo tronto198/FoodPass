@@ -37,6 +37,10 @@ export class PageControllerService {
     this.router.navigateByUrl('/foodtruckList');
   }
 
+  presentSearch(){
+    this.router.navigateByUrl(`/search`);
+  }
+
 
   routingHome(){
     let url = '/tabs/home';

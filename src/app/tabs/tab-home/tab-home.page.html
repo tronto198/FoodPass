@@ -1,15 +1,17 @@
 
-<ion-content>
-  <div class="fullscreen" id="map"></div>
-
   <!-- 검색용 박스 -->
-  <ion-item class="searchingBox">
-    <ion-input placeholder="search" [(ngModel)]="inputData">
+  <ion-item class="searchingBox" (click)="searchStart()">
+    <ion-input placeholder="currentSearched" [(ngModel)]="inputData"
+    (ionChange)="search()">
     </ion-input>
-    <ion-button class="searchingButton mapButton" (click)="searching()">
+    <ion-button class="searchingButton mapButton" (click)="search()">
       <ion-icon slot="icon-only" name="search-outline"></ion-icon>
     </ion-button>
   </ion-item>
+  
+<ion-content>
+  <!-- 맵 -->
+  <div class="fullscreen" id="map"></div>
 
   <!-- 푸드트럭 리스트 버튼 -->
   <ion-button class="foodtruckList mapButton" (click)="showFoodtruckList()">

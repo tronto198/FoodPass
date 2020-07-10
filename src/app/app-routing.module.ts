@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'foodtruckList',
     loadChildren: () => import('./modal-pages/foodtruck-list/foodtruck-list.module').then( m => m.FoodtruckListPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./modal-pages/search/search.module').then( m => m.SearchPageModule)
   }
 
 ];

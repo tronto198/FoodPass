@@ -7,7 +7,7 @@ const geoOptions = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0
-  };
+};
 
 export class SharedGeolocation {
     currentLocation: LocationData;
@@ -20,27 +20,27 @@ export class SharedGeolocation {
         this.currentLocation = { lat: 37.4996, lng:127.0264 };
     }
 
-    init() : Promise<Coordinates>{
+    init() : Promise<LocationData>{
         return this.getLocation();
     }
     
-    getLocation() : Promise<Coordinates> {
+    getLocation() : Promise<LocationData> {
         return new Promise((resolve, reject) =>{
 
             this.geo.getCurrentPosition(geoOptions).then(val =>{
                 const coords = val.coords;
-                // this.currentLocation.lat = coords.latitude;
-                // this.currentLocation.lng = coords.longitude;
+                this.currentLocation.lat = coords.latitude;
+                this.currentLocation.lng = coords.longitude;
                 
                 this.isMyLocation = true;
 
                 console.log('get current location');
-                resolve(coords);
+                resolve(this.currentLocation);
         
             }).catch(e =>{
                 
                 console.log('cannot get current location');
-        
+                console.log(e);
                 resolve(e);
             });
 
@@ -49,7 +49,7 @@ export class SharedGeolocation {
     }
 
 
-    watchLocation(pipe? : Function){
+    watchLocation(pipe? : (location : LocationData) => void){
         if(this.isWatching){
             return;
         }
@@ -62,7 +62,7 @@ export class SharedGeolocation {
             this.currentLocation.lng = coords.longitude;
 
             if(pipe != null){
-                pipe(coords);
+                pipe(this.currentLocation);
             }
             console.log(this.currentLocation);
             
@@ -77,5 +77,4 @@ export class SharedGeolocation {
         this.locationWatcher.unsubscribe();
         this.isWatching = false;
     }
-
 }
