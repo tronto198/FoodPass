@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { LocationDataToPoint, PointToLocationData } from './map.utility';
 import { SharedDataService } from '../shared-data/shared-data.service';
 import { LocationData } from 'src/app/data/location';
+import { FoodtruckData } from 'src/app/data/foodtruck';
+import { PageControllerService } from '../app-data/page-controller/page-controller.service';
 
 declare var kakao;
 
@@ -9,10 +11,20 @@ declare var kakao;
 export class MapService {
   map : any;
   positionCircle : any = null;
-  constructor(private sharedData: SharedDataService) { }
+  private hook : () => void = () => {};
+  private FoodtruckPins : PinData<any>[] = [];
+
+  constructor(
+    private sharedData: SharedDataService,
+    private pageCtrl: PageControllerService,
+    ) { }
 
   init(map: HTMLElement){
     this.mapLoad(map);
+
+    kakao.maps.event.addListener(this.map, 'idle', ()=>{
+      this.hook();
+    })
   }
 
   
@@ -61,11 +73,56 @@ export class MapService {
   }
 
   get mapPosition() : LocationData {
-    return PointToLocationData(this.map.getPosition());
+    return PointToLocationData(this.map.getCenter());
   }
 
   set mapPosition(location : LocationData){
     this.moveMapToLocation(location);
   } 
 
+  setMapChangedHook(func : () => void){
+    this.hook = func;
+  }
+
+  clearHook(){
+    this.hook = () =>{};
+  }
+
+  private addPin(location: LocationData){
+    let pin = new kakao.maps.Marker({
+      map: this.map,
+      position: LocationDataToPoint(location),
+
+    });
+    this.FoodtruckPins.push({pin: pin, data: null});
+    return pin;
+  }
+
+
+  addFoodtruckPin(foodtruckData: FoodtruckData){
+    //핀 만들기
+    let pin = this.addPin(foodtruckData.location);
+    
+    //title 추가
+    pin.setTitle(foodtruckData.name);
+    //클릭이벤트 추가
+    pin.setClickable(true);
+    kakao.maps.event.addListener(pin, 'click', ()=>{
+      this.pageCtrl.presentFoodtruck(foodtruckData);
+    })
+    
+  }
+
+  clearPin(){
+    //모든 핀 제거
+    this.FoodtruckPins.forEach((val) => val.pin.setMap(null));
+    this.FoodtruckPins = [];
+  }
+
+}
+
+
+interface PinData<T> {
+  pin: any;
+  data: T;
 }

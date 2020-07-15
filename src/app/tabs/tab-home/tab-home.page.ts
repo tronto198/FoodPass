@@ -8,6 +8,7 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
 import { MapService } from 'src/app/services/map/map.service';
 import { keywordSearchResult, keywordSearch, addressSearch, addressSearchResult } from 'src/app/services/map/map.searcher';
+import { FoodtruckData } from 'src/app/data/foodtruck';
 
 declare var kakao;
 
@@ -31,6 +32,20 @@ export class TabHomePage implements OnInit, OnDestroy {
     //css가 모두 적용된 이후에 맵을 로딩하기 위한 0.5초 지연실행
     setTimeout(() =>{
       this.mapCtrl.init(document.getElementById('map'));
+      this.mapCtrl.setMapChangedHook(()=>{
+        //푸드트럭 검색
+        
+        this.pageData.tabHome.foodtruckListCtrl.getFoodtruckList(this.mapCtrl.mapPosition, 
+          (foodtruckList : FoodtruckData[]) =>{
+            //푸드트럭 지도에 표시
+            this.mapCtrl.clearPin();
+            foodtruckList.forEach((val) =>{
+              this.mapCtrl.addFoodtruckPin(val);
+            })
+          });
+        console.log("search foodtruck");
+        
+      })
     }, 500);
   }
 
