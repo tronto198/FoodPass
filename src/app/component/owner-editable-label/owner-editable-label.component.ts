@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 @Component({
-  selector: 'component-owner-edit',
-  templateUrl: './owner-edit.component.html',
-  styleUrls: ['./owner-edit.component.scss'],
+  selector: 'comp-owner-editable-label',
+  templateUrl: './owner-editable-label.component.html',
+  styleUrls: ['./owner-editable-label.component.scss'],
 })
-export class OwnerEditComponent implements OnInit {
+export class OwnerEditableLabelComponent implements OnInit {
 
   @Input() valueModel : string;
   @Output() valueModelChange = new EventEmitter<string>();

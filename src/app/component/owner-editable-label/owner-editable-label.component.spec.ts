@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { OrderWaitingComponent } from './order-waiting.component';
+import { OwnerEditableLabelComponent } from './owner-editable-label.component';
 
-describe('OrderWaitingComponent', () => {
-  let component: OrderWaitingComponent;
-  let fixture: ComponentFixture<OrderWaitingComponent>;
+describe('OwnerEditComponent', () => {
+  let component: OwnerEditableLabelComponent;
+  let fixture: ComponentFixture<OwnerEditableLabelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderWaitingComponent ],
+      declarations: [ OwnerEditableLabelComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OrderWaitingComponent);
+    fixture = TestBed.createComponent(OwnerEditableLabelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

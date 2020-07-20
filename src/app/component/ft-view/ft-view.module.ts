@@ -2,23 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { OwnerEditComponent } from './owner-edit.component';
+import { FtImgComponentModule } from '../ft-img/ft-img.module';
+import { FtViewComponent } from './ft-view.component';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-    ],
+        FtImgComponentModule
+    ], 
     exports: [
-        OwnerEditComponent
+        FtViewComponent
     ],
     declarations: [
-        OwnerEditComponent
+        FtViewComponent
     ],
-    providers: [
-        
-    ]
 })
-export class OwnerEditComponentModule {}
+export class FtViewComponentModule {}
   

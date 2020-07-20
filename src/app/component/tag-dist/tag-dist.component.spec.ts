@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { OwnerEditComponent } from './owner-edit.component';
+import { TagDistComponent } from './tag-dist.component';
 
-describe('OwnerEditComponent', () => {
-  let component: OwnerEditComponent;
-  let fixture: ComponentFixture<OwnerEditComponent>;
+describe('TagDistComponent', () => {
+  let component: TagDistComponent;
+  let fixture: ComponentFixture<TagDistComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OwnerEditComponent ],
+      declarations: [ TagDistComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OwnerEditComponent);
+    fixture = TestBed.createComponent(TagDistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

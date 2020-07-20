@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { OrderCardviewComponentModule } from './order-cardview/order-cardview.module';
 import { OrderCardviewComponent } from './order-cardview/order-cardview.component';
-import { OwnerEditComponent } from './owner-edit/owner-edit.component';
-import { OwnerEditComponentModule } from './owner-edit/owner-edit.module';
+import { OwnerEditableLabelComponent } from './owner-edit/owner-editable-label.component';
+import { OwnerEditableLabelComponentModule } from './owner-edit/owner-editable-label.module';
 import { OrderWaitingComponent } from './order-waiting/order-waiting.component';
 import { OrderWaitingComponentModule } from './order-waiting/order-waiting.module';
 
@@ -15,12 +15,12 @@ import { OrderWaitingComponentModule } from './order-waiting/order-waiting.modul
         FormsModule,
         IonicModule,
         OrderWaitingComponentModule,
-        OwnerEditComponentModule,
+        OwnerEditableLabelComponentModule,
         OrderCardviewComponentModule,
     ], 
     exports: [
         OrderWaitingComponent,
-        OwnerEditComponent,
+        OwnerEditableLabelComponent,
         OrderCardviewComponent,
     ],
     declarations: [

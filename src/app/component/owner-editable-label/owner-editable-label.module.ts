@@ -2,20 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { OrderWaitingComponent } from './order-waiting.component';
+import { OwnerEditableLabelComponent } from './owner-editable-label.component';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-    ], 
+    ],
     exports: [
-        OrderWaitingComponent,
+        OwnerEditableLabelComponent
     ],
     declarations: [
-        OrderWaitingComponent
+        OwnerEditableLabelComponent
     ],
+    providers: [
+        
+    ]
 })
-export class OrderWaitingComponentModule {}
+export class OwnerEditableLabelComponentModule {}
   

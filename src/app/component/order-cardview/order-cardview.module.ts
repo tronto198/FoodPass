@@ -6,7 +6,7 @@ import { OrderCardviewComponent } from './order-cardview.component';
 import { HeaderBasketComponent } from './header-basket/header-basket.component';
 import { HeaderWaitingComponent } from './header-waiting/header-waiting.component';
 import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
-import { OwnerEditComponentModule } from '../owner-edit/owner-edit.module';
+import { OwnerEditableLabelComponentModule } from '../owner-edit/owner-editable-label.module';
 import { HeaderHistoryComponent } from './header-history/header-history.component';
 import { OrderWaitingComponentModule } from '../order-waiting/order-waiting.module';
 
@@ -16,7 +16,7 @@ import { OrderWaitingComponentModule } from '../order-waiting/order-waiting.modu
         FormsModule,
         IonicModule,
         OrderWaitingComponentModule,
-        OwnerEditComponentModule,
+        OwnerEditableLabelComponentModule,
     ],
     exports: [
         OrderCardviewComponent
