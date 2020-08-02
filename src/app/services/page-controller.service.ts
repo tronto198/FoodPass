@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { orderSlide } from '../page-data-storage/tab-order-data/tab-order-slide.enum';
+import { orderSlide } from './app-data/page-data-storage/tab-order-data/tab-order-slide.enum';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
-import { PageDataStorageService } from '../page-data-storage/page-data-storage.service';
+import { PageDataStorageService } from './app-data/page-data-storage/page-data-storage.service';
 
 @Injectable()
 export class PageControllerService {
@@ -21,7 +21,7 @@ export class PageControllerService {
       url += `/${String(foodtruckData.id)}`;
       this.pageData.modal.foodtruckInfoCtrl.currentFoodtruck = foodtruckData;
       if(menuData != null){
-        url += `/${String(menuData.menuID)}`;
+        url += `/${String(menuData.id)}`;
         this.pageData.modal.foodtruckInfoCtrl.currentMenu = menuData;
       }
     }

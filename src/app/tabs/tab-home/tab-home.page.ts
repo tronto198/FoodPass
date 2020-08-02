@@ -5,7 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { LocationData } from 'src/app/data/location';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
-import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
+import { PageControllerService } from 'src/app/services/page-controller.service';
 import { MapService } from 'src/app/services/map/map.service';
 import { keywordSearchResult, keywordSearch, addressSearch, addressSearchResult } from 'src/app/services/map/map.searcher';
 import { FoodtruckData } from 'src/app/data/foodtruck';

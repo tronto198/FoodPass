@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-import { DataControllerService } from '../app-data/data-controller/data-controller.service';
-import { reqUrl } from '../app-data/data-controller/reqType/req-url.enum';
-import { reqPushToken, resPushToken } from '../app-data/data-controller/reqType/account/pushToken.req';
+import { CommunicationService } from './communication/communication.service';
+import { reqPushToken, resPushToken } from './communication/reqType/account/pushToken.req';
+import { reqUrl } from './communication/reqType/req-url.enum';
 
 @Injectable()
 export class NotificationService {
@@ -10,7 +10,7 @@ export class NotificationService {
 
   constructor(
       private afMessaging: AngularFireMessaging,
-      private dataCtrl : DataControllerService,
+      private dataCtrl : CommunicationService,
   ){
       this.afMessaging.messaging.subscribe(
           (_messaging) => {

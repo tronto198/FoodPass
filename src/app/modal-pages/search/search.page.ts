@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { MapService } from 'src/app/services/map/map.service';
-import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
+import { PageControllerService } from 'src/app/services/page-controller.service';
 
 @Component({
   selector: 'app-search',

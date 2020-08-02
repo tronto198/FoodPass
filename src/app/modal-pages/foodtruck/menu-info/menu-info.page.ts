@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
-import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
+import { PageControllerService } from 'src/app/services/page-controller.service';
 import { ModalFoodtruckInfoCtrl } from 'src/app/services/app-data/page-data-storage/modal-data/FoodtruckInfo.ctrl';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { ModalOptionListCtrl } from 'src/app/services/app-data/page-data-storage/modal-data/optionList.ctrl';
@@ -26,7 +26,7 @@ export class MenuInfoPage implements OnInit {
 
   ngOnInit() {
     this.getBaseData();
-    this.optionListCtrl.getOptionList(this.foodtruckData.id, this.menuData.menuID);
+    this.optionListCtrl.getOptionList(this.foodtruckData.id, this.menuData.id);
     this.checkedValue = 1001;
   }
 

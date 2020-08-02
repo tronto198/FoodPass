@@ -9,6 +9,8 @@ import { ModalData } from './modal-data/ModalData';
 @Injectable()
 export class PageDataStorageService {
 
+  
+
   //---user-config
   config : ConfigData;
 
@@ -26,6 +28,7 @@ export class PageDataStorageService {
     this.modal = new ModalData(dataCtrl);
     this.tabHome = new TabHomeData(dataCtrl);
     this.tabOrder = new TabOrderData(dataCtrl);
+
   }
 
 }

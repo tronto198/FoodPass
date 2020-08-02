@@ -3,7 +3,7 @@ import { LocationDataToPoint, PointToLocationData } from './map.utility';
 import { SharedDataService } from '../shared-data/shared-data.service';
 import { LocationData } from 'src/app/data/location';
 import { FoodtruckData } from 'src/app/data/foodtruck';
-import { PageControllerService } from '../app-data/page-controller/page-controller.service';
+import { PageControllerService } from '../page-controller.service';
 
 declare var kakao;
 

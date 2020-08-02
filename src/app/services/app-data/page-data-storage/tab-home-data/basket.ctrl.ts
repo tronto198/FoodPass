@@ -33,7 +33,7 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
         ftId + " foodtruck", "test", "");
         ftdata.waiting = {person: 3, time: 5};
       let menudata : MenuData ={
-        menuID: menuId,
+        id: menuId,
         menuName: menuId + " menu",
         price: price
       };
@@ -148,7 +148,7 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
         };
         orderinfo.orderedMenu.forEach((val)=>{
           order.orderedMenu.push({
-            menuId: val.menuinfo.menuID,
+            menuId: val.menuinfo.id,
             optionId: val.optioninfo.id,
             amount: val.amount
           });

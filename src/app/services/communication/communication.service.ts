@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { httpResponse, httpError, httpRequest } from './http-communication.interface';
+import { httpResponse, httpError, httpRequest } from './http.interface';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
 import { SharedDataService } from '../../shared-data/shared-data.service';
@@ -16,7 +16,7 @@ const httpOption = {
 
 
 @Injectable()
-export class DataControllerService {
+export class CommunicationService {
 
   private loading;
   constructor(

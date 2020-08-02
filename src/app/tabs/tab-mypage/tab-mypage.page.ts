@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
-import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { PageControllerService } from 'src/app/services/page-controller.service';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 
 @Component({
