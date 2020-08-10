@@ -37,9 +37,9 @@
             10분
           </ion-badge> -->
         <!-- </span> -->
-        <component-order-waiting waitingTime={{waiting.time}} waitingPerson={{waiting.person}}>
+        <comp-tag-waiting waitingTime={{waiting.time}} waitingPerson={{waiting.person}}>
           <ion-button *ngIf="isWaiting()" (click)="orderReceived()">수령 확인</ion-button>  
-        </component-order-waiting>
+        </comp-tag-waiting>
 
         
       </div>

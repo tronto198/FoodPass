@@ -4,24 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { OrderCardviewComponentModule } from './order-cardview/order-cardview.module';
 import { OrderCardviewComponent } from './order-cardview/order-cardview.component';
-import { OwnerEditableLabelComponent } from './owner-edit/owner-editable-label.component';
-import { OwnerEditableLabelComponentModule } from './owner-edit/owner-editable-label.module';
-import { OrderWaitingComponent } from './order-waiting/order-waiting.component';
-import { OrderWaitingComponentModule } from './order-waiting/order-waiting.module';
+import { TagWaitingComponentModule } from './tag-waiting/tag-waiting.module';
+import { OwnerEditableLabelComponentModule } from './owner-editable-label/owner-editable-label.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        OrderWaitingComponentModule,
+        TagWaitingComponentModule,
         OwnerEditableLabelComponentModule,
-        OrderCardviewComponentModule,
+        // OrderCardviewComponentModule,
     ], 
     exports: [
-        OrderWaitingComponent,
-        OwnerEditableLabelComponent,
-        OrderCardviewComponent,
+        // OrderCardviewComponent,
     ],
     declarations: [
     ],

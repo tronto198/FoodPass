@@ -15,7 +15,7 @@ import { OrderCardviewComponentModule } from 'src/app/component/order-cardview/o
     FormsModule,
     IonicModule,
     WaitingOrderListPageRoutingModule,
-    OrderCardviewComponentModule
+    // OrderCardviewComponentModule
   ],
   exports:[
     WaitingOrderListPage

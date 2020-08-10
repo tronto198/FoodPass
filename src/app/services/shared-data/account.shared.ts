@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
-import { httpResponse } from '../app-data/data-controller/http-communication.interface';
-import { resNewAccount } from '../app-data/data-controller/reqType/account/newAccount.req';
 import { environment } from 'src/environments/environment';
-import { reqUrl } from '../app-data/data-controller/reqType/req-url.enum';
+import { reqUrl } from '../communication/reqType/req-url.enum';
+import { httpResponse } from '../communication/http.interface';
+import { resNewAccount } from '../communication/reqType/account/newAccount.req';
 
 const httpOption = {
     headers: new HttpHeaders({

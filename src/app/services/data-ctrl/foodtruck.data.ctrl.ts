@@ -19,6 +19,12 @@ export class FoodtruckDataCtrl {
         
     }
 
+    getMenuList(foodtruckId: number) : MenuData[] {
+        return this.dataStorage.getData(foodtruckId).toArray().map((value) => {
+            return value.data as MenuData
+        })
+    }
+
 
     findMenuById(foodtruckId: number, id: number) : MenuData {
         return this.dataStorage.getData(foodtruckId).getData(id).data as MenuData;
@@ -29,6 +35,10 @@ export class FoodtruckDataCtrl {
             this.dataStorage.getData(foodtruckId).setData(new DataStorage<OptionData>(val));
         })
         
+    }
+
+    getOptionList(foodtruckId: number, menuId: number) : OptionData[] {
+        return this.dataStorage.getData(foodtruckId).getData(menuId).toArray();
     }
 
 

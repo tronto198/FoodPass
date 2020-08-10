@@ -1,8 +1,8 @@
 import { ModalFoodtruckInfoCtrl } from './FoodtruckInfo.ctrl';
 import { ModalMenuListCtrl } from './menuList.ctrl';
 import { ModalOptionListCtrl } from './optionList.ctrl';
-import { DataControllerService } from '../../data-controller/data-controller.service';
 import { SearchDataCtrl } from './search.ctrl';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 export class ModalData {
     
@@ -11,7 +11,7 @@ export class ModalData {
     optionListCtrl: ModalOptionListCtrl;
     searchDataCtrl: SearchDataCtrl
 
-    constructor(dataCtrl : DataControllerService) {
+    constructor(dataCtrl : CommunicationService) {
         this.foodtruckInfoCtrl = new ModalFoodtruckInfoCtrl(dataCtrl);
         this.menuListCtrl = new ModalMenuListCtrl(dataCtrl);
         this.optionListCtrl = new ModalOptionListCtrl(dataCtrl);

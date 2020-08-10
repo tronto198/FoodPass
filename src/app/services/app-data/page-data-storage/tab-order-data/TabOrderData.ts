@@ -2,7 +2,7 @@ import { TabOrderWaitingListCtrl } from './waitingList.ctrl';
 import { TabOrderHistoryListCtrl } from './orderHistoryList.ctrl';
 import { TabOrderSlideCtrl } from './slide.ctrl';
 import { HttpClient } from '@angular/common/http';
-import { DataControllerService } from '../../data-controller/data-controller.service';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 
 export class TabOrderData {
@@ -11,7 +11,7 @@ export class TabOrderData {
     historyCtrl : TabOrderHistoryListCtrl;
     // slideCtrl : TabOrderSlideCtrl;
 
-    constructor(dataCtrl : DataControllerService) {
+    constructor(dataCtrl : CommunicationService) {
         this.waitingCtrl = new TabOrderWaitingListCtrl(dataCtrl);
         this.historyCtrl = new TabOrderHistoryListCtrl(dataCtrl);
         // this.slideCtrl = new TabOrderSlideCtrl();

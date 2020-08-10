@@ -5,16 +5,16 @@ import { CheckboxValue } from 'src/app/data/basket-data/checkbox-value';
 import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu';
 import { OrderData } from 'src/app/data/order';
-import { DataControllerService } from '../../data-controller/data-controller.service';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
-import { reqOrder, resOrder, orderRequest } from '../../data-controller/reqType/order/order.req';
-import { reqUrl } from '../../data-controller/reqType/req-url.enum';
+import { orderRequest, reqOrder, resOrder } from 'src/app/services/communication/reqType/order/order.req';
+import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 
 export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
   basket : BasketOrder[] = [];
 
-  constructor(private dataCtrl : DataControllerService) {
+  constructor(private dataCtrl : CommunicationService) {
     super();
   }
 
@@ -29,8 +29,12 @@ export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
     for(let i = 0; i < menucount; i++){
       let menuId = Math.floor(Math.random() * 1000);
       let price = Math.floor(Math.random() * 80) * 100;
-      let ftdata : FoodtruckData = new FoodtruckData(ftId,
-        ftId + " foodtruck", "test", "");
+      let ftdata : FoodtruckData = {
+        id: ftId,
+        name: ftId  + " foodtruck",
+        introduction: "test",
+        notice: ""
+      }
         ftdata.waiting = {person: 3, time: 5};
       let menudata : MenuData ={
         id: menuId,

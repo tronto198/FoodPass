@@ -27,9 +27,9 @@
   <ion-list class="foodtruck-list">
     
     <!-- <ion-item class="foodtruck-list-cards"> -->
-      <app-cardview *ngFor="let foodtruck of foodtruckList; let i = index"
+      <app-cardview *ngFor="let foodtruckId of foodtruckIdList"
       class="foodtruck-item"
-      foodtruckIndex="{{i}}"
+      foodtruckId="{{i}}"
       (click)="foodtruckClicked(i)">
       </app-cardview>
     

@@ -1,8 +1,9 @@
-import { DataControllerService } from '../../data-controller/data-controller.service';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
+
 
 export class TabHomeMapCtrl {
 
-    constructor(private dataCtrl: DataControllerService){
+    constructor(private dataCtrl: CommunicationService){
 
     }
 

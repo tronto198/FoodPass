@@ -6,16 +6,17 @@ import { OrderCardviewComponent } from './order-cardview.component';
 import { HeaderBasketComponent } from './header-basket/header-basket.component';
 import { HeaderWaitingComponent } from './header-waiting/header-waiting.component';
 import { OrderedMenuComponent } from './ordered-menu/ordered-menu.component';
-import { OwnerEditableLabelComponentModule } from '../owner-edit/owner-editable-label.module';
 import { HeaderHistoryComponent } from './header-history/header-history.component';
-import { OrderWaitingComponentModule } from '../order-waiting/order-waiting.module';
+import { OwnerEditableLabelComponentModule } from '../owner-editable-label/owner-editable-label.module';
+import { TagWaitingComponentModule } from '../tag-waiting/tag-waiting.module';
+
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        OrderWaitingComponentModule,
+        TagWaitingComponentModule,
         OwnerEditableLabelComponentModule,
     ],
     exports: [

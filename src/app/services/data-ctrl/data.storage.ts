@@ -1,5 +1,4 @@
 import { ControlledData } from './data.interface';
-import { exception } from 'console';
 
 //데이터 저장소
 export class DataStorage<T extends ControlledData> implements ControlledData {

@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { httpResponse, httpError, httpRequest } from './http.interface';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
-import { SharedDataService } from '../../shared-data/shared-data.service';
 import { reqUrl } from './reqType/req-url.enum';
 import { environment } from 'src/environments/environment';
+import { SharedDataService } from '../shared-data/shared-data.service';
 
 const httpOption = {
   headers: new HttpHeaders({

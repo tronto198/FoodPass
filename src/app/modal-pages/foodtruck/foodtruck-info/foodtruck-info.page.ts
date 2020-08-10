@@ -6,6 +6,8 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { DefaultValue } from 'src/environments/defaultValue';
 import { ModalController } from '@ionic/angular';
+import { MenuDataProvider } from 'src/app/services/data-provider/menu.data.provider';
+import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 @Component({
   selector: 'foodtruck-foodtruckInfo',
   templateUrl: './foodtruck-info.page.html',
@@ -13,21 +15,26 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./foodtruck-info.page.scss'],
 })
 export class FoodtruckInfoPage implements OnInit  {
+
+  foodtruckId: number;
   
   constructor(
     private route : ActivatedRoute,
     private pageCtrl : PageControllerService,
-    private pageData : PageDataStorageService,
-    private modalCtrl : ModalController,
+    private menuProvider: MenuDataProvider,
+    private dataCtrl: FoodtruckDataCtrl,
   ) { }
 
   ngOnInit() {
-    this.getBaseData();
-    this.pageData.modal.menuListCtrl.getMenuList(this.foodtruckData.id);
+    this.getRoutingData();
+    this.menuProvider.getListByFoodtruckId(this.foodtruckId).then(list=>{
+      this.dataCtrl.setMenuData(this.foodtruckId, ...list);
+    })
+
   }
 
   get foodtruckData() : FoodtruckData{
-    return this.pageData.modal.foodtruckInfoCtrl.currentFoodtruck;
+    return this.dataCtrl.findFoodtruckById(this.foodtruckId);
   }
 
   // get foodtruckName() : string {
@@ -39,28 +46,19 @@ export class FoodtruckInfoPage implements OnInit  {
   }
 
   get menuList() : MenuData[]{
-    return this.pageData.modal.menuListCtrl.menuList;
+    return this.dataCtrl.getMenuList(this.foodtruckId);
   }
 
   getMenuImg(i : number) : string {
     return this.menuList[i].imgsrc? this.menuList[i].imgsrc : DefaultValue.MenuImgSrc;
   }
 
-  getBaseData(){
-    //여기에서 foodtruckinfo 가 있는지 보고
-    // 없으면 getRoutingData로 foodtruckinfo를 웹에서 받아오기
-    // 있으면 생략
-    if(this.foodtruckData == undefined){
-      this.getRoutingData();
-    }
-  }
-
   getRoutingData(){
-    let foodtruckId = Number(this.route.snapshot.paramMap.get("id"));
-    if(isNaN(foodtruckId)){
+    this.foodtruckId = Number(this.route.snapshot.paramMap.get("id"));
+    if(isNaN(this.foodtruckId)){
       this.pageCtrl.routingHome();
     }
-    this.pageData.modal.foodtruckInfoCtrl.getFoodtruckData(foodtruckId);
+    
   }
 
   menuClicked(index: number){
