@@ -36,3 +36,4 @@ npm-debug.log*
 capacitor.json
 /src/environments/*.config.*
 /src/firebase/*
+/src/environments/*
