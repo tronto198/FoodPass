@@ -62,7 +62,7 @@ export class FoodtruckInfoPage implements OnInit  {
   }
 
   menuClicked(index: number){
-    this.pageCtrl.presentFoodtruck(this.foodtruckData, this.menuList[index]);
+    this.pageCtrl.presentFoodtruck(this.foodtruckData.id, this.menuList[index].id);
   }
 
 }

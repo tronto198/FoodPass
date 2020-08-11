@@ -108,7 +108,7 @@ export class MapService {
     //클릭이벤트 추가
     pin.setClickable(true);
     kakao.maps.event.addListener(pin, 'click', ()=>{
-      this.pageCtrl.presentFoodtruck(foodtruckData);
+      this.pageCtrl.presentFoodtruck(foodtruckData.id);
     })
     
   }
