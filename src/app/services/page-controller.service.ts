@@ -14,15 +14,13 @@ export class PageControllerService {
     private pageData : PageDataStorageService,
   ) { }
 
-  presentFoodtruck(foodtruckData? : FoodtruckData, menuData? : MenuData){
+  presentFoodtruck(foodtruckId? : number, menuId? : number){
     let url = '/foodtruck';
 
-    if(foodtruckData != null){
-      url += `/${String(foodtruckData.id)}`;
-      this.pageData.modal.foodtruckInfoCtrl.currentFoodtruck = foodtruckData;
-      if(menuData != null){
-        url += `/${String(menuData.id)}`;
-        this.pageData.modal.foodtruckInfoCtrl.currentMenu = menuData;
+    if(foodtruckId != null){
+      url += `/${String(foodtruckId)}`;
+      if(menuId != null){
+        url += `/${String(menuId)}`;
       }
     }
     this.router.navigateByUrl(url);
@@ -49,6 +47,10 @@ export class PageControllerService {
 
   routingOrder(slideNo : orderSlide){
     this.router.navigateByUrl(`/tabs/order`);
+  }
+
+  routingBasket(){
+    
   }
 
 }

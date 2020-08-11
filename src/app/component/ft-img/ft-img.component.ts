@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DefaultValue } from 'src/environments/defaultValue';
+import { FoodtruckData } from 'src/app/data/foodtruck';
+import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 
 @Component({
   selector: 'comp-ft-img',
@@ -8,13 +10,11 @@ import { DefaultValue } from 'src/environments/defaultValue';
 })
 export class FtImgComponent implements OnInit {
 
-  @Input() foodtruckImgSrc = DefaultValue.foodtruckImgSrc
-  @Input() foodtruckLat = null;
-  @Input() foodtruckLng = null;
+  @Input() foodtruckId: number;
   @Input() toggleButton = true;
   imgToggle : boolean = true;
 
-  constructor() { }
+  constructor(private dataCtrl: FoodtruckDataCtrl) { }
 
   ngOnInit() {}
 
@@ -22,5 +22,13 @@ export class FtImgComponent implements OnInit {
     if(this.toggleButton){
       this.imgToggle = !this.imgToggle
     }
+  }
+
+  get foodtruckData() : FoodtruckData {
+    return this.dataCtrl.findFoodtruckById(this.foodtruckId)
+  }
+
+  get foodtruckImgSrc() : string {
+    return this.foodtruckData.imgSrc;
   }
 }

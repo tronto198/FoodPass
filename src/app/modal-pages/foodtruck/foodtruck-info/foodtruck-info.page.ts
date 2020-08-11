@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PageControllerService } from 'src/app/services/page-controller.service';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
@@ -8,6 +7,7 @@ import { DefaultValue } from 'src/environments/defaultValue';
 import { ModalController } from '@ionic/angular';
 import { MenuDataProvider } from 'src/app/services/data-provider/menu.data.provider';
 import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
+import { PageControllerService } from 'src/app/services/page-controller.service';
 @Component({
   selector: 'foodtruck-foodtruckInfo',
   templateUrl: './foodtruck-info.page.html',

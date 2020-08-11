@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'comp-tag-dist',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tag-dist.component.scss'],
 })
 export class TagDistComponent implements OnInit {
+  @Input() lat;
+  @Input() lng;
 
   constructor() { }
 

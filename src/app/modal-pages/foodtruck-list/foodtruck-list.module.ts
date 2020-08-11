@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FoodtruckListPageRoutingModule } from './foodtruck-list-routing.module';
 
 import { FoodtruckListPage } from './foodtruck-list.page';
 
@@ -16,7 +15,6 @@ import { TagWaitingComponentModule } from 'src/app/component/tag-waiting/tag-wai
     CommonModule,
     FormsModule,
     IonicModule,
-    FoodtruckListPageRoutingModule,
     TagWaitingComponentModule,
   ],
   exports: [
