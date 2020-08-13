@@ -5,20 +5,23 @@ import { IonicModule } from '@ionic/angular';
 import { FtImgComponentModule } from '../ft-img/ft-img.module';
 import { FtViewComponent } from './ft-view.component';
 import { TagDistComponent } from '../tag-dist/tag-dist.component';
+import { FtImgComponent } from '../ft-img/ft-img.component';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        FtImgComponentModule
+        //FtImgComponentModule
     ], 
     exports: [
         FtViewComponent
     ],
     declarations: [
+        TagDistComponent,
+        FtImgComponent,
         FtViewComponent,
-        TagDistComponent
+      
     ],
 })
 export class FtViewComponentModule {}

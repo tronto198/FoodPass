@@ -9,6 +9,8 @@ import { FoodtruckListPage } from './foodtruck-list.page';
 
 import { CardviewComponent } from './foodtruck-cardview/cardview.component';
 import { TagWaitingComponentModule } from 'src/app/component/tag-waiting/tag-waiting.module';
+import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
+import { SharedComponentModule } from 'src/app/component/shared-component.module';
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { TagWaitingComponentModule } from 'src/app/component/tag-waiting/tag-wai
     FormsModule,
     IonicModule,
     TagWaitingComponentModule,
+    SharedComponentModule
   ],
   exports: [
     FoodtruckListPage
@@ -23,6 +26,7 @@ import { TagWaitingComponentModule } from 'src/app/component/tag-waiting/tag-wai
   declarations: [
     CardviewComponent,
     FoodtruckListPage,
+   
   ]
 })
 export class FoodtruckListPageModule {}

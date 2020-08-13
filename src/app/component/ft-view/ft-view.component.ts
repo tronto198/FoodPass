@@ -18,7 +18,13 @@ export class FtViewComponent implements OnInit {
   ngOnInit() {}
 
   get foodtruckData(): FoodtruckData {
-    return this.dataCtrl.findFoodtruckById(this.foodtruckId)
+    return {
+      id: 0,
+      name: "name",
+      introduction: " into",
+      notice: "notice"
+    }
+    //return this.dataCtrl.findFoodtruckById(this.foodtruckId)
   }
 
   get name():string{
