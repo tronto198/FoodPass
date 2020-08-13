@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { FtImgComponentModule } from '../ft-img/ft-img.module';
 import { FtViewComponent } from './ft-view.component';
+import { TagDistComponent } from '../tag-dist/tag-dist.component';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { FtViewComponent } from './ft-view.component';
         FtViewComponent
     ],
     declarations: [
-        FtViewComponent
+        FtViewComponent,
+        TagDistComponent
     ],
 })
 export class FtViewComponentModule {}
