@@ -13,6 +13,7 @@ export class FtBasketViewComponent implements OnInit {
   @Input() foodtruckId: number;
   @Input() menuId: number;
   @Input() optionId: number;
+  total_price : number;
 
   constructor(private dataCtrl: FoodtruckDataCtrl) { }
   ngOnInit() {}
@@ -29,8 +30,9 @@ export class FtBasketViewComponent implements OnInit {
     return this.dataCtrl.findOptionById(this.foodtruckId, this.menuId, this.optionId)
   }
 
-  calcTotalPrice(){
-
+  get calcTotalPrice(): number{
+    this.total_price = 10000;
+    return this.total_price ;
   }
   
 }

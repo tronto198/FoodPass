@@ -10,7 +10,7 @@ import { PageDataStorageService } from 'src/app/services/app-data/page-data-stor
   styleUrls: ['./tab-order.page.scss'],
 })
 export class TabOrderPage implements OnInit {
-
+  cnt : number = 1;
   constructor(
     private pageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
@@ -19,5 +19,13 @@ export class TabOrderPage implements OnInit {
   ngOnInit() {
     this.pageData.tabOrder.historyCtrl.getHistory();
   }
-
+  get count(): number{
+    return this.cnt;
+  }
+  addCount(){
+    this.cnt++;
+  }
+  subCount(){
+    if(this.cnt>1)this.cnt--;
+  }
 }

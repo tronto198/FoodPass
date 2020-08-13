@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-ft-menu-item',
+  selector: 'ft-menu-item',
   templateUrl: './ft-menu-item.component.html',
   styleUrls: ['./ft-menu-item.component.scss'],
 })
