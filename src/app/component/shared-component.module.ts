@@ -15,12 +15,12 @@ import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component
         IonicModule,
         TagWaitingComponentModule,
         OwnerEditableLabelComponentModule,
-        // OrderCardviewComponentModule,
     ], 
     exports: [
-        // OrderCardviewComponent,
+        FtBasketViewComponent,
     ],
     declarations: [
+        FtBasketViewComponent,
     ],
 })
 export class SharedComponentModule {}

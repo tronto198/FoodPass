@@ -10,25 +10,25 @@ import { OptionData } from 'src/app/data/option';
   styleUrls: ['./ft-basket-view.component.scss'],
 })
 export class FtBasketViewComponent implements OnInit {
-  @Input() foodtruckId: number;
-  @Input() menuId: number;
-  @Input() optionId: number;
+  // @Input() foodtruckId: number;
+  // @Input() menuId: number;
+  // @Input() optionId: number;
   total_price : number;
 
   constructor(private dataCtrl: FoodtruckDataCtrl) { }
   ngOnInit() {}
 
-  get foodtruckData(): FoodtruckData {
-    return this.dataCtrl.findFoodtruckById(this.foodtruckId)
-  }
+  // get foodtruckData(): FoodtruckData {
+  //   return this.dataCtrl.findFoodtruckById(this.foodtruckId)
+  // }
 
-  get menuData(): MenuData {
-    return this.dataCtrl.findMenuById(this.foodtruckId, this.menuId)
-  }
+  // get menuData(): MenuData {
+  //   return this.dataCtrl.findMenuById(this.foodtruckId, this.menuId)
+  // }
 
-  get optionData(): OptionData {
-    return this.dataCtrl.findOptionById(this.foodtruckId, this.menuId, this.optionId)
-  }
+  // get optionData(): OptionData {
+  //   return this.dataCtrl.findOptionById(this.foodtruckId, this.menuId, this.optionId)
+  // }
 
   get calcTotalPrice(): number{
     this.total_price = 10000;
