@@ -10,11 +10,18 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 })
 export class FtWaitingViewComponent implements OnInit {
   // @Input() foodtruckId: number;
+  front : boolean;
   constructor(private dataCtrl: FoodtruckDataCtrl) { }
 
-  ngOnInit() {}
+  ngOnInit() {this.front =true;}
 
-  
+  toggleFront(){
+    this.front = !this.front;
+  }
+
+  isFront() : boolean{
+    return this.front;
+  }
   // get foodtruckData(): FoodtruckData {
   //   return this.dataCtrl.findFoodtruckById(this.foodtruckId)
   // }

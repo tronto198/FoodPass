@@ -20,6 +20,18 @@
           <ion-icon slot="icon-only" name="remove"></ion-icon>
         </ion-button>
       </ion-item>
+
+      <ion-item>
+        <ion-checkbox class="checkbox"></ion-checkbox>
+        메뉴 A - 옵션 A    
+        <ion-button class="bt-count" color="medium" (click)="addCount()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        {{count}}개
+        <ion-button class="bt-count" color="medium" (click)="subCount()"> 
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+      </ion-item>
     <!-- ft-menu-item 끝-->                                                                                                                                                                                                                                                                                                                     
     </ion-list>
   

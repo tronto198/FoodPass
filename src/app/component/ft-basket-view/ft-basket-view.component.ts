@@ -10,9 +10,12 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 export class FtBasketViewComponent implements OnInit {
 
   @Input() foodtruckId: number;
+  count : number;
   constructor(private dataCtrl: FoodtruckDataCtrl) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.count =1;
+  }
 
   
   get foodtruckData(): FoodtruckData {

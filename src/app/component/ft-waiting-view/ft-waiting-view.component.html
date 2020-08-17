@@ -1,21 +1,28 @@
 <!-- waiting-view 시작 -->
   <ion-card>
     <ion-card-content>
-      
-    <!-- ft-view 시작-->
-    <comp-ft-view></comp-ft-view>
-    <ion-icon name="menu"></ion-icon>
-    <!-- ft-view 끝-->
-  
-    <ion-list>
-      <!-- ft-menu-item 시작-->
-        <ion-item>
-          메뉴 A - 옵션 A    1개
-        </ion-item>
-      <!-- ft-menu-item 끝-->                                                                                                                                                                                                                                                                                                                     
-      </ion-list>
+      <div *ngIf="isFront()" (click)="toggleFront()">
+        <!-- ft-view 시작-->
+        <comp-ft-view></comp-ft-view>
+        <ion-icon name="menu"></ion-icon>
+        <!-- ft-view 끝-->
+      </div>
+
+      <div *ngIf="!isFront()" (click)="toggleFront()">
+        <ion-list>
+          <!-- ft-menu-item 시작-->
+            <ion-item>
+              메뉴 A - 옵션 A    1개
+            </ion-item>
     
-      <div>총 {{calcTotalPrice}} 원</div>
+            <ion-item>
+              메뉴 A - 옵션 A    1개
+            </ion-item>
+          <!-- ft-menu-item 끝-->                                                                                                                                                                                                                                                                                                                     
+          </ion-list>
+        </div>
+
+    <div class="total-price">총 10000 원</div>
   
     </ion-card-content>
   </ion-card>
