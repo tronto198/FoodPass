@@ -23,18 +23,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+ <!-- <ion-content>
   <ion-list class="foodtruck-list">
     
-    <!-- <ion-item class="foodtruck-list-cards"> -->
+    <ion-item class="foodtruck-list-cards"> 
       <app-cardview *ngFor="let foodtruckId of foodtruckIdList"
       class="foodtruck-item"
       foodtruckId="{{i}}"
       (click)="foodtruckClicked(i)">
       </app-cardview>
     
-      <!-- id: {{foodtruck.id}}, name: {{foodtruck.name}}  -->
-    <!-- </ion-item> -->
+     id: {{foodtruck.id}}, name: {{foodtruck.name}} 
+     </ion-item> 
   </ion-list>
-</ion-content>
+</ion-content>  -->
+<comp-ft-view></comp-ft-view>
 

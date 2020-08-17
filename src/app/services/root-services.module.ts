@@ -17,12 +17,12 @@ import { DataProviderModule } from './data-provider/data.provider.module';
     CommonModule,
     SharedDataModule,
     AppDataModule,
+    DataProviderModule,
+    DataCtrlModule,
   ],
   providers: [
     NotificationService,
     MapService,
-    DataProviderModule,
-    DataCtrlModule,
   ]
 })
 export class RootServicesModule { }
