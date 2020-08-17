@@ -8,6 +8,9 @@ import { TagWaitingComponentModule } from './tag-waiting/tag-waiting.module';
 import { OwnerEditableLabelComponentModule } from './owner-editable-label/owner-editable-label.module';
 import { FtViewComponentModule } from './ft-view/ft-view.module';
 import { FtViewComponent } from './ft-view/ft-view.component';
+import { BtnBasketComponent } from './btn-basket/btn-basket.component';
+import { FtWaitingViewComponent } from './ft-waiting-view/ft-waiting-view.component';
+import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component';
 
 @NgModule({
     imports: [
@@ -20,10 +23,16 @@ import { FtViewComponent } from './ft-view/ft-view.component';
         // OrderCardviewComponentModule,
     ], 
     exports: [
-        FtViewComponent
+        FtViewComponent,
+        BtnBasketComponent,
+        FtWaitingViewComponent,
+        FtBasketViewComponent
 
     ],
     declarations: [
+        BtnBasketComponent,
+        FtWaitingViewComponent,
+        FtBasketViewComponent
     ],
 })
 export class SharedComponentModule {}

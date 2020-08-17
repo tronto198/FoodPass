@@ -9,14 +9,14 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
   styleUrls: ['./ft-waiting-view.component.scss'],
 })
 export class FtWaitingViewComponent implements OnInit {
-  @Input() foodtruckId: number;
+  // @Input() foodtruckId: number;
   constructor(private dataCtrl: FoodtruckDataCtrl) { }
 
   ngOnInit() {}
 
   
-  get foodtruckData(): FoodtruckData {
-    return this.dataCtrl.findFoodtruckById(this.foodtruckId)
-  }
+  // get foodtruckData(): FoodtruckData {
+  //   return this.dataCtrl.findFoodtruckById(this.foodtruckId)
+  // }
 
 }
