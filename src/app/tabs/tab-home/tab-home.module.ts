@@ -18,10 +18,7 @@ import { MapPagePageModule } from 'src/app/modal-pages/map/map.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    //순서 바꾸면 장바구니만 나옴 ??
     TabHomePageRoutingModule,
-    BasketPageModule,
-    MapPagePageModule,
   ],
   declarations: [
     TabHomePage,

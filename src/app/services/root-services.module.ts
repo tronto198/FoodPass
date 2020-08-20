@@ -8,6 +8,7 @@ import { MapService } from './map/map.service';
 import { FoodtruckDataCtrl } from './data-ctrl/foodtruck.data.ctrl';
 import { DataCtrlModule } from './data-ctrl/data.ctrl.module';
 import { DataProviderModule } from './data-provider/data.provider.module';
+import { SearchService } from './search.service';
 
 
 
@@ -17,12 +18,13 @@ import { DataProviderModule } from './data-provider/data.provider.module';
     CommonModule,
     SharedDataModule,
     AppDataModule,
+    DataProviderModule,
+    DataCtrlModule,
   ],
   providers: [
     NotificationService,
     MapService,
-    DataProviderModule,
-    DataCtrlModule,
+    SearchService,
   ]
 })
 export class RootServicesModule { }

@@ -29,13 +29,14 @@ import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-
       BrowserModule, 
       IonicModule.forRoot(), 
       AppRoutingModule,
-
+      
       IonicStorageModule.forRoot(), //로컬 저장소
       HttpClientModule,       //http 연결용
 
-      SharedComponentModule,  //공통 컴포넌트
-      RootServicesModule,          //앱 데이터
-      // FoodtruckListPageModule,
+      RootServicesModule,          //공통 서비스
+      // SharedComponentModule,  //공통 컴포넌트
+
+      FoodtruckListPageModule,
 
       AngularFireModule.initializeApp(environment.firebase),  //firebase
       AngularFireMessagingModule,

@@ -49,8 +49,8 @@ export class PageControllerService {
     this.router.navigateByUrl(`/tabs/order`);
   }
 
-  routingBasket(){
-    
+  presentBasket(){
+    this.router.navigateByUrl(`/basket`);
   }
 
 }

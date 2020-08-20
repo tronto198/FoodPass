@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { MapService } from 'src/app/services/map/map.service';
 import { PageControllerService } from 'src/app/services/page-controller.service';
+import { SearchType } from 'src/app/services/map/search-item.enum';
 
 @Component({
   selector: 'app-search',
@@ -42,6 +43,13 @@ export class SearchPage implements OnInit {
 
   get currentSearched(){
     return this.ctrl.currentSearched;
+  }
+
+  get addressType(){
+    return SearchType.Address;
+  }
+  get keywordType(){
+    return SearchType.Keyword;
   }
 
   select(event){

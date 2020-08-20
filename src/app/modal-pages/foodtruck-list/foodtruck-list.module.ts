@@ -8,14 +8,16 @@ import { IonicModule } from '@ionic/angular';
 import { FoodtruckListPage } from './foodtruck-list.page';
 
 import { CardviewComponent } from './foodtruck-cardview/cardview.component';
-import { TagWaitingComponentModule } from 'src/app/component/tag-waiting/tag-waiting.module';
+import { SharedComponentModule } from 'src/app/component/shared-component.module';
+import { TagWaitingComponent } from 'src/app/component/tag-waiting/tag-waiting.component';
+import { TagWaitingModule } from 'src/app/component/tag-waiting/tag-waiting.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TagWaitingComponentModule,
+    SharedComponentModule,
   ],
   exports: [
     FoodtruckListPage

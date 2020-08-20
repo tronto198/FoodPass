@@ -19,14 +19,15 @@
   <ion-list>
     <!-- 푸드트럭 결과 -->
     <!-- 푸드트럭 결과는 클릭하면 바로 정보로 라우팅 -->
+
     <!-- 주소 결과 -->
-    <search-resultItem *ngFor="let result of addressResults" (selected)="select($event)"
-      lat="{{result.location.lat}}" lng="{{result.location.lng}}">
+    <search-resultItem *ngFor="let result of addressResults; let i = index" 
+    (selected)="select($event)" type="{{addressType}}" index="{{i}}">
       <ion-label>{{result.address}}</ion-label>
     </search-resultItem>
     <!-- 키워드 결과 -->
-    <search-resultItem *ngFor="let result of keywordResults" (selected)="select($event)"
-      lat="{{result.location.lat}}" lng="{{result.location.lng}}">
+    <search-resultItem *ngFor="let result of keywordResults; let i = index" 
+    (selected)="select($event)" type="{{keywordType}}" index="{{i}}">
       <ion-label>{{result.name}}</ion-label>
     </search-resultItem>
   </ion-list>

@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TagWaitingComponent } from './tag-waiting.component';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { TagWaitingComponent } from './tag-waiting.component';
+
+
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-    ], 
-    exports: [
-        TagWaitingComponent,
-    ],
-    declarations: [
-        TagWaitingComponent
-    ],
+  declarations: [TagWaitingComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+  ],
+  exports: [
+    TagWaitingComponent
+  ]
 })
-export class TagWaitingComponentModule {}
-  
+export class TagWaitingModule { }

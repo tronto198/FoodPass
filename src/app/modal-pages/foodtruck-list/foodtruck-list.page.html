@@ -1,30 +1,19 @@
-
-   <!-- <ion-grid no-padding>
-     <ion-row no-padding>
-      <ion-col no-padding col-2 *ngFor="let foodtruck of foodtruckList" class="foodtruck-list-cards">
-  
-        <app-cardview name="{{foodtruck.name}}" locate="{{foodtruck.locate}}"
-        inform="{{foodtruck.inform}}" distance="{{foodtruck.distance}}"
-        grade="{{foodtruck.grade}}" wating="{{foodtruck.wating}}" notice="{{foodtruck.notice}}"
-        truckImage="{{foodtruck.src}}"
-      routerLink="foodtruck/{{foodtruck.id}}" >
-        </app-cardview>
-     
-      </ion-col>
-    </ion-row>
-    </ion-grid> -->
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/home"></ion-back-button>
     </ion-buttons>
     <ion-title>푸드트럭 목록</ion-title>
+    <ion-buttons slot="end">
+      <comp-btn-basket></comp-btn-basket>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list class="foodtruck-list">
+    <comp-tag-waiting waitingTime="1" waitingPerson="5"></comp-tag-waiting>
+    <comp-owner-editable-label [(valueModel)]="test"></comp-owner-editable-label>
     
     <!-- <ion-item class="foodtruck-list-cards"> -->
       <app-cardview *ngFor="let foodtruckId of foodtruckIdList"
