@@ -8,6 +8,7 @@ import { BasketPageRoutingModule } from './basket-routing.module';
 
 import { BasketPage } from './basket.page';
 import { SharedComponentModule } from 'src/app/component/shared-component.module';
+import { FtMenuItemComponentModule } from 'src/app/component/ft-menu-item/ft-menu-item.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,8 @@ import { SharedComponentModule } from 'src/app/component/shared-component.module
     SharedComponentModule,
     BasketPageRoutingModule,
     // OrderCardviewComponentModule
+    
+    FtMenuItemComponentModule,
   ],
   exports: [
     BasketPage

@@ -8,6 +8,40 @@
 </ion-header>
 
 <ion-content>
+  <!-- <order-waiting-order-list class="center"></order-waiting-order-list> -->
+
+
+  <ion-card>
+    <ion-card-content>
+      
+    <!-- ft-view 시작-->
+    <!-- ft-view 끝-->
   
-  <order-waiting-order-list class="center"></order-waiting-order-list>
+    <ion-list>
+      <!-- ft-menu-item 시작-->
+        <ion-item>
+          <ion-checkbox class="checkbox"></ion-checkbox>
+          메뉴 A - 옵션 A    
+          <ion-button class="bt-count" color="medium" (click)="addCount()">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+          {{count}}개
+          <ion-button class="bt-count" color="medium" (click)="subCount()"> 
+            <ion-icon slot="icon-only" name="remove"></ion-icon>
+          </ion-button>
+        </ion-item>
+      <!-- ft-menu-item 끝-->                                                                                                                                                                                                                                                                                                                     
+      </ion-list>
+    
+      <div class="total-price">총 10000 원</div>
+  
+    </ion-card-content>
+  </ion-card>
+<!-- 
+  <app-ft-basket-view>
+
+  </app-ft-basket-view> -->
+  
+
+  
 </ion-content>
