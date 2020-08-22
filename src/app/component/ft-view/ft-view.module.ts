@@ -12,14 +12,14 @@ import { FtImgComponent } from '../ft-img/ft-img.component';
         CommonModule,
         FormsModule,
         IonicModule,
-        //FtImgComponentModule
+        FtImgComponentModule
     ], 
     exports: [
         FtViewComponent
     ],
     declarations: [
         TagDistComponent,
-        FtImgComponent,
+        //FtImgComponent,
         FtViewComponent,
       
     ],

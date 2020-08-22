@@ -16,12 +16,15 @@ import { OwnerAccountViewComponent } from './owner-account-view/owner-account-vi
 import { OwnerAccountViewModule } from './owner-account-view/owner-account-view.module';
 import { OwnerCookingViewComponent } from './owner-cooking-view/owner-cooking-view.component';
 import { OwnerCookingViewModule } from './owner-cooking-view/owner-cooking-view.module';
+import { FtImgComponent } from './ft-img/ft-img.component';
+import { FtImgComponentModule } from './ft-img/ft-img.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
+        FtImgComponentModule,
         TagWaitingComponentModule,
         OwnerEditableLabelComponentModule,
         FtViewComponentModule,
@@ -40,6 +43,9 @@ import { OwnerCookingViewModule } from './owner-cooking-view/owner-cooking-view.
 
     ],
     declarations: [
+        //FtImgComponent,
+       // FtViewComponent,
+       // OwnerAccountViewComponent,
     ],
 })
 export class SharedComponentModule {}
