@@ -1,15 +1,14 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
-import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqFoodtruckData, resFoodtruckData } from '../../data-controller/reqType/infoData/foodtruckData.req';
-import { reqUrl } from '../../data-controller/reqType/req-url.enum';
-import { reqMenuData, resMenuData } from '../../data-controller/reqType/infoData/menuData.req';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
+import { reqMenuData, resMenuData } from 'src/app/services/communication/reqType/infoData/menuData.req';
+import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
 
 export class ModalFoodtruckInfoCtrl {
     currentFoodtruck: FoodtruckData;
     currentMenu: MenuData;
 
-    constructor(private dataCtrl: DataControllerService){
+    constructor(private dataCtrl: CommunicationService){
 
     }
 
@@ -32,7 +31,7 @@ export class ModalFoodtruckInfoCtrl {
         // })
     }
     getMenuData(foodtruckId: number, menuId: number) : void {
-        let menudata = {menuID:10, menuName:"도넛1", menuInformation:"치즈맛 도넛", price:5000, imgsrc:"../assets/icon/donut.png"};
+        let menudata = {id:10, menuName:"도넛1", menuInformation:"치즈맛 도넛", price:5000, imgsrc:"../assets/icon/donut.png"};
 
         let req : reqMenuData = {
             foodtruckId: foodtruckId,

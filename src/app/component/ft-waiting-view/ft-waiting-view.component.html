@@ -1,0 +1,31 @@
+<!-- waiting-view 시작 -->
+  <ion-card class="front-card" [class.back-card]="!isFront()">
+    <ion-card-content>
+      <div *ngIf="isFront()" (click)="toggleFront()">
+        <!-- ft-view 시작-->
+        <comp-ft-view></comp-ft-view>
+        <ion-icon name="menu"></ion-icon>
+        3번
+        <!-- ft-view 끝-->
+      </div>
+
+      <div *ngIf="!isFront()" (click)="toggleFront()" >
+        <ion-list >
+          <!-- ft-menu-item 시작-->
+            <ion-item>
+              메뉴 A - 옵션 A    1개
+            </ion-item>
+    
+            <ion-item>
+              메뉴 A - 옵션 A    1개
+            </ion-item>
+          <!-- ft-menu-item 끝-->                                                                                                                                                                                                                                                                                                                     
+          </ion-list>
+        </div>
+        <!-- <div *ngIf="!isSMapLooking()" >지도 </div>
+        <ion-button color="medium" (click)="toggleSMap()">임시로 지도 표시 버튼</ion-button> -->
+    <div class="total-price">총 10000 원</div>
+  
+    </ion-card-content>
+  </ion-card>
+  

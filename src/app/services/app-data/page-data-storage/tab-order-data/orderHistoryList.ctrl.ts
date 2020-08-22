@@ -1,16 +1,16 @@
 import { OrderData } from 'src/app/data/order';
 import { Storage } from '@ionic/storage';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
-import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqOrderHistory, resOrderHistory } from '../../data-controller/reqType/account/orderHistory.req';
 import { OrderHistoryData } from 'src/app/data/order-history';
-import { reqUrl } from '../../data-controller/reqType/req-url.enum';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
+import { reqOrderHistory, resOrderHistory } from 'src/app/services/communication/reqType/account/orderHistory.req';
+import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
 
 export class TabOrderHistoryListCtrl {
 
   orderhistoryList : OrderHistoryData[] = [];
 
-  constructor(private dataCtrl: DataControllerService){
+  constructor(private dataCtrl: CommunicationService){
 
   }
 

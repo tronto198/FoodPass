@@ -1,12 +1,12 @@
 import { OptionData } from 'src/app/data/option';
-import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqOptionList, resOptionList } from '../../data-controller/reqType/listData/optionList.req';
-import { reqUrl } from '../../data-controller/reqType/req-url.enum';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
+import { reqOptionList, resOptionList } from 'src/app/services/communication/reqType/listData/optionList.req';
+import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
 
 export class ModalOptionListCtrl {
     optionList : OptionData[];
 
-    constructor(private dataCtrl : DataControllerService){
+    constructor(private dataCtrl : CommunicationService){
 
     }
 

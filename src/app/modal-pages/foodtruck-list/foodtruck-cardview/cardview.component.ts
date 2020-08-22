@@ -3,6 +3,7 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { WaitingData } from 'src/app/data/waiting';
 import { DefaultValue } from 'src/environments/defaultValue';
+import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 
 @Component({
   selector: 'app-cardview',
@@ -11,17 +12,16 @@ import { DefaultValue } from 'src/environments/defaultValue';
 })
 export class CardviewComponent implements OnInit {
 
-  @Input() foodtruckIndex : number;
+  @Input() foodtruckId : number;
 
-  constructor(private pageData : PageDataStorageService,
-    ) { }
+  constructor(private dataCtrl: FoodtruckDataCtrl) { }
 
   ngOnInit() {
     
   }
 
   get foodtruckInfo() : FoodtruckData{
-    return this.pageData.tabHome.foodtruckListCtrl.foodtruckList[this.foodtruckIndex];
+    return this.dataCtrl.findFoodtruckById(this.foodtruckId)
   }
 
   get name() : string {

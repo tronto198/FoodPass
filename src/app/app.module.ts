@@ -35,7 +35,7 @@ import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-
 
       SharedComponentModule,  //공통 컴포넌트
       RootServicesModule,          //앱 데이터
-      // FoodtruckListPageModule,
+      FoodtruckListPageModule,
 
       AngularFireModule.initializeApp(environment.firebase),  //firebase
       AngularFireMessagingModule,

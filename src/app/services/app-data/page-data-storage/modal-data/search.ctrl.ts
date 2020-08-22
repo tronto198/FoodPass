@@ -1,5 +1,6 @@
-import { DataControllerService } from '../../data-controller/data-controller.service';
+
 import { addressSearchResult, keywordSearchResult, addressSearch, keywordSearch } from 'src/app/services/map/map.searcher';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 export class SearchDataCtrl {
     inputData : String;
@@ -7,7 +8,7 @@ export class SearchDataCtrl {
     keywordSearchResults : keywordSearchResult[];
     currentSearched : String;
     
-    constructor(dataCtrl : DataControllerService) {
+    constructor(dataCtrl : CommunicationService) {
     
     }
 

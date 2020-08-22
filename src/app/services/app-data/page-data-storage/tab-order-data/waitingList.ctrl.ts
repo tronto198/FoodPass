@@ -1,15 +1,15 @@
 import { OrderData } from 'src/app/data/order';
-import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqUrl } from '../../data-controller/reqType/req-url.enum';
 import { resolve } from 'url';
 import { OrderList } from 'src/app/component/order-cardview/orderList.component';
-import { resOrderReceived } from '../../data-controller/reqType/order/orderReceived.req';
 import { OrderHistoryData } from 'src/app/data/order-history';
+import { resOrderReceived } from 'src/app/services/communication/reqType/order/orderReceived.req';
+import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 export class TabOrderWaitingListCtrl implements OrderList{
   waitingList : OrderData[] = [];
 
-  constructor(private dataCtrl : DataControllerService) {
+  constructor(private dataCtrl : CommunicationService) {
     
   }
 

@@ -1,12 +1,12 @@
 import { MenuData } from 'src/app/data/menu';
-import { reqMenuList, resMenuList } from '../../data-controller/reqType/listData/menuList.req';
-import { DataControllerService } from '../../data-controller/data-controller.service';
-import { reqUrl } from '../../data-controller/reqType/req-url.enum';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
+import { reqMenuList, resMenuList } from 'src/app/services/communication/reqType/listData/menuList.req';
+import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
 
 export class ModalMenuListCtrl {
     menuList : MenuData[];
 
-    constructor(private dataCtrl : DataControllerService){
+    constructor(private dataCtrl : CommunicationService){
 
     }
 

@@ -17,7 +17,9 @@ const routes: Routes = [
   },
   {
     path: 'foodtruckList',
-    loadChildren: () => import('./modal-pages/foodtruck-list/foodtruck-list.module').then( m => m.FoodtruckListPageModule)
+    //loadChildren: () => import('./modal-pages/foodtruck-list/foodtruck-list.module').then( m => m.FoodtruckListPageModule)
+    component:FoodtruckListPage
+    
   },
   {
     path: 'search',

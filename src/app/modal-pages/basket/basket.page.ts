@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, LoadingController } from '@ionic/angular';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { orderSlide } from 'src/app/services/app-data/page-data-storage/tab-order-data/tab-order-slide.enum';
-import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
+import { PageControllerService } from 'src/app/services/page-controller.service';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { TabHomeBasketCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.ctrl';
 import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
 import { OrderData } from 'src/app/data/order';
-import { NotificationService } from 'src/app/services/notification/notification.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 

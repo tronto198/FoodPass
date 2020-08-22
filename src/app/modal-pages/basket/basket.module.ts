@@ -17,7 +17,7 @@ import { OrderCardviewComponentModule } from 'src/app/component/order-cardview/o
     IonicModule,
     SharedComponentModule,
     BasketPageRoutingModule,
-    OrderCardviewComponentModule
+    // OrderCardviewComponentModule
   ],
   exports: [
     BasketPage

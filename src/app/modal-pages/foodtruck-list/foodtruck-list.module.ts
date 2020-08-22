@@ -4,19 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FoodtruckListPageRoutingModule } from './foodtruck-list-routing.module';
 
 import { FoodtruckListPage } from './foodtruck-list.page';
-import { OrderWaitingComponentModule } from 'src/app/component/order-waiting/order-waiting.module';
+
 import { CardviewComponent } from './foodtruck-cardview/cardview.component';
+import { TagWaitingComponentModule } from 'src/app/component/tag-waiting/tag-waiting.module';
+import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
+import { SharedComponentModule } from 'src/app/component/shared-component.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FoodtruckListPageRoutingModule,
-    OrderWaitingComponentModule,
+    TagWaitingComponentModule,
+    SharedComponentModule
   ],
   exports: [
     FoodtruckListPage
@@ -24,6 +26,7 @@ import { CardviewComponent } from './foodtruck-cardview/cardview.component';
   declarations: [
     CardviewComponent,
     FoodtruckListPage,
+   
   ]
 })
 export class FoodtruckListPageModule {}

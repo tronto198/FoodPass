@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
-import { PageControllerService } from 'src/app/services/app-data/page-controller/page-controller.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { PageControllerService } from 'src/app/services/page-controller.service';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 
 @Component({
@@ -11,7 +11,7 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 })
 export class TabMypagePage implements OnInit {
 
-  myFoodtruck : FoodtruckData = new FoodtruckData(10011, "master", "운영자용 수정 푸드트럭", "수정 공지");
+  myFoodtruck : FoodtruckData
 
   constructor(
     private config : SharedDataService,
@@ -22,6 +22,12 @@ export class TabMypagePage implements OnInit {
 
 
   ngOnInit() {
+    this.myFoodtruck = {
+      id: 10011,
+      name: "master",
+      introduction: "운영자용 수정 푸드트럭",
+      notice: "수정 공지"
+    }
   }
 
 
