@@ -14,7 +14,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    SharedComponentModule],
+   ],
   exports: [RouterModule],
 })
 export class TabMypagePageRoutingModule {}

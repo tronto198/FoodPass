@@ -46,5 +46,6 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
 
   foodtruckClicked(index: number){
     // this.pageCtrl.presentFoodtruck(this.foodtruckList[index]);
+    
   }
 }

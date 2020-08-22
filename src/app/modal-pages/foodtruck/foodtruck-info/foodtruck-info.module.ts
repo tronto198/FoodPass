@@ -10,6 +10,7 @@ import { FoodtruckInfoPage } from './foodtruck-info.page';
 import { MenuInfoPageModule } from '../menu-info/menu-info.module';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
+import { SharedComponentModule } from 'src/app/component/shared-component.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
     FormsModule,
     IonicModule,
     FoodtruckInfoPageRoutingModule,
-    MenuInfoPageModule
+    MenuInfoPageModule,
+    SharedComponentModule
   ],
   exports: [
     FoodtruckInfoPage
