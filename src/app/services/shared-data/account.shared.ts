@@ -49,6 +49,8 @@ export class SharedAccount {
             
     }
 
+  
+
     private createId(resolve, reject) : void {
         let url = environment.host.concat(reqUrl.newAccount);
         this.httpClient.post(url, {}, httpOption).subscribe(data  =>{

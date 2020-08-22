@@ -12,15 +12,30 @@ import { BtnBasketComponent } from './btn-basket/btn-basket.component';
 import { FtWaitingViewComponent } from './ft-waiting-view/ft-waiting-view.component';
 import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component';
 import { FtOrderhistoryViewComponent } from './ft-orderhistory-view/ft-orderhistory-view.component';
+import { FtMenuComponent } from './ft-menu/ft-menu.component';
+import { FtMenuComponentsModule } from './ft-menu/ft-menu.module';
+import { UserAccountViewModule } from './user-account-view/user-account-view.module';
+import { UserAccountViewComponent } from './user-account-view/user-account-view.component';
+import { OwnerAccountViewComponent } from './owner-account-view/owner-account-view.component';
+import { OwnerAccountViewModule } from './owner-account-view/owner-account-view.module';
+import { OwnerCookingViewComponent } from './owner-cooking-view/owner-cooking-view.component';
+import { OwnerCookingViewModule } from './owner-cooking-view/owner-cooking-view.module';
+import { FtImgComponent } from './ft-img/ft-img.component';
+import { FtImgComponentModule } from './ft-img/ft-img.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
+        FtImgComponentModule,
         TagWaitingComponentModule,
         OwnerEditableLabelComponentModule,
-        FtViewComponentModule
+        FtViewComponentModule,
+        FtMenuComponentsModule,
+        UserAccountViewModule,
+        OwnerAccountViewModule,
+        OwnerCookingViewModule
         // OrderCardviewComponentModule,
     ], 
     exports: [
@@ -35,8 +50,14 @@ import { FtOrderhistoryViewComponent } from './ft-orderhistory-view/ft-orderhist
         BtnBasketComponent,
         FtWaitingViewComponent,
         FtBasketViewComponent,
-        FtOrderhistoryViewComponent
+        FtOrderhistoryViewComponent,
+        FtMenuComponent,
+        UserAccountViewComponent,
+        OwnerAccountViewComponent,
+        OwnerCookingViewComponent
+
     ],
+  
 })
 export class SharedComponentModule {}
   
