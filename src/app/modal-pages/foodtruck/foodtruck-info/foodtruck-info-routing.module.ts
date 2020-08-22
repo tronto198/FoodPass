@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FoodtruckInfoPage } from './foodtruck-info.page';
 import { MenuInfoPage } from '../menu-info/menu-info.page';
+import { SharedComponentModule } from 'src/app/component/shared-component.module';
 
 const routes: Routes = [
   {
@@ -17,7 +18,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  imports: [
+    RouterModule.forChild(routes),
+    SharedComponentModule
+  ],
+  exports: [
+    RouterModule
+  ],
 })
 export class FoodtruckInfoPageRoutingModule {}

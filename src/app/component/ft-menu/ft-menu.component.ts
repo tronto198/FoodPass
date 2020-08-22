@@ -13,7 +13,14 @@ export class FtMenuComponent implements OnInit {
   constructor(private dataCtrl:FoodtruckDataCtrl) { }
 
   get menuInfo() : MenuData{
-    return this.dataCtrl.findMenuById(this.foodtruckId, this.menuId)
+    return {
+      id:0,
+      menuName:"menuName",
+      menuInformation:"menuInform",
+      price:5000,
+
+    }
+    //return this.dataCtrl.findMenuById(this.foodtruckId, this.menuId)
   }
   get name():string{
     return this.menuInfo.menuName
