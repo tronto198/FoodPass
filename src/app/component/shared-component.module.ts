@@ -11,6 +11,7 @@ import { FtViewComponent } from './ft-view/ft-view.component';
 import { BtnBasketComponent } from './btn-basket/btn-basket.component';
 import { FtWaitingViewComponent } from './ft-waiting-view/ft-waiting-view.component';
 import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component';
+import { FtOrderhistoryViewComponent } from './ft-orderhistory-view/ft-orderhistory-view.component';
 
 @NgModule({
     imports: [
@@ -26,13 +27,15 @@ import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component
         FtViewComponent,
         BtnBasketComponent,
         FtWaitingViewComponent,
-        FtBasketViewComponent
+        FtBasketViewComponent,
+        FtOrderhistoryViewComponent
 
     ],
     declarations: [
         BtnBasketComponent,
         FtWaitingViewComponent,
-        FtBasketViewComponent
+        FtBasketViewComponent,
+        FtOrderhistoryViewComponent
     ],
 })
 export class SharedComponentModule {}
