@@ -3,7 +3,7 @@ import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctr
 import { FoodtruckData } from 'src/app/data/foodtruck';
 
 @Component({
-  selector: 'app-ft-basket-view',
+  selector: 'comp-ft-basket-view',
   templateUrl: './ft-basket-view.component.html',
   styleUrls: ['./ft-basket-view.component.scss'],
 })
