@@ -2,24 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { OwnerEditableLabelComponent } from './owner-editable-label.component';
-import { TagWaitingComponent } from '../tag-waiting/tag-waiting.component';
+import { FtMenuItemComponent } from './ft-menu-item.component';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-    ],
+    ], 
     exports: [
-        OwnerEditableLabelComponent
+        FtMenuItemComponent
     ],
     declarations: [
-        OwnerEditableLabelComponent,
+        FtMenuItemComponent
     ],
-    providers: [
-        
-    ]
 })
-export class OwnerEditableLabelComponentModule {}
+export class FtMenuItemComponentModule {}
   

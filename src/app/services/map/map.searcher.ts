@@ -1,5 +1,6 @@
 import { kakaoStatus } from './map.utility';
 import { LocationData } from 'src/app/data/location';
+import { SearchType } from './search-item.enum';
 
 declare var kakao;
 const geocoder = new kakao.maps.services.Geocoder();
@@ -19,11 +20,13 @@ function addressSearchCallback(data, status){
         data.forEach(element => {
             console.log("el:", element);
             let r : addressSearchResult = {
+                type: SearchType.Address,
                 location: {
                     lat: element.y,
                     lng: element.x
                 },
-                address: element.address_name
+                address: element.address_name,
+                name: element.address_name
             }
             results.push(r);
         });
@@ -44,6 +47,7 @@ function keywordSearchCallback(data, status, pagination){
         data.forEach(element => {
             // console.log("el:", element);
             let r : keywordSearchResult = {
+                type: SearchType.Keyword,
                 location: {
                     lat: element.y,
                     lng: element.x
@@ -68,14 +72,20 @@ function keywordSearchCallback(data, status, pagination){
     // savedCallback = null;
 }
 
-export interface keywordSearchResult {
+export interface keywordSearchResult extends SearchResult {
     location: LocationData;
     name: String;
     road_address?: String;
     address: String;
 }
 
-export interface addressSearchResult {
+export interface addressSearchResult extends SearchResult {
     location: LocationData;
     address: String;
+}
+
+export interface SearchResult {
+    type: SearchType;
+    location: LocationData;
+    name: String;
 }

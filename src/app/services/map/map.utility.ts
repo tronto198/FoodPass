@@ -14,6 +14,14 @@ export function PointToLocationData(coords: LatLng) : LocationData {
     return location;
 }
 
+export function distance(location1: LocationData, location2: LocationData){
+    var line = new kakao.maps.Polyline({
+        path : [LocationDataToPoint(location1), LocationDataToPoint(location2)]
+    })
+    let dis = Math.round(line.getLength());
+    return dis;
+}
+
 interface LatLng {
     getLat() : number;
     getLng() : number;

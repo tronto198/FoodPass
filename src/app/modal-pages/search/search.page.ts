@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { MapService } from 'src/app/services/map/map.service';
 import { PageControllerService } from 'src/app/services/page-controller.service';
+import { SearchType } from 'src/app/services/map/search-item.enum';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -10,43 +12,56 @@ import { PageControllerService } from 'src/app/services/page-controller.service'
 })
 export class SearchPage implements OnInit {
 
-  constructor(private pageData: PageDataStorageService,
-    private mapCtrl: MapService,
-    private pageCtrl: PageControllerService) { }
+  constructor(private search: SearchService) { }
 
   ngOnInit() {
   }
 
-  get ctrl(){
-    return this.pageData.modal.searchDataCtrl;
-  }
-
-  search(){
-    this.ctrl.search();
-  }
-
   get addressResults(){
-    return this.ctrl.addressSearchResults;
+    return this.search.addressSearchResults;
   }
 
   get keywordResults(){
-    return this.ctrl.keywordSearchResults;
+    return this.search.keywordSearchResults;
   }
 
   get inputData(){
-    return this.ctrl.inputData;
+    return this.search.inputData;
   }
   set inputData(val){
-    this.ctrl.inputData = val;
+    this.search.inputData = val;
   }
 
   get currentSearched(){
-    return this.ctrl.currentSearched;
+    return this.search.currentSearched;
+  }
+
+  get addressType(){
+    return SearchType.Address;
+  }
+  get keywordType(){
+    return SearchType.Keyword;
+  }
+
+  startSearch(){
+    this.search.search()
   }
 
   select(event){
-    this.mapCtrl.mapPosition = event;
+    // this.mapCtrl.mapPosition = event;
+
+    console.log(event);
+    
+
     //푸드트럭 검색
-    this.pageCtrl.routingHome();
+    // this.pageCtrl.routingHome();
+  }
+
+  selectAddress(index){
+
+  }
+
+  selectKeyword(index){
+
   }
 }

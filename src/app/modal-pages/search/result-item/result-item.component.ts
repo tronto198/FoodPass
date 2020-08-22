@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LocationData } from 'src/app/data/location';
+import { SearchType } from '../../../services/map/search-item.enum';
+import { SearchResult } from 'src/app/services/map/map.searcher';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'search-resultItem',
@@ -7,16 +10,28 @@ import { LocationData } from 'src/app/data/location';
   styleUrls: ['./result-item.component.scss'],
 })
 export class ResultItemComponent implements OnInit {
-  @Input() lat;
-  @Input() lng;
-  @Output() selected = new EventEmitter<LocationData>();
+  @Input() type: SearchType;
+  @Input() index: number;
+  @Output() selected = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private search: SearchService) { }
 
   ngOnInit() {}
 
-  clicked(){
-    this.selected.emit({lat: this.lat, lng: this.lng});
+  get item() : SearchResult {
+    let item = null
+    if(this.type == SearchType.Address){
+      item = this.search.addressSearchResults[this.index];
+    }
+    else if (this.type == SearchType.Keyword){
+      item = this.search.keywordSearchResults[this.index];
+    }
+    return item;
   }
 
+
+  clicked(){
+    // this.selected.emit(this.index);
+    this.search.inputData = this.item.name;
+  }
 }

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { TagWaitingComponentModule } from './tag-waiting/tag-waiting.module';
 import { FtViewComponentModule } from './ft-view/ft-view.module';
 import { FtViewComponent } from './ft-view/ft-view.component';
 import { FtWaitingViewComponent } from './ft-waiting-view/ft-waiting-view.component';
@@ -25,7 +24,6 @@ import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component
         CommonModule,
         FormsModule,
         IonicModule,
-        TagWaitingComponentModule,
         OwnerEditableLabelComponentModule,
         FtViewComponentModule,
         FtMenuComponentsModule,

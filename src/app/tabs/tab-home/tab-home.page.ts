@@ -9,6 +9,7 @@ import { PageControllerService } from 'src/app/services/page-controller.service'
 import { MapService } from 'src/app/services/map/map.service';
 import { keywordSearchResult, keywordSearch, addressSearch, addressSearchResult } from 'src/app/services/map/map.searcher';
 import { FoodtruckData } from 'src/app/data/foodtruck';
+import { SearchService } from 'src/app/services/search.service';
 
 declare var kakao;
 
@@ -25,6 +26,7 @@ export class TabHomePage implements OnInit, OnDestroy {
     private pageData : PageDataStorageService,
     private sharedData : SharedDataService,
     private mapCtrl : MapService,
+    private search: SearchService
   ) { }
 
   ngOnInit() {
@@ -48,20 +50,16 @@ export class TabHomePage implements OnInit, OnDestroy {
       })
     }, 500);
   }
-
-  get searchCtrl(){
-    return this.pageData.modal.searchDataCtrl;
-  }
   
   get inputData(){
-    return this.searchCtrl.inputData;
+    return this.search.inputData;
   }
   set inputData(val){
-    this.searchCtrl.inputData = val;
+    this.search.inputData = val;
   }
 
   get currentSearched(){
-    return this.searchCtrl.currentSearched;
+    return this.search.currentSearched;
   }
 
   showFoodtruckList() {

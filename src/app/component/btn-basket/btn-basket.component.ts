@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageControllerService } from 'src/app/services/page-controller.service';
 
 @Component({
   selector: 'comp-btn-basket',
@@ -7,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BtnBasketComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pageCtrl : PageControllerService) { }
 
   ngOnInit() {}
 
   routeBasket(){
-    
+    this.pageCtrl.presentBasket()
   }
 }
