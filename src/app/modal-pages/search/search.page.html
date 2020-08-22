@@ -2,7 +2,7 @@
   <!-- 검색용 박스 -->
   <ion-item class="searchingBox">
     <ion-input id="input" placeholder="currentSearched" [(ngModel)]="inputData"
-    (ionChange)="search()">
+    (ionChange)="startSearch()">
     </ion-input>
     <ion-button class="searchingButton mapButton" (click)="search()">
       <ion-icon slot="icon-only" name="search-outline"></ion-icon>
@@ -23,12 +23,10 @@
     <!-- 주소 결과 -->
     <search-resultItem *ngFor="let result of addressResults; let i = index" 
     (selected)="select($event)" type="{{addressType}}" index="{{i}}">
-      <ion-label>{{result.address}}</ion-label>
     </search-resultItem>
     <!-- 키워드 결과 -->
     <search-resultItem *ngFor="let result of keywordResults; let i = index" 
     (selected)="select($event)" type="{{keywordType}}" index="{{i}}">
-      <ion-label>{{result.name}}</ion-label>
     </search-resultItem>
   </ion-list>
 </ion-content>

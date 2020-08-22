@@ -12,20 +12,26 @@ import { SearchService } from 'src/app/services/search.service';
 export class ResultItemComponent implements OnInit {
   @Input() type: SearchType;
   @Input() index: number;
-  @Output() selected = new EventEmitter<SearchResult>();
+  @Output() selected = new EventEmitter<number>();
 
   constructor(private search: SearchService) { }
 
   ngOnInit() {}
 
-  get item(){
-    switch(this.type){
-      case SearchType.Address:
-        return this.search.addressSearchResults[this.index];
-
-      case SearchType.Keyword:
-        return this.search.keywordSearchResults[this.index];
-
+  get item() : SearchResult {
+    let item = null
+    if(this.type == SearchType.Address){
+      item = this.search.addressSearchResults[this.index];
     }
+    else if (this.type == SearchType.Keyword){
+      item = this.search.keywordSearchResults[this.index];
+    }
+    return item;
+  }
+
+
+  clicked(){
+    // this.selected.emit(this.index);
+    this.search.inputData = this.item.name;
   }
 }
