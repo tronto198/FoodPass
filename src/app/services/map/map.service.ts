@@ -99,7 +99,7 @@ export class MapService {
   }
 
 
-  addFoodtruckPin(foodtruckData: FoodtruckData){
+  addFoodtruckPin(foodtruckData: FoodtruckData, clickevent: (id: number) => void){
     //핀 만들기
     let pin = this.addPin(foodtruckData.location);
     
@@ -108,7 +108,8 @@ export class MapService {
     //클릭이벤트 추가
     pin.setClickable(true);
     kakao.maps.event.addListener(pin, 'click', ()=>{
-      this.pageCtrl.presentFoodtruck(foodtruckData.id);
+      // this.pageCtrl.presentFoodtruck(foodtruckData.id);
+      clickevent(foodtruckData.id)
     })
     
   }

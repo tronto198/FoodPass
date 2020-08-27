@@ -11,6 +11,7 @@ import { ToastController, ModalController } from '@ionic/angular';
 import { TabHomePage } from './tab-home.page';
 import { BasketPageModule } from 'src/app/modal-pages/basket/basket.module';
 import { MapPagePageModule } from 'src/app/modal-pages/map/map.module';
+import { FtViewComponentModule } from 'src/app/component/ft-view/ft-view.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MapPagePageModule } from 'src/app/modal-pages/map/map.module';
     FormsModule,
     IonicModule,
     TabHomePageRoutingModule,
+    FtViewComponentModule,
   ],
   declarations: [
     TabHomePage,
