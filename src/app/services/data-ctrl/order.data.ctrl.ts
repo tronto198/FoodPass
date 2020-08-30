@@ -1,56 +1,44 @@
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { Injectable } from '@angular/core';
 import { DataStorage } from './data.storage';
-import { OptionData } from 'src/app/data/option';
+import { OrderData } from 'src/app/data/order';
+import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { MenuData } from 'src/app/data/menu';
+import { OptionData } from 'src/app/data/option';
 
 @Injectable()
 export class OrderDataCtrl {
-    private dataStorage = new DataStorage<DataStorage<DataStorage<OptionData>>>();
+    private dataStorage = new DataStorage<OrderData>();
 
-    findFoodtruckById(id: number) : FoodtruckData{
-        return this.dataStorage.getData(id).data as FoodtruckData;
+    
+    findOrderById(id: number) : OrderData{
+        return this.dataStorage.getData(id) as OrderData;
     }
 
-    setFoodtruckData(...data: FoodtruckData[]){
+
+    findOrderedMenuById(orderId:number) : OrderedMenuData[]{
+        return this.dataStorage.getData(orderId).orderedMenu as OrderedMenuData[];
+    }
+
+    setOrderData(data: OrderData[]){
         data.forEach((val)=>{
-            this.dataStorage.setData(new DataStorage<DataStorage<OptionData>>(val));
-        })
-        
-    }
-
-    getMenuList(foodtruckId: number) : MenuData[] {
-        return this.dataStorage.getData(foodtruckId).toArray().map((value) => {
-            return value.data as MenuData
+            this.dataStorage.setData(val);
         })
     }
 
-
-    findMenuById(foodtruckId: number, id: number) : MenuData {
-        return this.dataStorage.getData(foodtruckId).getData(id).data as MenuData;
+    getOrderList() : OrderData[] {
+        return this.dataStorage.toArray();
     }
 
-    setMenuData(foodtruckId: number, ...data: MenuData[]){
-        data.forEach((val)=>{
-            this.dataStorage.getData(foodtruckId).setData(new DataStorage<OptionData>(val));
-        })
-        
-    }
+    // setOrderedMenuData(orderId: number, data: OrderedMenuData[]){
+    //     data.forEach((val)=>{
+    //          this.dataStorage.getData(orderId).setData(val);
+    //     })
+    // }
 
-    getOptionList(foodtruckId: number, menuId: number) : OptionData[] {
-        return this.dataStorage.getData(foodtruckId).getData(menuId).toArray();
-    }
+    // getOrderedMenuList(orderId: number) : OrderData[] {
+    //     // return this.dataStorage.toArray();
+    // }
 
-
-    findOptionById(foodtruckId: number, menuId: number, id: number) : OptionData{
-        return this.dataStorage.getData(foodtruckId).getData(menuId).getData(id);
-    }
-
-    setOptionData(foodtruckId: number, menuId: number, ...data: OptionData[]){
-        data.forEach((val)=>{
-            this.dataStorage.getData(foodtruckId).getData(menuId).setData(val);
-        })
-        
-    }
     
 }
