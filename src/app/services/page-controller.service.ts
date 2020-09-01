@@ -4,6 +4,7 @@ import { orderSlide } from './app-data/page-data-storage/tab-order-data/tab-orde
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { PageDataStorageService } from './app-data/page-data-storage/page-data-storage.service';
+import { FoodtruckInfoPage } from '../modal-pages/foodtruck/foodtruck-info/foodtruck-info.page';
 
 @Injectable()
 export class PageControllerService {
@@ -24,7 +25,7 @@ export class PageControllerService {
       }
     }
     this.router.navigateByUrl(url);
-
+   
   }
 
   presentOrderHistory(){

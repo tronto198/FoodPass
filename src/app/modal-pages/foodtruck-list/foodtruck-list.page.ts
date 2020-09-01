@@ -14,12 +14,13 @@ import { PageControllerService } from 'src/app/services/page-controller.service'
 })
 export class FoodtruckListPage implements OnInit, OnDestroy {
 
-  foodtruckIdList: number[];
+  foodtruckIdList: number[]=[0,1,2];
  
   constructor(
     private pageCtrl : PageControllerService,
     private sharedData : SharedDataService,
-    private dataCtrl : FoodtruckDataCtrl
+    private dataCtrl : FoodtruckDataCtrl,
+
   ) { }
 
   ngOnInit() {
@@ -43,9 +44,12 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
   //   });
   // }
 
-
+  isEmpty(){
+   return this.foodtruckIdList.length==0
+  }
   foodtruckClicked(index: number){
-    // this.pageCtrl.presentFoodtruck(this.foodtruckList[index]);
+    //this.FoodtruckInfoPage
+    this.pageCtrl.presentFoodtruck(this.foodtruckIdList[index],null);
     
   }
 }
