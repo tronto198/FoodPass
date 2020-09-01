@@ -27,7 +27,13 @@ export class FoodtruckDataCtrl {
 
 
     findMenuById(foodtruckId: number, id: number) : MenuData {
-        return this.dataStorage.getData(foodtruckId).getData(id).data as MenuData;
+        return   { 
+            id:0,
+            menuName:"menu1",
+            menuInformation:"menuInform1",
+            price:5000,
+            }
+       // return this.dataStorage.getData(foodtruckId).getData(id).data as MenuData;
     }
 
     setMenuData(foodtruckId: number, ...data: MenuData[]){

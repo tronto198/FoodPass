@@ -18,11 +18,11 @@ export class MenuListComponent implements OnInit {
   ngOnInit() {}
 
   get menuData() : MenuData {
-    return this.dataCtrl.findMenuById(this.foodtruckId, this.menuId);
+    return this.dataCtrl.findMenuById(this.foodtruckId, this.menuId)
   }
 
   get name() : string {
-    return this.menuData.menuName;
+    return this.menuData.menuName
   }
 
   get inform() : string {
