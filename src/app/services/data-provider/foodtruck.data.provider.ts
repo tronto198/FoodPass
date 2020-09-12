@@ -7,6 +7,12 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 @Injectable()
 export class FoodtruckDataProvider extends ADataProvider{
 
+    getItem(id: number){
+        return this.getDataWithPromise<FoodtruckData>(() =>{
+            return null;
+        })
+    }
+
     foodtruckListByLocation(location: LocationData) : Promise<FoodtruckData[]> {
         return new Promise((resolve, reject) =>{
             //가져오기
@@ -21,10 +27,5 @@ export class FoodtruckDataProvider extends ADataProvider{
             }]);
         })
     }
-
-    foodtruckById(id: number) : Promise<FoodtruckData>{
-        return this.getDataWithPromise<FoodtruckData>(() =>{
-            return null;
-        })
-    }
+    
 }

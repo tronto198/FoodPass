@@ -3,13 +3,22 @@ import { Injectable } from '@angular/core';
 import { DataStorage } from './data.storage';
 import { OptionData } from 'src/app/data/option';
 import { MenuData } from 'src/app/data/menu';
+import { FoodtruckDataProvider } from '../data-provider/foodtruck.data.provider';
+import { MenuDataProvider } from '../data-provider/menu.data.provider';
+import { OptionDataProvider } from '../data-provider/option.data.provider';
 
 @Injectable()
 export class FoodtruckDataCtrl {
     private dataStorage = new DataStorage<DataStorage<DataStorage<OptionData>>>();
 
-    findFoodtruckById(id: number) : FoodtruckData{
-        return this.dataStorage.getData(id).data as FoodtruckData;
+    constructor(
+    ){
+
+    }
+
+    findFoodtruckById(id: number) : FoodtruckData | null {
+        let ft = this.dataStorage.getData(id)
+        return ft ? ft.data as FoodtruckData : null
     }
 
     setFoodtruckData(...data: FoodtruckData[]){
@@ -19,15 +28,21 @@ export class FoodtruckDataCtrl {
         
     }
 
-    getMenuList(foodtruckId: number) : MenuData[] {
-        return this.dataStorage.getData(foodtruckId).toArray().map((value) => {
+    getMenuList(foodtruckId: number) : MenuData[] | null {
+        let ft = this.dataStorage.getData(foodtruckId)
+        return ft ? ft.toArray().map((value) => {
             return value.data as MenuData
-        })
+        }) : null
     }
 
 
-    findMenuById(foodtruckId: number, id: number) : MenuData {
-        return this.dataStorage.getData(foodtruckId).getData(id).data as MenuData;
+    findMenuById(foodtruckId: number, id: number) : MenuData | null {
+        let ft = this.dataStorage.getData(foodtruckId)
+        if(ft == null){
+            return null
+        }
+        let menu = ft.getData(id)
+        return menu ? menu.data as MenuData : null
     }
 
     setMenuData(foodtruckId: number, ...data: MenuData[]){
@@ -37,13 +52,29 @@ export class FoodtruckDataCtrl {
         
     }
 
-    getOptionList(foodtruckId: number, menuId: number) : OptionData[] {
-        return this.dataStorage.getData(foodtruckId).getData(menuId).toArray();
+    getOptionList(foodtruckId: number, menuId: number) : OptionData[] | null {
+        let ft = this.dataStorage.getData(foodtruckId)
+        if(ft == null){
+            return null;
+        }
+        let menu = ft.getData(menuId)
+        return menu ? menu.toArray() : null;
     }
 
 
-    findOptionById(foodtruckId: number, menuId: number, id: number) : OptionData{
-        return this.dataStorage.getData(foodtruckId).getData(menuId).getData(id);
+    findOptionById(foodtruckId: number, menuId: number, id: number) : OptionData | null {
+        let ft = this.dataStorage.getData(foodtruckId)
+        if(ft == null){
+            return null
+        }
+        let menu = ft.getData(menuId)
+        if(menu == null) {
+            return null
+        }
+
+        let option = menu.getData(id)
+        return option ? option : null
+        
     }
 
     setOptionData(foodtruckId: number, menuId: number, ...data: OptionData[]){

@@ -2,18 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
 
-import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { LocationData } from 'src/app/data/location';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { PageControllerService } from 'src/app/services/page-controller.service';
 import { MapService } from 'src/app/services/map/map.service';
-import { keywordSearchResult, keywordSearch, addressSearch, addressSearchResult } from 'src/app/services/map/map.searcher';
-import { FoodtruckData } from 'src/app/data/foodtruck';
 import { SearchService } from 'src/app/services/search.service';
 import { FoodtruckDataProvider } from 'src/app/services/data-provider/foodtruck.data.provider';
 import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
-
-declare var kakao;
 
 @Component({
   selector: 'app-tab-home',
@@ -25,7 +19,6 @@ export class TabHomePage implements OnInit, OnDestroy {
   constructor(
     public modalCtrl : ModalController,
     private pageCtrl : PageControllerService,
-    private pageData : PageDataStorageService,
     private sharedData : SharedDataService,
     private foodtruckDataProvider: FoodtruckDataProvider,
     private mapCtrl : MapService,
@@ -56,14 +49,6 @@ export class TabHomePage implements OnInit, OnDestroy {
               });
             })
         })
-        // this.pageData.tabHome.foodtruckListCtrl.getFoodtruckList(this.mapCtrl.mapPosition, 
-        //   (foodtruckList : FoodtruckData[]) =>{
-        //     //푸드트럭 지도에 표시
-        //     this.mapCtrl.clearPin();
-        //     foodtruckList.forEach((val) =>{
-        //       this.mapCtrl.addFoodtruckPin(val);
-        //     })
-        //   });
         console.log("search foodtruck");
         
       })

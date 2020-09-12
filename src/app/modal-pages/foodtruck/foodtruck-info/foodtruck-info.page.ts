@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { DefaultValue } from 'src/environments/defaultValue';

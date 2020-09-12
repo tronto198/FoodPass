@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FoodtruckData } from 'src/app/data/foodtruck';
-import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { WaitingData } from 'src/app/data/waiting';
 import { DefaultValue } from 'src/environments/defaultValue';
 import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';

@@ -1,16 +1,15 @@
-import { OrderData } from 'src/app/data/order';
-import { Storage } from '@ionic/storage';
-import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 import { OrderHistoryData } from 'src/app/data/order-history';
 import { CommunicationService } from 'src/app/services/communication/communication.service';
 import { reqOrderHistory, resOrderHistory } from 'src/app/services/communication/reqType/account/orderHistory.req';
 import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
+import { Injectable } from '@angular/core';
 
-export class TabOrderHistoryListCtrl {
+@Injectable()
+export class HistoryDataCtrl {
 
   orderhistoryList : OrderHistoryData[] = [];
 
-  constructor(private dataCtrl: CommunicationService){
+  constructor(private communication: CommunicationService){
 
   }
 
@@ -46,7 +45,7 @@ export class TabOrderHistoryListCtrl {
 
     }
 
-    this.dataCtrl.request<resOrderHistory>(reqUrl.orderHistory, req, false)
+    this.communication.request<resOrderHistory>(reqUrl.orderHistory, req, false)
     .then(val =>{
       console.log("get history");
       this.orderhistoryList = val.historyList;
