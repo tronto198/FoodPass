@@ -4,9 +4,10 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 import { BasketOrderedMenu } from './basket-ordered-menu';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';
 import { CheckboxValue } from './checkbox-value';
+import { ControlledData } from 'src/app/services/data-ctrl/data.interface';
 
-export class BasketOrder extends CheckboxValue implements OrderData{
-    id?: number;
+export class BasketOrder extends CheckboxValue implements OrderData, ControlledData{
+    id: number;
     foodtruckinfo: FoodtruckData;
     orderedMenu: BasketOrderedMenu[] = [];
 

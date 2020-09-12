@@ -9,6 +9,7 @@ import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-sto
 import { OrderData } from 'src/app/data/order';
 import { NotificationService } from 'src/app/services/notification.service';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
+import { BasketDataCtrl } from 'src/app/services/data-ctrl/basket.data.ctrl';
 
 
 @Component({
@@ -18,98 +19,121 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 })
 export class BasketPage implements OnInit {
 
-  private loading;
+  // private loading;
   constructor(
-    private modalCtrl: ModalController,
-    private PageCtrl : PageControllerService,
-    private pageData : PageDataStorageService,
-    private loadingCtrl : LoadingController,
-    private push : NotificationService,
+    // private modalCtrl: ModalController,
+    // private PageCtrl : PageControllerService,
+    // private pageData : PageDataStorageService,
+    // private loadingCtrl : LoadingController,
+    // private push : NotificationService,
+    // private bskCtrl : BasketDataCtrl
   ) { }
 
 
   ngOnInit() {
     console.log("basketPage");
-    // this.basketCtrl.makeTestdata();
+    //  this.basketCtrl.makeTestdata();
   }
 
-  get basketCtrl() : TabHomeBasketCtrl {
-    return this.pageData.tabHome.basketCtrl;
-  }
+  // get basketCtrl() : TabHomeBasketCtrl {
+  //   return this.pageData.tabHome.basketCtrl;
+  // }
 
-  get totalPrice(){
-    return this.basketCtrl.totalPrice;
-  }
+  // get totalPrice(){
+  //   return this.basketCtrl.totalPrice;
+  // }
 
-  get checkValue(){
-    return this.basketCtrl.checkValue;
-  }
-  set checkValue(checked: boolean){
-    this.basketCtrl.value = checked;
-  }
-  get indeterminated(){
-    return this.basketCtrl.indeterminate;
-  }
+  // get checkValue(){
+  //   return this.basketCtrl.checkValue;
+  // }
+  // set checkValue(checked: boolean){
+  //   this.basketCtrl.value = checked;
+  // }
+  // get indeterminated(){
+  //   return this.basketCtrl.indeterminate;
+  // }
 
-  get basket(){
-    return this.basketCtrl.basket;
-  }
+  // get basket(){
+  //   return this.basketCtrl.basket;
+  // }
 
-  get orderType(){
-    return OrderType.basket;
-  }
+  // get orderType(){
+  //   return OrderType.basket;
+  // }
 
-  get isEmpty(){
-    //장바구니가 비었을때
-    return this.basketCtrl.basket.length == 0;
-  }
+  // get isEmpty(){
+  //   //장바구니가 비었을때
+  //   return this.basketCtrl.basket.length == 0;
+  // }
 
-  get orderEnable(){
-    //주문하기 버튼의 활성화 여부 지정
-    return this.isEmpty || this.totalPrice == 0;
-  }
-  get waitingOrderCtrl() : TabOrderWaitingListCtrl {
-    return this.pageData.tabOrder.waitingCtrl;
-  }
+  // get orderEnable(){
+  //   //주문하기 버튼의 활성화 여부 지정
+  //   return this.isEmpty || this.totalPrice == 0;
+  // }
+  // get waitingOrderCtrl() : TabOrderWaitingListCtrl {
+  //   return this.pageData.tabOrder.waitingCtrl;
+  // }
 
   
 
-  dismiss(){
-    this.modalCtrl.dismiss();
-  }
-  checkboxClicked(){
-    this.basketCtrl.toggle();
-  }
+  // dismiss(){
+  //   this.modalCtrl.dismiss();
+  // }
+  // checkboxClicked(){
+  //   this.basketCtrl.toggle();
+  // }
 
-  orderButtonClicked(){
+  // orderButtonClicked(){
 
-    if(!this.push.isGranted){
-      alert('주문이 완료되면 푸시 알림을 보내기 위해 권한이 필요합니다.');
+  //   if(!this.push.isGranted){
+  //     alert('주문이 완료되면 푸시 알림을 보내기 위해 권한이 필요합니다.');
+  //   }
+  //   this.push.init((token) =>{
+  //     this.order();
+  //   });
+  // }
+
+  // private order() {
+  //   this.basketCtrl.orderCheckedItem().then((val) =>{
+  //     this.orderSuccess(val);
+  //   }).catch(e =>{
+  //     console.log(e);
+  //     //안됫다는 경고창 띄우기
+  //     this.orderFailed();
+  //   });
+  // }
+
+  // private orderSuccess(orderDatas : OrderData[]){
+  //   // this.loading.dismiss();
+  //   this.waitingOrderCtrl.addItemList(orderDatas);
+  //   this.dismiss();
+  //   this.PageCtrl.routingOrder(orderSlide.waitingOrder);
+  // }
+
+  // private orderFailed(){
+  //   alert('주문이 처리되지 않았습니다.');
+  // }
+
+  addButtonClicked(){
+    // this.bskCtrl.setBasketData();
+
+}
+   get basket(){
+    // this.bskCtrl.setBasketData();
+    // return this.bskCtrl.getBasketList();
+    return 0;
+  }
+  get isEmpty_false(){
+      //장바구니가 비었을때
+      // return this.basketCtrl.basket.length == 0;
+      return false;
     }
-    this.push.init((token) =>{
-      this.order();
-    });
+
+  get isEmpty_true(){
+    //장바구니가 비었을때
+    // return this.basketCtrl.basket.length == 0;
+    return true;
   }
 
-  private order() {
-    this.basketCtrl.orderCheckedItem().then((val) =>{
-      this.orderSuccess(val);
-    }).catch(e =>{
-      console.log(e);
-      //안됫다는 경고창 띄우기
-      this.orderFailed();
-    });
-  }
-
-  private orderSuccess(orderDatas : OrderData[]){
-    // this.loading.dismiss();
-    this.waitingOrderCtrl.addItemList(orderDatas);
-    this.dismiss();
-    this.PageCtrl.routingOrder(orderSlide.waitingOrder);
-  }
-
-  private orderFailed(){
-    alert('주문이 처리되지 않았습니다.');
-  }
 
 }

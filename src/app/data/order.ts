@@ -2,7 +2,7 @@ import { FoodtruckData } from './foodtruck';
 import { OrderedMenuData } from './ordered-menu';
 import { WaitingData } from './waiting';
 
-export interface OrderData{
+export interface OrderData {
     id?: number;
     foodtruckinfo: FoodtruckData;
     orderedMenu: OrderedMenuData[];
