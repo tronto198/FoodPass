@@ -1,10 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { OrderType } from './order-type.enum';
-import { TabHomeBasketCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.ctrl';
-import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
-import { TabOrderHistoryListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/orderHistoryList.ctrl';
-import { orderListComponent } from './orderList.component';
 import { WaitingData } from 'src/app/data/waiting';
 
 @Component({
@@ -12,7 +7,7 @@ import { WaitingData } from 'src/app/data/waiting';
   templateUrl: './order-cardview.component.html',
   styleUrls: ['./order-cardview.component.scss'],
 })
-export class OrderCardviewComponent extends orderListComponent implements OnInit {
+export class OrderCardviewComponent {
   @Input() orderType : OrderType;
   @Input() orderIndex : number;
 
@@ -20,31 +15,13 @@ export class OrderCardviewComponent extends orderListComponent implements OnInit
   @Output() giveRating = new EventEmitter<number>();
 
   constructor(
-    pageData : PageDataStorageService,
   ) {
-    super(pageData);
   }
 
 
   ngOnInit() {
   }
 
-  get order(){
-    return this.orderList[this.orderIndex];
-  }
-
-  get menuList(){
-    return this.order.orderedMenu;
-  }
-
-  get waiting() : WaitingData{
-    if(this.isBasket){
-      return this.order.foodtruckinfo.waiting ? this.order.foodtruckinfo.waiting : {person: 0, time: 0};
-    }
-    else if(this.isWaiting){
-      return this.order.waiting ? this.order.waiting : {person: 0, time: 0};
-    }
-  }
 
 
   orderReceived(){
@@ -58,7 +35,4 @@ export class OrderCardviewComponent extends orderListComponent implements OnInit
     this.giveRating.emit(this.orderIndex);
   }
 
-  deleteMenu(index : number){
-    this.removeMenu(this.orderIndex, index);
-  }
 }

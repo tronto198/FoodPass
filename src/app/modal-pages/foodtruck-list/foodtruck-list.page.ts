@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FoodtruckData } from 'src/app/data/foodtruck';
-import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { TabHomeFoodtruckListCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/foodtruckList.ctrl';
 import { ModalController } from '@ionic/angular';

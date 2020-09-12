@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, LoadingController } from '@ionic/angular';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
-import { orderSlide } from 'src/app/services/app-data/page-data-storage/tab-order-data/tab-order-slide.enum';
 import { PageControllerService } from 'src/app/services/page-controller.service';
-import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { TabHomeBasketCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/basket.ctrl';
-import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
 import { OrderData } from 'src/app/data/order';
 import { NotificationService } from 'src/app/services/notification.service';
-import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
+import { BasketDataCtrl } from 'src/app/services/data-ctrl/basket.data.ctrl';
+import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
 
 
 @Component({
@@ -22,19 +19,16 @@ export class BasketPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private PageCtrl : PageControllerService,
-    private pageData : PageDataStorageService,
+    private basketCtrl : BasketDataCtrl,
     private loadingCtrl : LoadingController,
     private push : NotificationService,
+    private waitingCtrl : WaitingDataCtrl
   ) { }
 
 
   ngOnInit() {
     console.log("basketPage");
     // this.basketCtrl.makeTestdata();
-  }
-
-  get basketCtrl() : TabHomeBasketCtrl {
-    return this.pageData.tabHome.basketCtrl;
   }
 
   get totalPrice(){
@@ -68,9 +62,6 @@ export class BasketPage implements OnInit {
     //주문하기 버튼의 활성화 여부 지정
     return this.isEmpty || this.totalPrice == 0;
   }
-  get waitingOrderCtrl() : TabOrderWaitingListCtrl {
-    return this.pageData.tabOrder.waitingCtrl;
-  }
 
   
 
@@ -103,9 +94,9 @@ export class BasketPage implements OnInit {
 
   private orderSuccess(orderDatas : OrderData[]){
     // this.loading.dismiss();
-    this.waitingOrderCtrl.addItemList(orderDatas);
+    this.waitingCtrl.addItemList(orderDatas);
     this.dismiss();
-    this.PageCtrl.routingOrder(orderSlide.waitingOrder);
+    this.PageCtrl.routingOrder();
   }
 
   private orderFailed(){

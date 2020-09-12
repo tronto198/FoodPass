@@ -37,4 +37,15 @@
     }
 }
 
+.preview-modal {
+    // --height: 100px;
+    .modal-wrapper {
+        position: absolute;
+        height: 90px;
+        bottom: 0;
+        width: 100%;
+    }
+    display: block;
+}
+
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    

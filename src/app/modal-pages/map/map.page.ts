@@ -2,8 +2,6 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationData } from 'src/app/data/location';
-import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-// import { TabHomeLocationCtrl } from 'src/app/services/app-data/page-data-storage/tab-home-data/location.ctrl';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 // Kakao Map API
@@ -30,7 +28,6 @@ export class MapPage implements OnInit, AfterViewInit {
   constructor(
     private geo: Geolocation,
     private modalCtrl : ModalController,
-    private pageData: PageDataStorageService,
     private sharedData : SharedDataService,
   ) {
 

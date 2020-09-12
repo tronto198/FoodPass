@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
-import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { TabOrderWaitingListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/waitingList.ctrl';
 import { OrderHistoryData } from 'src/app/data/order-history';
+import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
+import { HistoryDataCtrl } from 'src/app/services/data-ctrl/history.data.ctrl';
 
 @Component({
   selector: 'order-waiting-order-list',
@@ -13,15 +13,13 @@ export class WaitingOrderListPage implements OnInit {
 
 
   constructor(
-    private pageData: PageDataStorageService,
+    private waitingCtrl : WaitingDataCtrl,
+    private historyCtrl : HistoryDataCtrl,
   ) { }
 
   ngOnInit() {
   }
 
-  get waitingCtrl() : TabOrderWaitingListCtrl{
-    return this.pageData.tabOrder.waitingCtrl;
-  }
 
   get orderList(){
     // console.log('waiting : ', this.waitingCtrl.orderList);
@@ -51,7 +49,7 @@ export class WaitingOrderListPage implements OnInit {
         price: order.price,
         foodtruckInfo: order.foodtruckinfo
       }
-      this.pageData.tabOrder.historyCtrl.addItem(history);
+      this.historyCtrl.addItem(history);
       
     });
   }

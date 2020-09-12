@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PageDataStorageService } from 'src/app/services/app-data/page-data-storage/page-data-storage.service';
-import { TabOrderHistoryListCtrl } from 'src/app/services/app-data/page-data-storage/tab-order-data/orderHistoryList.ctrl';
 import { OrderHistoryData } from 'src/app/data/order-history';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { DefaultValue } from 'src/environments/defaultValue';
 import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
+import { HistoryDataCtrl } from 'src/app/services/data-ctrl/history.data.ctrl';
 
 @Component({
   selector: 'modal-orderHistory',
@@ -15,15 +14,12 @@ export class OrderHistoryPage implements OnInit {
 
 
   constructor(
-    private pageData: PageDataStorageService,
+    private historyCtrl: HistoryDataCtrl,
   ) { }
+  // todo historyCtrl 만들기
 
   ngOnInit() {
     //  this.historyCtrl.getHistory();
-  }
-
-  get historyCtrl() : TabOrderHistoryListCtrl {
-    return this.pageData.tabOrder.historyCtrl;
   }
 
   get orderList() : OrderHistoryData[]{

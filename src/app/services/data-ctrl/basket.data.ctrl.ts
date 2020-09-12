@@ -8,9 +8,10 @@ import { OrderData } from 'src/app/data/order';
 import { orderRequest, reqOrder, resOrder } from 'src/app/services/communication/reqType/order/order.req';
 import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
 import { CommunicationService } from 'src/app/services/communication/communication.service';
+import { Injectable } from '@angular/core';
 
-
-export class TabHomeBasketCtrl extends CheckboxValue{
+@Injectable()
+export class BasketDataCtrl extends CheckboxValue{
   basket : BasketOrder[] = [];
 
   constructor(private dataCtrl : CommunicationService) {
