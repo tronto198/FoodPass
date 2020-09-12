@@ -3,6 +3,7 @@ import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctr
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
+import { OrderData } from 'src/app/data/order';
 
 @Component({
   selector: 'comp-ft-basket-view',
@@ -10,33 +11,66 @@ import { OptionData } from 'src/app/data/option';
   styleUrls: ['./ft-basket-view.component.scss'],
 })
 export class FtBasketViewComponent implements OnInit {
-  // @Input() foodtruckId: number;
-  // @Input() menuId: number;
-  // @Input() optionId: number;
-  total_price : number;
-
   @Input() foodtruckId: number;
   count : number;
+  total_price : number;
+
   constructor(private dataCtrl: FoodtruckDataCtrl) { }
 
   ngOnInit() {
     this.count =1;
+    this.total_price =0;
   }
 
-  // get foodtruckData(): FoodtruckData {
-  //   return this.dataCtrl.findFoodtruckById(this.foodtruckId)
-  // }
+  get menuData(): MenuData[] {
+    return [{
+      id: 0,
+      menuName: "menu1",
+      price:4000
+    },
+    {
+      id: 1,
+      menuName: "menu2",
+      price: 5000
+    }];
+  }
 
-  // get menuData(): MenuData {
-  //   return this.dataCtrl.findMenuById(this.foodtruckId, this.menuId)
-  // }
+  get optionData(): OptionData[] {
+    return [{
+      id: 0,
+      name: "opt1",
+      extraPrice:500
+    },
+    {
+      id: 1,
+      name: "opt2",
+      extraPrice:1000
+    }];
+  }
 
-  // get optionData(): OptionData {
-  //   return this.dataCtrl.findOptionById(this.foodtruckId, this.menuId, this.optionId)
-  // }
+  get menuName():string{
+    return this.menuData[0].menuName;
+  }
+  get price():number{
+    return this.menuData[0].price + this.optionData[0].extraPrice;
+  }
 
-  get calcTotalPrice(): number{
-    this.total_price = 10000;
+  get optionName():string{
+    return this.optionData[0].name;
+  }
+
+  addCount(){
+    this.count++;
+  }
+
+  subCount(){
+    if(this.count>1) this.count--;
+  }
+
+
+
+  get totalPrice(): number{
+    this.total_price = this.count * this.price;
     return this.total_price ;
   }
   
