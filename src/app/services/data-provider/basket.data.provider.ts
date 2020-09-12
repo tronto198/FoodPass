@@ -5,6 +5,9 @@ import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 
 @Injectable()
 export class BasketDataProvider extends ADataProvider{
+    getItem(...values: number[]) {
+        throw new Error("Method not implemented.");
+    }
     getBasketOrderListById(id: number) : Promise<BasketOrder[]>{
         return new Promise((resolve, reject) =>{
             //가져오기

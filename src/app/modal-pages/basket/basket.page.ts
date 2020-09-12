@@ -96,7 +96,7 @@ export class BasketPage implements OnInit {
     // this.loading.dismiss();
     this.waitingCtrl.addItemList(orderDatas);
     this.dismiss();
-    this.PageCtrl.routingOrder(0);
+    this.PageCtrl.routingOrder();
   }
 
   private orderFailed(){
