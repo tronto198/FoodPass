@@ -10,7 +10,15 @@ export class FoodtruckDataProvider extends ADataProvider{
     foodtruckListByLocation(location: LocationData) : Promise<FoodtruckData[]> {
         return new Promise((resolve, reject) =>{
             //가져오기
-            resolve([]);
+            resolve([{
+                id: 3,
+                introduction: "dd",
+                name: "test",
+                notice: "rhdwl",
+                location: {
+                    lat: 37.4996, lng:127.0264
+                }
+            }]);
         })
     }
 

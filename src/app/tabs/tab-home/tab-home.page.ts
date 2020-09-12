@@ -10,6 +10,8 @@ import { MapService } from 'src/app/services/map/map.service';
 import { keywordSearchResult, keywordSearch, addressSearch, addressSearchResult } from 'src/app/services/map/map.searcher';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { SearchService } from 'src/app/services/search.service';
+import { FoodtruckDataProvider } from 'src/app/services/data-provider/foodtruck.data.provider';
+import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
 
 declare var kakao;
 
@@ -25,6 +27,7 @@ export class TabHomePage implements OnInit, OnDestroy {
     private pageCtrl : PageControllerService,
     private pageData : PageDataStorageService,
     private sharedData : SharedDataService,
+    private foodtruckDataProvider: FoodtruckDataProvider,
     private mapCtrl : MapService,
     private search: SearchService
   ) { }
@@ -37,14 +40,30 @@ export class TabHomePage implements OnInit, OnDestroy {
       this.mapCtrl.setMapChangedHook(()=>{
         //푸드트럭 검색
         
-        this.pageData.tabHome.foodtruckListCtrl.getFoodtruckList(this.mapCtrl.mapPosition, 
-          (foodtruckList : FoodtruckData[]) =>{
-            //푸드트럭 지도에 표시
-            this.mapCtrl.clearPin();
-            foodtruckList.forEach((val) =>{
-              this.mapCtrl.addFoodtruckPin(val);
+        this.foodtruckDataProvider.foodtruckListByLocation(this.mapCtrl.mapPosition).then(v =>{
+          this.mapCtrl.clearPin();
+            v.forEach((val) =>{
+              this.mapCtrl.addFoodtruckPin(val, (id) =>{
+                this.modalCtrl.create({
+                  component: FtViewComponent,
+                  componentProps: {
+                    foodtruckId: id
+                  },
+                  cssClass: "preview-modal"
+                }).then(r =>{
+                  r.present()
+                })
+              });
             })
-          });
+        })
+        // this.pageData.tabHome.foodtruckListCtrl.getFoodtruckList(this.mapCtrl.mapPosition, 
+        //   (foodtruckList : FoodtruckData[]) =>{
+        //     //푸드트럭 지도에 표시
+        //     this.mapCtrl.clearPin();
+        //     foodtruckList.forEach((val) =>{
+        //       this.mapCtrl.addFoodtruckPin(val);
+        //     })
+        //   });
         console.log("search foodtruck");
         
       })
