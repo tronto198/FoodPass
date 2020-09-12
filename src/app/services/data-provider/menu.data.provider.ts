@@ -4,6 +4,13 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MenuDataProvider extends ADataProvider{
+
+    getItem(foodtruckid: number, id: number){
+        return this.getDataWithPromise<MenuData>(() => { 
+            return null;
+        })
+    }
+
     getListByFoodtruckId(foodtruckId: number) : Promise<MenuData[]>{
         return new Promise((resolve, reject) =>{
             //가져오기

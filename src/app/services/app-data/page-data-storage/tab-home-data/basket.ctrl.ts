@@ -5,13 +5,12 @@ import { CheckboxValue } from 'src/app/data/basket-data/checkbox-value';
 import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu';
 import { OrderData } from 'src/app/data/order';
-import { OrderList } from 'src/app/component/order-cardview/orderList.component';
 import { orderRequest, reqOrder, resOrder } from 'src/app/services/communication/reqType/order/order.req';
 import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
 import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 
-export class TabHomeBasketCtrl extends CheckboxValue implements OrderList{
+export class TabHomeBasketCtrl extends CheckboxValue{
   basket : BasketOrder[] = [];
 
   constructor(private dataCtrl : CommunicationService) {

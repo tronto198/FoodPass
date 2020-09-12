@@ -4,6 +4,7 @@ import { FtMenuComponent } from './ft-menu.component';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { FtMenuImgComponent } from '../ft-menu-img/ft-menu-img.component';
+import { FtMenuImgModule } from '../ft-menu-img/ft-menu-img.module';
 
 
 
@@ -12,6 +13,7 @@ import { FtMenuImgComponent } from '../ft-menu-img/ft-menu-img.component';
       CommonModule,
       FormsModule,
       IonicModule,
+      FtMenuImgModule
     
   ], 
   exports: [
@@ -19,7 +21,7 @@ import { FtMenuImgComponent } from '../ft-menu-img/ft-menu-img.component';
   ],
   declarations: [
     FtMenuComponent,
-    FtMenuImgComponent
+   
   ],
 })
 export class FtMenuComponentsModule { }

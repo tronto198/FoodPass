@@ -34,6 +34,7 @@ import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component
     ], 
     exports: [
         FtViewComponent,
+        FtMenuComponent,
         BtnBasketComponent,
         FtWaitingViewComponent,
         FtBasketViewComponent,

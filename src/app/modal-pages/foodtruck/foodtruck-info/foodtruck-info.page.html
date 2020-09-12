@@ -6,7 +6,8 @@
         <ion-icon slot="icon-only" name="trash" ></ion-icon>
       </ion-button> -->
     </ion-buttons>
-    <!-- <ion-title>{{foodtruckData.name}}</ion-title> -->
+    <ion-title>{{foodtruckName}}</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
@@ -41,5 +42,8 @@
     </ion-col>
   </ion-row>
 </ion-grid>   -->
-  <app-ft-menu></app-ft-menu>
+<ion-item *ngFor="let menu of menuList">
+   <app-ft-menu menuId="{{menu}}"></app-ft-menu>
+   </ion-item>
+ 
 </ion-content>

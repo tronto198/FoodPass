@@ -1,4 +1,4 @@
---2020 05 23 version 1.0
+--2020 05 24 version 1.1
 drop table if exists user_order_menu_TB;
 drop table if exists user_TB;
 drop table if exists option_TB;
@@ -94,13 +94,16 @@ update user_order_menu_tb set price =((select price from menu_tb where menu_tb.m
 +(select price from option_tb where option_tb.option_id =user_order_menu_tb.option_id )*option_num);
 --주문 계산 했을때
 update user_order_menu_tb set order_date_time =current_timestamp, is_paid =true;
-select count(user_order_menu_id )as num_of_waiting,foodtruck_id from user_order_menu_tb group by foodtruck_id ;
+select count(user_order_menu_id )as num_of_waiting,foodtruck_id from user_order_menu_tb where is_received =false group by foodtruck_id ;
 --음식 받았을 때
 update user_order_menu_tb set is_received =true;
+select count(user_order_menu_id )as num_of_waiting,foodtruck_id from user_order_menu_tb where is_received =false group by foodtruck_id ;
 --평점 남겼을 때
 update user_order_menu_tb set grade=3.5;
 --운영자 입장에서 통계 보기
 select sum(price)as sales, foodtruck_id from user_order_menu_tb group by foodtruck_id;
+
+
 
 
 

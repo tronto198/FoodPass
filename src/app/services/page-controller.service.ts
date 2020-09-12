@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { orderSlide } from './app-data/page-data-storage/tab-order-data/tab-order-slide.enum';
-import { FoodtruckData } from 'src/app/data/foodtruck';
-import { MenuData } from 'src/app/data/menu';
-import { PageDataStorageService } from './app-data/page-data-storage/page-data-storage.service';
 
 @Injectable()
 export class PageControllerService {
-  orderSlideValue: orderSlide;
 
   constructor(
     private router : Router,
-    private pageData : PageDataStorageService,
   ) { }
 
   presentFoodtruck(foodtruckId? : number, menuId? : number){
@@ -24,7 +18,7 @@ export class PageControllerService {
       }
     }
     this.router.navigateByUrl(url);
-
+   
   }
 
   presentOrderHistory(){
@@ -45,7 +39,7 @@ export class PageControllerService {
     this.router.navigateByUrl(url);
   }
 
-  routingOrder(slideNo : orderSlide){
+  routingOrder(){
     this.router.navigateByUrl(`/tabs/order`);
   }
 
