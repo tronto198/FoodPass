@@ -14,12 +14,15 @@ export class FtBasketViewComponent implements OnInit {
   @Input() foodtruckId: number;
   count : number;
   total_price : number;
+  
+  isChecked : boolean;
 
   constructor(private dataCtrl: FoodtruckDataCtrl) { }
 
   ngOnInit() {
     this.count =1;
     this.total_price =0;
+    this.isChecked = false;
   }
 
   get menuData(): MenuData[] {
@@ -67,10 +70,14 @@ export class FtBasketViewComponent implements OnInit {
     if(this.count>1) this.count--;
   }
 
-
+  get isItChecked(){
+    return this.isChecked;
+  }
 
   get totalPrice(): number{
-    this.total_price = this.count * this.price;
+
+    if (this.isChecked) this.total_price = this.count * this.price;
+    else  this.total_price =0;
     return this.total_price ;
   }
   

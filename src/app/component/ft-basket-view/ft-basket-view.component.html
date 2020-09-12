@@ -10,7 +10,7 @@
   <ion-list>
     <!-- ft-menu-item 시작-->
       <ion-item>
-        <ion-checkbox class="checkbox"></ion-checkbox>
+        <ion-checkbox class="checkbox" [(ngModel)]="isChecked"></ion-checkbox>
         {{menuName}}  {{optionName}}     {{price}}원
         <ion-button class="bt-count" color="medium" (click)="addCount()">
           <ion-icon slot="icon-only" name="add"></ion-icon>
@@ -21,6 +21,7 @@
         </ion-button>
       </ion-item>
 
+      {{isItChecked}}
     <!-- ft-menu-item 끝-->                                                                                                                                                                                                                                                                                                                     
     </ion-list>
   

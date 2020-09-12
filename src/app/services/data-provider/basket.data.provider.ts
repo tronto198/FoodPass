@@ -11,12 +11,11 @@ export class BasketDataProvider extends ADataProvider{
             resolve([]);
         })
     }
-    // getById(id: number) : Promise<OptionData>{
-    //     return new Promise((resolve, reject) =>{
-    //         //가져오기
-    //         resolve(null);
-    //     })
-    // }
+    getBasketOrderById(id: number) : Promise<BasketOrder>{
+        return new Promise((resolve, reject) =>{
+            //가져오기
+            resolve(null);
+        })
+    }
 
-    o
 }
