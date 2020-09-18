@@ -8,21 +8,7 @@
   <!-- ft-view 끝-->
 
   <ion-list>
-    <!-- ft-menu-item 시작-->
-      <ion-item>
-        <ion-checkbox class="checkbox" [(ngModel)]="isChecked"></ion-checkbox>
-        {{menuName}}  {{optionName}}     {{price}}원
-        <ion-button class="bt-count" color="medium" (click)="addCount()">
-          <ion-icon slot="icon-only" name="add"></ion-icon>
-          </ion-button>
-        {{count}}개
-        <ion-button class="bt-count" color="medium" (click)="subCount()"> 
-          <ion-icon slot="icon-only" name="remove"></ion-icon>
-        </ion-button>
-      </ion-item>
-
-      {{isItChecked}}
-    <!-- ft-menu-item 끝-->                                                                                                                                                                                                                                                                                                                     
+        <basket-item [menuData]="menuData" [optionData]="optionData"></basket-item>                                                                                                                                                                                                                                                                                                  -->
     </ion-list>
   
     <div class="total-price">총 {{totalPrice}} 원</div>

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { FtImgComponentModule } from '../ft-img/ft-img.module';
 import { FtBasketViewComponent } from './ft-basket-view.component';
+import { BasketItemComponent } from './basket-item/basket-item.component';
 
 @NgModule({
     imports: [
@@ -12,10 +13,12 @@ import { FtBasketViewComponent } from './ft-basket-view.component';
         IonicModule,
     ], 
     exports: [
-        FtBasketViewComponent
+        FtBasketViewComponent,
+        BasketItemComponent
     ],
     declarations: [
-        FtBasketViewComponent
+        FtBasketViewComponent,
+        BasketItemComponent
     ],
 })
 export class FtViewComponentModule {}

@@ -18,6 +18,7 @@ import { OwnerEditableLabelComponentModule } from './owner-editable-label/owner-
 import { OwnerCookingViewModule } from './owner-cooking-view/owner-cooking-view.module';
 import { BtnBasketComponent } from './btn-basket/btn-basket.component';
 import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component';
+import { BasketItemComponent } from './ft-basket-view/basket-item/basket-item.component';
 
 @NgModule({
     imports: [
@@ -40,6 +41,7 @@ import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component
         FtBasketViewComponent,
         FtOrderhistoryViewComponent,
         UserAccountViewComponent,
+        BasketItemComponent
         
     ],
     declarations: [
@@ -47,6 +49,7 @@ import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component
         FtWaitingViewComponent,
         FtBasketViewComponent,
         FtOrderhistoryViewComponent,
+        BasketItemComponent
 
     ],
   
