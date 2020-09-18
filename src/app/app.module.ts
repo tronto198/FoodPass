@@ -20,7 +20,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireMessagingModule } from '@angular/fire/messaging'
 import { RootServicesModule } from './services/root-services.module';
 import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-list.module';
-// import { QRCodeModule } from 'angular2-qrcode';
+ import { QRCodeModule } from 'angular2-qrcode';
+// import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-
       AngularFireModule.initializeApp(environment.firebase),  //firebase
       AngularFireMessagingModule,
       ServiceWorkerModule.register('combined-sw.js', { enabled: environment.production }),
-      // QRCodeModule,
+      QRCodeModule,
       // NgxQRCodeModule,
     ],
   providers: [

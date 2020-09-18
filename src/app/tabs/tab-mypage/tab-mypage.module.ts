@@ -8,8 +8,9 @@ import { TabMypagePageRoutingModule } from './tab-mypage-routing.module';
 
 import { TabMypagePage } from './tab-mypage.page';
 import { SharedComponentModule } from 'src/app/component/shared-component.module';
-import { NgxQRCodeModule } from 'ngx-qrcode2';
-// import { QRCodeModule } from 'angular2-qrcode';
+
+// import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { QRCodeModule } from 'angular2-qrcode';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     IonicModule,
     TabMypagePageRoutingModule,
     SharedComponentModule,
-    // QRCodeModule,
+    QRCodeModule,
     // NgxQRCodeModule,
   ],
   declarations: [TabMypagePage]

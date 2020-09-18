@@ -35,11 +35,17 @@
     알림 허용하기
   </ion-item>
   <ion-item button (click)="showOrderHistory()">
-    주문 기록 보기 
+    주문 기록 보기 [사장, 손님]
+  </ion-item>
+  <ion-item button (click)="showOrderHistory()">
+    내 푸드트럭 QR코드 [사장]
   </ion-item>
  <ion-item>
+
+   <!-- <ngx-qrcode [qrc-value]="qrData"></ngx-qrcode> -->
   <!-- <ngx-qrcode [qrc-value]="qrData" [qrc-element-type]="elementType" qrc-class="my-code"></ngx-qrcode> -->
-   <!-- <qr-code class="qr" [value]="" [size]="200"></qr-code> -->
+   <qr-code class="qr" [value]="'http://localhost:8100/foodtruck/0'" [size]="200"></qr-code>
+   <!-- <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode> -->
     </ion-item>
 </ion-content>
 
