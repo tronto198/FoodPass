@@ -42,9 +42,10 @@
   </ion-item>
  <ion-item>
 
-   <!-- <ngx-qrcode [qrc-value]="qrData"></ngx-qrcode> -->
   <!-- <ngx-qrcode [qrc-value]="qrData" [qrc-element-type]="elementType" qrc-class="my-code"></ngx-qrcode> -->
-   <qr-code class="qr" [value]="'http://localhost:8100/foodtruck/0'" [size]="200"></qr-code>
+   <!-- <qr-code class="qr" [value]="'http://localhost:8100/foodtruck/0'" [size]="200"></qr-code> -->
+ 
+   <qr-code class="qr" [value]="qrData" [size]="200"></qr-code>
    <!-- <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode> -->
     </ion-item>
 </ion-content>
