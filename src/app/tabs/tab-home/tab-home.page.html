@@ -1,12 +1,11 @@
 
   <!-- 검색용 박스 -->
   <ion-item class="searchingBox" (click)="searchStart()">
-    <ion-input placeholder="currentSearched" [(ngModel)]="inputData"
-    (ionChange)="search()">
+    <ion-input placeholder="위치 검색" [(ngModel)]="inputData">
     </ion-input>
-    <ion-button class="searchingButton mapButton" (click)="search()">
+    <!-- <ion-button class="searchingButton mapButton" (click)="search()">
       <ion-icon slot="icon-only" name="search-outline"></ion-icon>
-    </ion-button>
+    </ion-button> -->
   </ion-item>
   
 <ion-content>
