@@ -54,7 +54,7 @@ export class SharedGeolocation {
             return;
         }
         this.isWatching = true;
-        this.locationWatcher = this.geo.watchPosition(geoOptions).subscribe(data =>{
+        this.locationWatcher = this.geo.watchPosition(geoOptions).subscribe((data : Geoposition) =>{
             
             console.log('watching current location');
             const coords = data.coords;

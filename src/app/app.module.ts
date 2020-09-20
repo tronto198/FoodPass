@@ -21,6 +21,7 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging'
 import { RootServicesModule } from './services/root-services.module';
 import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-list.module';
 
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,8 @@ import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-
       // SharedComponentModule,  //공통 컴포넌트
 
       FoodtruckListPageModule,
+
+      NgxQRCodeModule,
 
       AngularFireModule.initializeApp(environment.firebase),  //firebase
       AngularFireMessagingModule,

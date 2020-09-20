@@ -20,6 +20,9 @@ export class TabMypagePage implements OnInit {
   ) { }
 
 
+  get link(){
+    return `localhost:8100/foodtruck/${this.myFoodtruck.id}`
+  }
 
   ngOnInit() {
     this.myFoodtruck = {

@@ -5,6 +5,13 @@
 </ion-header>
 
 <ion-content>
+  <ngx-qrcode 
+  elementType="url" 
+  [value]="link"
+  cssClass="qr-code"
+  errorCorrectionLevel="L">
+  </ngx-qrcode>
+
   <!-- <ion-item (click)="master()">
     <ion-card>
       <ion-card-header>
