@@ -78,6 +78,7 @@ export class TabHomePage implements OnInit, OnDestroy {
   watchPosition(){
     if(this.isWatching){
       this.sharedData.geolocation.stopWatching();
+      this.mapCtrl.removePositionCircle();
     }
     else{
       this.sharedData.geolocation.getLocation().then(
