@@ -3,6 +3,8 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 import { NotificationService } from 'src/app/services/notification.service';
 import { PageControllerService } from 'src/app/services/page-controller.service';
 import { FoodtruckData } from 'src/app/data/foodtruck';
+import { ModalController } from '@ionic/angular';
+import { RegisterFoodtruckPage } from 'src/app/modal-pages/register-foodtruck/register-foodtruck.page';
 
 @Component({
   selector: 'app-tab-mypage',
@@ -16,7 +18,8 @@ export class TabMypagePage implements OnInit {
   constructor(
     private config : SharedDataService,
     private push : NotificationService,
-    private pageCtrl : PageControllerService
+    private pageCtrl : PageControllerService,
+    private modalCtrl : ModalController
   ) { }
 
 
@@ -45,6 +48,15 @@ export class TabMypagePage implements OnInit {
   requestPermission(){
     // this.push.requestPermission()
     console.log('requestPermission');
+  }
+
+  async presentRegisterFoodtruck(){
+    let page = await this.modalCtrl.create({
+      component:RegisterFoodtruckPage,
+      cssClass: 'modal-fullscreen'
+    })
+
+    page.present();
   }
 
   showOrderHistory(){

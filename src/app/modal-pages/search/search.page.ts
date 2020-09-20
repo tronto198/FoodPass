@@ -7,7 +7,7 @@ import { SearchType } from 'src/app/services/map/search-item.enum';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
-  selector: 'app-search',
+  selector: 'modal-search',
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss'],
 })

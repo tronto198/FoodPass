@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>푸드트럭 등록</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-input placeholder="푸드트럭 이름" [(ngModel)]="ftName"></ion-input>
+</ion-content>
+
+<ion-footer>
+  <ion-button class="footer-button" expand="full" >등록하기</ion-button>
+</ion-footer>
