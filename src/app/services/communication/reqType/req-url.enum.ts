@@ -19,8 +19,8 @@ export enum reqUrl {
     newFoodtruck = "/foodtruck/create",
     modifyFoodtruckInfo = "/foodtruck/modify",
     deleteFoodtruck = "/foodtruck/delete",
-    openFoodtruck = "/foodtruck/open",
-    closeFoodtruck = "/foodtruck/close",
+    openFoodtruck = "/foodtruck/open",//
+    closeFoodtruck = "/foodtruck/close",//
 
     newMenu = "/foodtruck/menu/create",
     modifyMenuInfo = "/foodtruck/menu/modify",
@@ -30,7 +30,7 @@ export enum reqUrl {
     modifyOptionInfo = "/foodtruck/option/modify",
     deleteOption = "/foodtruck/option/delete",
 
-    orderConfirm = "/foodtruck/order/confirm",
-    orderCall = "/foodtruck/order/call",
+    orderConfirm = "/foodtruck/order/confirm",//
+    orderCall = "/foodtruck/order/call",//
 };
 
