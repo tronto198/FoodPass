@@ -1,12 +1,6 @@
 //order
 const express=require('express')
-const bodyParser=require('body-parser')
-const postgres=require('postgresql');
-const cors=require('cors');
-
-const app=express();
-app.use(cors());
-app.use(bodyParser.json({extended: true}))
+const app=express.Router();
 const db=new (require('./Database_Connecter'))('db_configure.json');
 
 //function
@@ -27,7 +21,7 @@ function sendError(res, json){
 
 //orderList받으면 그 오더들을 각 푸드트럭에 전달한 뒤, 각 푸드트럭이 응답하면 
 //신호 모으고 orderID를 부여한 뒤 리턴
-app.post('/order/request',(req,res)=>{
+app.post('/request',(req,res)=>{
     console.log('/order/request');
   
     order(req, res);
@@ -127,7 +121,7 @@ app.post('/order/request',(req,res)=>{
   }
   
   
-  app.post('/order/received', (req, res) =>{
+  app.post('/received', (req, res) =>{
     let orderId = req.body.data.orderId;
     console.log('order received: ' + orderId);
     //is_received : true하기
@@ -167,3 +161,4 @@ app.post('/order/request',(req,res)=>{
     })
   });
   */
+ module.exports=app;

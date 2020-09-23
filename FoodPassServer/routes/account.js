@@ -1,12 +1,6 @@
 //account
 const express=require('express')
-const bodyParser=require('body-parser')
-const postgres=require('postgresql');
-const cors=require('cors');
-
-const app=express();
-app.use(cors());
-app.use(bodyParser.json({extended: true}))
+const app=express.Router();
 const db=new (require('./Database_Connecter'))('db_configure.json');
 
 //function
@@ -25,7 +19,7 @@ function sendError(res, json){
 }
 
 //user만들고 아이디 리턴
-app.post('/account/create',(req,res)=>{
+app.post('/create',(req,res)=>{
 
   
     const Sql="insert into user_tb values(default) Returning user_id";
@@ -47,7 +41,7 @@ app.post('/account/create',(req,res)=>{
   });
   
   //pushToken
-  app.post('/account/pushToken',(req,res)=>{
+  app.post('/pushToken',(req,res)=>{
     let data=req.body.data;
     let userId = req.body.userId;
     let push_token=data.token;
@@ -75,7 +69,7 @@ app.post('/account/create',(req,res)=>{
   });
   
   //ordertable에서 userID가 같은 주문들을 시간순으로 리턴
-  app.post('/account/orderHistory',(req,res)=>{
+  app.post('/orderHistory',(req,res)=>{
     
     console.log(`order history of account: ${req.body.userId}`);
     // console.log("order history");
@@ -114,7 +108,7 @@ app.post('/account/create',(req,res)=>{
 
 
   //user id 와 foodtruck id 를 받아서 authority=pure면 평점 입력하기
-  app.post('/account/giveRating',(req,res)=>{
+  app.post('/giveRating',(req,res)=>{
     let data=req.body.data;
     let ratingData=data.rating;
     let userId=data.user_id;
@@ -133,3 +127,5 @@ app.post('/account/create',(req,res)=>{
      });
     
   });
+
+  module.exports=app;

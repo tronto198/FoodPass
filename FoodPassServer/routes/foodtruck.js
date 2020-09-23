@@ -1,11 +1,5 @@
 const express=require('express')
-const bodyParser=require('body-parser')
-const postgres=require('postgresql');
-const cors=require('cors');
-
-const app=express();
-app.use(cors());
-app.use(bodyParser.json({extended: true}))
+const app=express.Router();
 const db=new (require('./Database_Connecter'))('db_configure.json');
 
 //function
@@ -24,7 +18,7 @@ function sendError(res, json){
 }
 
 //데이터 입력
-app.post('/foodtruck/create',(req,res)=>{
+app.post('/create',(req,res)=>{
     let data=req.body.data;
     let name=data.name;
     let image=data.imgSrc;
@@ -49,7 +43,7 @@ app.post('/foodtruck/create',(req,res)=>{
    })   
   });
   
-app.post('/foodtruck/modify', (req, res)=>{
+app.post('/modify', (req, res)=>{
   let data=req.body.data;
   let name=data.name;
   let image=data.imgSrc;
@@ -75,7 +69,7 @@ sendError(err, {description: ''})
 })
 
   
-app.post('/foodtruck/delete', (req, res)=>{
+app.post('/delete', (req, res)=>{
   let data=req.body.data;
   let foodtruck_id=data.foodtruck_id;
 
@@ -93,7 +87,7 @@ sendError(err, {description: ''})
 
 
 
-  app.post('/foodtruck/menu/create',(req,res)=>{
+  app.post('/menu/create',(req,res)=>{
     let data=req.body.data;
     let foodtruck_id=data.id;
     let name=data.menuName;
@@ -114,7 +108,7 @@ sendError(err, {description: ''})
     })
    
   });
-  app.post('/foodtruck/menu/modify',(req,res)=>{
+  app.post('/menu/modify',(req,res)=>{
     let data=req.body.data;
     let foodtruck_id=data.id;
     let name=data.menuName;
@@ -136,7 +130,7 @@ sendError(err, {description: ''})
     })
    
   });
-  app.post('/foodtruck/menu/delete',(req,res)=>{
+  app.post('/menu/delete',(req,res)=>{
     let data=req.body.data;
     let menu_Id=data.menuID;
   
@@ -154,7 +148,7 @@ sendError(err, {description: ''})
   });
   
   
-  app.post('/foodtruck/option/create',(req,res)=>{
+  app.post('/option/create',(req,res)=>{
     let data=req.body.data;
     let menu_id=data.menuID;
     let name=data.name;
@@ -172,7 +166,7 @@ sendError(err, {description: ''})
     })
   
   });
-  app.post('/foodtruck/option/modify',(req,res)=>{
+  app.post('/option/modify',(req,res)=>{
     let data=req.body.data;
     let menu_id=data.menuID;
     let name=data.name;
@@ -190,7 +184,7 @@ sendError(err, {description: ''})
     })
   
   });
-  app.post('/foodtruck/option/delete',(req,res)=>{
+  app.post('/option/delete',(req,res)=>{
     let data=req.body.data;
     let option_id=data.option_id;
   
@@ -206,3 +200,4 @@ sendError(err, {description: ''})
     })
   
   });
+  module.exports=app;

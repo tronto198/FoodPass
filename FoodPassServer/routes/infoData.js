@@ -1,13 +1,7 @@
 
 //infoData
 const express=require('express')
-const bodyParser=require('body-parser')
-const postgres=require('postgresql');
-const cors=require('cors');
-
-const app=express();
-app.use(cors());
-app.use(bodyParser.json({extended: true}))
+const app=express.Router();
 const db=new (require('./Database_Connecter'))('db_configure.json');
 
 //function
@@ -27,7 +21,7 @@ function sendError(res, json){
 
 
 //foodtruckID받으면 푸드트럭의 정보 리턴
-app.post('/infoData/foodtruck',(req,res)=>{
+app.post('/foodtruck',(req,res)=>{
     let data=req.body.data;
     let foodtruck_id=data.foodtruckId;
     console.log("connect ${foodtruck_id}");
@@ -77,7 +71,7 @@ app.post('/infoData/foodtruck',(req,res)=>{
   });
   
   //foodtruckID, menuID받으면 메뉴 정보 리턴
-  app.post('/infoData/menu',(req,res)=>{
+  app.post('/menu',(req,res)=>{
     let data=req.body.data;
     let foodtruck_id=data.foodtruckId;
     let menu_id=data.menuId;
@@ -118,3 +112,4 @@ app.post('/infoData/foodtruck',(req,res)=>{
      sendError(err, {description: ''});
    });
   });
+  module.exports=app;

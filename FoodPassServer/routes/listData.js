@@ -1,12 +1,6 @@
 //ListData
 const express=require('express')
-const bodyParser=require('body-parser')
-const postgres=require('postgresql');
-const cors=require('cors');
-
-const app=express();
-app.use(cors());
-app.use(bodyParser.json({extended: true}))
+const app=express.Router();
 const db=new (require('./Database_Connecter'))('db_configure.json');
 
 //function
@@ -26,7 +20,7 @@ function sendError(res, json){
 
 
 //위치를 받아서 그 위치 xxm 안의 푸드트럭들을 리스트로 리턴 없으면 즐겨찾기?
-app.post('/listData/foodtruck',(req,res)=>{
+app.post('/foodtruck',(req,res)=>{
     console.log(req.body);
   
     let data=req.body.data;
@@ -82,7 +76,7 @@ app.post('/listData/foodtruck',(req,res)=>{
   //});
   
   //foodtruckID를 받으면 그 푸드트럭의 메뉴 리스트를 리턴
-  app.post('/listData/menu',(req,res)=>{
+  app.post('/menu',(req,res)=>{
     let data=req.body.data;
     let foodtruck_id=data.foodtruckId;
   
@@ -116,7 +110,7 @@ app.post('/listData/foodtruck',(req,res)=>{
   });
   
   //foodtruckID menuID 받으면 옵션들 리턴
-  app.post('/listData/option',(req,res)=>{
+  app.post('/option',(req,res)=>{
     let data=req.body.data;
     let foodtruck_id=data.foodtruckId;
     let menu_id=data.menuId;
@@ -148,3 +142,4 @@ app.post('/listData/foodtruck',(req,res)=>{
       sendError(err,{description: ''});
     });
   });
+  module.exports=app;
