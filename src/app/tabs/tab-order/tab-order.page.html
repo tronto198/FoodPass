@@ -8,11 +8,12 @@
 </ion-header>
 
 <ion-content>
-  <!-- <order-waiting-order-list class="center"></order-waiting-order-list> -->
-  waiting
-  <comp-ft-waiting-view></comp-ft-waiting-view>
-  <!-- basket
-  <comp-ft-basket-view></comp-ft-basket-view> -->
-  <!-- orderhistory -->
-  <!-- <comp-ft-orderhistory-view></comp-ft-orderhistory-view> -->
+
+  <p *ngIf="owner==true; then ownerView else userView"></p>
+  <ng-template #ownerView>
+    <comp-ft-waiting-view></comp-ft-waiting-view>
+  </ng-template>
+    <ng-template #userView>
+      <comp-ft-waiting-view></comp-ft-waiting-view>
+  </ng-template>
 </ion-content>

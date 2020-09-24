@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageControllerService } from 'src/app/services/page-controller.service';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 @Component({
   selector: 'app-tab-order',
@@ -7,21 +8,35 @@ import { PageControllerService } from 'src/app/services/page-controller.service'
   styleUrls: ['./tab-order.page.scss'],
 })
 export class TabOrderPage implements OnInit {
-  cnt : number = 1;
+  owner : boolean
+
   constructor(
+    private config : SharedDataService,
     private pageCtrl : PageControllerService,//historyCtrl
   ) { }
 
   ngOnInit() {
     // this.pageData.tabOrder.historyCtrl.getHistory();
+    this.owner = true;
   }
-  get count(): number{
-    return this.cnt;
+
+  
+  get admin() : boolean{
+    return this.config.foodtruckOwner;
   }
-  addCount(){
-    this.cnt++;
+
+  set admin(b : boolean){
+    this.config.foodtruckOwner = b;
   }
-  subCount(){
-    if(this.cnt>1)this.cnt--;
+
+  
+  master(){
+    this.admin = true;
+    this.pageCtrl.presentFoodtruck();
   }
+
+  isMaster(){
+    return this.admin;
+  }
+
 }

@@ -17,6 +17,7 @@ export class TabMypagePage implements OnInit {
   
   myFoodtruck : FoodtruckData
   qrData : string
+  owner : boolean
 
 
   constructor(
@@ -29,6 +30,8 @@ export class TabMypagePage implements OnInit {
 
 
   ngOnInit() {
+    // this.master();
+    this.owner = true;
     this.myFoodtruck = {
       id: 10011,
       name: "master",

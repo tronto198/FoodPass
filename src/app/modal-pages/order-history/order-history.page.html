@@ -10,8 +10,10 @@
 <ion-content>
   
   <!-- orderhistory -->
-  
-  <comp-ft-orderhistory-view></comp-ft-orderhistory-view> 
+
+  <ng-container *ngFor="let od of orderHistoryData">
+      <comp-ft-orderhistory-view></comp-ft-orderhistory-view>
+ </ng-container>
 
   <div class="center">
     
