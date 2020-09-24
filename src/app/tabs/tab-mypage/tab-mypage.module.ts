@@ -24,7 +24,7 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
     TabMypagePageRoutingModule,
     SharedComponentModule,
     RegisterFoodtruckPageModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
     QRCodeModule,
   ],
   declarations: [TabMypagePage]
