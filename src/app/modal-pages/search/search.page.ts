@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { LocationDataCtrl } from 'src/app/services/data-ctrl/location.data.ctrl';
+import { SearchResult } from 'src/app/services/map/map.searcher';
+import { MapService } from 'src/app/services/map/map.service';
 import { SearchType } from 'src/app/services/map/search-item.enum';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
-  selector: 'app-search',
+  selector: 'modal-search',
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
 
-  constructor(private search: SearchService) { }
+  constructor(
+    private search: SearchService,
+    private modalCtrl: ModalController,
+    private mapService: MapService,
+    private locationCtrl: LocationDataCtrl
+    ) { }
 
   ngOnInit() {
   }
@@ -44,21 +53,25 @@ export class SearchPage implements OnInit {
     this.search.search()
   }
 
-  select(event){
-    // this.mapCtrl.mapPosition = event;
+  dismiss(){
+    this.modalCtrl.dismiss()
+  }
 
-    console.log(event);
-    
+  select(result : SearchResult){
+    this.mapService.mapPosition = result.location;
+    this.locationCtrl.searchLocation = result.location;
+    this.search.inputData = result.name;
+    this.modalCtrl.dismiss()
 
     //푸드트럭 검색
     // this.pageCtrl.routingHome();
   }
 
   selectAddress(index){
-
+    this.select(this.addressResults[index])
   }
 
   selectKeyword(index){
-
+    this.select(this.keywordResults[index])
   }
 }

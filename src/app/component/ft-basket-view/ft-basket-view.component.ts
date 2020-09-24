@@ -12,21 +12,27 @@ import { OrderData } from 'src/app/data/order';
 })
 export class FtBasketViewComponent implements OnInit {
   @Input() foodtruckId: number;
-  count : number;
   total_price : number;
-  
-  isChecked : boolean;
+  optionData: OptionData[];
+  menuData: MenuData[];
+
 
   constructor(private dataCtrl: FoodtruckDataCtrl) { }
 
   ngOnInit() {
-    this.count =1;
     this.total_price =0;
-    this.isChecked = false;
-  }
+    this.optionData=[{
+      id: 0,
+      name: "opt1",
+      extraPrice:500
+    },
+    {
+      id: 1,
+      name: "opt2",
+      extraPrice:1000
+    }];
 
-  get menuData(): MenuData[] {
-    return [{
+    this.menuData=[{
       id: 0,
       menuName: "menu1",
       price:4000
@@ -38,47 +44,18 @@ export class FtBasketViewComponent implements OnInit {
     }];
   }
 
-  get optionData(): OptionData[] {
-    return [{
-      id: 0,
-      name: "opt1",
-      extraPrice:500
-    },
-    {
-      id: 1,
-      name: "opt2",
-      extraPrice:1000
-    }];
-  }
 
   get menuName():string{
     return this.menuData[0].menuName;
   }
-  get price():number{
-    return this.menuData[0].price + this.optionData[0].extraPrice;
-  }
 
-  get optionName():string{
-    return this.optionData[0].name;
-  }
-
-  addCount(){
-    this.count++;
-  }
-
-  subCount(){
-    if(this.count>1) this.count--;
-  }
-
-  get isItChecked(){
-    return this.isChecked;
-  }
+ 
 
   get totalPrice(): number{
 
-    if (this.isChecked) this.total_price = this.count * this.price;
-    else  this.total_price =0;
-    return this.total_price ;
+    // if (this.isChecked) this.total_price = this.count * this.price;
+    // else  this.total_price =0;
+    return this.total_price =0 ;
   }
   
 }

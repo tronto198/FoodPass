@@ -22,13 +22,13 @@ const routes: Routes = [
     // loadChildren: () => import('./modal-pages/foodtruck-list/foodtruck-list.module').then( m => m.FoodtruckListPageModule)
   },
   {
-    path: 'search',
-    loadChildren: () => import('./modal-pages/search/search.module').then( m => m.SearchPageModule)
-  },
-  {
     path: 'basket',
     loadChildren: () => import('./modal-pages/basket/basket.module').then( m => m.BasketPageModule)
+  },  {
+    path: 'register-foodtruck',
+    loadChildren: () => import('./modal-pages/register-foodtruck/register-foodtruck.module').then( m => m.RegisterFoodtruckPageModule)
   }
+
 
 ];
 @NgModule({

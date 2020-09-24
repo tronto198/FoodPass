@@ -1,12 +1,15 @@
 <ion-header>
   <!-- 검색용 박스 -->
   <ion-item class="searchingBox">
+    <ion-button class="dismissButton mapButton" (click)="dismiss()">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
     <ion-input id="input" placeholder="currentSearched" [(ngModel)]="inputData"
     (ionChange)="startSearch()">
     </ion-input>
-    <ion-button class="searchingButton mapButton" (click)="search()">
+    <!-- <ion-button class="searchingButton mapButton" (click)="search()">
       <ion-icon slot="icon-only" name="search-outline"></ion-icon>
-    </ion-button>
+    </ion-button> -->
   </ion-item>
   <!-- 뒤로 가기 버튼 만들기 필요 -->
 </ion-header>
@@ -22,11 +25,11 @@
 
     <!-- 주소 결과 -->
     <search-resultItem *ngFor="let result of addressResults; let i = index" 
-    (selected)="select($event)" type="{{addressType}}" index="{{i}}">
+    (click)="selectAddress(i)" type="{{addressType}}" index="{{i}}">
     </search-resultItem>
     <!-- 키워드 결과 -->
     <search-resultItem *ngFor="let result of keywordResults; let i = index" 
-    (selected)="select($event)" type="{{keywordType}}" index="{{i}}">
+    (click)="selectKeyword(i)" type="{{keywordType}}" index="{{i}}">
     </search-resultItem>
   </ion-list>
 </ion-content>

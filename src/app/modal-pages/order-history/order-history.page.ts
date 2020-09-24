@@ -11,7 +11,7 @@ import { HistoryDataCtrl } from 'src/app/services/data-ctrl/history.data.ctrl';
   styleUrls: ['./order-history.page.scss'],
 })
 export class OrderHistoryPage implements OnInit {
-
+  orderHistoryData : OrderHistoryData[]
 
   constructor(
     private historyCtrl: HistoryDataCtrl,
@@ -20,6 +20,27 @@ export class OrderHistoryPage implements OnInit {
 
   ngOnInit() {
     //  this.historyCtrl.getHistory();
+    this.orderHistoryData = [{
+      id: 1,
+    foodtruckInfo: {
+      id: 10011,
+      name: "master",
+      introduction: "운영자용 수정 푸드트럭",
+      notice: "수정 공지"
+    },
+    price: 10000
+    },
+    {
+      id: 2,
+    foodtruckInfo: {
+      id: 10011,
+      name: "master",
+      introduction: "운영자용 수정 푸드트럭",
+      notice: "수정 공지"
+    },
+    price: 10000
+    }];
+
   }
 
   get orderList() : OrderHistoryData[]{
