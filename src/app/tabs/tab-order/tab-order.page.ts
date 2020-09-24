@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 import { PageControllerService } from 'src/app/services/page-controller.service';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 @Component({
   selector: 'app-tab-order',
@@ -7,21 +9,54 @@ import { PageControllerService } from 'src/app/services/page-controller.service'
   styleUrls: ['./tab-order.page.scss'],
 })
 export class TabOrderPage implements OnInit {
-  cnt : number = 1;
+  owner : boolean
+  basket : BasketOrder[];
+
   constructor(
+    private config : SharedDataService,
     private pageCtrl : PageControllerService,//historyCtrl
   ) { }
 
   ngOnInit() {
     // this.pageData.tabOrder.historyCtrl.getHistory();
+    this.owner = true;
+    // this.basket = [
+    //   {
+    //   id: 1,
+    //   foodtruckinfo: {
+    //     id: 10011,
+    //     name: "master",
+    //     introduction: "운영자용 수정 푸드트럭",
+    //     notice: "수정 공지"
+    //   },
+    //   orderedMenu: {
+    //     menuinfo:{
+    //       id:1,
+    //       menuName:"메뉴 이름"
+    //     },
+    //     optioninfo: {id: 1,
+    //       name: "옵션 이름",
+    //       extraPrice: 0},
+    //     amount: 1}}]
   }
-  get count(): number{
-    return this.cnt;
+
+  
+  get admin() : boolean{
+    return this.config.foodtruckOwner;
   }
-  addCount(){
-    this.cnt++;
+
+  set admin(b : boolean){
+    this.config.foodtruckOwner = b;
   }
-  subCount(){
-    if(this.cnt>1)this.cnt--;
+
+  
+  master(){
+    this.admin = true;
+    this.pageCtrl.presentFoodtruck();
   }
+
+  isMaster(){
+    return this.admin;
+  }
+
 }

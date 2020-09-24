@@ -27,25 +27,42 @@
       </ion-card-content>
     </ion-card>
   </ion-item> -->
+  
+  <!-- <comp-user-account-view></comp-user-account-view> -->
+  
 
-  <comp-user-account-view></comp-user-account-view>
 
+  <p *ngIf="owner==true; then ownerView else userView"></p>
+    <!-- 사장 -->
+  <ng-template #ownerView>
+    <ion-card><comp-ft-view></comp-ft-view></ion-card>
     
-  
-  
-
-  <ion-item>
-    <!-- <ion-toggle [(ngModel)]="admin"></ion-toggle> -->
-    <ion-label>사용자 계정정보</ion-label>
-  </ion-item>
-  <ion-item button (click)="presentRegisterFoodtruck()">
-    푸드트럭 등록하기
-  </ion-item>
-  <ion-item button (click)="requestPermission()">
-    알림 허용하기
-  </ion-item>
-  <ion-item button (click)="showOrderHistory()">
-    주문 기록 보기
-  </ion-item>
+    <ion-item button (click)="requestPermission()">
+      알림 허용하기
+    </ion-item>
+    <ion-item button (click)="showOrderHistory()">
+      주문 기록 보기 [사장]
+    </ion-item>
+     <ion-item button > 
+      내 푸드트럭 QR코드 
+    </ion-item>
+   <ion-item>
+     <qr-code [value]="qrData" [size]="200"></qr-code>
+      </ion-item>
+  </ng-template>
+  <!-- 손님 -->
+    <ng-template #userView>
+      <comp-user-account-view></comp-user-account-view>
+      <ion-item button (click)="requestPermission()">
+        알림 허용하기
+      </ion-item>
+      <ion-item button (click)="showOrderHistory()">
+        주문 기록 보기 [손님]
+      </ion-item>
+</ng-template>
+   
+    <!-- <ion-toggle [(ngModel)]="admin"></ion-toggle> 
+    <ion-label>사용자 계정정보</ion-label> -->
+    
+ 
 </ion-content>
-

@@ -11,6 +11,11 @@ import { SharedComponentModule } from 'src/app/component/shared-component.module
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { RegisterFoodtruckPageModule } from 'src/app/modal-pages/register-foodtruck/register-foodtruck.module';
 
+// import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { QRCodeModule } from 'angular2-qrcode';
+import { SharedDataModule } from 'src/app/services/shared-data/shared-data.module';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +24,8 @@ import { RegisterFoodtruckPageModule } from 'src/app/modal-pages/register-foodtr
     TabMypagePageRoutingModule,
     SharedComponentModule,
     RegisterFoodtruckPageModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    QRCodeModule,
   ],
   declarations: [TabMypagePage]
 })

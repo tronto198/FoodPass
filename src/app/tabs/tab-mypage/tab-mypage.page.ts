@@ -6,14 +6,21 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 import { ModalController } from '@ionic/angular';
 import { RegisterFoodtruckPage } from 'src/app/modal-pages/register-foodtruck/register-foodtruck.page';
 
+
 @Component({
   selector: 'app-tab-mypage',
   templateUrl: './tab-mypage.page.html',
   styleUrls: ['./tab-mypage.page.scss'],
 })
 export class TabMypagePage implements OnInit {
-
+  
+  elementType = 'url';
+  value = 'Techiediaries';
+  
   myFoodtruck : FoodtruckData
+  qrData : string
+  owner : boolean
+
 
   constructor(
     private config : SharedDataService,
@@ -28,12 +35,15 @@ export class TabMypagePage implements OnInit {
   }
 
   ngOnInit() {
+    // this.master();
+    this.owner = true;
     this.myFoodtruck = {
       id: 10011,
       name: "master",
       introduction: "운영자용 수정 푸드트럭",
       notice: "수정 공지"
     }
+    this.qrData = 'http://localhost:8100/foodtruck/0';
   }
 
 
@@ -67,4 +77,11 @@ export class TabMypagePage implements OnInit {
     this.admin = true;
     this.pageCtrl.presentFoodtruck();
   }
+
+  // getImage(): void {
+  //   const canvas = document.querySelector("canvas") as HTMLCanvasElement;
+  //   const imageData = canvas.toDataURL("image/jpeg").toString();
+  //   alert(imageData);
+  //   }
+  
 }
