@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 import { PageControllerService } from 'src/app/services/page-controller.service';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
@@ -9,6 +10,7 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 })
 export class TabOrderPage implements OnInit {
   owner : boolean
+  basket : BasketOrder[];
 
   constructor(
     private config : SharedDataService,
@@ -18,6 +20,24 @@ export class TabOrderPage implements OnInit {
   ngOnInit() {
     // this.pageData.tabOrder.historyCtrl.getHistory();
     this.owner = true;
+    // this.basket = [
+    //   {
+    //   id: 1,
+    //   foodtruckinfo: {
+    //     id: 10011,
+    //     name: "master",
+    //     introduction: "운영자용 수정 푸드트럭",
+    //     notice: "수정 공지"
+    //   },
+    //   orderedMenu: {
+    //     menuinfo:{
+    //       id:1,
+    //       menuName:"메뉴 이름"
+    //     },
+    //     optioninfo: {id: 1,
+    //       name: "옵션 이름",
+    //       extraPrice: 0},
+    //     amount: 1}}]
   }
 
   

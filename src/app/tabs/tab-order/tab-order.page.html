@@ -11,9 +11,13 @@
 
   <p *ngIf="owner==true; then ownerView else userView"></p>
   <ng-template #ownerView>
-    <comp-ft-waiting-view></comp-ft-waiting-view>
+    <ng-container *ngFor="let od of orderHistoryData">
+      <comp-ft-waiting-view></comp-ft-waiting-view>
+ </ng-container>
   </ng-template>
     <ng-template #userView>
+      <ng-container *ngFor="let od of orderHistoryData">
       <comp-ft-waiting-view></comp-ft-waiting-view>
+ </ng-container>
   </ng-template>
 </ion-content>
