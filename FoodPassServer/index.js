@@ -2,9 +2,8 @@
 //1.express모듈 사용하기 위해 require 함수로 불러옴
 const express=require('express');
 const bodyParser=require('body-parser');
-const postgres=require('postgresql');
 const cors=require('cors');
-const db=new (require('./Database_Connecter'))('db_configure.json');
+const port=8080 
 
 var compression=require('compression')
 var accountRouter=require('./routes/account')
@@ -45,8 +44,8 @@ app.use((err, req,res,next)=>{
 })
 
 //4. 서버 열기
-app.listen(8080, function(){
-  console.log("server starting with 8080")
+app.listen(port, function(){
+  console.log(`server starting with ${port}`)
 });
 
 
