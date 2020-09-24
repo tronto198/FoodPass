@@ -60,6 +60,10 @@ export class MapService {
     this.positionCircle.setPosition(LocationDataToPoint(location));
   }
 
+  removePositionCircle(){
+    this.positionCircle.setMap(null);
+  }
+
   makeMarker(location: LocationData) : any{
     let marker = new kakao.maps.Marker({
       map: this.map,

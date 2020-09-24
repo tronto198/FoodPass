@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TabHomePage } from './tab-home.page';
 import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
+import { SearchPage } from 'src/app/modal-pages/search/search.page';
 
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'ft-preview',
     component: FtViewComponent,
+  },
+  {
+    path: 'search',
+    component: SearchPage
   }
 ];
 

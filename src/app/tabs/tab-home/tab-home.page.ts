@@ -8,6 +8,7 @@ import { MapService } from 'src/app/services/map/map.service';
 import { SearchService } from 'src/app/services/search.service';
 import { FoodtruckDataProvider } from 'src/app/services/data-provider/foodtruck.data.provider';
 import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
+import { SearchPage } from 'src/app/modal-pages/search/search.page';
 
 @Component({
   selector: 'app-tab-home',
@@ -22,7 +23,7 @@ export class TabHomePage implements OnInit, OnDestroy {
     private sharedData : SharedDataService,
     private foodtruckDataProvider: FoodtruckDataProvider,
     private mapCtrl : MapService,
-    private search: SearchService
+    private search: SearchService,
   ) { }
 
   ngOnInit() {
@@ -77,6 +78,7 @@ export class TabHomePage implements OnInit, OnDestroy {
   watchPosition(){
     if(this.isWatching){
       this.sharedData.geolocation.stopWatching();
+      this.mapCtrl.removePositionCircle();
     }
     else{
       this.sharedData.geolocation.getLocation().then(
@@ -92,7 +94,10 @@ export class TabHomePage implements OnInit, OnDestroy {
   }
 
   searchStart(){
-    this.pageCtrl.presentSearch();
+    this.modalCtrl.create({
+      component: SearchPage,
+      cssClass: 'modal-fullscreen'
+    }).then(r => r.present())
   }
 
   ngOnDestroy(){

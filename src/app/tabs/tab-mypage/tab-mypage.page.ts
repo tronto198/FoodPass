@@ -3,6 +3,8 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 import { NotificationService } from 'src/app/services/notification.service';
 import { PageControllerService } from 'src/app/services/page-controller.service';
 import { FoodtruckData } from 'src/app/data/foodtruck';
+import { ModalController } from '@ionic/angular';
+import { RegisterFoodtruckPage } from 'src/app/modal-pages/register-foodtruck/register-foodtruck.page';
 
 
 @Component({
@@ -24,10 +26,13 @@ export class TabMypagePage implements OnInit {
     private config : SharedDataService,
     private push : NotificationService,
     private pageCtrl : PageControllerService,
-    // private base64ToGallery : Base64ToGallery
+    private modalCtrl : ModalController
   ) { }
 
 
+  get link(){
+    return `localhost:8100/foodtruck/${this.myFoodtruck.id}`
+  }
 
   ngOnInit() {
     // this.master();
@@ -53,6 +58,15 @@ export class TabMypagePage implements OnInit {
   requestPermission(){
     // this.push.requestPermission()
     console.log('requestPermission');
+  }
+
+  async presentRegisterFoodtruck(){
+    let page = await this.modalCtrl.create({
+      component:RegisterFoodtruckPage,
+      cssClass: 'modal-fullscreen'
+    })
+
+    page.present();
   }
 
   showOrderHistory(){

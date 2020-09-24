@@ -4,6 +4,7 @@ import { FoodtruckDataCtrl } from './foodtruck.data.ctrl';
 import { BasketDataCtrl } from './basket.data.ctrl';
 import { HistoryDataCtrl } from './history.data.ctrl';
 import { WaitingDataCtrl } from './waiting.data.ctrl';
+import { LocationDataCtrl } from './location.data.ctrl';
 
 @NgModule({
 //   declarations: [],
@@ -18,7 +19,7 @@ import { WaitingDataCtrl } from './waiting.data.ctrl';
     BasketDataCtrl,
     HistoryDataCtrl,
     WaitingDataCtrl,
-    
+    LocationDataCtrl,
   ]
 })
 export class DataCtrlModule { }

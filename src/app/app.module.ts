@@ -23,6 +23,7 @@ import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-
  import { QRCodeModule } from 'angular2-qrcode';
 // import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +40,8 @@ import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-
       // SharedComponentModule,  //공통 컴포넌트
 
       FoodtruckListPageModule,
+
+      NgxQRCodeModule,
 
       AngularFireModule.initializeApp(environment.firebase),  //firebase
       AngularFireMessagingModule,

@@ -5,6 +5,13 @@
 </ion-header>
 
 <ion-content>
+  <ngx-qrcode 
+  elementType="url" 
+  [value]="link"
+  cssClass="qr-code"
+  errorCorrectionLevel="L">
+  </ngx-qrcode>
+
   <!-- <ion-item (click)="master()">
     <ion-card>
       <ion-card-header>
@@ -52,7 +59,6 @@
       <ion-item button (click)="showOrderHistory()">
         주문 기록 보기 [손님]
       </ion-item>
-
 </ng-template>
    
     <!-- <ion-toggle [(ngModel)]="admin"></ion-toggle> 
