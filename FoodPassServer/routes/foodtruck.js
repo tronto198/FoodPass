@@ -71,7 +71,7 @@ sendError(err, {description: ''})
   
 app.post('/delete', (req, res)=>{
   let data=req.body.data;
-  let foodtruck_id=data.foodtruck_id;
+  let foodtruck_id=data.foodtruckId;
 
 
   const Sql="delete from foodtruck_tb where foodtruck_id=$1 Returning foodtruck_id";
@@ -89,7 +89,7 @@ sendError(err, {description: ''})
 
   app.post('/menu/create',(req,res)=>{
     let data=req.body.data;
-    let foodtruck_id=data.id;
+    let foodtruck_id=data.foodtruckId;
     let name=data.menuName;
     let image=data.imgsrc;
     let introduction=data.menuInformation;
@@ -110,13 +110,13 @@ sendError(err, {description: ''})
   });
   app.post('/menu/modify',(req,res)=>{
     let data=req.body.data;
-    let foodtruck_id=data.id;
+    let foodtruck_id=data.foodtruckId;
     let name=data.menuName;
     let image=data.imgsrc;
     let introduction=data.menuInformation;
     let price=data.price;
    // let allergy_information=data.allergy_information;
-    let menu_Id=data.menuID;
+    let menu_Id=data.menuId;
 
     const menuInformSql="update menu_tb set foodtruck_id=$1, name=$2,image=$3 ,introduction=$4 ,price=$5 where menu_id=$6 Returning *";
     const values=[foodtruck_id,name,image,introduction,price, menu_Id];
@@ -132,7 +132,7 @@ sendError(err, {description: ''})
   });
   app.post('/menu/delete',(req,res)=>{
     let data=req.body.data;
-    let menu_Id=data.menuID;
+    let menu_Id=data.menuId;
   
     const menuInformSql="delete from menu_tb where menu_id=$1  Returning menu_id";
     const values=[menu_Id];
@@ -150,7 +150,7 @@ sendError(err, {description: ''})
   
   app.post('/option/create',(req,res)=>{
     let data=req.body.data;
-    let menu_id=data.menuID;
+    let menu_id=data.menuId;
     let name=data.name;
     let extra_price=data.extraPrice;
   
@@ -168,7 +168,7 @@ sendError(err, {description: ''})
   });
   app.post('/option/modify',(req,res)=>{
     let data=req.body.data;
-    let menu_id=data.menuID;
+    let menu_id=data.menuId;
     let name=data.name;
     let extra_price=data.extraPrice;
     let option_id=data.option_id;
@@ -186,7 +186,7 @@ sendError(err, {description: ''})
   });
   app.post('/option/delete',(req,res)=>{
     let data=req.body.data;
-    let option_id=data.option_id;
+    let option_id=data.optionId;
   
     const optionInformSql="delete from option_tb where option_id=$1 Returning option_id";
     const values=[option_id];
@@ -200,4 +200,74 @@ sendError(err, {description: ''})
     })
   
   });
+
+  app.post('/open',(req,res)=>{
+    let data=req.body.data;
+    let foodtruckId=data.foodtruckId;
+  
+    const optionInformSql="update foodtruck_tb set status='open' where foodtruck_id=$1 Returning foodtruck_id, status";
+    const values=[foodtruckId];
+  
+     db.query(optionInformSql,values).then(res2=>{
+      sendResult(res,result);
+    })
+    .catch(err=>{
+      console.log(err.stack)
+      sendError(err, {description: ''})
+    })
+  
+  });
+
+  app.post('/close',(req,res)=>{
+    let data=req.body.data;
+    let foodtruckId=data.foodtruckId;
+  
+    const optionInformSql="update foodtruck_tb set status='close' where foodtruck_id=$1 Returning foodtruck_id, status";
+    const values=[foodtruckId];
+  
+     db.query(optionInformSql,values).then(res2=>{
+      sendResult(res,result);
+    })
+    .catch(err=>{
+      console.log(err.stack)
+      sendError(err, {description: ''})
+    })
+  
+  });
+
+  app.post('/order/confirm',(req,res)=>{
+    let data=req.body.data;
+    let foodtruckId=data.foodtruckId;
+  
+    const optionInformSql="select * from user_order_menu_tb where foodtruck_id=$1 order by order_number Returning *";
+    const values=[foodtruckId];
+  
+     db.query(optionInformSql,values).then(res2=>{
+      sendResult(res,result);
+    })
+    .catch(err=>{
+      console.log(err.stack)
+      sendError(err, {description: ''})
+    })
+  
+  });
+
+  app.post('/order/call',(req,res)=>{
+    let data=req.body.data;
+    let foodtruckId=data.foodtruckId;
+    let user_order_menu_id=data.orderId;
+  
+    const optionInformSql="update user_order_menu_tb set finished_time=current_timestamp where foodtruck_id=$1, user_order_menu_id=$2  Returning user_order_menu_id, user_id, foodtruck_id, finished_time";
+    const values=[foodtruckId, user_order_menu_id];
+  
+     db.query(optionInformSql,values).then(res2=>{
+      sendResult(res,result);
+    })
+    .catch(err=>{
+      console.log(err.stack)
+      sendError(err, {description: ''})
+    })
+  
+  });
+
   module.exports=app;

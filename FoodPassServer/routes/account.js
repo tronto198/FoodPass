@@ -111,8 +111,8 @@ app.post('/create',(req,res)=>{
   app.post('/giveRating',(req,res)=>{
     let data=req.body.data;
     let ratingData=data.rating;
-    let userId=data.user_id;
-    let foodtruckId=data.foodtruck_id;
+    let userId=data.userId;
+    let foodtruckId=data.foodtruckId;
     let authority=data.authority;
   
     const Sql="insert into relation_user_foodtruck_tb(rating) values($4) where user_id=$1 and foodtruci_id=$2 and autority=$3 Returning user_id";

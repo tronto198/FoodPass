@@ -70,7 +70,7 @@ app.post('/foodtruck',(req,res)=>{
      });
   });
   
-  //foodtruckID, menuID받으면 메뉴 정보 리턴
+  //foodtruckId, menuId받으면 메뉴 정보 리턴
   app.post('/menu',(req,res)=>{
     let data=req.body.data;
     let foodtruck_id=data.foodtruckId;
@@ -85,7 +85,7 @@ app.post('/foodtruck',(req,res)=>{
       let element = res2.rows[0];
       let data={
         menuData: {
-          menuID: element.menu_id,
+          menuId: element.menu_id,
           menuName: element.name,
           menuInformation: element.introduction,
           price: element.price,
@@ -95,7 +95,7 @@ app.post('/foodtruck',(req,res)=>{
       };
       // res2.rows.forEach(element=>{
       //   let menuinfo={
-      //     menuID=element.menu_id,
+      //     menuId=element.menu_id,
       //     menuName=element.name,
       //     menuInformation=element.introduction,
       //     price=element.price,
