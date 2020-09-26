@@ -4,6 +4,7 @@ import { CommunicationService } from './communication/communication.service';
 import { reqPushToken, resPushToken } from './communication/reqType/account/pushToken.req';
 import { reqUrl } from './communication/reqType/req-url.enum';
 
+//토큰받는과정
 @Injectable()
 export class NotificationService {
   token: string;

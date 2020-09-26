@@ -234,15 +234,35 @@ sendError(err, {description: ''})
     })
   
   });
-
+/*
   app.post('/order/confirm',(req,res)=>{
     let data=req.body.data;
     let foodtruckId=data.foodtruckId;
+    let userOrderMenuId=data.userOrderMenuId;
+    
+    const userOrderMenuSql="select * from user_order_menu_tb where foodtruck_id=$1 order by order_number Returning *";
+    const userOrderMenuValues=[foodtruckId];
   
-    const optionInformSql="select * from user_order_menu_tb where foodtruck_id=$1 order by order_number Returning *";
-    const values=[foodtruckId];
-  
-     db.query(optionInformSql,values).then(res2=>{
+    const orderSql="select * from order_tb where user_order_menu_id=$1 Returning *"
+    const orderValues=[userOrderMenuId];
+
+    const watingSql=""
+    const waitingValues=
+     db.query(Sql,values).then(res2=>{
+       let data={
+         orderList:[]
+       }
+       
+       res2.rows.forEach(element => {
+        let orderInfo={
+          id:element.user_order_menu_id,
+          foodtruckinfo:element.foodtruck_id,
+          orderedMenu:,
+          price: element.price,
+          orderNo:element.order_number,
+          waiting
+        }  
+       });
       sendResult(res,result);
     })
     .catch(err=>{
@@ -251,7 +271,7 @@ sendError(err, {description: ''})
     })
   
   });
-
+*/
   app.post('/order/call',(req,res)=>{
     let data=req.body.data;
     let foodtruckId=data.foodtruckId;
