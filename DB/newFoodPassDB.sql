@@ -1,4 +1,4 @@
---2020 08 22 version 2.2
+--2020 09 25 version 2.3
 drop table if exists user_order_menu_TB cascade;
 drop table if exists user_TB cascade;
 drop table if exists option_TB cascade;
@@ -18,8 +18,9 @@ create table foodtruck_tb
  notice text,
  origin_information text,
  location geometry(POINT,4326),
- primary key(foodtruck_id)
- --foreign key(owner_id)references user_tb(user_id)
+ primary key(foodtruck_id),
+ status varchar(20) default 'open' --open:영업중인 상태, close:영업종료 상태 
+  --foreign key(owner_id)references user_tb(user_id)
 );
 
 create table menu_tb
@@ -184,6 +185,7 @@ INSERT INTO foodtruck_tb VALUES(default,'참치공방','트럭이미지', '한�
 --insert into statistics_tb values(default, 0, 0, 0);
 --insert into statistics_tb values(default, 0, 0, 0);
 --insert into statistics_tb values(default, 0, 0, 0);
+
 
 SELECT * FROM foodtruck_tb WHERE ST_DistanceSphere(location, ST_MakePoint(127.026993,37.497933)) <= 150;
 select foodtruck_id, st_x(location),st_y(location) from foodtruck_tb;--x 경도, y 위도
