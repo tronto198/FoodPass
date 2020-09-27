@@ -1,7 +1,7 @@
 {
   "user":"postgres",
-  "host":"foodpassdb3.c8zpfcwi12bx.ap-northeast-2.rds.amazonaws.com",
-  "database":"myDatabase",
+  "host":"ec2-3-34-192-233.ap-northeast-2.compute.amazonaws.com",
+  "database":"foodpass",
   "password":"postgres",
   "port":5432
 }

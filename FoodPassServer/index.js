@@ -4,6 +4,7 @@ const express=require('express');
 const bodyParser=require('body-parser');
 const cors=require('cors');
 const port=8080 
+//const db=new (require('./Database_Connecter'))('./main/FoodPassServer/db_configure.json');
 
 var compression=require('compression')
 var accountRouter=require('./routes/account')

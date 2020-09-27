@@ -1,7 +1,7 @@
 //account
 const express=require('express')
 const app=express.Router();
-const db=new (require('./Database_Connecter'))('db_configure.json');
+const db=new (require('../Database_Connecter'))('./main/FoodPassServer/db_configure.json');
 
 //function
 function sendResult(res, json){

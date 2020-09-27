@@ -186,6 +186,7 @@ INSERT INTO foodtruck_tb VALUES(default,'참치공방','트럭이미지', '한�
 --insert into statistics_tb values(default, 0, 0, 0);
 --insert into statistics_tb values(default, 0, 0, 0);
 
+
 SELECT * FROM foodtruck_tb WHERE ST_DistanceSphere(location, ST_MakePoint(127.026993,37.497933)) <= 150;
 select foodtruck_id, st_x(location),st_y(location) from foodtruck_tb;--x 경도, y 위도
 
