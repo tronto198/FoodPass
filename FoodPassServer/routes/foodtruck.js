@@ -54,7 +54,7 @@ app.post('/modify', (req, res)=>{
   //let origin_information=data.origin_information;
   let location_lat=data.location.lat;//형태고민
   let location_lng=data.location.lng;
-  let foodtruck_id=data.foodtruck_id;
+  let foodtruck_id=data.foodtruckId;
 
 
   const Sql="update foodtruck_tb set name=$1, image=$2, introduction=$3, notice=$4, location=st_setsrid(ST_MakePoint($6, $5), 4326) where foodtruck_id= $7 Returning *";
@@ -98,11 +98,15 @@ sendError(err, {description: ''})
     let price=data.price;
    // let allergy_information=data.allergy_information;
   
-    const menuInformSql="insert into menu_tb(foodtruck_id, name,image ,introduction ,price ) values($1,$2,$3,$4,$5) Returning *";
+    const menuInformSql="insert into menu_tb(foodtruck_id, name,image ,introduction ,price ) values($1,$2,$3,$4,$5) Returning menu_id";
     const values=[foodtruck_id,name,image,introduction,price];
   
      db.query(menuInformSql,values).then(res2=>{
-      sendResult(res,result);
+       let data={
+         menuId:res2.rows[0].menu_id
+       }
+       console.log(`menu created: ${data.menuId}`)
+      sendResult(res,data);
     })
     .catch(err=>{
       console.log(err.stack)
@@ -157,15 +161,22 @@ sendError(err, {description: ''})
 //푸드트럭 옵션 생성
   app.post('/option/create',(req,res)=>{
     let data=req.body.data;
-    let menu_id=data.menuId;
-    let name=data.name;
+    let foodtruckId=data.foodtruckId;
+    let menuId=data.menuId;
+
+    let optionName=data.name;
     let extra_price=data.extraPrice;
   
-    const optionInformSql="insert into option_tb(menu_id,name,price) values($1,$2,$3) Returning *";
-    const values=[menu_id,name,extra_price];
+    const optionInformSql="insert into option_tb values($1,$2,$3,$4) where Returning *";
+    const values=[foodtruckId, menuId, optionName,extra_price];
   
      db.query(optionInformSql,values).then(res2=>{
-      sendResult(res,result);
+       let data={
+         menuId:res2.rows[0].menu_id,
+         optionId:res2.rows[0].option_id
+       }
+       console.log(`option created: menuId: ${data.menuId}, optionId: ${data.optionId}`)
+      sendResult(res,data);
     })
     .catch(err=>{
       console.log(err.stack)
@@ -180,7 +191,7 @@ sendError(err, {description: ''})
     let menu_id=data.menuId;
     let name=data.name;
     let extra_price=data.extraPrice;
-    let option_id=data.option_id;
+    let option_id=data.optionData.id; //------>이상?
     const optionInformSql="update option_tb set menu_id=$1,name=$2,price=$3 where opion_id=$4 Returning *";
     const values=[menu_id,name,extra_price, option_id];
   
@@ -197,7 +208,7 @@ sendError(err, {description: ''})
   //푸드트럭 옵션 삭제
   app.post('/option/delete',(req,res)=>{
     let data=req.body.data;
-    let option_id=data.optionId;
+    let option_id=data.id;
   
     const optionInformSql="delete from option_tb where option_id=$1 Returning option_id";
     const values=[option_id];
@@ -215,9 +226,11 @@ sendError(err, {description: ''})
   app.post('/open',(req,res)=>{
     let data=req.body.data;
     let foodtruckId=data.foodtruckId;
+    let location_lat=data.location.lat;
+    let location_lng=data.location.lng;
   
-    const optionInformSql="update foodtruck_tb set status='open' where foodtruck_id=$1 Returning foodtruck_id, status";
-    const values=[foodtruckId];
+    const optionInformSql="update foodtruck_tb set status='open', location=st_setsrid(ST_MakePoint($1, $2), 4326)) where foodtruck_id=$3 Returning foodtruck_id, status";
+    const values=[location_lat, location_lng, foodtruckId];
   
      db.query(optionInformSql,values).then(res2=>{
       sendResult(res,result);
@@ -245,60 +258,6 @@ sendError(err, {description: ''})
     })
   
   });
-/*
-  app.post('/order/confirm',(req,res)=>{
-    let data=req.body.data;
-    let foodtruckId=data.foodtruckId;
-    let userOrderMenuId=data.userOrderMenuId;
-    
-    const userOrderMenuSql="select * from user_order_menu_tb where foodtruck_id=$1 order by order_number Returning *";
-    const userOrderMenuValues=[foodtruckId];
-  
-    const orderSql="select * from order_tb where user_order_menu_id=$1 Returning *"
-    const orderValues=[userOrderMenuId];
 
-    const watingSql=""
-    const waitingValues=
-     db.query(Sql,values).then(res2=>{
-       let data={
-         orderList:[]
-       }
-       
-       res2.rows.forEach(element => {
-        let orderInfo={
-          id:element.user_order_menu_id,
-          foodtruckinfo:element.foodtruck_id,
-          orderedMenu:,
-          price: element.price,
-          orderNo:element.order_number,
-          waiting
-        }  
-       });
-      sendResult(res,result);
-    })
-    .catch(err=>{
-      console.log(err.stack)
-      sendError(err, {description: ''})
-    })
-  
-  });
-*/
-  app.post('/order/call',(req,res)=>{
-    let data=req.body.data;
-    let foodtruckId=data.foodtruckId;
-    let user_order_menu_id=data.orderId;
-  
-    const optionInformSql="update user_order_menu_tb set finished_time=current_timestamp where foodtruck_id=$1, user_order_menu_id=$2  Returning user_order_menu_id, user_id, foodtruck_id, finished_time";
-    const values=[foodtruckId, user_order_menu_id];
-  
-     db.query(optionInformSql,values).then(res2=>{
-      sendResult(res,result);
-    })
-    .catch(err=>{
-      console.log(err.stack)
-      sendError(err, {description: ''})
-    })
-  
-  });
 
   module.exports=app;

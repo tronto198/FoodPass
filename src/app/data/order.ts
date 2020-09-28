@@ -9,7 +9,6 @@ export interface OrderData {
     foodtruckinfo: FoodtruckData;
     orderedMenu: OrderedMenuData[];
     price: number;
-    
     orderNo?: number;
     waiting?: WaitingData;
 }

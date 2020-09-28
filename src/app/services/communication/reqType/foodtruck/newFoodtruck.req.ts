@@ -1,6 +1,11 @@
+import { LocationData } from 'src/app/data/location';
 
 export interface reqNewFoodtruck {
-    //추가
+    name:string;
+    image:string;
+    introduction:string;
+    notice:string;
+    location:LocationData;
 }
 
 export interface resNewFoodtruck {

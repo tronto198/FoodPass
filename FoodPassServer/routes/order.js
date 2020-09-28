@@ -38,24 +38,92 @@ app.post('/create', (req, res) => {
 //   sendResult(res, {});
 // })
 
-//
-app.post('/ready', (req, res) => {
-  let orderId = req.body.data.orderId;
-  console.log('order is ready: ' + orderId);
-  //is_received : true하기
 
-  sendResult(res, {});
+
+//푸드트럭 주문 준비 다 돼서 손님 호출
+app.post('/ready', (req, res) => {
+  let data = req.body.data;
+  let foodtruckId = data.foodtruckId;
+  let user_order_menu_id = data.orderId;
+
+  const Sql = "update user_order_menu_tb set finished_time=current_timestamp where foodtruck_id=$1, user_order_menu_id=$2  Returning user_order_menu_id, user_id, foodtruck_id, finished_time";
+  const values = [foodtruckId, user_order_menu_id];
+
+  db.query(Sql, values).then(res2 => {
+    sendResult(res, result);
+  })
+    .catch(err => {
+      console.log(err.stack)
+      sendError(err, { description: '' })
+    })
 })
 
 
 //수령확인한 orderID를 받아 푸드트럭에 전달하고 응답을 받으면 리턴
 app.post('/finish', (req, res) => {
-  let orderId = req.body.data.orderId;
+  let data = req.body.data;
+  let orderId = data.orderId;
+
   console.log('order received and finished: ' + orderId);
   //is_received : true하기
+  const sql = "update user_order_menu_tb set is_received=true where user_order_menu_id=$1 returning user_order_menu_id, is_received"
+  const values = [orderId];
 
-  sendResult(res, {});
+  db.query(sql, values).then(res2 => {
+    sendResult(res, result);
+  })
+    .catch(err => {
+      console.log(err.stack)
+      sendError(err, { description: '' })
+    })
 })
+
+
+//사장이 주문 확인하는 창
+app.post('/confirm', (req, res) => {
+  let data = req.body.data;
+  let foodtruckId = data.foodtruckId;
+
+  const Sql = `select
+    user_order_menu_tb.foodtruck_id , user_order_menu_tb.order_number, user_order_menu_tb.user_id  , menu_tb.name as menu_name, option_tb.name as option_name , order_tb.count , user_order_menu_tb.other_request
+    from user_order_menu_tb 
+      inner join order_tb on user_order_menu_tb.user_order_menu_id =order_tb.user_order_menu_id
+      inner join menu_tb on order_tb.menu_id =menu_tb.menu_id 
+      left outer join option_tb on order_tb.option_id =option_tb.option_id
+    where user_order_menu_tb.foodtruck_id=$1
+    order by user_order_menu_tb.order_number
+    Returning user_order_menu_tb.foodtruck_id , user_order_menu_tb.order_number, user_order_menu_tb.user_id  , menu_tb.name as menu_name, option_tb.name as option_name , order_tb.count , user_order_menu_tb.other_request`;
+  
+
+  const Sql2="select num_of_waiting from statistics_tb where foodtruck_id=$1 "
+  const values = [foodtruckId];
+  db.query(Sql+Sql2, values).then(res2 => {
+    let data = {
+      orderList: []
+    }
+
+    res2.rows.forEach(element => {
+      let orderInfo = {
+        foodtruckId: element.user_order_menu_tb.foodtruck_id ,
+        orderNo: element. user_order_menu_tb.order_number,
+        userId:element.user_order_menu_tb.user_id,
+        orderedMenu:element.menuName,
+        orderedOption:element.optionName,
+        orderCount:element.order_tb.count,
+        otherRequest:element.user_order_menu_tb.other_request,
+        waiting: element.num_of_waiting
+      }
+      data.orderList.push(orderInfo)
+    });
+    sendResult(res, data);
+  })
+    .catch(err => {
+      console.log(err.stack)
+      sendError(err, { description: '' })
+    })
+
+});
+
 
 
 

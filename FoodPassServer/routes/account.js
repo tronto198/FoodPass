@@ -43,7 +43,7 @@ app.post('/create',(req,res)=>{
   //pushToken
   app.post('/pushToken',(req,res)=>{
     let data=req.body.data;
-    let userId = req.body.userId;
+    let userId = data.userId;//------>req.body.userId 수정함.
     let push_token=data.token;
   
     const Sql = "update user_tb set push_token=$1 where user_id=$2";
@@ -94,7 +94,6 @@ app.post('/create',(req,res)=>{
           foodtruckInfo: {
             id: val.foodtruck_id,
             name: val.name,
-            // imgSrc: image,
             introduction: val.introduction,
             notice: val.notice
           }
@@ -114,18 +113,25 @@ app.post('/create',(req,res)=>{
     let userId=data.userId;
     let foodtruckId=data.foodtruckId;
     let authority=data.authority;
-  
-    const Sql="insert into relation_user_foodtruck_tb(rating) values($4) where user_id=$1 and foodtruci_id=$2 and autority=$3 Returning user_id";
-    const values=[ userId,foodtruckId, authority, ratingData];
-
-     db.query(Sql, values).then(res2 =>{
-      sendResult(res, result);
-     })
-     .catch(err=>{
-      console.log(err.stack)
-      sendError(err, {description: ''});
-     });
     
+
+    console.log(`userId: ${userId}, foodtruckId: ${foodtruckId}, authority: ${authority}, ratingData: ${ratingData}`)
+    if(authority="pure"){
+      const Sql="update relation_user_foodtruck_tb set rating=$1 where user_id=$2 and foodtruci_id=$3 Returning user_id";
+      const values=[  ratingData, userId,foodtruckId];
+  
+       db.query(Sql, values).then(res2 =>{
+        sendResult(res, result);
+       })
+       .catch(err=>{
+        console.log(err.stack)
+        sendError(err, {description: ''});
+       });
+      
+    }else{
+      sendResult(res, {description: '권한없음'})
+    }
+   
   });
 
   module.exports=app;
