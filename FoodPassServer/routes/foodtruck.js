@@ -18,7 +18,7 @@ function sendError(res, json){
   res.send(JSON.stringify(json));
 }
 
-//데이터 입력
+//푸드트럭 생성
 app.post('/create',(req,res)=>{
     let data=req.body.data;
     let name=data.name;
@@ -44,6 +44,7 @@ app.post('/create',(req,res)=>{
    })   
   });
   
+  //푸드트럭 수정
 app.post('/modify', (req, res)=>{
   let data=req.body.data;
   let name=data.name;
@@ -69,7 +70,7 @@ sendError(err, {description: ''})
  }) 
 })
 
-  
+//푸드트럭 삭제
 app.post('/delete', (req, res)=>{
   let data=req.body.data;
   let foodtruck_id=data.foodtruck_id;
@@ -87,7 +88,7 @@ sendError(err, {description: ''})
 })
 
 
-
+//푸드트럭 메뉴 생성
   app.post('/menu/create',(req,res)=>{
     let data=req.body.data;
     let foodtruck_id=data.id;
@@ -109,6 +110,8 @@ sendError(err, {description: ''})
     })
    
   });
+  
+//푸드트럭 메뉴 수정
   app.post('/menu/modify',(req,res)=>{
     let data=req.body.data;
     let foodtruck_id=data.id;
@@ -131,6 +134,8 @@ sendError(err, {description: ''})
     })
    
   });
+  
+//푸드트럭 메뉴 삭제
   app.post('/menu/delete',(req,res)=>{
     let data=req.body.data;
     let menu_Id=data.menuID;
@@ -149,6 +154,7 @@ sendError(err, {description: ''})
   });
   
   
+//푸드트럭 옵션 생성
   app.post('/option/create',(req,res)=>{
     let data=req.body.data;
     let menu_id=data.menuID;
@@ -167,6 +173,8 @@ sendError(err, {description: ''})
     })
   
   });
+
+  //푸드트럭 옵션 수정
   app.post('/option/modify',(req,res)=>{
     let data=req.body.data;
     let menu_id=data.menuID;
@@ -185,6 +193,8 @@ sendError(err, {description: ''})
     })
   
   });
+
+  //푸드트럭 옵션 삭제
   app.post('/option/delete',(req,res)=>{
     let data=req.body.data;
     let option_id=data.option_id;
