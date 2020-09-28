@@ -22,7 +22,7 @@ function sendError(res, json){
 app.post('/create',(req,res)=>{
 
   
-    const Sql="insert into user_tb values(default) Returning user_id";
+    const Sql="insert into user_tb(user_id) values(default) Returning user_id";
    
      db.query(Sql).then(res2 =>{
       let data={

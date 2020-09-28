@@ -96,7 +96,7 @@ app.post('/foodtruck',(req,res)=>{
            menuName: element.name,
            menuInformation: element.introduction,
            price: element.price,
-           imgsrc=element.image
+           imgsrc:element.image
   
          }
          data.menuList.push(menuinfo);
