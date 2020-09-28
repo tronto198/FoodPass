@@ -28,11 +28,11 @@ app.get('/products/:id', function (req, res, next) {
 
 
 app.use('/', mainRouter)
-app.use('/account', accountRouter)
-app.use('/foodtruck', foodtruckRouter)
-app.use('/infoData', infoDataRouter)
-app.use('/listData', listDataRouter)
-app.use('/order', orderRouter)
+app.use('/account', accountRouter)//손님, 사장 계정 관련 정보
+app.use('/foodtruck', foodtruckRouter)//푸드트럭 정보 insert, update, delete
+app.use('/infoData', infoDataRouter)//없어도 될듯?
+app.use('/listData', listDataRouter)//푸드트럭 리스트, 메뉴 리스트, 옵션 리스트
+app.use('/order', orderRouter)//주문정보
 
 
 app.use((req,res, next)=>{
