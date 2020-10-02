@@ -7,10 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { FoodtruckInfoPageRoutingModule } from './foodtruck-info-routing.module';
 
 import { FoodtruckInfoPage } from './foodtruck-info.page';
-import { MenuInfoPageModule } from '../menu-info/menu-info.module';
-import { MenuListComponent } from './menu-list/menu-list.component';
 import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
 import { SharedComponentModule } from 'src/app/component/shared-component.module';
+import { MenuInfoPageModule } from './menu-info/menu-info.module';
 
 @NgModule({
   imports: [
@@ -18,15 +17,14 @@ import { SharedComponentModule } from 'src/app/component/shared-component.module
     FormsModule,
     IonicModule,
     FoodtruckInfoPageRoutingModule,
-    MenuInfoPageModule,
-    SharedComponentModule
+    SharedComponentModule,
+    MenuInfoPageModule
   ],
   exports: [
     FoodtruckInfoPage
   ],
   declarations: [
     FoodtruckInfoPage,
-    MenuListComponent,
  
   ]
 })

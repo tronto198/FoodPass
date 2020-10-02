@@ -29,8 +29,8 @@
 <ion-content>
   <div *ngIf="isEmpty()"> 푸드트럭이 없어요...</div>
   <ion-list>
-    <ion-item *ngFor="let foodtruck of foodtruckIdList">
-      <comp-ft-view   (click)="foodtruckClicked(0)" ></comp-ft-view>
+    <ion-item *ngFor="let foodtruck of foodtruckList; let i = index">
+      <comp-ft-view foodtruckId="{{foodtruck.id}}"  (click)="foodtruckClicked(i)" ></comp-ft-view>
     </ion-item>
     <!-- foodtruckId="{{foodtruck}}"  -->
   </ion-list>

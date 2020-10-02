@@ -7,20 +7,17 @@ export class MenuDataProvider extends ADataProvider{
 
     getItem(foodtruckid: number, id: number){
         return this.getDataWithPromise<MenuData>(() => { 
-            return null;
+            return {id:id, menuName:"간장치킨", menuInformation:"간장베이스",price:17000, imgsrc:""};
         })
     }
 
     getListByFoodtruckId(foodtruckId: number) : Promise<MenuData[]>{
         return new Promise((resolve, reject) =>{
             //가져오기
-            resolve([]);
-        })
-    }
-    getById(id: number) : Promise<MenuData>{
-        return new Promise((resolve, reject) =>{
-            //가져오기
-            resolve(null);
+            resolve([
+                {id:0, menuName:"간장치킨", menuInformation:"간장베이스",price:17000, imgsrc:""},
+                {id:1, menuName:"양념치킨", menuInformation:"양념베이스",price:19000, imgsrc:""}
+            ]);
         })
     }
 }

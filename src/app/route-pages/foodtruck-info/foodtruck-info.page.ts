@@ -7,6 +7,8 @@ import { ModalController } from '@ionic/angular';
 import { MenuDataProvider } from 'src/app/services/data-provider/menu.data.provider';
 import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 import { PageControllerService } from 'src/app/services/page-controller.service';
+import { FoodtruckDataProvider } from 'src/app/services/data-provider/foodtruck.data.provider';
+import { MenuInfoPage } from './menu-info/menu-info.page';
 @Component({
   selector: 'foodtruck-foodtruckInfo',
   templateUrl: './foodtruck-info.page.html',
@@ -20,12 +22,14 @@ export class FoodtruckInfoPage implements OnInit  {
   constructor(
     private route : ActivatedRoute,
     private pageCtrl : PageControllerService,
+    private ftProvider: FoodtruckDataProvider,
     private menuProvider: MenuDataProvider,
     private dataCtrl: FoodtruckDataCtrl,
+    private modalCtrl: ModalController,
   ) { }
 
-  ngOnInit() {
-    this.getRoutingData();
+  async ngOnInit() {
+    await this.getRoutingData();
     this.menuProvider.getListByFoodtruckId(this.foodtruckId).then(list=>{
       this.dataCtrl.setMenuData(this.foodtruckId, ...list);
     })
@@ -33,12 +37,15 @@ export class FoodtruckInfoPage implements OnInit  {
   }
 
   get foodtruckData() : FoodtruckData{
-    return this.dataCtrl.findFoodtruckById(this.foodtruckId);
+    let data = this.dataCtrl.findFoodtruckById(this.foodtruckId)
+    if(data == null)
+      return DefaultValue.foodtruckData;
+    else
+      return data;
   }
 
   get foodtruckName() : string {
-    return "푸드트럭1 의 메뉴"
-    //return this.foodtruckData.name;
+    return this.foodtruckData.name;
   }
 
   get foodtruckImage() : string {
@@ -46,25 +53,40 @@ export class FoodtruckInfoPage implements OnInit  {
   }
 
   get menuList() : MenuData[]{
-    return [{id:0, menuName:"간장치킨", menuInformation:"간장베이스",price:17000, imgsrc:""},
-    {id:1, menuName:"양념치킨", menuInformation:"양념베이스",price:19000, imgsrc:""}]
-    //return this.dataCtrl.getMenuList(this.foodtruckId);
+    // return [{id:0, menuName:"간장치킨", menuInformation:"간장베이스",price:17000, imgsrc:""},
+    // {id:1, menuName:"양념치킨", menuInformation:"양념베이스",price:19000, imgsrc:""}]
+    return this.dataCtrl.getMenuList(this.foodtruckId);
   }
 
   getMenuImg(i : number) : string {
     return this.menuList[i].imgsrc? this.menuList[i].imgsrc : DefaultValue.MenuImgSrc;
   }
 
-  getRoutingData(){
+  async getRoutingData(){
     this.foodtruckId = Number(this.route.snapshot.paramMap.get("id"));
     if(isNaN(this.foodtruckId)){
       this.pageCtrl.routingHome();
+      return;
+    }
+
+    if(this.dataCtrl.findFoodtruckById(this.foodtruckId).id == -1){
+      this.dataCtrl.setFoodtruckData(await this.ftProvider.getItem(this.foodtruckId))
     }
     
   }
 
-  menuClicked(index: number){
-    this.pageCtrl.presentFoodtruck(this.foodtruckData.id, this.menuList[index].id);
+  menuClicked(menuId: number){
+    // this.pageCtrl.presentFoodtruck(this.foodtruckData.id, this.menuList[index].id);
+    this.modalCtrl.create({
+      component: MenuInfoPage,
+      componentProps : {
+        foodtruckId: this.foodtruckId,
+        menuId: menuId
+      },
+      cssClass: "modal-fullscreen"
+    }).then(r =>{
+      r.present();
+    })
   }
 
 }

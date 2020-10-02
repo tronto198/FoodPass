@@ -42,8 +42,8 @@
     </ion-col>
   </ion-row>
 </ion-grid>   -->
-<ion-item *ngFor="let menu of menuList">
-   <app-ft-menu menuId="{{menu}}"></app-ft-menu>
+<ion-item *ngFor="let menu of menuList" (click)="menuClicked(menu.id)">
+   <comp-ft-menu foodtruckId={{foodtruckId}} menuId="{{menu.id}}"></comp-ft-menu>
    </ion-item>
  
 </ion-content>

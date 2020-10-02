@@ -1,15 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>{{foodtruckData.name}}</ion-title>
+    <ion-title>{{foodtruckData.name}} menu</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-header>
+  <!-- <ion-header>
     <ion-card>
       <img class="menu_img" src="../assets/icon/waffle.png" alt="ion" >
         <ion-card-title>{{menuData.menuName}}</ion-card-title>
@@ -43,5 +45,5 @@
 
           <ion-button expand="full" class="button-to-basket" (click)="orderToBasket()"> {{menuData.menuName}} {{checkedValue}} {{amount}}개 구매하기
           </ion-button>
-    </ion-content>
+    </ion-content> -->
 </ion-content>
