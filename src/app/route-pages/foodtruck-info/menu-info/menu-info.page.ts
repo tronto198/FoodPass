@@ -16,7 +16,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./menu-info.page.scss'],
 })
 export class MenuInfoPage implements OnInit {
-  // amount: number = 1;
+  amount: number = 1;
   // price: number = 0;
   // checkedValue: number;
   // foodtruckData : FoodtruckData;
@@ -58,7 +58,7 @@ export class MenuInfoPage implements OnInit {
   }
 
   get optionDataList() {
-    return this.foodtruckDataCtrl.getOptionList(this.foodtruckId, this.menuId)
+    return this.foodtruckDataCtrl.getOptionList(this.foodtruckId, this.menuId);
   }
 
 
@@ -75,10 +75,11 @@ export class MenuInfoPage implements OnInit {
   //   }
   // }
 
-  // orderToBasket(){
-  //   this.basketCtrl.push(this.foodtruckData, this.menuData, this.optionList[0], this.amount);
-  //   this.pageCtrl.presentFoodtruck(this.foodtruckData.id);
-  // }
+  orderToBasket(){
+    this.basketCtrl.push(this.foodtruckData, this.menuData, this.optionDataList[0], this.amount);
+    // this.pageCtrl.presentFoodtruck(this.foodtruckData.id);
+    this.dismiss();
+  }
 
 
   dismiss(){

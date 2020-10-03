@@ -53,13 +53,7 @@ export class FoodtruckInfoPage implements OnInit  {
   }
 
   get menuList() : MenuData[]{
-    // return [{id:0, menuName:"간장치킨", menuInformation:"간장베이스",price:17000, imgsrc:""},
-    // {id:1, menuName:"양념치킨", menuInformation:"양념베이스",price:19000, imgsrc:""}]
     return this.dataCtrl.getMenuList(this.foodtruckId);
-  }
-
-  getMenuImg(i : number) : string {
-    return this.menuList[i].imgsrc? this.menuList[i].imgsrc : DefaultValue.MenuImgSrc;
   }
 
   async getRoutingData(){

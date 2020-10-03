@@ -11,6 +11,7 @@
 
 <ion-content>
 
+  <comp-ft-menu foodtruckId="{{foodtruckId}}" menuId="{{menuId}}"></comp-ft-menu>
   <!-- <ion-header>
     <ion-card>
       <img class="menu_img" src="../assets/icon/waffle.png" alt="ion" >
@@ -46,4 +47,6 @@
           <ion-button expand="full" class="button-to-basket" (click)="orderToBasket()"> {{menuData.menuName}} {{checkedValue}} {{amount}}개 구매하기
           </ion-button>
     </ion-content> -->
+|
+    <ion-button expand="full" class="button-to-basket" (click)="orderToBasket()"> {{menuData.menuName}} {{checkedValue}} {{amount}}개 구매하기 </ion-button>
 </ion-content>
