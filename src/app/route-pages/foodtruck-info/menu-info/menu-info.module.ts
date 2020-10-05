@@ -7,21 +7,21 @@ import { IonicModule } from '@ionic/angular';
 import { MenuInfoPageRoutingModule } from './menu-info-routing.module';
 
 import { MenuInfoPage } from './menu-info.page';
-import { PickMenuOptionComponent } from './pick-menu-option/pick-menu-option.component';
+import { FtMenuComponentsModule } from 'src/app/component/ft-menu/ft-menu.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuInfoPageRoutingModule
+    MenuInfoPageRoutingModule,
+    FtMenuComponentsModule
   ],
   exports: [
     MenuInfoPage
   ],
   declarations: [
     MenuInfoPage,
-    PickMenuOptionComponent
   ]
 })
 export class MenuInfoPageModule {}

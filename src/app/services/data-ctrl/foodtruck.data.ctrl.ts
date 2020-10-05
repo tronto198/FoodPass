@@ -6,33 +6,39 @@ import { MenuData } from 'src/app/data/menu';
 import { FoodtruckDataProvider } from '../data-provider/foodtruck.data.provider';
 import { MenuDataProvider } from '../data-provider/menu.data.provider';
 import { OptionDataProvider } from '../data-provider/option.data.provider';
+import { DefaultValue } from 'src/environments/defaultValue';
 
 @Injectable()
 export class FoodtruckDataCtrl {
     private dataStorage = new DataStorage<DataStorage<DataStorage<OptionData>>>();
+
+    currentFoodtrucks : FoodtruckData[] = [];
 
     constructor(
     ){
 
     }
 
-    findFoodtruckById(id: number) : FoodtruckData | null {
+    findFoodtruckById(id: number) : FoodtruckData {
         let ft = this.dataStorage.getData(id)
-        return ft ? ft.data as FoodtruckData : null
+        return ft ? ft.data as FoodtruckData : DefaultValue.foodtruckData
     }
 
     setFoodtruckData(...data: FoodtruckData[]){
+        this.currentFoodtrucks = data
         data.forEach((val)=>{
-            this.dataStorage.setData(new DataStorage<DataStorage<OptionData>>(val));
+            if (this.dataStorage.getData(val.id) == null){
+                this.dataStorage.setData(new DataStorage<DataStorage<OptionData>>(val));
+            }
         })
         
     }
 
-    getMenuList(foodtruckId: number) : MenuData[] | null {
+    getMenuList(foodtruckId: number) : MenuData[] {
         let ft = this.dataStorage.getData(foodtruckId)
         return ft ? ft.toArray().map((value) => {
             return value.data as MenuData
-        }) : null
+        }) : []
     }
 
 
@@ -44,13 +50,13 @@ export class FoodtruckDataCtrl {
     //         price:5000,
     //         }
     //    // return this.dataStorage.getData(foodtruckId).getData(id).data as MenuData;
-    findMenuById(foodtruckId: number, id: number) : MenuData | null {
+    findMenuById(foodtruckId: number, id: number) : MenuData {
         let ft = this.dataStorage.getData(foodtruckId)
         if(ft == null){
-            return null
+            return DefaultValue.menuData
         }
         let menu = ft.getData(id)
-        return menu ? menu.data as MenuData : null
+        return menu ? menu.data as MenuData : DefaultValue.menuData
     }
 
     setMenuData(foodtruckId: number, ...data: MenuData[]){
@@ -60,28 +66,28 @@ export class FoodtruckDataCtrl {
         
     }
 
-    getOptionList(foodtruckId: number, menuId: number) : OptionData[] | null {
+    getOptionList(foodtruckId: number, menuId: number) : OptionData[] {
         let ft = this.dataStorage.getData(foodtruckId)
         if(ft == null){
-            return null;
+            return [ DefaultValue.optionData ];
         }
         let menu = ft.getData(menuId)
-        return menu ? menu.toArray() : null;
+        return menu ? menu.toArray() : [DefaultValue.optionData];
     }
 
 
-    findOptionById(foodtruckId: number, menuId: number, id: number) : OptionData | null {
+    findOptionById(foodtruckId: number, menuId: number, id: number) : OptionData {
         let ft = this.dataStorage.getData(foodtruckId)
         if(ft == null){
-            return null
+            return DefaultValue.optionData
         }
         let menu = ft.getData(menuId)
         if(menu == null) {
-            return null
+            return DefaultValue.optionData
         }
 
         let option = menu.getData(id)
-        return option ? option : null
+        return option ? option : DefaultValue.optionData
         
     }
 

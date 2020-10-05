@@ -3,7 +3,8 @@ import { ADataProvider } from '../data-provider/data.provider.abstract';
 
 //데이터 저장소
 export class DataStorage<T extends ControlledData> implements ControlledData {
-    private dataMap = new Map<number, T>();
+    private dataMap = new Map<string, T>();
+    //key로 number는 인식 안됨
 
     //todo child
     constructor(public data : ControlledData = undefined){
@@ -15,12 +16,12 @@ export class DataStorage<T extends ControlledData> implements ControlledData {
     }
 
     has(key : number) : boolean {
-        return this.dataMap.has(key);
+        return this.dataMap.has(key.toString());
     }
 
     getData(key: number) : T | null{
-        if(this.dataMap.has(key)){
-            return this.dataMap.get(key);
+        if(this.dataMap.has(key.toString())){
+            return this.dataMap.get(key.toString());
         }
         else{
             return null
@@ -31,8 +32,8 @@ export class DataStorage<T extends ControlledData> implements ControlledData {
     setData(value: T) : boolean{
         if(value.id == undefined)
             throw Error("undefined");
-        if(!this.dataMap.has(value.id)){
-            this.dataMap.set(value.id, value);
+        if(!this.dataMap.has(value.id.toString())){
+            this.dataMap.set(value.id.toString(), value);
             return true;
         }
         return false;

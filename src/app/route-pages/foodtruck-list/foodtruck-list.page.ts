@@ -5,6 +5,7 @@ import { TabHomeFoodtruckListCtrl } from 'src/app/services/app-data/page-data-st
 import { ModalController } from '@ionic/angular';
 import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 import { PageControllerService } from 'src/app/services/page-controller.service';
+import { FoodtruckDataProvider } from 'src/app/services/data-provider/foodtruck.data.provider';
 
 @Component({
   selector: 'home-foodtruck-list',
@@ -13,22 +14,24 @@ import { PageControllerService } from 'src/app/services/page-controller.service'
 })
 export class FoodtruckListPage implements OnInit, OnDestroy {
 
-  foodtruckIdList: number[]=[1001,1002,1003,1004];
- 
   constructor(
     private pageCtrl : PageControllerService,
     private sharedData : SharedDataService,
     private dataCtrl : FoodtruckDataCtrl,
-
+    private ftProvider : FoodtruckDataProvider,
   ) { }
 
   ngOnInit() {
-    this.sharedData.geolocation.getLocation().then(coords =>{
-      // this.ctrl.getFoodtruckList(this.sharedData.geolocation.currentLocation);
-      // this.sharedData.geolocation.watchLocation((coords) =>{
-      //   this.ctrl.calculateFoodtruckDistance();
-      // });
-    })
+    // // this.ftProvider.foodtruckListByLocation()
+    // this.sharedData.geolocation.getLocation().then(coords =>{
+    //   this.ftProvider.foodtruckListByLocation(coords).then(r =>{
+    //     this.dataCtrl.setFoodtruckData(...r)
+    //   })
+    //   // this.dataCtrl. getFoodtruckList(this.sharedData.geolocation.currentLocation);
+    //   // this.sharedData.geolocation.watchLocation((coords) =>{
+    //   //   this.ctrl.calculateFoodtruckDistance();
+    //   // });
+    // })
     
   }
 
@@ -36,19 +39,16 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
     // this.sharedData.geolocation.locationWatcher.unsubscribe();
   }
 
-  
-  get foodtruckList() : FoodtruckData[]{
-    return this.foodtruckIdList.map((value) =>{
-        return this.dataCtrl.findFoodtruckById(value)
-    });
+  get foodtruckList() : FoodtruckData[] {
+    return this.dataCtrl.currentFoodtrucks;
   }
-
+  
   isEmpty(){
-   return this.foodtruckIdList.length==0
+   return this.foodtruckList.length==0
   }
   foodtruckClicked(index: number){
     //this.FoodtruckInfoPage
-    this.pageCtrl.presentFoodtruck(this.foodtruckIdList[index],null);
+    this.pageCtrl.presentFoodtruck(this.foodtruckList[index].id,null);
     
   }
 }

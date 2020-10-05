@@ -9,7 +9,15 @@ export class FoodtruckDataProvider extends ADataProvider{
 
     getItem(id: number){
         return this.getDataWithPromise<FoodtruckData>(() =>{
-            return null;
+            return {
+                id: 3,
+                introduction: "dd",
+                name: "test",
+                notice: "rhdwl",
+                location: {
+                    lat: 37.4996, lng:127.0264
+                }
+            };
         })
     }
 
