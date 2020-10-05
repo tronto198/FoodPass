@@ -19,7 +19,7 @@ function sendError(res, json){
 }
 
 //user만들고 아이디 리턴
-app.post('/create',(req,res)=>{
+app.get('/create',(req,res)=>{
 
   
     const Sql="insert into user_tb values(default) Returning user_id";
@@ -133,5 +133,7 @@ app.post('/create',(req,res)=>{
     }
    
   });
+
+console.log('test account')
 
   module.exports=app;
