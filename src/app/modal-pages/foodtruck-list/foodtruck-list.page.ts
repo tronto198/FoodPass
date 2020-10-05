@@ -13,7 +13,7 @@ import { PageControllerService } from 'src/app/services/page-controller.service'
 })
 export class FoodtruckListPage implements OnInit, OnDestroy {
 
-  foodtruckIdList: number[]=[0,1,2];
+  foodtruckIdList: number[]=[1001,1002,1003,1004];
  
   constructor(
     private pageCtrl : PageControllerService,
@@ -37,11 +37,11 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
   }
 
   
-  // get foodtruckList() : FoodtruckData[]{
-  //   return this.foodtruckIdList.map((value) =>{
-  //       return this.dataCtrl.findFoodtruckById(value)
-  //   });
-  // }
+  get foodtruckList() : FoodtruckData[]{
+    return this.foodtruckIdList.map((value) =>{
+        return this.dataCtrl.findFoodtruckById(value)
+    });
+  }
 
   isEmpty(){
    return this.foodtruckIdList.length==0

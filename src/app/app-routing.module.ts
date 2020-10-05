@@ -24,7 +24,8 @@ const routes: Routes = [
   {
     path: 'basket',
     loadChildren: () => import('./modal-pages/basket/basket.module').then( m => m.BasketPageModule)
-  },  {
+  },
+  {
     path: 'register-foodtruck',
     loadChildren: () => import('./modal-pages/register-foodtruck/register-foodtruck.module').then( m => m.RegisterFoodtruckPageModule)
   }
