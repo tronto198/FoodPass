@@ -13,17 +13,20 @@
   <div class="fullscreen" id="map"></div>
 
   <!-- 내 푸드트럭 운영 버튼 -->
-  <div *ngIf="isOpenedFoodturck()" (click)="toggleOpen()">
-    <ion-button class="aList aButton" (click)="isFoodtruckOpen()">
-      {{isFoodtruckOpen}}
-    </ion-button>
-  </div>
 
-  <div *ngIf="!isOpenedFoodturck()" (click)="toggleOpen()" >
-    <ion-button class="aList aButton" (click)="isFoodtruckOpen()">
-      {{isFoodtruckOpen}}
+  <p *ngIf="isOpened==true; then ownerView else userView"></p>
+  <ng-template #ownerView>
+    <ion-button class="aList aButton open-ft" (click)="toggleOpen()">
+      {{openedFoodtruckText}}
     </ion-button>
-<div class="total-price">총 10000 원</div>
+  </ng-template> 
+
+  <ng-template #userView>
+    <ion-button class="aList aButton close-ft" (click)="toggleOpen()">
+      {{openedFoodtruckText}}
+    </ion-button>
+  </ng-template>
+
 
 
  

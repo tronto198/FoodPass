@@ -8,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class OwnerCookingViewComponent implements OnInit {
   // @Input() foodtruckId: number;
   front : boolean;
+  menuList : number[];
   constructor() { }
 
   ngOnInit() {
     this.front =true;
+    this.menuList=[1,2,3];
   }
 
   toggleFront(){

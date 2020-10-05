@@ -5,13 +5,11 @@
   <ion-button class="call" (click)="calltheConsumer()" > 호출 </ion-button>
       <div class="number-text">3번</div>
       <ion-list >
+        <ng-container *ngFor="let menu of menuList">
           <ion-item>
             메뉴 A - 옵션 A    1개
           </ion-item>
-  
-          <ion-item>
-            메뉴 A - 옵션 A    1개
-          </ion-item>                                                                                                                                                                                                                                                                                                                   
+        </ng-container>                                                                                                                                                                                                                                                                                                                  
         </ion-list>
       <!-- <div *ngIf="!isSMapLooking()" >지도 </div>
       <ion-button color="medium" (click)="toggleSMap()">임시로 지도 표시 버튼</ion-button> -->

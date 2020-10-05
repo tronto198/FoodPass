@@ -5,12 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ngx-qrcode 
-  elementType="url" 
-  [value]="link"
-  cssClass="qr-code"
-  errorCorrectionLevel="L">
-  </ngx-qrcode>
+
 
   <!-- <ion-item (click)="master()">
     <ion-card>
@@ -46,9 +41,15 @@
      <ion-item button > 
       내 푸드트럭 QR코드 
     </ion-item>
-   <ion-item>
+    <ngx-qrcode 
+    elementType="url" 
+    [value]="link"
+    cssClass="qr-code"
+    errorCorrectionLevel="L">
+    </ngx-qrcode>
+   <!-- <ion-item>
      <qr-code [value]="qrData" [size]="200"></qr-code>
-      </ion-item>
+      </ion-item> -->
   </ng-template>
   <!-- 손님 -->
     <ng-template #userView>

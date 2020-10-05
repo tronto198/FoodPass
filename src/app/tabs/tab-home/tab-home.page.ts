@@ -105,7 +105,7 @@ export class TabHomePage implements OnInit, OnDestroy {
     this.isOpened = !this.isOpened;
   }
 
-  get isOpenedFoodturck(){
+  get openedFoodtruckText(){
     if(this.isOpened){
       return "운영 종료 하기"
     }
@@ -113,6 +113,8 @@ export class TabHomePage implements OnInit, OnDestroy {
       return "내 푸드트럭 운영 하기"
     }
   }
+
+  
 
   ngOnDestroy(){
     this.sharedData.geolocation.stopWatching();
