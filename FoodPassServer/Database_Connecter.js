@@ -9,7 +9,13 @@ class Database_Connecter {
   constructor(Configfile){
     let Config = fs.readFileSync(Configfile);
     this.client = new Client(JSON.parse(Config));
-    this.client.connect();
+    this.client.connect(function(err){
+      if(err){
+        console.error('Database connection faild: '+err.stack);
+        return;
+      }
+      console.log('Connected to database.');
+    });
 
     //연결 지속을 위한 반복 요청
     setInterval(()=>{
