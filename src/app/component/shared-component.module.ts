@@ -30,7 +30,7 @@ import { BasketItemComponent } from './ft-basket-view/basket-item/basket-item.co
         FtMenuComponentsModule,
         UserAccountViewModule,
         OwnerAccountViewModule,
-        OwnerCookingViewModule
+        // OwnerCookingViewModule
         // OrderCardviewComponentModule,
     ], 
     exports: [
@@ -41,6 +41,7 @@ import { BasketItemComponent } from './ft-basket-view/basket-item/basket-item.co
         FtBasketViewComponent,
         FtOrderhistoryViewComponent,
         UserAccountViewComponent,
+        OwnerCookingViewComponent,
         BasketItemComponent
         
     ],
@@ -49,6 +50,7 @@ import { BasketItemComponent } from './ft-basket-view/basket-item/basket-item.co
         FtWaitingViewComponent,
         FtBasketViewComponent,
         FtOrderhistoryViewComponent,
+        OwnerCookingViewComponent,
         BasketItemComponent
 
     ],

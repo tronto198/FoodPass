@@ -12,6 +12,22 @@
   <!-- 맵 -->
   <div class="fullscreen" id="map"></div>
 
+  <!-- 내 푸드트럭 운영 버튼 -->
+  <div *ngIf="isOpenedFoodturck()" (click)="toggleOpen()">
+    <ion-button class="aList aButton" (click)="isFoodtruckOpen()">
+      {{isFoodtruckOpen}}
+    </ion-button>
+  </div>
+
+  <div *ngIf="!isOpenedFoodturck()" (click)="toggleOpen()" >
+    <ion-button class="aList aButton" (click)="isFoodtruckOpen()">
+      {{isFoodtruckOpen}}
+    </ion-button>
+<div class="total-price">총 10000 원</div>
+
+
+ 
+
   <!-- 푸드트럭 리스트 버튼 -->
   <ion-button class="foodtruckList mapButton" (click)="showFoodtruckList()">
     <ion-icon slot="icon-only" name="menu-outline"></ion-icon>

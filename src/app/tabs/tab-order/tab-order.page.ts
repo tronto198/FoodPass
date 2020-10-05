@@ -9,8 +9,10 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
   styleUrls: ['./tab-order.page.scss'],
 })
 export class TabOrderPage implements OnInit {
-  owner : boolean
-  basket : BasketOrder[];
+  isOpened : boolean
+  // orderList : BasketOrder[];
+  orderList : number[];
+  cookingList : number[];
 
   constructor(
     private config : SharedDataService,
@@ -19,7 +21,9 @@ export class TabOrderPage implements OnInit {
 
   ngOnInit() {
     // this.pageData.tabOrder.historyCtrl.getHistory();
-    this.owner = true;
+    this.isOpened = false;
+    this.orderList = [1,2,3];
+    this.cookingList = [1,2];
     // this.basket = [
     //   {
     //   id: 1,

@@ -16,7 +16,8 @@ import { SearchPage } from 'src/app/modal-pages/search/search.page';
   styleUrls: ['./tab-home.page.scss']
 })
 export class TabHomePage implements OnInit, OnDestroy {
-
+  isOpened : boolean = false;
+  
   constructor(
     public modalCtrl : ModalController,
     private pageCtrl : PageControllerService,
@@ -98,6 +99,19 @@ export class TabHomePage implements OnInit, OnDestroy {
       component: SearchPage,
       cssClass: 'modal-fullscreen'
     }).then(r => r.present())
+  }
+
+  toggleOpen(){
+    this.isOpened = !this.isOpened;
+  }
+
+  get isOpenedFoodturck(){
+    if(this.isOpened){
+      return "운영 종료 하기"
+    }
+    else{
+      return "내 푸드트럭 운영 하기"
+    }
   }
 
   ngOnDestroy(){

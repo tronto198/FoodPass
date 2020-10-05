@@ -51,6 +51,21 @@
     height: 32px;
 }
 
+.aList {
+    position: absolute;
+    top: $searchBox-height + $top-space;
+    left: 50%; 
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.aButton {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    width: 160px;
+    height: 32px;
+}
+
 .watching {
     --background: #3880ff;
     --color: white;

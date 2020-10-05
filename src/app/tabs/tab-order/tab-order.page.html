@@ -9,14 +9,14 @@
 
 <ion-content>
 
-  <p *ngIf="owner==true; then ownerView else userView"></p>
+  <p *ngIf="isOpened==true; then ownerView else userView"></p>
   <ng-template #ownerView>
-    <ng-container *ngFor="let od of orderHistoryData">
-      <comp-ft-waiting-view></comp-ft-waiting-view>
+    <ng-container *ngFor="let cl of cookingList">
+      <comp-owner-cooking-view></comp-owner-cooking-view>
  </ng-container>
   </ng-template>
     <ng-template #userView>
-      <ng-container *ngFor="let od of orderHistoryData">
+    <ng-container *ngFor="let ol of orderList">
       <comp-ft-waiting-view></comp-ft-waiting-view>
  </ng-container>
   </ng-template>
