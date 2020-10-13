@@ -13,7 +13,7 @@ export class FoodtruckDataCtrl {
     private dataStorage = new DataStorage<DataStorage<DataStorage<OptionData>>>();
 
     currentFoodtrucks : FoodtruckData[] = [];
-
+    FoodtruckMenus: MenuData[]=[];
     constructor(
     ){
 
@@ -60,7 +60,10 @@ export class FoodtruckDataCtrl {
     }
 
     setMenuData(foodtruckId: number, ...data: MenuData[]){
+        this.FoodtruckMenus=data
+        console.log(`setMenuData foodtruckId: ${foodtruckId}, data: ${data}`, data)
         data.forEach((val)=>{
+            console.log("foodtruck.data.ctrl.ts setMenuData:: "+ this.dataStorage.getData(foodtruckId))
             this.dataStorage.getData(foodtruckId).setData(new DataStorage<OptionData>(val));
         })
         

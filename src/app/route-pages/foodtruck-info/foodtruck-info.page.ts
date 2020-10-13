@@ -31,6 +31,7 @@ export class FoodtruckInfoPage implements OnInit  {
   async ngOnInit() {
     await this.getRoutingData();
     this.menuProvider.getListByFoodtruckId(this.foodtruckId).then(list=>{
+      console.log(`foodtruck-info.page.ts foodtruckId: ${this.foodtruckId}, list:`, list)
       this.dataCtrl.setMenuData(this.foodtruckId, ...list);
     })
 
@@ -53,6 +54,7 @@ export class FoodtruckInfoPage implements OnInit  {
   }
 
   get menuList() : MenuData[]{
+    //return this.dataCtrl.FoodtruckMenus;
     return this.dataCtrl.getMenuList(this.foodtruckId);
   }
 
@@ -63,7 +65,7 @@ export class FoodtruckInfoPage implements OnInit  {
       return;
     }
 
-    if(this.dataCtrl.findFoodtruckById(this.foodtruckId).id == -1){
+    if(this.dataCtrl.findFoodtruckById(this.foodtruckId).id){
       this.dataCtrl.setFoodtruckData(await this.ftProvider.getItem(this.foodtruckId))
     }
     
