@@ -40,6 +40,7 @@ export class TabHomePage implements OnInit, OnDestroy {
           this.ftDataCtrl.setFoodtruckData(...v);
 
           this.mapCtrl.clearPin();
+          console.log("tab-home.page.ts foodtruckData null..."+ v.length)
             v.forEach((val) =>{
               this.mapCtrl.addFoodtruckPin(val, (id) =>{
                 this.modalCtrl.create({

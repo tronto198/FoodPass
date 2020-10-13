@@ -41,6 +41,7 @@ export class FoodtruckListPage implements OnInit, OnDestroy {
 
   get foodtruckList() : FoodtruckData[] {
     return this.dataCtrl.currentFoodtrucks;
+    //return this.dataCtrl.testRequest<ResFoodtruckList>
   }
   
   isEmpty(){

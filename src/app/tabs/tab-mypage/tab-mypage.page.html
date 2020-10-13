@@ -35,7 +35,7 @@
   <p *ngIf="owner==true; then ownerView else userView"></p>
     <!-- 사장 -->
   <ng-template #ownerView>
-    <ion-card><comp-ft-view></comp-ft-view></ion-card>
+    <ion-card><comp-ft-view foodtruckId="-1"></comp-ft-view></ion-card>
     
     <ion-item button (click)="requestPermission()">
       알림 허용하기
