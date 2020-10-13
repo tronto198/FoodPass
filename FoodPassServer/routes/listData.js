@@ -43,7 +43,7 @@ app.post('/foodtruck',(req,res)=>{
       res2.rows.forEach(element => {
         let ftinfo = {
           id: element.foodtruck_id,
-          //imgSrc: element.image,
+          imgSrc: element.image,
           introduction: element.introduction,
           location:{
             lng:element.x,

@@ -33,13 +33,15 @@ export class FoodtruckDataProvider extends ADataProvider{
             this.comm.request<resFoodtruckList>(reqUrl.foodtruckList, req, true, "푸드트럭 리스트를 가져오는 중입니다...")
         .then(data =>{
             this.foodtruckList = data.foodtruckList;
+            if(this.foodtruckList!=null){
+                resolve(this.foodtruckList)
+            }else{
+                reject("푸드트럭 리스트 못가져옴")
+            }
+            
             console.log('got foodtrucklist');
         })
-        if(this.foodtruckList!=null){
-            resolve(this.foodtruckList)
-        }
        
-        reject("푸드트럭 리스트 못가져옴")
             
             // //가져오기
             // resolve([{
