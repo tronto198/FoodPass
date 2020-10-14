@@ -10,8 +10,15 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
   <comp-ft-menu foodtruckId="{{foodtruckId}}" menuId="{{menuId}}"></comp-ft-menu>
+</ion-card>
+
+<ion-radio-group *ngFor="let option of optionDataList">
+  <comp-ft-option foodtruckId={{foodtruckId}} menuId="{{menuId}}" Id={{option.id}}></comp-ft-option>
+</ion-radio-group>
+
+
   <!-- <ion-header>
     <ion-card>
       <img class="menu_img" src="../assets/icon/waffle.png" alt="ion" >
@@ -47,6 +54,6 @@
           <ion-button expand="full" class="button-to-basket" (click)="orderToBasket()"> {{menuData.menuName}} {{checkedValue}} {{amount}}개 구매하기
           </ion-button>
     </ion-content> -->
-|
+
     <ion-button expand="full" class="button-to-basket" (click)="orderToBasket()"> {{menuData.menuName}} {{checkedValue}} {{amount}}개 구매하기 </ion-button>
 </ion-content>

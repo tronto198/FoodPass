@@ -8,6 +8,7 @@ import { MenuInfoPageRoutingModule } from './menu-info-routing.module';
 
 import { MenuInfoPage } from './menu-info.page';
 import { FtMenuComponentsModule } from 'src/app/component/ft-menu/ft-menu.module';
+import { SharedComponentModule } from 'src/app/component/shared-component.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { FtMenuComponentsModule } from 'src/app/component/ft-menu/ft-menu.module
     FormsModule,
     IonicModule,
     MenuInfoPageRoutingModule,
+    SharedComponentModule,
     FtMenuComponentsModule
   ],
   exports: [

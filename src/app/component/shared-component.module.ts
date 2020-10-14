@@ -19,6 +19,8 @@ import { OwnerCookingViewModule } from './owner-cooking-view/owner-cooking-view.
 import { BtnBasketComponent } from './btn-basket/btn-basket.component';
 import { FtBasketViewComponent } from './ft-basket-view/ft-basket-view.component';
 import { BasketItemComponent } from './ft-basket-view/basket-item/basket-item.component';
+import { FtOptionComponent } from './ft-option-view/ft-option-view.component';
+import { FtOptionComponentsModule } from './ft-option-view/ft-option-view.module';
 
 @NgModule({
     imports: [
@@ -28,6 +30,7 @@ import { BasketItemComponent } from './ft-basket-view/basket-item/basket-item.co
         OwnerEditableLabelComponentModule,
         FtViewComponentModule,
         FtMenuComponentsModule,
+        FtOptionComponentsModule,
         UserAccountViewModule,
         OwnerAccountViewModule,
         OwnerCookingViewModule
@@ -36,6 +39,7 @@ import { BasketItemComponent } from './ft-basket-view/basket-item/basket-item.co
     exports: [
         FtViewComponent,
         FtMenuComponent,
+        FtOptionComponent,
         BtnBasketComponent,
         FtWaitingViewComponent,
         FtBasketViewComponent,

@@ -29,7 +29,7 @@ export class MenuInfoPage implements OnInit {
 
   @Input() foodtruckId: number;
   @Input() menuId: number;
-
+  @Input() Id:number;
   constructor(
     private foodtruckDataCtrl: FoodtruckDataCtrl,
     private optionProvider: OptionDataProvider,
