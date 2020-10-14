@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -11,39 +12,12 @@
   </ion-toolbar>
 </ion-header>
 
-
-
-<ion-content>
-    <!-- {{foodtruck_id}}{{foodtruck_name}}{{foodtruck_inform}} {{foodtruck_grade}}-->
-<!-- <ion-card>
-  <ion-card-header>
-      <img src={{foodtruckImage}} alt="ion" >
-    <ion-card-title>{{foodtruckData.name}}</ion-card-title>
-    <ion-card-subtitle>도넛/와플</ion-card-subtitle>
-
-  </ion-card-header>
-<ion-card-content>
-  <ion-badge color="danger">
-      <ion-icon name="star"></ion-icon>
-     default점</ion-badge>
-  </ion-card-content>
+<ion-card>
+<comp-ft-view foodtruckId="{{foodtruckId}}" ></comp-ft-view>
 </ion-card>
 
-
- <ion-grid no-padding>
-   <ion-row no-padding>
-    <ion-col no padding col-2 *ngFor="let menu of menuList" class="foodtruck-info-cards">
-        <foodtruckInfo-menuList foodtruckId="{{foodtruckId}}" menuId="{{menu.id}}"
-      (click)="menuClicked(menu.id)">
-      
-      </foodtruckInfo-menuList> 
-      
-     
-    </ion-col>
-  </ion-row>
-</ion-grid>   -->
-<ion-item *ngFor="let menu of menuList" (click)="menuClicked(menu.id)">
+<ion-content>
+  <ion-item *ngFor="let menu of menuList" (click)="menuClicked(menu.id)">
    <comp-ft-menu foodtruckId={{foodtruckId}} menuId="{{menu.id}}"></comp-ft-menu>
    </ion-item>
- 
 </ion-content>
