@@ -21,7 +21,7 @@ export class TagDistComponent implements OnInit {
   // }
   ngOnInit() {}
 
-  get distance(){
+  get distance():number{
     if(this.sharedData.geolocation.isMyLocation)
       return distance({lat: this.lat, lng: this.lng}, this.sharedData.geolocation.currentLocation)
   }

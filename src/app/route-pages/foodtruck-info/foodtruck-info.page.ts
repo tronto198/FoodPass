@@ -31,7 +31,7 @@ export class FoodtruckInfoPage implements OnInit  {
   async ngOnInit() {
     await this.getRoutingData();
     this.menuProvider.getListByFoodtruckId(this.foodtruckId).then(list=>{
-      console.log(`foodtruck-info.page.ts foodtruckId: ${this.foodtruckId}, list:`, list)
+
       this.dataCtrl.setMenuData(this.foodtruckId, ...list);
     })
 

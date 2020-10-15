@@ -42,7 +42,7 @@ export class CommunicationService {
       data: data
     };
 
-    console.log(`request to : ${reqUrl}`, request);
+  
 
     const url = environment.host.concat(reqUrl);
     console.log(`communication.service.ts  url :${url}`);

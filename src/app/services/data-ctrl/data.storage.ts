@@ -20,7 +20,7 @@ export class DataStorage<T extends ControlledData> implements ControlledData {
     }
 
     getData(key: number) : T | null{
-        console.log(`data.storage.ts getData key: ${key}`)
+     
         if(this.dataMap.has(key.toString())){
             return this.dataMap.get(key.toString());
         }
@@ -31,7 +31,7 @@ export class DataStorage<T extends ControlledData> implements ControlledData {
     }
 
     setData(value: T) : boolean{
-        console.log(`data.storage.ts  value: `, value)
+      
         if(value.id == undefined)
             throw Error("set data error:: undefined");
         if(!this.dataMap.has(value.id.toString())){
