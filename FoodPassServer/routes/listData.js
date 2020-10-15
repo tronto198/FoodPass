@@ -21,6 +21,7 @@ function sendError(res, json){
 
 
 //위치를 받아서 그 위치 xxm 안의 푸드트럭들을 리스트로 리턴 없으면 즐겨찾기?
+
 app.post('/foodtruck',(req,res)=>{
     console.log(req.body);
   
@@ -43,7 +44,7 @@ app.post('/foodtruck',(req,res)=>{
       res2.rows.forEach(element => {
         let ftinfo = {
           id: element.foodtruck_id,
-          //imgSrc: element.image,
+          imgSrc: "http://3.34.192.233:8080/"+element.image,
           introduction: element.introduction,
           location:{
             lng:element.x,
@@ -92,11 +93,12 @@ app.post('/foodtruck',(req,res)=>{
        };
        res2.rows.forEach(element=>{
          let menuinfo={
+           id: element.menu_id,
            menuId: element.menu_id,
            menuName: element.name,
            menuInformation: element.introduction,
            price: element.price,
-           imgsrc:element.image
+           imgsrc: "http://3.34.192.233:8080/"+element.image
   
          }
          data.menuList.push(menuinfo);
