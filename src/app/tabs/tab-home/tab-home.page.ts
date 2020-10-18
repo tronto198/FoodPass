@@ -16,7 +16,7 @@ import { SearchPage } from 'src/app/modal-pages/search/search.page';
   styleUrls: ['./tab-home.page.scss']
 })
 export class TabHomePage implements OnInit, OnDestroy {
-  isOpened : boolean = false;
+  isOpened : boolean ;
   
   constructor(
     public modalCtrl : ModalController,
@@ -28,6 +28,7 @@ export class TabHomePage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.isOpened=false;
     console.log("tab-home");
     //css가 모두 적용된 이후에 맵을 로딩하기 위한 0.5초 지연실행
     setTimeout(() =>{
@@ -103,6 +104,9 @@ export class TabHomePage implements OnInit, OnDestroy {
 
   toggleOpen(){
     this.isOpened = !this.isOpened;
+    this.sharedData.open();
+    // if(this.isOpened) this.sharedData.open();
+    // else this.sharedData.close();
   }
 
   get openedFoodtruckText(){

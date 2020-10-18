@@ -19,13 +19,14 @@ export class TabMypagePage implements OnInit {
   
   myFoodtruck : FoodtruckData
   // qrData : string
-  owner : boolean
+  isOpened : boolean
 
 
   constructor(
     private config : SharedDataService,
     private push : NotificationService,
     private pageCtrl : PageControllerService,
+    private sharedData : SharedDataService,
     private modalCtrl : ModalController
   ) { }
 
@@ -36,7 +37,7 @@ export class TabMypagePage implements OnInit {
 
   ngOnInit() {
     // this.master();
-    this.owner = true;
+    this.isOpened= this.sharedData.isFoodtruckOpen;
     this.myFoodtruck = {
       id: 10011,
       name: "master",

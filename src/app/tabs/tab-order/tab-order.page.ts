@@ -17,11 +17,12 @@ export class TabOrderPage implements OnInit {
   constructor(
     private config : SharedDataService,
     private pageCtrl : PageControllerService,//historyCtrl
+    private sharedData : SharedDataService
   ) { }
 
   ngOnInit() {
     // this.pageData.tabOrder.historyCtrl.getHistory();
-    this.isOpened = true;
+    this.isOpened= this.sharedData.isFoodtruckOpen;
     this.orderList = [1,2,3];
     this.cookingList = [1,2];
     // this.basket = [

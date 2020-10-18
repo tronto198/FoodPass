@@ -6,7 +6,6 @@
 
 <ion-content>
 
-
   <!-- <ion-item (click)="master()">
     <ion-card>
       <ion-card-header>
@@ -27,13 +26,13 @@
   
 
 
-  <p *ngIf="owner==true; then ownerView else userView"></p>
+  <p *ngIf="isOpened==true; then ownerView else userView"></p>
     <!-- 사장 -->
   <ng-template #ownerView>
     <ion-card><comp-ft-view></comp-ft-view></ion-card>
     
     <ion-item button (click)="requestPermission()">
-      알림 허용하기
+      알림 허용하기 {{isOpened}}
     </ion-item>
     <ion-item button (click)="showOrderHistory()">
       주문 기록 보기 [사장]
