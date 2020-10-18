@@ -47,7 +47,7 @@ export class WaitingOrderListPage implements OnInit {
       let history : OrderHistoryData ={
         id: order.id,
         price: order.price,
-        foodtruckInfo: order.foodtruckinfo
+        foodtruckInfo: order.foodtruckInfo
       }
       this.historyCtrl.addItem(history);
       
