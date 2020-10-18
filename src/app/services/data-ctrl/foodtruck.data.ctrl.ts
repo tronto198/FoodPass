@@ -25,7 +25,6 @@ export class FoodtruckDataCtrl {
     }
 
     setFoodtruckData(...data: FoodtruckData[]){
-        this.currentFoodtrucks = data
         data.forEach((val)=>{
             if (this.dataStorage.getData(val.id) == null){
                 this.dataStorage.setData(new DataStorage<DataStorage<OptionData>>(val));
