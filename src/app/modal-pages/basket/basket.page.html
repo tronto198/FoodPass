@@ -43,8 +43,7 @@
   <!-- <span *ngIf="!isEmpty_true; then basketList; else emptyBasket"></span> -->
   <span *ngIf="!isEmpty_false; then basketList; else emptyBasket"></span>
 
-  <ion-button class="footer-button" expand="full" [disabled]="orderEnable" (click)="addButtonClicked()">주문 1개 추가</ion-button>
-  
+ 
   <ng-template #basketList>
     <!-- <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox> -->
     <div *ngFor="let order of basket"> 
