@@ -11,7 +11,7 @@ import { OrderData } from 'src/app/data/order';
   styleUrls: ['./ft-basket-view.component.scss'],
 })
 export class FtBasketViewComponent implements OnInit {
-  @Input() foodtruckId: number;
+  foodtruckId: number;
   total_price : number;
   optionData: OptionData[];
   menuData: MenuData[];

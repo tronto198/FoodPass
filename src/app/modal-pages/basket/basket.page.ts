@@ -14,7 +14,7 @@ import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
   styleUrls: ['./basket.page.scss'],
 })
 export class BasketPage implements OnInit {
-
+  foodtruckId : number;
   // private loading;
   constructor(
     private modalCtrl: ModalController,
@@ -28,6 +28,7 @@ export class BasketPage implements OnInit {
 
   ngOnInit() {
     console.log("basketPage");
+    this.foodtruckId = 1;
     // this.basketCtrl.makeTestdata();
   }
 
