@@ -47,6 +47,7 @@ export class WaitingDataCtrl{
     return new Promise((resolve, reject) =>{
       this.communication.request<resOrderReceived>(reqUrl.orderReceived, this.items[index], true)
       .then(val =>{
+        console.log(`${index} 주문 수령완료, 주문 끝남 `)
           resolve(null);
         })
         .catch(e =>{

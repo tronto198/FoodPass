@@ -9,6 +9,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { FoodtruckDataProvider } from 'src/app/services/data-provider/foodtruck.data.provider';
 import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
 import { SearchPage } from 'src/app/modal-pages/search/search.page';
+import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 
 @Component({
   selector: 'app-tab-home',
@@ -23,6 +24,7 @@ export class TabHomePage implements OnInit, OnDestroy {
     private pageCtrl : PageControllerService,
     private sharedData : SharedDataService,
     private foodtruckDataProvider: FoodtruckDataProvider,
+    private ftDataCtrl: FoodtruckDataCtrl,
     private mapCtrl : MapService,
     private search: SearchService,
   ) { }
@@ -37,7 +39,10 @@ export class TabHomePage implements OnInit, OnDestroy {
         //푸드트럭 검색
         
         this.foodtruckDataProvider.foodtruckListByLocation(this.mapCtrl.mapPosition).then(v =>{
+          this.ftDataCtrl.setFoodtruckData(...v);
+
           this.mapCtrl.clearPin();
+    
             v.forEach((val) =>{
               this.mapCtrl.addFoodtruckPin(val, (id) =>{
                 this.modalCtrl.create({

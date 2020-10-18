@@ -13,8 +13,11 @@ export enum reqUrl {
     menuData = "/infoData/menu",
 
     order = "/order/request",
-    orderReceived = "/order/received",
-
+    orderConfirm = "/order/confirm",
+    orderCall = "/order/ready",
+    orderReceived = "/order/finish",
+  
+   
     
     newFoodtruck = "/foodtruck/create",
     modifyFoodtruckInfo = "/foodtruck/modify",
@@ -30,7 +33,6 @@ export enum reqUrl {
     modifyOptionInfo = "/foodtruck/option/modify",
     deleteOption = "/foodtruck/option/delete",
 
-    orderConfirm = "/foodtruck/order/confirm",
-    orderCall = "/foodtruck/order/call",
+   
 };
 

@@ -19,11 +19,11 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireMessagingModule } from '@angular/fire/messaging'
 import { RootServicesModule } from './services/root-services.module';
-import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-list.module';
  import { QRCodeModule } from 'angular2-qrcode';
 // import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { FoodtruckListPageModule } from './route-pages/foodtruck-list/foodtruck-list.module';
 
 @NgModule({
   declarations: [AppComponent],

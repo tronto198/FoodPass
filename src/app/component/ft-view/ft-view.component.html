@@ -1,10 +1,18 @@
 <ion-list>
-<ion-list-header><comp-tag-dist></comp-tag-dist>m</ion-list-header>
+
+<ion-list-header>
+  <ion-badge color="light" class="bold">{{pot}}</ion-badge>
+  <!-- <ion-label class="bold">{{pot}} </ion-label> -->
+  <comp-tag-dist lat={{lat}} lng={{lng}} ></comp-tag-dist>
+  <comp-tag-waiting></comp-tag-waiting>
+
+ </ion-list-header>
+
 <ion-item>
-  <ion-avatar slot="start">
-    <comp-ft-img></comp-ft-img>
-  </ion-avatar>
  
+    <comp-ft-img slot="start" class="img" foodtruckId={{foodtruckId}}></comp-ft-img>
+
+
   <ion-label>
 
     <ion-label> <h2>{{name}}</h2> </ion-label>

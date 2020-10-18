@@ -29,6 +29,7 @@ export class FtImgComponent implements OnInit {
   }
 
   get foodtruckImgSrc() : string {
+   
     return this.foodtruckData.imgSrc ? this.foodtruckData.imgSrc : DefaultValue.foodtruckImgSrc;
   }
 }

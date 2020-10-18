@@ -1,0 +1,23 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+      <!-- <ion-button (click)="gotoHome()">
+        <ion-icon slot="icon-only" name="trash" ></ion-icon>
+      </ion-button> -->
+    </ion-buttons>
+    <ion-title>{{foodtruckName}}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-card>
+<comp-ft-view foodtruckId="{{foodtruckId}}" ></comp-ft-view>
+</ion-card>
+
+<ion-content>
+  <ion-item *ngFor="let menu of menuList" (click)="menuClicked(menu.id)">
+   <comp-ft-menu foodtruckId={{foodtruckId}} menuId="{{menu.id}}"></comp-ft-menu>
+   </ion-item>
+</ion-content>

@@ -4,6 +4,7 @@ import { CommunicationService } from './communication/communication.service';
 import { reqPushToken, resPushToken } from './communication/reqType/account/pushToken.req';
 import { reqUrl } from './communication/reqType/req-url.enum';
 
+//토큰받는과정
 @Injectable()
 export class NotificationService {
   token: string;
@@ -67,6 +68,7 @@ export class NotificationService {
   sendTokenToServer(){
     let req : reqPushToken = {
       token: this.token
+      
     }
     this.dataCtrl.request<resPushToken>(reqUrl.pushToken, req, false)
     .then(v =>{
