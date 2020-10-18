@@ -38,30 +38,35 @@ export class TabHomePage implements OnInit, OnDestroy {
       this.mapCtrl.setMapChangedHook(()=>{
         //푸드트럭 검색
         
-        this.foodtruckDataProvider.foodtruckListByLocation(this.mapCtrl.mapPosition).then(v =>{
-          this.ftDataCtrl.currentFoodtrucks = v;
-          this.ftDataCtrl.setFoodtruckData(...v);
-
-          this.mapCtrl.clearPin();
-    
-            v.forEach((val) =>{
-              this.mapCtrl.addFoodtruckPin(val, (id) =>{
-                this.modalCtrl.create({
-                  component: FtViewComponent,
-                  componentProps: {
-                    foodtruckId: id
-                  },
-                  cssClass: "preview-modal"
-                }).then(r =>{
-                  r.present()
-                })
-              });
-            })
-        })
-        console.log("search foodtruck");
+        this.foodtruckSearch()
         
       })
+      this.foodtruckSearch()
     }, 500);
+  }
+
+  foodtruckSearch(){
+    this.foodtruckDataProvider.foodtruckListByLocation(this.mapCtrl.mapPosition).then(v =>{
+      this.ftDataCtrl.currentFoodtrucks = v;
+      this.ftDataCtrl.setFoodtruckData(...v);
+
+      this.mapCtrl.clearPin();
+
+        v.forEach((val) =>{
+          this.mapCtrl.addFoodtruckPin(val, (id) =>{
+            this.modalCtrl.create({
+              component: FtViewComponent,
+              componentProps: {
+                foodtruckId: id
+              },
+              cssClass: "preview-modal"
+            }).then(r =>{
+              r.present()
+            })
+          });
+        })
+    })
+    console.log("search foodtruck");
   }
   
   get inputData(){
