@@ -82,6 +82,7 @@ export class BasketPage implements OnInit {
     });
   }
 
+  //이부분 dataprovider 만들기
   private order() {
     this.basketCtrl.orderCheckedItem().then((val) =>{
       this.orderSuccess(val);
