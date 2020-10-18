@@ -39,6 +39,7 @@ export class TabHomePage implements OnInit, OnDestroy {
         //푸드트럭 검색
         
         this.foodtruckDataProvider.foodtruckListByLocation(this.mapCtrl.mapPosition).then(v =>{
+          this.ftDataCtrl.currentFoodtrucks = v;
           this.ftDataCtrl.setFoodtruckData(...v);
 
           this.mapCtrl.clearPin();

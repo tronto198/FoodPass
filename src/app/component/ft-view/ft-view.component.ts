@@ -13,20 +13,24 @@ import { TagDistComponent } from '../tag-dist/tag-dist.component';
 
 export class FtViewComponent implements OnInit {
   @Input() foodtruckId: number;
-  @Input() lat:number;
-  @Input() lng:number;
   @Input() index:number;
 
- 
-
   constructor(private dataCtrl: FoodtruckDataCtrl) { }
-//foodtruck의 id가 있으면 foodtruckDataCtrl 을 다룰 수 있다.
+  //foodtruck의 id가 있으면 foodtruckDataCtrl 을 다룰 수 있다.
   ngOnInit() {
   
   }
 
   get foodtruckData(): FoodtruckData {
     return this.dataCtrl.findFoodtruckById(this.foodtruckId)
+  }
+
+  get lat(): number{
+    return this.foodtruckData.location.lat;
+  }
+
+  get lng(): number {
+    return this.foodtruckData.location.lng;
   }
 
   get name():string{
