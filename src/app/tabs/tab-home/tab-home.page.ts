@@ -17,8 +17,7 @@ import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctr
   styleUrls: ['./tab-home.page.scss']
 })
 export class TabHomePage implements OnInit, OnDestroy {
-  isOpened : boolean ;
-  
+  b : boolean;
   constructor(
     public modalCtrl : ModalController,
     private pageCtrl : PageControllerService,
@@ -30,8 +29,8 @@ export class TabHomePage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.isOpened=false;
     console.log("tab-home");
+    this.isOpened = false;
     //css가 모두 적용된 이후에 맵을 로딩하기 위한 0.5초 지연실행
     setTimeout(() =>{
       this.mapCtrl.init(document.getElementById('map'));
@@ -63,6 +62,30 @@ export class TabHomePage implements OnInit, OnDestroy {
       })
     }, 500);
   }
+
+  set isOpened(b : boolean) {
+    this.sharedData.isFoodtruckOpen = b;
+  }
+
+  get isOpened() : boolean{
+    return this.sharedData.isFoodtruckOpen;
+  }
+
+  toggleOpen(){
+    this.isOpened = !this.isOpened;
+    if(this.isOpened) this.sharedData.open();
+    else this.sharedData.close();
+  }
+
+  get openedFoodtruckText(){
+    if(this.isOpened){
+      return "운영 종료 하기"
+    }
+    else{
+      return "내 푸드트럭 운영 하기"
+    }
+  }
+
   
   get inputData(){
     return this.search.inputData;
@@ -107,24 +130,6 @@ export class TabHomePage implements OnInit, OnDestroy {
       cssClass: 'modal-fullscreen'
     }).then(r => r.present())
   }
-
-  toggleOpen(){
-    this.isOpened = !this.isOpened;
-    this.sharedData.open();
-    // if(this.isOpened) this.sharedData.open();
-    // else this.sharedData.close();
-  }
-
-  get openedFoodtruckText(){
-    if(this.isOpened){
-      return "운영 종료 하기"
-    }
-    else{
-      return "내 푸드트럭 운영 하기"
-    }
-  }
-
-  
 
   ngOnDestroy(){
     this.sharedData.geolocation.stopWatching();

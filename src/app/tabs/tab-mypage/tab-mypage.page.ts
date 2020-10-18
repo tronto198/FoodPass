@@ -19,7 +19,6 @@ export class TabMypagePage implements OnInit {
   
   myFoodtruck : FoodtruckData
   // qrData : string
-  isOpened : boolean
 
 
   constructor(
@@ -37,7 +36,6 @@ export class TabMypagePage implements OnInit {
 
   ngOnInit() {
     // this.master();
-    this.isOpened= this.sharedData.isFoodtruckOpen;
     this.myFoodtruck = {
       id: 10011,
       name: "master",
@@ -47,6 +45,9 @@ export class TabMypagePage implements OnInit {
     // this.qrData = 'http://localhost:8100/foodtruck/0';
   }
 
+  get isOpened() : boolean{
+    return this.sharedData.isFoodtruckOpen;
+  }
 
   get admin() : boolean{
     return this.config.foodtruckOwner;

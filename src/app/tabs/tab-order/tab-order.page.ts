@@ -9,7 +9,7 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
   styleUrls: ['./tab-order.page.scss'],
 })
 export class TabOrderPage implements OnInit {
-  isOpened : boolean
+
   // orderList : BasketOrder[];
   orderList : number[];
   cookingList : number[];
@@ -22,7 +22,6 @@ export class TabOrderPage implements OnInit {
 
   ngOnInit() {
     // this.pageData.tabOrder.historyCtrl.getHistory();
-    this.isOpened= this.sharedData.isFoodtruckOpen;
     this.orderList = [1,2,3];
     this.cookingList = [1,2];
     // this.basket = [
@@ -45,6 +44,9 @@ export class TabOrderPage implements OnInit {
     //     amount: 1}}]
   }
 
+  get isOpened() : boolean{
+    return this.sharedData.isFoodtruckOpen;
+  }
   
   get admin() : boolean{
     return this.config.foodtruckOwner;
