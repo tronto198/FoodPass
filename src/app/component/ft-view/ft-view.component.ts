@@ -25,12 +25,12 @@ export class FtViewComponent implements OnInit {
     return this.dataCtrl.findFoodtruckById(this.foodtruckId)
   }
 
-  get lat(): number{
-    return this.foodtruckData.location.lat;
+  get lat(): number | undefined {
+    return this.foodtruckData.location ? this.foodtruckData.location.lat : undefined;
   }
 
-  get lng(): number {
-    return this.foodtruckData.location.lng;
+  get lng(): number | undefined {
+    return this.foodtruckData.location ? this.foodtruckData.location.lng : undefined;
   }
 
   get name():string{
