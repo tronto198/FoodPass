@@ -47,9 +47,9 @@
   
   <ng-template #basketList>
     <!-- <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox> -->
-    <!-- <div *ngFor="let basket of basketList">  -->
-      <comp-ft-basket-view ></comp-ft-basket-view>
-    <!-- </div> -->
+    <div *ngFor="let order of basket"> 
+      <comp-ft-basket-view foodtruckId="{{order.foodtruckInfo.id}}"></comp-ft-basket-view>
+    </div>
    
     
   </ng-template>

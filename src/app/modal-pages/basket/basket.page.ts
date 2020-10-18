@@ -6,6 +6,7 @@ import { OrderData } from 'src/app/data/order';
 import { NotificationService } from 'src/app/services/notification.service';
 import { BasketDataCtrl } from 'src/app/services/data-ctrl/basket.data.ctrl';
 import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
+import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 
 
 @Component({
@@ -14,7 +15,6 @@ import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
   styleUrls: ['./basket.page.scss'],
 })
 export class BasketPage implements OnInit {
-  foodtruckId : number;
   // private loading;
   constructor(
     private modalCtrl: ModalController,
@@ -28,7 +28,6 @@ export class BasketPage implements OnInit {
 
   ngOnInit() {
     console.log("basketPage");
-    this.foodtruckId = 1;
     // this.basketCtrl.makeTestdata();
   }
 
@@ -46,7 +45,7 @@ export class BasketPage implements OnInit {
     return this.basketCtrl.indeterminate;
   }
 
-  get basket(){
+  get basket() : BasketOrder[] {
     return this.basketCtrl.basket;
   }
 

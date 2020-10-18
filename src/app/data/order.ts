@@ -6,7 +6,7 @@ import { DataStorage } from '../services/data-ctrl/data.storage';
 
 export interface OrderData {
     id?: number;
-    foodtruckinfo: FoodtruckData;
+    foodtruckInfo: FoodtruckData;
     orderedMenu: OrderedMenuData[];
     price: number;
     orderNo?: number;

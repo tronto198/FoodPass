@@ -79,7 +79,7 @@ export class BasketDataCtrl extends CheckboxValue{
   push(foodtruck : FoodtruckData, menu: MenuData, option: OptionData, amount: number = 1){
 
     const existIndex : number = this.basket.findIndex((value, index, obj) =>{
-      return value.foodtruckinfo.id == foodtruck.id;
+      return value.foodtruckInfo.id == foodtruck.id;
     })
 
     if(existIndex == -1){
@@ -93,7 +93,7 @@ export class BasketDataCtrl extends CheckboxValue{
       newOrderedMenu.amount = amount;
 
 
-      newOrder.foodtruckinfo = foodtruck;
+      newOrder.foodtruckInfo = foodtruck;
       newOrder.orderedMenu = [newOrderedMenu];
 
       this.basket.push(newOrder);
@@ -170,7 +170,7 @@ export class BasketDataCtrl extends CheckboxValue{
         orderDataList.push(orderinfo);
 
         let order : orderRequest = {
-          foodtruckId: orderinfo.foodtruckinfo.id,
+          foodtruckId: orderinfo.foodtruckInfo.id,
           orderedMenu: [],
           price: orderinfo.price
         };
@@ -209,7 +209,7 @@ export class BasketDataCtrl extends CheckboxValue{
         let orderedList : OrderData[] = [];
         data.orderList.forEach((val, index) =>{
           for(let i = index; i < orderDataList.length; i++){
-            if(orderDataList[i].foodtruckinfo.id == val.foodtruckId){
+            if(orderDataList[i].foodtruckInfo.id == val.foodtruckId){
               orderDataList[i].id = val.id;
               orderedList.push(orderDataList[i]);
               break;
