@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
+import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
 
 @Component({
   selector: 'comp-ft-waiting-view',
@@ -8,10 +9,18 @@ import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctr
   styleUrls: ['./ft-waiting-view.component.scss'],
 })
 export class FtWaitingViewComponent implements OnInit {
-  // @Input() foodtruckId: number;
+  @Input() foodtruckId: number;
   front : boolean;
   s_map : boolean;
-  constructor(private dataCtrl: FoodtruckDataCtrl) { }
+  constructor(
+    private dataCtrl: FoodtruckDataCtrl,
+    private waitingCtrl: WaitingDataCtrl,
+    
+  ) { }
+
+  get foodtruckInfo() {
+    return this.dataCtrl.findFoodtruckById(this.foodtruckId);
+  }
 
   ngOnInit() {
     this.front =true;
@@ -25,6 +34,8 @@ export class FtWaitingViewComponent implements OnInit {
   isFront() : boolean{
     return this.front;
   }
+
+  
 
   // isSMapLooking(): boolean{
   //   return this.s_map;

@@ -11,8 +11,8 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 export class TabOrderPage implements OnInit {
 
   // orderList : BasketOrder[];
-  orderList : number[];
-  cookingList : number[];
+  orderList : number[] = [];
+  cookingList : number[] = [];
 
   constructor(
     private config : SharedDataService,
@@ -22,8 +22,8 @@ export class TabOrderPage implements OnInit {
 
   ngOnInit() {
     // this.pageData.tabOrder.historyCtrl.getHistory();
-    this.orderList = [1,2,3];
-    this.cookingList = [1,2];
+    // this.orderList = [1,2,3];
+    // this.cookingList = [1,2];
     // this.basket = [
     //   {
     //   id: 1,

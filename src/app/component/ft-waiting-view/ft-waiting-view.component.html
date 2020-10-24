@@ -1,7 +1,7 @@
 <ion-card class="front-card" [class.back-card]="!isFront()">
     <ion-card-content>
       <div *ngIf="isFront()" (click)="toggleFront()">
-        <comp-ft-view></comp-ft-view>
+        <comp-ft-view foodtruckId={{foodtruckId}}></comp-ft-view>
         <!-- <ion-icon name="menu"></ion-icon> -->
         <div class="number-text">3번</div>
       </div>
