@@ -42,7 +42,7 @@ export class TabMypagePage implements OnInit {
       introduction: "운영자용 수정 푸드트럭",
       notice: "수정 공지"
     }
-    // this.qrData = 'http://localhost:8100/foodtruck/0';
+    this.sharedData.foodtruckOwner = false;
   }
 
   get isOpened() : boolean{
@@ -78,6 +78,18 @@ export class TabMypagePage implements OnInit {
   master(){
     this.admin = true;
     this.pageCtrl.presentFoodtruck();
+  }
+
+  registerMyFoodtruck(){
+    this.isOwner = !this.isOwner;
+  }
+
+  set isOwner(b : boolean){
+    this.sharedData.foodtruckOwner = b;
+  }
+
+  get isOwner(){
+    return this.sharedData.foodtruckOwner;
   }
 
   // getImage(): void {

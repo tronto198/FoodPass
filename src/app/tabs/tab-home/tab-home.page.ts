@@ -45,15 +45,23 @@ export class TabHomePage implements OnInit, OnDestroy {
   }
 
   set isOpened(b : boolean) {
-    this.sharedData.isFoodtruckOpen = b;
+      this.sharedData.isFoodtruckOpen = b;
   }
 
   get isOpened() : boolean{
     return this.sharedData.isFoodtruckOpen;
   }
 
+  get isOwner(){
+    return this.sharedData.foodtruckOwner;
+  }
+
   toggleOpen(){
-    this.isOpened = !this.isOpened;
+    if(this.isOwner){
+      this.isOpened = !this.isOpened;
+    }else{
+      alert("푸드트럭이 등록되어있지 않습니다.")
+    }
     if(this.isOpened) this.sharedData.open();
     else this.sharedData.close();
   }
