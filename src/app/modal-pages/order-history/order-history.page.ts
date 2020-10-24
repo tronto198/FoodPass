@@ -11,35 +11,21 @@ import { HistoryDataCtrl } from 'src/app/services/data-ctrl/history.data.ctrl';
   styleUrls: ['./order-history.page.scss'],
 })
 export class OrderHistoryPage implements OnInit {
-  orderHistoryData : OrderHistoryData[]=[]
+
   @Input() userId:number;
   constructor(
     private historyCtrl: HistoryDataCtrl,
   ) { }
-  // todo historyCtrl 만들기
-
   ngOnInit() {
-    //  this.historyCtrl.getHistory();
-    this.orderHistoryData = [{
-      id: 1,
-    foodtruckInfo: {
-      id: 10011,
-      name: "master",
-      introduction: "운영자용 수정 푸드트럭",
-      notice: "수정 공지"
-    },
-    price: 10000
-    }];
-    // get OrderHistoryData():orderHistoryData[]{
-    //   return this.historyCtrl.getHistory(this.userId)
-    // }
-    //then(). this.orderHistoryData =this.historyCtrl.getHistory(this.userId)
+
+    //todo histroyProvider로 분리 
     this.historyCtrl.getHistory(this.userId).then((val)=>{
-      val.forEach(element => {
-        this.orderHistoryData.push(element)
-      });
-     
+      this.historyCtrl.orderhistoryList = val
     })
+  }
+
+  get orderHistoryData(){
+    return this.historyCtrl.orderhistoryList
   }
  
   get orderList() : OrderHistoryData[]{
