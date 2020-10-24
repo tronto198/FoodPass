@@ -11,6 +11,7 @@ import { ToastController, ModalController } from '@ionic/angular';
 import { TabHomePage } from './tab-home.page';
 import { FtViewComponentModule } from 'src/app/component/ft-view/ft-view.module';
 import { SearchPageModule } from 'src/app/modal-pages/search/search.module';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SearchPageModule } from 'src/app/modal-pages/search/search.module';
   ],
   declarations: [
     TabHomePage,
+    MapComponent,
   ],
   providers: [
     ToastController,
