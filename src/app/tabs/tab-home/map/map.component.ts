@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-        //css가 모두 적용된 이후에 맵을 로딩하기 위한 0.5초 지연실행
+        //css가 모두 적용된 이후에 맵을 로딩하기 위한 지연실행
         setTimeout(() =>{
           this.mapCtrl.init(document.getElementById('map'));
           this.mapCtrl.setMapChangedHook(()=>{

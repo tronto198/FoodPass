@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 
 @Component({
   selector: 'comp-tag-waiting',
@@ -6,6 +7,24 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./tag-waiting.component.scss'],
 })
 export class TagWaitingComponent {
-  @Input() waitingTime : number;
-  @Input() waitingPerson : number;
+  @Input() foodtruckId: number;
+
+  constructor(
+    private dataCtrl: FoodtruckDataCtrl
+  ) {}
+
+  get isValid(){
+    return this.waitingData ? true : false
+  }
+
+  get waitingData() {
+    return this.dataCtrl.findFoodtruckById(this.foodtruckId).waiting;
+  }
+  get waitingTime() {
+    return this.waitingData.time
+  }
+
+  get waitingPerson(){
+    return this.waitingData.person
+  }
 }
