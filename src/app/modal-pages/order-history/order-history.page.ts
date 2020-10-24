@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { OrderHistoryData } from 'src/app/data/order-history';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { DefaultValue } from 'src/environments/defaultValue';
@@ -11,8 +11,8 @@ import { HistoryDataCtrl } from 'src/app/services/data-ctrl/history.data.ctrl';
   styleUrls: ['./order-history.page.scss'],
 })
 export class OrderHistoryPage implements OnInit {
-  orderHistoryData : OrderHistoryData[]
-
+  orderHistoryData : OrderHistoryData[]=[]
+  @Input() userId:number;
   constructor(
     private historyCtrl: HistoryDataCtrl,
   ) { }
@@ -29,20 +29,19 @@ export class OrderHistoryPage implements OnInit {
       notice: "수정 공지"
     },
     price: 10000
-    },
-    {
-      id: 2,
-    foodtruckInfo: {
-      id: 10011,
-      name: "master",
-      introduction: "운영자용 수정 푸드트럭",
-      notice: "수정 공지"
-    },
-    price: 10000
     }];
-
+    // get OrderHistoryData():orderHistoryData[]{
+    //   return this.historyCtrl.getHistory(this.userId)
+    // }
+    //then(). this.orderHistoryData =this.historyCtrl.getHistory(this.userId)
+    this.historyCtrl.getHistory(this.userId).then((val)=>{
+      val.forEach(element => {
+        this.orderHistoryData.push(element)
+      });
+     
+    })
   }
-
+ 
   get orderList() : OrderHistoryData[]{
     return this.historyCtrl.orderList;
   }
