@@ -14,7 +14,7 @@ var orderRouter=require('./routes/order')
 
 //라우팅 객체 만듦.
 const app=express();
-app.use(express.static('images'));
+app.use(express.static(__dirname+ '/images'));
 app.use(cors());
 app.use(bodyParser.json({extended: true}))
 app.use(compression())
