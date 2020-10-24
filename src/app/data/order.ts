@@ -1,8 +1,6 @@
 import { FoodtruckData } from './foodtruck';
 import { OrderedMenuData } from './ordered-menu';
 import { WaitingData } from './waiting';
-import { ControlledData } from '../services/data-ctrl/data.interface';
-import { DataStorage } from '../services/data-ctrl/data.storage';
 
 export interface OrderData {
     id?: number;

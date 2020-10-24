@@ -1,27 +1,4 @@
-// import { Injectable } from '@angular/core';
-// import { DataStorage } from './data.storage';
-// import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 
-// @Injectable()
-// export class BasketDataCtrl {
-//     private dataStorage = new DataStorage<BasketOrder>();
-
-//     getBasketList() : BasketOrder[] {
-//         return this.dataStorage.toArray();
-//     }
-
-//     findBasketById(id: number) : BasketOrder{
-//         return this.dataStorage.getData(id);
-//     }
-
-//     setBasketData(...data: BasketOrder[]){
-//         data.forEach((val)=>{
-//             this.dataStorage.setData(val);
-//         })
-        
-//     }
-    
-// }
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
@@ -33,12 +10,13 @@ import { orderRequest, reqOrder, resOrder } from 'src/app/services/communication
 import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
 import { CommunicationService } from 'src/app/services/communication/communication.service';
 import { Injectable } from '@angular/core';
+import { FoodtruckDataCtrl } from './foodtruck.data.ctrl';
 
 @Injectable()
 export class BasketDataCtrl extends CheckboxValue{
   basket : BasketOrder[] = [];
 
-  constructor(private dataCtrl : CommunicationService) {
+  constructor(private comm : CommunicationService, private dataCtrl: FoodtruckDataCtrl) {
     super();
   }
 
@@ -74,6 +52,13 @@ export class BasketDataCtrl extends CheckboxValue{
       let amount = Math.floor(Math.random() * 2) + 1;
       this.push(ftdata, menudata, optiondata, amount);
     }
+  }
+
+  pushId(foodtruckId : number, menuId: number, optionId: number, amount: number){
+    let ft = this.dataCtrl.findFoodtruckById(foodtruckId);
+    let menu = this.dataCtrl.findMenuById(foodtruckId, menuId);
+    let option = this.dataCtrl.findOptionById(foodtruckId, menuId, optionId);
+    this.push(ft, menu, option, amount);
   }
 
   push(foodtruck : FoodtruckData, menu: MenuData, option: OptionData, amount: number = 1){
@@ -204,7 +189,7 @@ export class BasketDataCtrl extends CheckboxValue{
       //   reject(e);
       // })
 
-      this.dataCtrl.request<resOrder>(reqUrl.order, req).then(data =>{
+      this.comm.request<resOrder>(reqUrl.order, req).then(data =>{
         console.log(data);
         let orderedList : OrderData[] = [];
         data.orderList.forEach((val, index) =>{

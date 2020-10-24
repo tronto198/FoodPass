@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'basket',
-    loadChildren: () => import('./modal-pages/basket/basket.module').then( m => m.BasketPageModule)
+    loadChildren: () => import('./route-pages/basket/basket.module').then( m => m.BasketPageModule)
   },
   {
     path: 'register-foodtruck',

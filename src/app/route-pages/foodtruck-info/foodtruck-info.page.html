@@ -3,13 +3,15 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/home"></ion-back-button>
-      <!-- <ion-button (click)="gotoHome()">
-        <ion-icon slot="icon-only" name="trash" ></ion-icon>
-      </ion-button> -->
     </ion-buttons>
     <ion-title>{{foodtruckName}}</ion-title>
-
+  
+    <ion-buttons slot="end">
+      <comp-btn-basket></comp-btn-basket>
+    </ion-buttons>
+    
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-card>

@@ -46,11 +46,10 @@
  
   <ng-template #basketList>
     <!-- <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox> -->
-    <div *ngFor="let order of basket"> 
-      <comp-ft-basket-view foodtruckId="{{order.foodtruckInfo.id}}"></comp-ft-basket-view>
+    <div > 
+      <comp-ft-basket-view *ngFor="let order of basket" foodtruckId="{{order.foodtruckInfo.id}}"></comp-ft-basket-view>
     </div>
    
-    
   </ng-template>
 
   <ng-template #emptyBasket class="ion-text-center">
@@ -59,8 +58,6 @@
     </div>
   </ng-template>
 </ion-content>
-
-
 
 
 <ion-footer>
