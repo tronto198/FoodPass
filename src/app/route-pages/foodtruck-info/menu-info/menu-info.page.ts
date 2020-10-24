@@ -25,11 +25,12 @@ export class MenuInfoPage implements OnInit {
 
   // todo 이를 modal로 만들어서 바로 접근하지 못하게 제한, 그리고 ft,menu id를 위에서 input으로 받아서 optiondata만 불러오도록 수정
 
-
-
   @Input() foodtruckId: number;
   @Input() menuId: number;
   @Input() Id:number;
+
+  selectedOptionId: number = 0;
+
   constructor(
     private foodtruckDataCtrl: FoodtruckDataCtrl,
     private optionProvider: OptionDataProvider,
@@ -75,8 +76,12 @@ export class MenuInfoPage implements OnInit {
   //   }
   // }
 
+  optionSelected(value: number){
+    this.selectedOptionId = value
+  }
+
   orderToBasket(){
-    this.basketCtrl.push(this.foodtruckData, this.menuData, this.optionDataList[0], this.amount);
+    this.basketCtrl.pushId(this.foodtruckId, this.menuId, this.selectedOptionId, this.amount);
     // this.pageCtrl.presentFoodtruck(this.foodtruckData.id);
     this.dismiss();
   }

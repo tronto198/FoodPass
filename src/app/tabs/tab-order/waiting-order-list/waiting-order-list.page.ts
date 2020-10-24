@@ -22,7 +22,6 @@ export class WaitingOrderListPage implements OnInit {
 
 
   get orderList(){
-    // console.log('waiting : ', this.waitingCtrl.orderList);
     return this.waitingCtrl.orderList;
   }
 
@@ -34,10 +33,6 @@ export class WaitingOrderListPage implements OnInit {
   isEmpty(){
     return this.waitingCtrl.orderList.length == 0;
   }
-
-  // gotoFoodtruckInfo(foodtruckId: number){
-  //   this.router.navigateByUrl(`/tabs/home/foodtruck/${foodtruckId}`);
-  // }
 
   //수령 완료
   orderPickedUp(index : number){

@@ -17,8 +17,6 @@ import { FtMenuItemComponentModule } from 'src/app/component/ft-menu-item/ft-men
     IonicModule,
     SharedComponentModule,
     BasketPageRoutingModule,
-    // OrderCardviewComponentModule
-    
     FtMenuItemComponentModule,
   ],
   exports: [
