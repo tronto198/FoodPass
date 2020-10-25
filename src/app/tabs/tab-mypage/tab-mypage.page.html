@@ -31,8 +31,9 @@
   <ng-template #ownerView>
     <ion-card><comp-ft-view foodtruckId="-1"></comp-ft-view></ion-card>
     
-    <ion-item button (click)="requestPermission()">
+    <ion-item>
       알림 허용하기 {{isOpened}}
+      <ion-toggle  name="requestPermission"  (click)="requestPermission()" unchecked></ion-toggle>
     </ion-item>
     <ion-item button (click)="showOrderHistory()">
       주문 기록 보기 [사장]
@@ -53,8 +54,9 @@
   <!-- 손님 -->
     <ng-template #userView>
       <comp-user-account-view></comp-user-account-view>
-      <ion-item button (click)="requestPermission()">
+      <ion-item >
         알림 허용하기
+        <ion-toggle  name="requestPermission"  (click)="requestPermission()" unchecked></ion-toggle>
       </ion-item>
       <ion-item button (click)="showOrderHistory()">
         주문 기록 보기 [손님]

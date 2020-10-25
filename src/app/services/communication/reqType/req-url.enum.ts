@@ -17,7 +17,7 @@ export enum reqUrl {
     orderConfirm = "/order/confirm",
     orderCall = "/order/ready",
     orderReceived = "/order/finish",
-  
+    orderWating="/order/wating",
    
     
     newFoodtruck = "/foodtruck/create",
