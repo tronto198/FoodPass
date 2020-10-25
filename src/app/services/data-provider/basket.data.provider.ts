@@ -7,7 +7,8 @@ import { reqOrder, resOrder } from '../communication/reqType/order/order.req';
 @Injectable()
 export class BasketDataProvider extends ADataProvider{
 
-    getItem(...values: number[]) {
+
+    getItem(...values: number[]) : Promise<BasketOrder> { 
         throw new Error("Method not implemented.");
     }
     getBasketOrderListById(id: number) : Promise<BasketOrder[]>{

@@ -11,6 +11,7 @@ export enum reqUrl {
 
     foodtruckData = "/infoData/foodtruck",
     menuData = "/infoData/menu",
+    optionData = "/infoData/option",
 
     order = "/order/request",
     orderConfirm = "/order/confirm",
