@@ -26,9 +26,9 @@
   
 
 
-  <p *ngIf="isOpened==true; then ownerView else userView"></p>
+  <p *ngIf="isOpened==true; then openView else closeView"></p>
     <!-- 사장 -->
-  <ng-template #ownerView>
+  <ng-template #openView>
     <ion-card><comp-ft-view foodtruckId="-1"></comp-ft-view></ion-card>
     
     <ion-item button (click)="requestPermission()">
@@ -51,7 +51,7 @@
       </ion-item> -->
   </ng-template>
   <!-- 손님 -->
-    <ng-template #userView>
+    <ng-template #closeView>
       <comp-user-account-view></comp-user-account-view>
       <ion-item button (click)="requestPermission()">
         알림 허용하기
