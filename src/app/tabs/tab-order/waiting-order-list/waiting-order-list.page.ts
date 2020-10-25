@@ -24,6 +24,9 @@ export class WaitingOrderListPage implements OnInit {
   get orderList(){
     return this.waitingCtrl.orderList;
   }
+  // get orderList(){
+  //   return this.waitingCtrl.OrderWatingList;
+  // }
 
   get orderType(){
     return OrderType.waiting;

@@ -4,12 +4,19 @@ import { CommunicationService } from '../communication/communication.service';
 import { OrderHistoryData } from 'src/app/data/order-history';
 import { resOrderReceived } from '../communication/reqType/order/orderReceived.req';
 import { reqUrl } from '../communication/reqType/req-url.enum';
+import { reqOrderWating , resOrderWating} from '../communication/reqType/order/orderWating.req';
+import { reqOrder } from '../communication/reqType/order/order.req';
+import { OrderWatingData } from 'src/app/data/order-wating';
+import { FoodtruckDataCtrl } from './foodtruck.data.ctrl';
 
 @Injectable()
 export class WaitingDataCtrl{
   waitingList : OrderData[] = [];
-
-  constructor(private communication : CommunicationService) {
+  watingData:OrderData;
+  constructor(
+    private communication : CommunicationService,
+    private dataCtrl:FoodtruckDataCtrl
+    ) {
     
   }
 
@@ -39,6 +46,30 @@ export class WaitingDataCtrl{
 
   get orderList() : OrderData[] {
     return this.waitingList;
+  }
+
+  orderWating(id:number):Promise<OrderData[]>{
+    let req:reqOrderWating={
+      userId:id
+    }
+    return new Promise((resolve, reject)=>{
+      this.communication.request<resOrderWating>(reqUrl.orderWating, req, false)
+      .then(val=>{
+        console.log(`주문대기화면`)
+
+        val.orderData.forEach(element=>{
+            element.foodtruckInfo=this.dataCtrl.findFoodtruckById(element.foodtruckId)
+            
+        })
+        this.waitingList=val.orderData
+        if(this.waitingList!=null){
+          resolve(this.waitingList)
+        }else{
+          reject("주문 대기 화면 못가져옴")
+        }
+        
+      })
+    })
   }
 
   orderReceived(index : number) : Promise<OrderHistoryData>{

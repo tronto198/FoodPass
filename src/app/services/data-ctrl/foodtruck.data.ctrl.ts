@@ -21,6 +21,7 @@ export class FoodtruckDataCtrl {
 
     findFoodtruckById(id: number) : FoodtruckData {
         let ft = this.dataStorage.getData(id)
+        //console.log("foodtruckData: ", ft.data as FoodtruckData)
         return ft ? ft.data as FoodtruckData : DefaultValue.foodtruckData
     }
 

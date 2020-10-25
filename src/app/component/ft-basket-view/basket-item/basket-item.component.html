@@ -1,11 +1,18 @@
 <ion-item >
  <!-- <ion-checkbox class="checkbox" [(ngModel)]="isChecked"></ion-checkbox> -->
-    {{menuInfo.menuName}} - {{optionInfo.name}}     {{price}}원
-  <ion-button class="bt-count" color="medium" (click)="addCount()">
-    <ion-icon slot="icon-only" name="add"></ion-icon>
+ <ion-list>
+   <ion-list>
+    <h2>메뉴: {{menuInfo.menuName}} - 옵션: {{optionInfo.name}}  </h2> 
+   </ion-list> 
+   <ion-label >
+    <ion-button class="bt-count" color="medium" (click)="addCount()">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
     </ion-button>
-  {{amount}}개
-  <ion-button class="bt-count" color="medium" (click)="subCount()"> 
-    <ion-icon slot="icon-only" name="remove"></ion-icon>
-  </ion-button>
+             {{amount}}개 
+    <ion-button class="bt-count" color="medium" (click)="subCount()"> 
+      <ion-icon slot="icon-only" name="remove"></ion-icon>
+    </ion-button>
+  </ion-label>
+  </ion-list>
+  <ion-label class="p"> <h1>{{price}}원</h1></ion-label>
 </ion-item>
