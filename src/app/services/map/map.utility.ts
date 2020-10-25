@@ -20,7 +20,7 @@ export function distance(location1: LocationData, location2: LocationData){
     })
 
     let dis = Math.round(line.getLength());
-    console.log(`distance: ${dis}, line: ${line}, line.getLength: ${line.getLength()}, `, location1, location2)
+    // console.log(`distance: ${dis}, line: ${line}, line.getLength: ${line.getLength()}, `, location1, location2)
     return dis;
 }
 

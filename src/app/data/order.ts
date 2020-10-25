@@ -3,7 +3,7 @@ import { OrderedMenuData } from './ordered-menu';
 import { WaitingData } from './waiting';
 
 export interface OrderData {
-    id?: number;
+    id: number;
     foodtruckInfo: FoodtruckData;
     orderedMenu: OrderedMenuData[];
     price: number;

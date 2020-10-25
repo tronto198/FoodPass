@@ -20,6 +20,7 @@ import { LocationDataCtrl } from './location.data.ctrl';
     HistoryDataCtrl,
     WaitingDataCtrl,
     LocationDataCtrl,
+    BasketDataCtrl,
   ]
 })
 export class DataCtrlModule { }

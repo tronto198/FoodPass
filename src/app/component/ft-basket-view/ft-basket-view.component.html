@@ -8,10 +8,12 @@
   <!-- ft-view 끝-->
 
   <ion-list>
-        <basket-item [menuData]="menuData" [optionData]="optionData"></basket-item>                                                                                                                                                                                                                                                                                                  -->
-    </ion-list>
-  
-    <div class="total-price">총 {{totalPrice}} 원</div>
+      
+    <basket-item *ngFor="let orderedMenu of menuList; let i = index" foodtruckId="{{foodtruckId}}" index="{{i}}"></basket-item>
+    
+  </ion-list>
+
+    <!-- <div class="total-price">총 {{totalPrice}} 원</div> -->
 
   </ion-card-content>
 </ion-card>

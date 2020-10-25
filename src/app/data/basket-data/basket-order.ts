@@ -10,6 +10,7 @@ export class BasketOrder extends CheckboxValue implements OrderData, ControlledD
     id: number;
     foodtruckInfo: FoodtruckData;
     orderedMenu: BasketOrderedMenu[] = [];
+    
 
     constructor(parent: CheckboxValue, orderData: OrderData = null){
         super(parent);

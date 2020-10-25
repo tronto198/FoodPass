@@ -81,10 +81,12 @@ export class FoodtruckDataCtrl {
     findOptionById(foodtruckId: number, menuId: number, id: number) : OptionData {
         let ft = this.dataStorage.getData(foodtruckId)
         if(ft == null){
+            console.log("ft null")
             return DefaultValue.optionData
         }
         let menu = ft.getData(menuId)
         if(menu == null) {
+            console.log("menu null")
             return DefaultValue.optionData
         }
 
@@ -93,7 +95,7 @@ export class FoodtruckDataCtrl {
         
     }
 
-    setOptionData(foodtruckId: number, menuId: number, ...data: OptionData[]){
+    setOptionData(foodtruckId: number, menuId: number, data: OptionData[]){
         data.forEach((val)=>{
             this.dataStorage.getData(foodtruckId).getData(menuId).setData(val);
         })

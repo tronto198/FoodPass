@@ -35,27 +35,9 @@ export class BasketPage implements OnInit {
     return this.basketCtrl.totalPrice;
   }
 
-  get checkValue(){
-    return this.basketCtrl.checkValue;
-  }
-  set checkValue(checked: boolean){
-    this.basketCtrl.value = checked;
-  }
-  get indeterminated(){
-    return this.basketCtrl.indeterminate;
-  }
-
-  get basket() : BasketOrder[] {
-    return this.basketCtrl.basket;
-  }
-
-  get orderType(){
-    return OrderType.basket;
-  }
-
   get isEmpty(){
     //장바구니가 비었을때
-    return this.basketCtrl.basket.length == 0;
+    return this.basketCtrl.totalPrice == 0;
   }
 
   get orderEnable(){
@@ -63,13 +45,12 @@ export class BasketPage implements OnInit {
     return this.isEmpty || this.totalPrice == 0;
   }
 
-  
+  get foodtruckIdList(){
+    return this.basketCtrl.orderedFoodtruckIdList;
+  }
 
   dismiss(){
     this.modalCtrl.dismiss();
-  }
-  checkboxClicked(){
-    this.basketCtrl.toggle();
   }
 
   orderButtonClicked(){
@@ -84,13 +65,13 @@ export class BasketPage implements OnInit {
 
   //이부분 dataprovider 만들기
   private order() {
-    this.basketCtrl.orderCheckedItem().then((val) =>{
-      this.orderSuccess(val);
-    }).catch(e =>{
-      console.log(e);
-      //안됫다는 경고창 띄우기
-      this.orderFailed();
-    });
+    // this.basketCtrl.orderCheckedItem().then((val) =>{
+    //   this.orderSuccess(val);
+    // }).catch(e =>{
+    //   console.log(e);
+    //   //안됫다는 경고창 띄우기
+    //   this.orderFailed();
+    // });
   }
 
   private orderSuccess(orderDatas : OrderData[]){
