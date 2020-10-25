@@ -14,7 +14,7 @@
   <comp-ft-menu foodtruckId="{{foodtruckId}}" menuId="{{menuId}}"></comp-ft-menu>
 </ion-card>
 
-<ion-radio-group value="{{optionDataList[0].id}}" (ionChange)="optionSelected($event.detail.value)">
+<ion-radio-group *ngIf="optionLoaded" value="{{optionDataList[0].id}}" (ionChange)="optionSelected($event.detail.value)">
   <ion-list-header>
     <ion-label>옵션 선택</ion-label>
   </ion-list-header>

@@ -30,6 +30,7 @@ export class MenuInfoPage implements OnInit {
   @Input() Id:number;
 
   selectedOptionId: number = 0;
+  optionLoaded = false;
 
   constructor(
     private foodtruckDataCtrl: FoodtruckDataCtrl,
@@ -45,6 +46,7 @@ export class MenuInfoPage implements OnInit {
 
     this.optionProvider.getListByFoodtruckMenuId(this.foodtruckId, this.menuId).then(r=>{
       this.foodtruckDataCtrl.setOptionData(this.foodtruckId, this.menuId, ...r)
+      this.optionLoaded = true
     })
 
     // this.checkedValue = 1001;
