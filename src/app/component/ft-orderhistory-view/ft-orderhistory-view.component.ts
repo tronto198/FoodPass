@@ -11,7 +11,6 @@ export class FtOrderhistoryViewComponent implements OnInit {
 
   @Input() id:number;
   constructor(private dataCtrl:HistoryDataCtrl ) { }
-  //userId 받으면 주문기록 보여주기
   ngOnInit() {}
 
   get orderHistoryData():OrderHistoryData{
