@@ -4,7 +4,7 @@ import { WaitingData } from './waiting';
 
 export interface OrderData {
     id: number;
-    foodtruckId:number;
+    foodtruckId?:number;
     foodtruckInfo?: FoodtruckData;
     orderedMenu?: OrderedMenuData[];
     price: number;
