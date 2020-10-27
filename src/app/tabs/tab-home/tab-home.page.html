@@ -14,20 +14,24 @@
   <home-map></home-map>
 
   <!-- 내 푸드트럭 운영 버튼 -->
-
-  <p *ngIf="isOpened==true; then ownerView else userView"></p>
-  <ng-template #ownerView>
-    <ion-button class="aList aButton open-ft" (click)="toggleOpen()">
-      {{openedFoodtruckText}}
-    </ion-button>
-  </ng-template> 
-
-  <ng-template #userView>
-    <ion-button class="aList aButton close-ft" (click)="toggleOpen()">
-      {{openedFoodtruckText}}
-    </ion-button>
+  <p *ngIf="isOwner==true; then executiveView else customerView"></p>
+  <ng-template #customerView>
   </ng-template>
+  <ng-template #executiveView>
+    <p *ngIf="isOpened==true; then openView else closeView"></p>
+    <ng-template #openView>
+      <ion-button class="aList aButton open-ft" (click)="toggleOpen()">
+        {{openedFoodtruckText}}
+      </ion-button>
+    </ng-template> 
 
+    <ng-template #closeView>
+      <ion-button class="aList aButton close-ft" (click)="toggleOpen()">
+        {{openedFoodtruckText}}
+      </ion-button>
+    </ng-template>
+  </ng-template>
+  
 
 
  
