@@ -72,10 +72,19 @@ export class BasketPage implements OnInit {
     //   //안됫다는 경고창 띄우기
     //   this.orderFailed();
     // });
+    this.basketCtrl.orderAllItem().then((val)=>{
+      this.orderSuccess(val)
+
+    }).catch(error=>{
+      console.log(error);
+      this.orderFailed();//주문이 처리되지 않았음
+    })
+   
   }
 
   private orderSuccess(orderDatas : OrderData[]){
     // this.loading.dismiss();
+    alert(`주문되었습니다!`)
     this.waitingCtrl.addItemList(orderDatas);
     this.dismiss();
     this.PageCtrl.routingOrder();
