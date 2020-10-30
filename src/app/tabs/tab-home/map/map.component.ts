@@ -57,7 +57,6 @@ export class MapComponent implements OnInit {
           });
         })
     })
-    console.log("search foodtruck");
   }
 
   get isWatching(){

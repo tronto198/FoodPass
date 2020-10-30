@@ -9,8 +9,6 @@ import { FoodtruckListPage } from './foodtruck-list.page';
 
 import { CardviewComponent } from './foodtruck-cardview/cardview.component';
 import { SharedComponentModule } from 'src/app/component/shared-component.module';
-import { TagWaitingComponent } from 'src/app/component/tag-waiting/tag-waiting.component';
-import { TagWaitingModule } from 'src/app/component/tag-waiting/tag-waiting.module';
 
 @NgModule({
   imports: [
