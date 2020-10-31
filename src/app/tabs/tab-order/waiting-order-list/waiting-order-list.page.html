@@ -1,5 +1,5 @@
 
 <div *ngIf="isEmpty()"> 주문한 목록이 없어요.... </div>
 <ion-item *ngFor="let order of orderList">
-  <comp-ft-waiting-view  foodtruckId="{{order.foodtruckId.id}}"></comp-ft-waiting-view>
+  <comp-ft-waiting-view  foodtruckId="{{order.foodtruckId}}"></comp-ft-waiting-view>
 </ion-item>
