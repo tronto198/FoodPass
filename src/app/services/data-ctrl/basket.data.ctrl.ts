@@ -37,6 +37,7 @@ export class BasketDataCtrl {
 
 
   clear(){
+    this.orderedFoodtruckIdList = []
     this.dataStorage = new DataStorage<BasketOrder>()
   }
 
