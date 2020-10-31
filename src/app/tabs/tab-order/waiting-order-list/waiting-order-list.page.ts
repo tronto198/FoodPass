@@ -3,6 +3,7 @@ import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { OrderHistoryData } from 'src/app/data/order-history';
 import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
 import { HistoryDataCtrl } from 'src/app/services/data-ctrl/history.data.ctrl';
+import {OrderData} from "../../../data/order";
 
 @Component({
   selector: 'order-waiting-order-list',
@@ -18,6 +19,12 @@ export class WaitingOrderListPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    let data : OrderData = {
+      id: 1,
+      foodtruckId: 1001,
+      price: 40000
+    }
+    this.waitingCtrl.addItem(data)
   }
 
 
