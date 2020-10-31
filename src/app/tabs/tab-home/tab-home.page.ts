@@ -4,12 +4,8 @@ import { ModalController } from '@ionic/angular';
 
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { PageControllerService } from 'src/app/services/page-controller.service';
-import { MapService } from 'src/app/services/map/map.service';
 import { SearchService } from 'src/app/services/search.service';
-import { FoodtruckDataProvider } from 'src/app/services/data-provider/foodtruck.data.provider';
-import { FtViewComponent } from 'src/app/component/ft-view/ft-view.component';
 import { SearchPage } from 'src/app/modal-pages/search/search.page';
-import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 
 @Component({
   selector: 'app-tab-home',

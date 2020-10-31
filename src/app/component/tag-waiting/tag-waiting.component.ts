@@ -14,7 +14,7 @@ export class TagWaitingComponent {
   ) {}
 
   get isValid(){
-    return this.waitingData ? true : false
+    return this.waitingData != undefined
   }
 
   get waitingData() {
