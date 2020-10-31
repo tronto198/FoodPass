@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
+import {OrderData} from "../../data/order";
 
 @Component({
   selector: 'comp-ft-waiting-view',
@@ -9,22 +10,18 @@ import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
   styleUrls: ['./ft-waiting-view.component.scss'],
 })
 export class FtWaitingViewComponent implements OnInit {
-  @Input() orderIndex: number;
+  @Input() waitingOrder: OrderData;
 
   front : boolean;
   s_map : boolean;
-  constructor(
-    private dataCtrl: FoodtruckDataCtrl,
-    private waitingCtrl: WaitingDataCtrl,
-    
-  ) { }
+
 
   get foodtruckId(){
-    return this.waitingCtrl.items[this.orderIndex].foodtruckId
+    return this.waitingOrder.foodtruckId
   }
 
   get foodtruckInfo() {
-    return this.dataCtrl.findFoodtruckById(this.foodtruckId);
+    return this.waitingOrder.foodtruckInfo
   }
 
   ngOnInit() {

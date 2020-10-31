@@ -1,5 +1,5 @@
 
 <div *ngIf="isEmpty()"> 주문한 목록이 없어요.... </div>
 <ion-item *ngFor="let order of orderList; let i = index">
-  <comp-ft-waiting-view  orderIndex="{{i}}"></comp-ft-waiting-view>
+  <comp-ft-waiting-view [waitingOrder]="order"></comp-ft-waiting-view>
 </ion-item>

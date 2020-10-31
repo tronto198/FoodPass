@@ -18,8 +18,6 @@ export class TagWaitingComponent {
   }
 
   get waitingData() {
-    console.log("wating: ", this.foodtruckId)
-    // console.log("wating person", this.dataCtrl.findFoodtruckById(this.foodtruckId).waiting.person)
     return this.dataCtrl.findFoodtruckById(this.foodtruckId).waiting;
   }
   get waitingTime() {
