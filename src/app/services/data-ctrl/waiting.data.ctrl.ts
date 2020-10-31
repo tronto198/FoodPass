@@ -79,13 +79,28 @@ export class WaitingDataCtrl{
       this.communication.request<resOrderReceived>(reqUrl.orderReceived, this.items[index], true)
       .then(val =>{
         console.log(`${index} 주문 수령완료, 주문 끝남 `)
-          resolve(null);
+          resolve();
         })
         .catch(e =>{
           reject();
         });
     });
     
+  }
+
+  orderReceive(item: OrderData) : Promise<OrderHistoryData> {
+    return new Promise<OrderHistoryData>((resolve => {
+      this.communication.request<resOrderReceived>(reqUrl.orderReceived, item).then(value =>{
+        this.remove(item)
+
+        let history : OrderHistoryData = {
+          id: item.id,
+          price: item.price,
+          foodtruckInfo: item.foodtruckInfo
+        }
+        resolve(history)
+      })
+    }))
   }
 
 }

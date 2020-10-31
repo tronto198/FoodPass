@@ -15,7 +15,7 @@
     
             <ion-item *ngFor="let ordered of waitingOrder.orderedMenu" >
               <ion-label>{{ordered.menuinfo.menuName}}</ion-label>
-              <ion-label>{{ordered.optioninfo.optionName}}</ion-label>
+              <ion-label>{{ordered.optioninfo.name}}</ion-label>
               <ion-label>{{ordered.amount}}</ion-label>
             </ion-item>                                                                                                                                                                                                                                                                                                                    
           </ion-list>
@@ -23,7 +23,7 @@
         <!-- <div *ngIf="!isSMapLooking()" >지도 </div>
         <ion-button color="medium" (click)="toggleSMap()">임시로 지도 표시 버튼</ion-button> -->
     <div class="total-price">총 {{price}} 원</div>
-  
+    <ion-item button (click)="orderRecieve()">주문 수령 확인</ion-item>
     </ion-card-content>
   </ion-card>
   
