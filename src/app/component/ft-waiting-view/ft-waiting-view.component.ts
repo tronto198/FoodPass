@@ -23,7 +23,6 @@ export class FtWaitingViewComponent implements OnInit {
 
   get foodtruckId(){
     return this.waitingOrder.foodtruckId
-    
   }
 
   get foodtruckInfo() {
