@@ -13,7 +13,7 @@ export enum reqUrl {
     menuData = "/infoData/menu",
     optionData = "/infoData/option",
 
-    order = "/order/request",
+    order = "/order/create",
     orderConfirm = "/order/confirm",
     orderCall = "/order/ready",
     orderReceived = "/order/finish",
