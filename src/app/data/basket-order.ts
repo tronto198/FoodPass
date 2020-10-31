@@ -10,11 +10,10 @@ import { OrderedMenuData } from './ordered-menu';
 export class BasketOrder implements ControlledData{
     orderId:number;
     orderedMenu: BasketOrderedMenu[] = [];
-    foodtruckInfo:FoodtruckData;
     constructor(
-        private foodtruckId: number,
-        private dataCtrl: FoodtruckDataCtrl,){
-    }
+        public foodtruckId: number,
+        private dataCtrl: FoodtruckDataCtrl,
+    ){}
 
     get id() {
         return this.foodtruckId;
@@ -44,7 +43,7 @@ export class BasketOrder implements ControlledData{
         })
         let orderData : OrderData = {
             id : this.id,
-            foodtruckInfo: this.foodtruckInfo,
+            foodtruckInfo: this.dataCtrl.findFoodtruckById(this.foodtruckId),
             orderedMenu: orderedMenuData,
             price: this.price
         };

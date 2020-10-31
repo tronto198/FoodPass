@@ -103,12 +103,12 @@ orderAllItem() : Promise<OrderData[]> {
         let orderedList : OrderData[] = [];
         data.orderList.forEach((val, index) =>{
           for(let i = index; i < AllOrderList.length; i++){
-            if(AllOrderList[i].foodtruckInfo.id == val.foodtruckId){
+            if(AllOrderList[i].foodtruckId == val.foodtruckId){
               AllOrderList[i].orderId = val.id;
               //orderList.push()
               let tempOrderData:OrderData={
                     id:  AllOrderList[i].orderId,
-                    foodtruckInfo:  AllOrderList[i].foodtruckInfo,
+                    foodtruckInfo: this.dataCtrl.findFoodtruckById(AllOrderList[i].foodtruckId),
                     orderedMenu:AllOrderList[i].extractData().orderedMenu,
                     price:  AllOrderList[i].price,
                     
