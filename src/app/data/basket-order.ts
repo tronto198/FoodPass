@@ -43,9 +43,12 @@ export class BasketOrder implements ControlledData{
         })
         let orderData : OrderData = {
             id : this.orderId,
+            foodtruckId:this.foodtruckId,
+           
             foodtruckInfo: this.dataCtrl.findFoodtruckById(this.foodtruckId),
             orderedMenu: orderedMenuData,
-            price: this.price
+            price: this.price,
+            orderNo:this.orderId
         };
 
         return orderData;
