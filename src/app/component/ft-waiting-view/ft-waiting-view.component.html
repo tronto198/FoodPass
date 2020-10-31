@@ -1,9 +1,12 @@
 <ion-card class="front-card" [class.back-card]="!isFront()">
     <ion-card-content>
       <div *ngIf="isFront()" (click)="toggleFront()">
-        <comp-ft-view foodtruckId={{foodtruckId}}></comp-ft-view>
+        <!-- <comp-ft-view foodtruckId={{foodtruckId}}></comp-ft-view> -->
         <!-- <ion-icon name="menu"></ion-icon> -->
-        <div class="number-text">3번</div>
+        <ion-label> <h2>{{name}}</h2> </ion-label>
+        <comp-ft-img slot="start" class="img" foodtruckId={{foodtruckId}}></comp-ft-img>
+        <div class="number-text">{{watingNum}}번</div>
+      
       </div>
 
       <div *ngIf="!isFront()" (click)="toggleFront()" >
@@ -11,8 +14,8 @@
             <!-- <comp-waiting-item></comp-waiting-item> -->
     
             <ion-item>
-              메뉴 A - 옵션 A    1개
-            </ion-item>
+              메뉴 A - 옵션 A    1개|
+            </ion-item>                                                                                                                                                                                                                                                                                                                    
           </ion-list>
         </div>
         <!-- <div *ngIf="!isSMapLooking()" >지도 </div>
