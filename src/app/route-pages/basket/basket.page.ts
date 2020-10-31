@@ -86,6 +86,7 @@ export class BasketPage implements OnInit {
     // this.loading.dismiss();
     alert(`주문되었습니다!`)
     this.waitingCtrl.addItemList(orderDatas);
+    this.basketCtrl.clear();
     this.dismiss();
     this.PageCtrl.routingOrder();
   }

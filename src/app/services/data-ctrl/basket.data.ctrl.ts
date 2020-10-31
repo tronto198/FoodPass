@@ -36,6 +36,10 @@ export class BasketDataCtrl {
   }
 
 
+  clear(){
+    this.dataStorage = new DataStorage<BasketOrder>()
+  }
+
   setOrder(order: BasketOrder){
     this.dataStorage.setData(order);
   }

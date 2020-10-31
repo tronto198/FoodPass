@@ -19,12 +19,6 @@ export class WaitingOrderListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    let data : OrderData = {
-      id: 1,
-      foodtruckId: 1001,
-      price: 40000
-    }
-    this.waitingCtrl.addItem(data)
   }
 
 
