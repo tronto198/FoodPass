@@ -15,13 +15,18 @@ export class FtWaitingViewComponent implements OnInit {
   front : boolean;
   s_map : boolean;
 
+  constructor(
+      private dataCtrl: FoodtruckDataCtrl
+  ) {
+  }
+
 
   get foodtruckId(){
     return this.waitingOrder.foodtruckId
   }
 
   get foodtruckInfo() {
-    return this.waitingOrder.foodtruckInfo
+    return this.dataCtrl.findFoodtruckById(this.foodtruckId)
   }
 
   ngOnInit() {
