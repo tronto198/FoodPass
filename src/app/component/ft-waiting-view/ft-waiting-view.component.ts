@@ -9,7 +9,8 @@ import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
   styleUrls: ['./ft-waiting-view.component.scss'],
 })
 export class FtWaitingViewComponent implements OnInit {
-  @Input() foodtruckId: number;
+  @Input() orderIndex: number;
+
   front : boolean;
   s_map : boolean;
   constructor(
@@ -17,6 +18,10 @@ export class FtWaitingViewComponent implements OnInit {
     private waitingCtrl: WaitingDataCtrl,
     
   ) { }
+
+  get foodtruckId(){
+    return this.waitingCtrl.items[this.orderIndex].foodtruckId
+  }
 
   get foodtruckInfo() {
     return this.dataCtrl.findFoodtruckById(this.foodtruckId);

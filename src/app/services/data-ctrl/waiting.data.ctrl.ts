@@ -8,17 +8,17 @@ import { reqOrderWating , resOrderWating} from '../communication/reqType/order/o
 import { reqOrder } from '../communication/reqType/order/order.req';
 import { OrderWatingData } from 'src/app/data/order-wating';
 import { FoodtruckDataCtrl } from './foodtruck.data.ctrl';
+import {DataStorage} from "./data.storage";
 
 @Injectable()
 export class WaitingDataCtrl{
   waitingList : OrderData[] = [];
   watingData:OrderData;
+
   constructor(
     private communication : CommunicationService,
     private dataCtrl:FoodtruckDataCtrl
-    ) {
-    
-  }
+    ) {}
 
   get items(){
     return this.waitingList;
