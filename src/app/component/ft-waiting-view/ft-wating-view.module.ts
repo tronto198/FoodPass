@@ -13,7 +13,7 @@ import { FtWaitingViewComponent } from './ft-waiting-view.component';
         CommonModule,
         FormsModule,
         IonicModule,
-        FtImgComponentModule
+       // FtImgComponentModule
     ], 
     exports: [
         FtWaitingViewComponent

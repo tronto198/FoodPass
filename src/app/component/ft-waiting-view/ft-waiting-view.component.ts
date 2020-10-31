@@ -18,20 +18,22 @@ export class FtWaitingViewComponent implements OnInit {
 
   get foodtruckId(){
     return this.waitingOrder.foodtruckId
+    
   }
 
   get foodtruckInfo() {
     return this.waitingOrder.foodtruckInfo
   }
-  get watingInfo(){
-    return this.waitingCtrl.orderList
-  }
+
   get name():string{
     return this.foodtruckInfo.name
   }
-  // get watingNum():number{
-  //   return this.watingInfo.
-  // }
+  get watingNum():number{
+    return this.waitingOrder.orderNo
+  }
+  get price():number{
+    return this.waitingOrder.price
+  }
   ngOnInit() {
     this.front =true;
     this.s_map =true;
