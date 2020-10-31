@@ -105,15 +105,7 @@ orderAllItem() : Promise<OrderData[]> {
           for(let i = index; i < AllOrderList.length; i++){
             if(AllOrderList[i].foodtruckId == val.foodtruckId){
               AllOrderList[i].orderId = val.id;
-              //orderList.push()
-              let tempOrderData:OrderData={
-                    id:  AllOrderList[i].orderId,
-                    foodtruckInfo: this.dataCtrl.findFoodtruckById(AllOrderList[i].foodtruckId),
-                    orderedMenu:AllOrderList[i].extractData().orderedMenu,
-                    price:  AllOrderList[i].price,
-                    
-              }
-              orderedList.push(tempOrderData);
+              orderedList.push(AllOrderList[i].extractData());
               break;
             }
             else{
@@ -121,6 +113,8 @@ orderAllItem() : Promise<OrderData[]> {
             }
           }
         })
+
+
         resolve(orderedList);
       });
     });
