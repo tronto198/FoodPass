@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BasketOrder } from 'src/app/data/basket-data/basket-order';
+import { OrderConformData } from 'src/app/data/order-confirm';
+import { ConfirmDataCtrl } from 'src/app/services/data-ctrl/confirm.data.ctrl';
 import { PageControllerService } from 'src/app/services/page-controller.service';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
@@ -9,12 +11,16 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
   styleUrls: ['./tab-order.page.scss'],
 })
 export class TabOrderPage implements OnInit {
-  owner : boolean
-  basket : BasketOrder[];
+
+  // orderList : BasketOrder[];
+  orderList : number[] = [];
+  cookingList : OrderConformData[] = [];
 
   constructor(
     private config : SharedDataService,
     private pageCtrl : PageControllerService,//historyCtrl
+    private sharedData : SharedDataService,
+    private confirmData:ConfirmDataCtrl
   ) { }
 
   ngOnInit() {
@@ -38,8 +44,23 @@ export class TabOrderPage implements OnInit {
     //       name: "옵션 이름",
     //       extraPrice: 0},
     //     amount: 1}}]
+
   }
 
+  get isOpened() : boolean{
+    return this.sharedData.isFoodtruckOpen;
+  }
+  confirm(){
+    if(this.isOpened==true){
+      this.confirmData.cookingItem().then(val=>{
+        console.log(`요리해야할 목록을 성공적으로 가져왔습니다.`)
+        this.cookingList=val
+      }).catch(error=>{
+        console.log(error);
+        console.log(`요리해야할 목록이 보이지 않습니다.`)
+      })
+    }
+  }
   
   get admin() : boolean{
     return this.config.foodtruckOwner;

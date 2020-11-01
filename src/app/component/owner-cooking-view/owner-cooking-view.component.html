@@ -1,3 +1,24 @@
-<p>
-  owner-cooking-view works!
-</p>
+
+<ion-card class="front-card" [class.back-card]="!isFront()">
+  <ion-card-content class="food-card">
+      
+  <ion-button class="call" (click)="calltheConsumer()" > 완료 </ion-button>
+      <div class="number-text">{{orderNo}}번</div>
+      <ion-list >
+        <ion-item *ngFor="let menu of menuList">
+          {{menu.menuName}}
+        </ion-item>      
+        <ion-item *ngFor="let option of optionList">
+          {{option.name}}
+        </ion-item>   
+        <ion-item *ngFor="let amount of amountList">
+          {{amount}}
+        </ion-item>                                                                                                                                                                                                                                                                                                              
+      </ion-list>
+      <!-- <div *ngIf="!isSMapLooking()" >지도 </div>
+      <ion-button color="medium" (click)="toggleSMap()">임시로 지도 표시 버튼</ion-button> -->
+  <div class="total-price">총 10000 원</div>
+
+  </ion-card-content>
+</ion-card>
+
