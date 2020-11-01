@@ -6,6 +6,7 @@ import { OrderData } from 'src/app/data/order';
 import { NotificationService } from 'src/app/services/notification.service';
 import { BasketDataCtrl } from 'src/app/services/data-ctrl/basket.data.ctrl';
 import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
+import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 
 
 @Component({
@@ -14,7 +15,6 @@ import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
   styleUrls: ['./basket.page.scss'],
 })
 export class BasketPage implements OnInit {
-
   // private loading;
   constructor(
     private modalCtrl: ModalController,
@@ -35,27 +35,9 @@ export class BasketPage implements OnInit {
     return this.basketCtrl.totalPrice;
   }
 
-  get checkValue(){
-    return this.basketCtrl.checkValue;
-  }
-  set checkValue(checked: boolean){
-    this.basketCtrl.value = checked;
-  }
-  get indeterminated(){
-    return this.basketCtrl.indeterminate;
-  }
-
-  get basket(){
-    return this.basketCtrl.basket;
-  }
-
-  get orderType(){
-    return OrderType.basket;
-  }
-
   get isEmpty(){
     //장바구니가 비었을때
-    return this.basketCtrl.basket.length == 0;
+    return this.basketCtrl.totalPrice == 0;
   }
 
   get orderEnable(){
@@ -63,13 +45,12 @@ export class BasketPage implements OnInit {
     return this.isEmpty || this.totalPrice == 0;
   }
 
-  
+  get foodtruckIdList(){
+    return this.basketCtrl.orderedFoodtruckIdList;
+  }
 
   dismiss(){
     this.modalCtrl.dismiss();
-  }
-  checkboxClicked(){
-    this.basketCtrl.toggle();
   }
 
   orderButtonClicked(){
@@ -82,19 +63,30 @@ export class BasketPage implements OnInit {
     });
   }
 
+  //이부분 dataprovider 만들기
   private order() {
-    this.basketCtrl.orderCheckedItem().then((val) =>{
-      this.orderSuccess(val);
-    }).catch(e =>{
-      console.log(e);
-      //안됫다는 경고창 띄우기
-      this.orderFailed();
-    });
+    // this.basketCtrl.orderCheckedItem().then((val) =>{
+    //   this.orderSuccess(val);
+    // }).catch(e =>{
+    //   console.log(e);
+    //   //안됫다는 경고창 띄우기
+    //   this.orderFailed();
+    // });
+    this.basketCtrl.orderAllItem().then((val)=>{
+      this.orderSuccess(val)
+
+    }).catch(error=>{
+      console.log(error);
+      this.orderFailed();//주문이 처리되지 않았음
+    })
+   
   }
 
   private orderSuccess(orderDatas : OrderData[]){
     // this.loading.dismiss();
+    alert(`주문되었습니다!`)
     this.waitingCtrl.addItemList(orderDatas);
+    this.basketCtrl.clear();
     this.dismiss();
     this.PageCtrl.routingOrder();
   }

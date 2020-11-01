@@ -53,7 +53,7 @@ export class SharedAccount {
 
     private createId(resolve, reject) : void {
         let url = environment.host.concat(reqUrl.newAccount);
-        this.httpClient.post(url, {}, httpOption).subscribe(data  =>{
+        this.httpClient.get(url, httpOption).subscribe(data  =>{
             let d = data as httpResponse;
             if(d.result){
                 this.myAccountId = (d.data as resNewAccount).accountId;

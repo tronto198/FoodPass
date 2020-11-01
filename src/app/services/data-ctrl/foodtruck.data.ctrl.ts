@@ -21,14 +21,15 @@ export class FoodtruckDataCtrl {
 
     findFoodtruckById(id: number) : FoodtruckData {
         let ft = this.dataStorage.getData(id)
+        //console.log("foodtruckData: ", ft.data as FoodtruckData)
         return ft ? ft.data as FoodtruckData : DefaultValue.foodtruckData
     }
 
     setFoodtruckData(...data: FoodtruckData[]){
-        this.currentFoodtrucks = data
         data.forEach((val)=>{
-            if (this.dataStorage.getData(val.id) == null){
+            if (!this.dataStorage.has(val.id)){
                 this.dataStorage.setData(new DataStorage<DataStorage<OptionData>>(val));
+                console.log(this.findFoodtruckById(val.id))
             }
         })
         
@@ -41,15 +42,6 @@ export class FoodtruckDataCtrl {
         }) : []
     }
 
-
-    // findMenuById(foodtruckId: number, id: number) : MenuData {
-    //     return   { 
-    //         id:0,
-    //         menuName:"menu1",
-    //         menuInformation:"menuInform1",
-    //         price:5000,
-    //         }
-    //    // return this.dataStorage.getData(foodtruckId).getData(id).data as MenuData;
     findMenuById(foodtruckId: number, id: number) : MenuData {
         let ft = this.dataStorage.getData(foodtruckId)
         if(ft == null){
@@ -61,9 +53,7 @@ export class FoodtruckDataCtrl {
 
     setMenuData(foodtruckId: number, ...data: MenuData[]){
         this.FoodtruckMenus=data
-        console.log(`setMenuData foodtruckId: ${foodtruckId}, data: ${data}`, data)
         data.forEach((val)=>{
-            console.log("foodtruck.data.ctrl.ts setMenuData:: "+ this.dataStorage.getData(foodtruckId))
             this.dataStorage.getData(foodtruckId).setData(new DataStorage<OptionData>(val));
         })
         
@@ -82,10 +72,12 @@ export class FoodtruckDataCtrl {
     findOptionById(foodtruckId: number, menuId: number, id: number) : OptionData {
         let ft = this.dataStorage.getData(foodtruckId)
         if(ft == null){
+            console.log("ft null")
             return DefaultValue.optionData
         }
         let menu = ft.getData(menuId)
         if(menu == null) {
+            console.log("menu null")
             return DefaultValue.optionData
         }
 
@@ -94,7 +86,7 @@ export class FoodtruckDataCtrl {
         
     }
 
-    setOptionData(foodtruckId: number, menuId: number, ...data: OptionData[]){
+    setOptionData(foodtruckId: number, menuId: number, data: OptionData[]){
         data.forEach((val)=>{
             this.dataStorage.getData(foodtruckId).getData(menuId).setData(val);
         })

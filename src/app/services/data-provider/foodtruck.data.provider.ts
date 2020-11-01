@@ -4,24 +4,22 @@ import { LocationData } from 'src/app/data/location';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { reqFoodtruckList, resFoodtruckList } from 'src/app/services/communication/reqType/listData/foodtruckList.req'
 import { reqUrl } from '../communication/reqType/req-url.enum';
+import { resFoodtruckData } from '../communication/reqType/infoData/foodtruckData.req';
 
 
 @Injectable()
-export class FoodtruckDataProvider extends ADataProvider {
+export class FoodtruckDataProvider extends ADataProvider{
 
     foodtruckList: FoodtruckData[];
 
-    getItem(id: number) {
-        return this.getDataWithPromise<FoodtruckData>(() => {
-            return {
-                id: 3,
-                introduction: "dd",
-                name: "test",
-                notice: "rhdwl",
-                location: {
-                    lat: 37.4996, lng: 127.0264
-                }
-            };
+    getItem(id: number) : Promise<FoodtruckData> {
+        let req = {
+            foodtruckId: id
+        }
+        return new Promise((resolve) =>{
+            this.comm.request<resFoodtruckData>(reqUrl.foodtruckData, req, true).then( r =>
+                resolve(r.foodtruckData)
+            )
         })
     }
 

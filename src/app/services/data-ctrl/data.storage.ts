@@ -11,6 +11,10 @@ export class DataStorage<T extends ControlledData> implements ControlledData {
         
     }
 
+    get iter(){
+        return this.dataMap.values()
+    }
+
     get id(){
         return this.data.id;
     }

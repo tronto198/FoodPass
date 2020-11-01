@@ -12,6 +12,7 @@ export class SharedDataService {
   account : SharedAccount;
 
   foodtruckOwner: boolean;
+  isFoodtruckOpen : boolean;
 
   constructor(
     httpClient : HttpClient,
@@ -20,6 +21,14 @@ export class SharedDataService {
     ) {
       this.geolocation = new SharedGeolocation(geo);
       this.account = new SharedAccount(httpClient, localStorage);
+    }
+
+    open(){
+      this.isFoodtruckOpen= true;
+    }
+
+    close(){
+      this.isFoodtruckOpen= false;
     }
 
 

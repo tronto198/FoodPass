@@ -3,6 +3,7 @@ import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 import { OrderHistoryData } from 'src/app/data/order-history';
 import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
 import { HistoryDataCtrl } from 'src/app/services/data-ctrl/history.data.ctrl';
+import {OrderData} from "../../../data/order";
 
 @Component({
   selector: 'order-waiting-order-list',
@@ -22,9 +23,11 @@ export class WaitingOrderListPage implements OnInit {
 
 
   get orderList(){
-    // console.log('waiting : ', this.waitingCtrl.orderList);
     return this.waitingCtrl.orderList;
   }
+  // get orderList(){
+  //   return this.waitingCtrl.OrderWatingList;
+  // }
 
   get orderType(){
     return OrderType.waiting;
@@ -35,10 +38,6 @@ export class WaitingOrderListPage implements OnInit {
     return this.waitingCtrl.orderList.length == 0;
   }
 
-  // gotoFoodtruckInfo(foodtruckId: number){
-  //   this.router.navigateByUrl(`/tabs/home/foodtruck/${foodtruckId}`);
-  // }
-
   //수령 완료
   orderPickedUp(index : number){
     console.log(index);
@@ -47,7 +46,7 @@ export class WaitingOrderListPage implements OnInit {
       let history : OrderHistoryData ={
         id: order.id,
         price: order.price,
-        foodtruckInfo: order.foodtruckinfo
+        foodtruckInfo: order.foodtruckInfo
       }
       this.historyCtrl.addItem(history);
       

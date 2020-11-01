@@ -5,12 +5,6 @@
 </ion-header>
 
 <ion-content>
-  <ngx-qrcode 
-  elementType="url" 
-  [value]="link"
-  cssClass="qr-code"
-  errorCorrectionLevel="L">
-  </ngx-qrcode>
 
   <!-- <ion-item (click)="master()">
     <ion-card>
@@ -32,13 +26,14 @@
   
 
 
-  <p *ngIf="owner==true; then ownerView else userView"></p>
+  <p *ngIf="isOpened==true; then openView else closeView"></p>
     <!-- 사장 -->
-  <ng-template #ownerView>
+  <ng-template #openView>
     <ion-card><comp-ft-view foodtruckId="-1"></comp-ft-view></ion-card>
     
-    <ion-item button (click)="requestPermission()">
-      알림 허용하기
+    <ion-item>
+      알림 허용하기 {{isOpened}}
+      <ion-toggle  name="requestPermission"  (click)="requestPermission()" unchecked></ion-toggle>
     </ion-item>
     <ion-item button (click)="showOrderHistory()">
       주문 기록 보기 [사장]
@@ -46,18 +41,28 @@
      <ion-item button > 
       내 푸드트럭 QR코드 
     </ion-item>
-   <ion-item>
+    <ngx-qrcode 
+    elementType="url" 
+    [value]="link"
+    cssClass="qr-code"
+    errorCorrectionLevel="L">
+    </ngx-qrcode>
+   <!-- <ion-item>
      <qr-code [value]="qrData" [size]="200"></qr-code>
-      </ion-item>
+      </ion-item> -->
   </ng-template>
   <!-- 손님 -->
-    <ng-template #userView>
+    <ng-template #closeView>
       <comp-user-account-view></comp-user-account-view>
-      <ion-item button (click)="requestPermission()">
+      <ion-item >
         알림 허용하기
+        <ion-toggle  name="requestPermission"  (click)="requestPermission()" unchecked></ion-toggle>
       </ion-item>
       <ion-item button (click)="showOrderHistory()">
         주문 기록 보기 [손님]
+      </ion-item>
+      <ion-item button (click)="registerMyFoodtruck()">
+        푸드트럭 등록 [{{isOwner}}]
       </ion-item>
 </ng-template>
    

@@ -33,7 +33,7 @@ import { FtOptionComponentsModule } from './ft-option-view/ft-option-view.module
         FtOptionComponentsModule,
         UserAccountViewModule,
         OwnerAccountViewModule,
-        OwnerCookingViewModule
+        // OwnerCookingViewModule
         // OrderCardviewComponentModule,
     ], 
     exports: [
@@ -45,6 +45,7 @@ import { FtOptionComponentsModule } from './ft-option-view/ft-option-view.module
         FtBasketViewComponent,
         FtOrderhistoryViewComponent,
         UserAccountViewComponent,
+        OwnerCookingViewComponent,
         BasketItemComponent
         
     ],
@@ -53,6 +54,7 @@ import { FtOptionComponentsModule } from './ft-option-view/ft-option-view.module
         FtWaitingViewComponent,
         FtBasketViewComponent,
         FtOrderhistoryViewComponent,
+        OwnerCookingViewComponent,
         BasketItemComponent
 
     ],

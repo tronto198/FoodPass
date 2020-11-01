@@ -4,6 +4,8 @@ import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
 import { OrderData } from 'src/app/data/order';
+import { BasketDataCtrl } from 'src/app/services/data-ctrl/basket.data.ctrl';
+import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 
 @Component({
   selector: 'comp-ft-basket-view',
@@ -12,50 +14,19 @@ import { OrderData } from 'src/app/data/order';
 })
 export class FtBasketViewComponent implements OnInit {
   @Input() foodtruckId: number;
-  total_price : number;
-  optionData: OptionData[];
-  menuData: MenuData[];
 
-
-  constructor(private dataCtrl: FoodtruckDataCtrl) { }
+  constructor(
+    private basketCtrl: BasketDataCtrl,
+    private dataCtrl: FoodtruckDataCtrl,
+    ) { }
 
   ngOnInit() {
-    this.total_price =0;
-    this.optionData=[{
-      id: 0,
-      name: "opt1",
-      extraPrice:500
-    },
-    {
-      id: 1,
-      name: "opt2",
-      extraPrice:1000
-    }];
 
-    this.menuData=[{
-      id: 0,
-      menuName: "menu1",
-      price:4000
-    },
-    {
-      id: 1,
-      menuName: "menu2",
-      price: 5000
-    }];
   }
 
-
-  get menuName():string{
-    return this.menuData[0].menuName;
+  get menuList(){
+    return this.basketCtrl.getOrder(this.foodtruckId).orderedMenu
   }
 
- 
-
-  get totalPrice(): number{
-
-    // if (this.isChecked) this.total_price = this.count * this.price;
-    // else  this.total_price =0;
-    return this.total_price =0 ;
-  }
   
 }

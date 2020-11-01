@@ -1,31 +1,29 @@
-<!-- waiting-view 시작 -->
-  <ion-card class="front-card" [class.back-card]="!isFront()">
+<ion-card class="front-card" [class.back-card]="!isFront()">
     <ion-card-content>
       <div *ngIf="isFront()" (click)="toggleFront()">
-        <!-- ft-view 시작-->
-        <comp-ft-view></comp-ft-view>
-        <ion-icon name="menu"></ion-icon>
-        3번
-        <!-- ft-view 끝-->
+        <!-- <comp-ft-view foodtruckId={{foodtruckId}}></comp-ft-view> -->
+        <!-- <ion-icon name="menu"></ion-icon> -->
+        <ion-label> <h2>{{name}}</h2> </ion-label>
+        <!-- <comp-ft-img slot="start" class="img" foodtruckId={{foodtruckId}}></comp-ft-img> -->
+        <div class="number-text">{{watingNum}}번</div>
+      
       </div>
 
       <div *ngIf="!isFront()" (click)="toggleFront()" >
         <ion-list >
-          <!-- ft-menu-item 시작-->
-            <ion-item>
-              메뉴 A - 옵션 A    1개
-            </ion-item>
+            <!-- <comp-waiting-item></comp-waiting-item> -->
     
-            <ion-item>
-              메뉴 A - 옵션 A    1개
-            </ion-item>
-          <!-- ft-menu-item 끝-->                                                                                                                                                                                                                                                                                                                     
+            <ion-item *ngFor="let ordered of waitingOrder.orderedMenu" >
+              <ion-label>{{ordered.menuinfo.menuName}}</ion-label>
+              <ion-label>{{ordered.optioninfo.name}}</ion-label>
+              <ion-label>{{ordered.amount}}</ion-label>
+            </ion-item>                                                                                                                                                                                                                                                                                                                    
           </ion-list>
         </div>
         <!-- <div *ngIf="!isSMapLooking()" >지도 </div>
         <ion-button color="medium" (click)="toggleSMap()">임시로 지도 표시 버튼</ion-button> -->
-    <div class="total-price">총 10000 원</div>
-  
+    <div class="total-price">총 {{price}} 원</div>
+    <ion-item button (click)="orderRecieve()">주문 수령 확인</ion-item>
     </ion-card-content>
   </ion-card>
   

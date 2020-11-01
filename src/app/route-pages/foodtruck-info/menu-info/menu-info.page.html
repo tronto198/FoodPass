@@ -14,8 +14,17 @@
   <comp-ft-menu foodtruckId="{{foodtruckId}}" menuId="{{menuId}}"></comp-ft-menu>
 </ion-card>
 
-<ion-radio-group *ngFor="let option of optionDataList">
-  <comp-ft-option foodtruckId={{foodtruckId}} menuId="{{menuId}}" Id={{option.id}}></comp-ft-option>
+<ion-radio-group *ngIf="optionLoaded" value="{{optionDataList[0].id}}" (ionChange)="optionSelected($event.detail.value)">
+  <ion-list-header>
+    <ion-label>옵션 선택</ion-label>
+  </ion-list-header>
+
+  <ion-item *ngFor="let option of optionDataList">
+    <ion-label>{{option.name}}, {{option.id}}</ion-label> <ion-label float="right">+{{option.extraPrice}}원</ion-label>
+    <ion-radio slot="start" value="{{option.id}}"></ion-radio>
+  </ion-item>
+
+  <!-- <comp-ft-option foodtruckId={{foodtruckId}} menuId="{{menuId}}" Id={{option.id}}></comp-ft-option> -->
 </ion-radio-group>
 
 

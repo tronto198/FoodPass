@@ -11,12 +11,13 @@ export enum reqUrl {
 
     foodtruckData = "/infoData/foodtruck",
     menuData = "/infoData/menu",
+    optionData = "/infoData/option",
 
-    order = "/order/request",
+    order = "/order/create",
     orderConfirm = "/order/confirm",
     orderCall = "/order/ready",
     orderReceived = "/order/finish",
-  
+    orderWating="/order/wating",
    
     
     newFoodtruck = "/foodtruck/create",

@@ -60,14 +60,16 @@ export class FoodtruckInfoPage implements OnInit  {
 
   async getRoutingData(){
     this.foodtruckId = Number(this.route.snapshot.paramMap.get("id"));
+    console.log(this.foodtruckId)
     if(isNaN(this.foodtruckId)){
       this.pageCtrl.routingHome();
       return;
     }
 
-    if(this.dataCtrl.findFoodtruckById(this.foodtruckId).id){
-      this.dataCtrl.setFoodtruckData(await this.ftProvider.getItem(this.foodtruckId))
-    }
+    this.dataCtrl.setFoodtruckData(await this.ftProvider.getItem(this.foodtruckId))
+
+    // if(this.dataCtrl.findFoodtruckById(this.foodtruckId).id == DefaultValue.foodtruckData.id){
+    // }
     
   }
 

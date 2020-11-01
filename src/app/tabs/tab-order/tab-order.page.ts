@@ -25,7 +25,8 @@ export class TabOrderPage implements OnInit {
 
   ngOnInit() {
     // this.pageData.tabOrder.historyCtrl.getHistory();
-    this.owner = true;
+    // this.orderList = [1,2,3];
+    // this.cookingList = [1,2];
     // this.basket = [
     //   {
     //   id: 1,

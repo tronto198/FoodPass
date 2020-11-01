@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { FtMenuItemComponent } from './ft-menu-item.component';
+import { UserImgComponent } from './user-img.component';
 
 @NgModule({
     imports: [
@@ -11,11 +11,11 @@ import { FtMenuItemComponent } from './ft-menu-item.component';
         IonicModule,
     ], 
     exports: [
-        FtMenuItemComponent
+       UserImgComponent
     ],
     declarations: [
-        FtMenuItemComponent
+        UserImgComponent
     ],
 })
-export class FtMenuItemComponentModule {}
+export class UserImgComponentModule {}
   

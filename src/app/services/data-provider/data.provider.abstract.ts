@@ -8,9 +8,9 @@ export abstract class ADataProvider{
     constructor(protected comm: CommunicationService){
     }
 
-    abstract getItem(...values: number[])
+    abstract getItem(...values: number[]) : Promise<any>
 
-    protected getDataWithPromise<T>(action: () => T) : Promise<T>{
+    protected async getDataWithPromise<T>(action: () => Promise<T>) : Promise<T>{
         return new Promise((resolve, reject)=>{
             try{
                 resolve(action.bind(this)());

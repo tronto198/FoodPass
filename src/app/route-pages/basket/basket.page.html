@@ -41,14 +41,15 @@
 
 <ion-content>
   <!-- <span *ngIf="!isEmpty_true; then basketList; else emptyBasket"></span> -->
-  <span *ngIf="!isEmpty_false; then basketList; else emptyBasket"></span>
+  <span *ngIf="!isEmpty; then basketList; else emptyBasket"></span>
 
-  <ion-button class="footer-button" expand="full" [disabled]="orderEnable" (click)="addButtonClicked()">주문 1개 추가</ion-button>
-  
+ 
   <ng-template #basketList>
     <!-- <ion-checkbox [(ngModel)]="checkValue" [indeterminate]="indeterminated"></ion-checkbox> -->
-    <comp-ft-basket-view></comp-ft-basket-view>
-    
+    <div > 
+      <comp-ft-basket-view *ngFor="let foodtruckId of foodtruckIdList" foodtruckId="{{foodtruckId}}"></comp-ft-basket-view>
+    </div>
+   
   </ng-template>
 
   <ng-template #emptyBasket class="ion-text-center">
@@ -57,8 +58,6 @@
     </div>
   </ng-template>
 </ion-content>
-
-
 
 
 <ion-footer>

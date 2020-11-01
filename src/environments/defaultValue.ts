@@ -4,20 +4,20 @@ import { OptionData } from 'src/app/data/option'
 
 const defaultFoodtruckData : FoodtruckData = {
     id: -1,
-    name: "foodtruck",
+    name: "default foodtruck",
     introduction: "로딩중..",
     notice: "로딩중입니다.."
 }
 
 const defaultMenuData : MenuData = {
     id: -1,
-    menuName: "menu",
+    menuName: "default menu",
     price: 0
 }
 
 const defaultOptionData : OptionData = {
     id: -1,
-    name: "option",
+    name: "default option",
     extraPrice: 0
 }
 

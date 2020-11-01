@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 import { FoodtruckData } from 'src/app/data/foodtruck';
 import { TagDistComponent } from '../tag-dist/tag-dist.component';
+import { PageControllerService } from 'src/app/services/page-controller.service';
+import { ModalController } from '@ionic/angular';
 
 
 
@@ -13,20 +15,28 @@ import { TagDistComponent } from '../tag-dist/tag-dist.component';
 
 export class FtViewComponent implements OnInit {
   @Input() foodtruckId: number;
-  @Input() lat:number;
-  @Input() lng:number;
   @Input() index:number;
+  @Input() routeFoodtruck: boolean = true;
 
- 
-
-  constructor(private dataCtrl: FoodtruckDataCtrl) { }
-//foodtruck의 id가 있으면 foodtruckDataCtrl 을 다룰 수 있다.
+  constructor(private dataCtrl: FoodtruckDataCtrl,
+    private pageCtrl: PageControllerService,
+    private modalCtrl: ModalController,
+    ) { }
+  //foodtruck의 id가 있으면 foodtruckDataCtrl 을 다룰 수 있다.
   ngOnInit() {
   
   }
 
   get foodtruckData(): FoodtruckData {
     return this.dataCtrl.findFoodtruckById(this.foodtruckId)
+  }
+
+  get lat(): number | undefined {
+    return this.foodtruckData.location ? this.foodtruckData.location.lat : undefined;
+  }
+
+  get lng(): number | undefined {
+    return this.foodtruckData.location ? this.foodtruckData.location.lng : undefined;
   }
 
   get name():string{
@@ -48,6 +58,17 @@ export class FtViewComponent implements OnInit {
     return char;
   }
  
+
+  async route(){
+    if(this.routeFoodtruck){
+      this.pageCtrl.presentFoodtruck(this.foodtruckId);
+      this.modalCtrl.getTop().then(r => {
+        if(r != undefined){
+          this.modalCtrl.dismiss()
+        }
+      })
+    }
+  }
 
 
 }

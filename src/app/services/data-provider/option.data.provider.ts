@@ -7,13 +7,14 @@ import { reqUrl } from '../communication/reqType/req-url.enum';
 @Injectable()
 export class OptionDataProvider extends ADataProvider{
     optionList:OptionData[];
-    getItem(foodtruckId: number, menuId: number, optionId: number) {
+    getItem(foodtruckId: number, menuId: number, optionId: number) : Promise<OptionData>{
+        let req = {
+            foodtruckId: foodtruckId,
+            menuId: menuId,
+            optionId: optionId
+        }
         return this.getDataWithPromise<OptionData>(() => {
-            return {
-                id: 10,
-                name: "option 10",
-                extraPrice: 500
-            };
+            return this.comm.request<OptionData>(reqUrl.optionData, req, true, "옵션 정보를 가져오는 중입니다...")
         })
     }
 

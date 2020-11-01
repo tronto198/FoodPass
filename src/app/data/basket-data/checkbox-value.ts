@@ -48,9 +48,9 @@ export class CheckValue{
 }
 
 
-export class CheckboxValue extends CheckValue{
+export abstract class CheckboxValue extends CheckValue{
     // protected allChecked: boolean;
-    protected items: CheckValue[];
+    abstract items: CheckValue[];
 
     constructor(parent: CheckboxValue = null){
         super(parent);

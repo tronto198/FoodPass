@@ -25,11 +25,13 @@ export class MenuInfoPage implements OnInit {
 
   // todo 이를 modal로 만들어서 바로 접근하지 못하게 제한, 그리고 ft,menu id를 위에서 input으로 받아서 optiondata만 불러오도록 수정
 
-
-
   @Input() foodtruckId: number;
   @Input() menuId: number;
   @Input() Id:number;
+
+  selectedOptionId: number;
+  optionLoaded = false;
+
   constructor(
     private foodtruckDataCtrl: FoodtruckDataCtrl,
     private optionProvider: OptionDataProvider,
@@ -43,7 +45,9 @@ export class MenuInfoPage implements OnInit {
     // this.optionListCtrl.getOptionList(this.foodtruckData.id, this.menuData.id);
 
     this.optionProvider.getListByFoodtruckMenuId(this.foodtruckId, this.menuId).then(r=>{
-      this.foodtruckDataCtrl.setOptionData(this.foodtruckId, this.menuId, ...r)
+      this.foodtruckDataCtrl.setOptionData(this.foodtruckId, this.menuId, r)
+      this.optionLoaded = true
+      this.selectedOptionId = this.optionDataList[0].id;
     })
 
     // this.checkedValue = 1001;
@@ -61,22 +65,12 @@ export class MenuInfoPage implements OnInit {
     return this.foodtruckDataCtrl.getOptionList(this.foodtruckId, this.menuId);
   }
 
-
-  
-  // ctrlAmount(add : boolean){
-    
-  //   if(add){
-  //     this.amount++;
-  //   }
-  //   else{
-  //     if(this.amount > 1){
-  //       this.amount--;
-  //     }
-  //   }
-  // }
+  optionSelected(value: number){
+    this.selectedOptionId = value
+  }
 
   orderToBasket(){
-    this.basketCtrl.push(this.foodtruckData, this.menuData, this.optionDataList[0], this.amount);
+    this.basketCtrl.push(this.foodtruckId, this.menuId, this.selectedOptionId, this.amount);
     // this.pageCtrl.presentFoodtruck(this.foodtruckData.id);
     this.dismiss();
   }

@@ -15,6 +15,7 @@ export class FtMenuComponent implements OnInit {
   get menuInfo() : MenuData{
     return this.dataCtrl.findMenuById(this.foodtruckId, this.menuId)
   }
+  
   get name():string{
     return this.menuInfo.menuName
   }

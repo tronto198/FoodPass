@@ -77,4 +77,8 @@ export class OwnerCookingViewComponent implements OnInit {
 
  
 
+  static(){}
+  // get foodtruckData(): FoodtruckData {
+  //   return this.dataCtrl.findFoodtruckById(this.foodtruckId)
+  // }
 }

@@ -3,18 +3,25 @@ import { MenuData } from 'src/app/data/menu';
 import { Injectable } from '@angular/core';
 import { reqMenuList, resMenuList } from '../communication/reqType/listData/menuList.req';
 import { reqUrl } from '../communication/reqType/req-url.enum';
+import { resMenuData } from '../communication/reqType/infoData/menuData.req';
 
 @Injectable()
 export class MenuDataProvider extends ADataProvider{
     menuList:MenuData[];
-    getItem(foodtruckid: number, id: number){
-        return this.getDataWithPromise<MenuData>(() => { 
-            return {id:id, menuName:"간장치킨", menuInformation:"간장베이스",price:17000, imgsrc:""};
+    
+    getItem(foodtruckid: number, id: number) : Promise<MenuData>{
+        return new Promise((resolve) =>{
+            let req = {
+                foodtruckId: foodtruckid,
+                menuId: id
+            }
+            this.comm.request<resMenuData>(reqUrl.menuData, req, true, "메뉴 데이터를 가져오는 중입니다.").then(r => {
+                resolve(r.menuData)
+            })
         })
     }
 
     getListByFoodtruckId(foodtruckId: number) : Promise<MenuData[]>{
-        console.log(`getMenuData foodtruckId: ${foodtruckId} `)
         let req: reqMenuList={
             foodtruckId:foodtruckId
         }
@@ -27,15 +34,7 @@ export class MenuDataProvider extends ADataProvider{
                 }else{
                     reject("메뉴 리스트 못가져옴")
                 }
-                
-                console.log('got menu list');
             })
-
-            // //가져오기
-            // resolve([
-            //     {id:0, menuName:"간장치킨", menuInformation:"간장베이스",price:17000, imgsrc:""},
-            //     {id:1, menuName:"양념치킨", menuInformation:"양념베이스",price:19000, imgsrc:""}
-            // ]);
         })
     }
 }
