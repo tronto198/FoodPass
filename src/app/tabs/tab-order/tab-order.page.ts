@@ -51,8 +51,8 @@ export class TabOrderPage implements OnInit {
   get isOpened() : boolean{
     return this.sharedData.isFoodtruckOpen;
   }
-  confirm(){
-    if(this.isOpened==true){
+  //confirm(){
+  //  if(this.isOpened==true){
       // this.confirmData.cookingItem().then(val=>{
       //   console.log(`요리해야할 목록을 성공적으로 가져왔습니다.`)
       //   this.cookingList=val
@@ -60,8 +60,8 @@ export class TabOrderPage implements OnInit {
       //   console.log(error);
       //   console.log(`요리해야할 목록이 보이지 않습니다.`)
       // })
-    }
-  }
+ //   }
+ // }
   
   get admin() : boolean{
     return this.config.foodtruckOwner;
