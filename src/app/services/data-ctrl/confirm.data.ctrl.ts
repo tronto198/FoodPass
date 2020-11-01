@@ -1,14 +1,10 @@
-import { OrderData } from 'src/app/data/order';
 import { Injectable } from '@angular/core';
 import { CommunicationService } from '../communication/communication.service';
-import { OrderHistoryData } from 'src/app/data/order-history';
-import { resOrderReceived } from '../communication/reqType/order/orderReceived.req';
+
 import { reqUrl } from '../communication/reqType/req-url.enum';
-import { reqOrderWating , resOrderWating} from '../communication/reqType/order/orderWating.req';
-import { reqOrder } from '../communication/reqType/order/order.req';
-import { OrderWatingData } from 'src/app/data/order-wating';
+
 import { FoodtruckDataCtrl } from './foodtruck.data.ctrl';
-import {DataStorage} from "./data.storage";
+
 import { OrderConformData } from 'src/app/data/order-confirm';
 import {  orderConformResponse, resOrderConfirm } from '../communication/reqType/order/orderConfirm_owner.req';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';

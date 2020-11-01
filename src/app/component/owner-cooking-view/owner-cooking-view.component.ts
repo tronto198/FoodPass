@@ -14,7 +14,7 @@ import { OptionDataProvider } from 'src/app/services/data-provider/option.data.p
 export class OwnerCookingViewComponent implements OnInit {
   // @Input() foodtruckId: number;
   @Input() orderConfirm:OrderConformData
-
+ // @Input() price:number
   front : boolean;
   menuList : MenuData[];
   optionList:OptionData[];
