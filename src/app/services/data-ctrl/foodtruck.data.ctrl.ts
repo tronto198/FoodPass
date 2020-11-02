@@ -26,6 +26,7 @@ export class FoodtruckDataCtrl {
     }
 
     setFoodtruckData(...data: FoodtruckData[]){
+        console.log(`setFoodtruckData`)
         data.forEach((val)=>{
             if (!this.dataStorage.has(val.id)){
                 this.dataStorage.setData(new DataStorage<DataStorage<OptionData>>(val));
@@ -43,15 +44,19 @@ export class FoodtruckDataCtrl {
     }
 
     findMenuById(foodtruckId: number, id: number) : MenuData {
+        
         let ft = this.dataStorage.getData(foodtruckId)
+      
         if(ft == null){
             return DefaultValue.menuData
         }
         let menu = ft.getData(id)
+      
         return menu ? menu.data as MenuData : DefaultValue.menuData
     }
 
     setMenuData(foodtruckId: number, ...data: MenuData[]){
+      
         this.FoodtruckMenus=data
         data.forEach((val)=>{
             this.dataStorage.getData(foodtruckId).setData(new DataStorage<OptionData>(val));
@@ -87,6 +92,7 @@ export class FoodtruckDataCtrl {
     }
 
     setOptionData(foodtruckId: number, menuId: number, data: OptionData[]){
+        console.log(`setOptionData`)
         data.forEach((val)=>{
             this.dataStorage.getData(foodtruckId).getData(menuId).setData(val);
         })

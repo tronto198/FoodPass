@@ -7,8 +7,10 @@
       <ion-list >
         <ion-item *ngFor="let orderedMenu of orderedMenuList">
           {{orderedMenu.menuinfo.menuName}}, {{orderedMenu.optioninfo.name}} - {{orderedMenu.amount}}개
-        </ion-item>                                                                                                                                                                                                                                                                                                              
+        </ion-item>  
+                                                                                                                                                                                                                                                                                                                
       </ion-list>
+      {{otherRequest}}
       <!-- <div *ngIf="!isSMapLooking()" >지도 </div>
       <ion-button color="medium" (click)="toggleSMap()">임시로 지도 표시 버튼</ion-button> -->
   <!-- <div class="total-price">총 {{price}} 원</div> -->

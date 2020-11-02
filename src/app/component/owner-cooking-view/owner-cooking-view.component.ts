@@ -25,7 +25,7 @@ export class OwnerCookingViewComponent implements OnInit {
       this.front =true;
       this.confirmData();
       //this.menuList=[1,2,3];
-      console.log("dddddd")
+
       console.log(this.orderConfirm)
     }
     get foodtruckId(){
@@ -37,14 +37,12 @@ export class OwnerCookingViewComponent implements OnInit {
     get orderNo():number{
       return this.orderConfirm.orderNo
     }
+    get otherRequest():string{
+      return this.orderConfirm.otherRequest
+    }
     confirmData(){
       
-    /*  this.orderConfirm.orderedMenu.forEach((val)=>{
-        this.menuList.push(val.menuinfo)
-        this.optionList.push(val.optioninfo)
-        this.amountList.push(val.amount)
-      })
-      */
+  
     }
     get orderedMenuList() : OrderedMenuData[] {
       return this.orderConfirm.orderedMenu

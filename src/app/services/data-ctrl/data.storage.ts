@@ -24,7 +24,6 @@ export class DataStorage<T extends ControlledData> implements ControlledData {
     }
 
     getData(key: number) : T | null{
-     
         if(this.dataMap.has(key.toString())){
             return this.dataMap.get(key.toString());
         }

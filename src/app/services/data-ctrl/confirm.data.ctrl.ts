@@ -24,6 +24,8 @@ export class ConfirmDataCtrl {
     private comm : CommunicationService,
     private dataCtrl:FoodtruckDataCtrl
     ) {}
+
+
   PushFun(val:orderConformResponse){
     console.log('pushFun val:', val)
     let tempConform:OrderConformData={
@@ -34,11 +36,7 @@ export class ConfirmDataCtrl {
       orderedMenu:[],
       userId:val.userId
     }
-   // this.tempConform.id=val.id
-   // this.tempConform.foodtruckId=val.foodtruckId
-   // this.tempConform.orderNo=val.orderNo
-   // this.tempConform.otherRequest=val.otherRequest
-   // this.tempConform.userId=val.userId
+
     
     this.orderConformData.push(tempConform)
     this.index++
@@ -72,13 +70,13 @@ export class ConfirmDataCtrl {
           }
           if(this.orderConformData[this.index].userId==val.userId){
             let tempOrdered:OrderedMenuData={
+            
               menuinfo:this.dataCtrl.findMenuById(foodtruckId, val.orderedMenu.menuId),
               optioninfo:this.dataCtrl.findOptionById(foodtruckId, val.orderedMenu.menuId,val.orderedMenu.optionId),
               amount:val.orderedMenu.amount
             }
-            //this.tempOrdered.menuinfo=this.dataCtrl.findMenuById(foodtruckId, val.orderedMenu.menuId)
-            //this.tempOrdered.optioninfo=this.dataCtrl.findOptionById(foodtruckId, val.orderedMenu.menuId,val.orderedMenu.optionId)
-            //this.tempOrdered.amount=val.orderedMenu.amount
+            console.log(`id inform:`, foodtruckId, val.orderedMenu.menuId, val.orderedMenu.optionId)
+            console.log(`tempOrdered:`, tempOrdered)
             this.orderConformData[this.index].orderedMenu.push(tempOrdered)
           }
         })
