@@ -16,13 +16,13 @@ import { ConfirmDataCtrl } from 'src/app/services/data-ctrl/confirm.data.ctrl';
 })
 export class TabHomePage implements OnInit, OnDestroy {
   b : boolean;
-  tabOrderPage= new TabOrderPage(this.sharedData, this.pageCtrl, this.confirm)
+  tabOrderPage= new TabOrderPage(this.sharedData, this.pageCtrl)
   constructor(
     public modalCtrl : ModalController,
     private pageCtrl : PageControllerService,
     private sharedData : SharedDataService,
     private search: SearchService,
-    private confirm:ConfirmDataCtrl
+   // private confirm:ConfirmDataCtrl
   ) { }
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class TabHomePage implements OnInit, OnDestroy {
     }
     if(this.isOpened) {
       this.sharedData.open();
-      this.tabOrderPage.confirm()
+     // this.tabOrderPage.confirm()
     }
     else this.sharedData.close();
   }

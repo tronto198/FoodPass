@@ -19,6 +19,7 @@ export class TabOrderPage implements OnInit {
   constructor(
     private config : SharedDataService,
     private pageCtrl : PageControllerService,//historyCtrl
+  //  private confirmData:ConfirmDataCtrl
   ) { }
 
   ngOnInit() {
