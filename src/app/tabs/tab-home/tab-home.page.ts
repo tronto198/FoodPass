@@ -6,6 +6,8 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 import { PageControllerService } from 'src/app/services/page-controller.service';
 import { SearchService } from 'src/app/services/search.service';
 import { SearchPage } from 'src/app/modal-pages/search/search.page';
+import { TabOrderPage } from '../tab-order/tab-order.page';
+import { ConfirmDataCtrl } from 'src/app/services/data-ctrl/confirm.data.ctrl';
 
 @Component({
   selector: 'app-tab-home',
@@ -14,11 +16,13 @@ import { SearchPage } from 'src/app/modal-pages/search/search.page';
 })
 export class TabHomePage implements OnInit, OnDestroy {
   b : boolean;
+  tabOrderPage= new TabOrderPage(this.sharedData, this.pageCtrl, this.confirm)
   constructor(
     public modalCtrl : ModalController,
     private pageCtrl : PageControllerService,
     private sharedData : SharedDataService,
     private search: SearchService,
+    private confirm:ConfirmDataCtrl
   ) { }
 
   ngOnInit() {
@@ -44,7 +48,10 @@ export class TabHomePage implements OnInit, OnDestroy {
     }else{
       alert("푸드트럭이 등록되어있지 않습니다.")
     }
-    if(this.isOpened) this.sharedData.open();
+    if(this.isOpened) {
+      this.sharedData.open();
+      this.tabOrderPage.confirm()
+    }
     else this.sharedData.close();
   }
 

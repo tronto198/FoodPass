@@ -36,7 +36,7 @@ export class ConfirmDataCtrl {
     let req={
       foodtruckId:foodtruckId
     }
-  
+    console.log(`cooking Item 함수 실행중`, foodtruckId)
     return new Promise((resolve, reject)=>{
       this.comm.request<resOrderConfirm>(reqUrl.orderConfirm, req, true, "쿠킹리스트 가져오는 중입니다..")
       .then(data=>{

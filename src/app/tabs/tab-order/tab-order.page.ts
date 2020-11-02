@@ -19,7 +19,7 @@ export class TabOrderPage implements OnInit {
   constructor(
     private config : SharedDataService,
     private pageCtrl : PageControllerService,//historyCtrl
-    private sharedData : SharedDataService,
+  
     private confirmData:ConfirmDataCtrl
   ) { }
 
@@ -45,14 +45,15 @@ export class TabOrderPage implements OnInit {
     //       name: "옵션 이름",
     //       extraPrice: 0},
     //     amount: 1}}]
-    this.confirm()
+    
     console.log("tab-order.page.ts  테스트중")
   }
 
   get isOpened() : boolean{
-    return this.sharedData.isFoodtruckOpen;
+    return this.config.isFoodtruckOpen;
   }
   confirm(){
+    console.log(`confirm 함수 실행함`, this.isOpened)
    if(this.isOpened==true){
       this.confirmData.cookingItem(1001).then(val=>{
         console.log(`요리해야할 목록을 성공적으로 가져왔습니다.`)
@@ -61,6 +62,8 @@ export class TabOrderPage implements OnInit {
         console.log(error);
         console.log(`요리해야할 목록이 보이지 않습니다.`)
       })
+   }else{
+    console.log(`푸드트럭 오픈 안함`)
    }
  }
   

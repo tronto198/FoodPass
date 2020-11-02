@@ -12,6 +12,7 @@ import { TabHomePage } from './tab-home.page';
 import { FtViewComponentModule } from 'src/app/component/ft-view/ft-view.module';
 import { SearchPageModule } from 'src/app/modal-pages/search/search.module';
 import { MapComponent } from './map/map.component';
+import { TabOrderPage } from '../tab-order/tab-order.page';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MapComponent } from './map/map.component';
   ],
   declarations: [
     TabHomePage,
+ 
     MapComponent,
   ],
   providers: [
