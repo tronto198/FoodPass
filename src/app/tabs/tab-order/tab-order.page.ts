@@ -19,54 +19,17 @@ export class TabOrderPage implements OnInit {
   constructor(
     private config : SharedDataService,
     private pageCtrl : PageControllerService,//historyCtrl
-  
-    private confirmData:ConfirmDataCtrl
   ) { }
 
   ngOnInit() {
-    // this.pageData.tabOrder.historyCtrl.getHistory();
-    // this.orderList = [1,2,3];
-    // this.cookingList = [1,2];
-    // this.basket = [
-    //   {
-    //   id: 1,
-    //   foodtruckinfo: {
-    //     id: 10011,
-    //     name: "master",
-    //     introduction: "운영자용 수정 푸드트럭",
-    //     notice: "수정 공지"
-    //   },
-    //   orderedMenu: {
-    //     menuinfo:{
-    //       id:1,
-    //       menuName:"메뉴 이름"
-    //     },
-    //     optioninfo: {id: 1,
-    //       name: "옵션 이름",
-    //       extraPrice: 0},
-    //     amount: 1}}]
     
     console.log("tab-order.page.ts  테스트중")
+
   }
 
   get isOpened() : boolean{
     return this.config.isFoodtruckOpen;
   }
-  confirm(){
-    console.log(`confirm 함수 실행함`, this.isOpened)
-   if(this.isOpened==true){
-      this.confirmData.cookingItem(1001).then(val=>{
-        console.log(`요리해야할 목록을 성공적으로 가져왔습니다. val:`,val)
-        this.cookingList=val
-
-      }).catch(error=>{
-        console.log(error);
-        console.log(`요리해야할 목록이 보이지 않습니다.`)
-      })
-   }else{
-    console.log(`푸드트럭 오픈 안함`)
-   }
- }
   
   get admin() : boolean{
     return this.config.foodtruckOwner;

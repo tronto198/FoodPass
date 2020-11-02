@@ -18,6 +18,8 @@ export class ConfirmDataCtrl {
   index:number=0
  // tempConform:OrderConformData
   //tempOrdered:OrderedMenuData
+
+  datas = []
   constructor(
     private comm : CommunicationService,
     private dataCtrl:FoodtruckDataCtrl

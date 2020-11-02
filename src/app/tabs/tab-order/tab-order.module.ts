@@ -10,6 +10,7 @@ import { TabOrderPage } from './tab-order.page';
 import { WaitingOrderListPageModule } from './waiting-order-list/waiting-order-list.module';
 import { FtViewComponentModule } from 'src/app/component/ft-basket-view/ft-basket-view.module';
 import { SharedComponentModule } from 'src/app/component/shared-component.module';
+import {CookingOrderListComponent} from "./cooking-order-list/cooking-order-list.component";
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { SharedComponentModule } from 'src/app/component/shared-component.module
     WaitingOrderListPageModule,
     SharedComponentModule,
   ],
-  declarations: [TabOrderPage]
+  declarations: [TabOrderPage, CookingOrderListComponent]
 })
 export class TabOrderPageModule {}

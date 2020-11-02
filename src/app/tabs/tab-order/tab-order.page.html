@@ -14,10 +14,9 @@
     <ion-badge color="danger"  justify-content-center align-items-center style="width: 100%"  expand="full" >
       <ion-label>내 푸드트럭 주문</ion-label>
     </ion-badge>
-    <ng-container *ngFor="let cooking of cookingList">
-      <comp-owner-cooking-view menuinfo={{cooking.orderedMenu.menuinfo}}  optioninfo={{cooking.orderedMenu.orderinfo}} amount={{cooking.orderedMenu.amount}} ></comp-owner-cooking-view>
-    </ng-container>
+    <app-cooking-order-list></app-cooking-order-list>
   </ng-template>
+
   <ng-template #closeView>
       <order-waiting-order-list ></order-waiting-order-list>
     <!-- <ng-container *ngFor="let ol of orderList">

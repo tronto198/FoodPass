@@ -5,14 +5,8 @@
   <ion-button class="call" (click)="calltheConsumer()" > 완료 </ion-button>
       <div class="number-text">{{orderNo}}번</div>
       <ion-list >
-        <ion-item *ngFor="let menu of menuinfo">
-          {{menu.menuName}}
-        </ion-item>      
-        <ion-item *ngFor="let option of optioninfo">
-          {{option.name}}
-        </ion-item>   
-        <ion-item *ngFor="let amount of amount">
-          {{amount}}
+        <ion-item *ngFor="let orderedMenu of orderedMenuList">
+          {{orderedMenu.menuinfo.menuName}}, {{orderedMenu.optioninfo.name}} - {{orderedMenu.amount}}개
         </ion-item>                                                                                                                                                                                                                                                                                                              
       </ion-list>
       <!-- <div *ngIf="!isSMapLooking()" >지도 </div>
