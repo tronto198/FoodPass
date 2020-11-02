@@ -1,4 +1,4 @@
-<ion-card class="front-card" [class.back-card]="!isFront()">
+<ion-card class="front-card" [class.back-card]="!isFront()" expand="full">
     <ion-card-content>
       <div *ngIf="isFront()" (click)="toggleFront()">
         <!-- <comp-ft-view foodtruckId={{foodtruckId}}></comp-ft-view> -->

@@ -45,23 +45,24 @@ export class TabOrderPage implements OnInit {
     //       name: "옵션 이름",
     //       extraPrice: 0},
     //     amount: 1}}]
-
+    this.confirm()
+    console.log("tab-order.page.ts  테스트중")
   }
 
   get isOpened() : boolean{
     return this.sharedData.isFoodtruckOpen;
   }
-  //confirm(){
-  //  if(this.isOpened==true){
-      // this.confirmData.cookingItem().then(val=>{
-      //   console.log(`요리해야할 목록을 성공적으로 가져왔습니다.`)
-      //   this.cookingList=val
-      // }).catch(error=>{
-      //   console.log(error);
-      //   console.log(`요리해야할 목록이 보이지 않습니다.`)
-      // })
- //   }
- // }
+  confirm(){
+   if(this.isOpened==true){
+      this.confirmData.cookingItem(1001).then(val=>{
+        console.log(`요리해야할 목록을 성공적으로 가져왔습니다.`)
+        this.cookingList=val
+      }).catch(error=>{
+        console.log(error);
+        console.log(`요리해야할 목록이 보이지 않습니다.`)
+      })
+   }
+ }
   
   get admin() : boolean{
     return this.config.foodtruckOwner;

@@ -11,7 +11,7 @@ import { OrderedMenuData } from 'src/app/data/ordered-menu';
 //import { resOrderConfirm } from '../communication/reqType/foodtruck/order/orderConfirm.req';
 
 @Injectable()
-export class ConfirmDataCtrl{
+export class ConfirmDataCtrl {
   orderConformData:OrderConformData[]=[];
   userIdList:number[]=[];
   index:number=0
