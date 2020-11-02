@@ -5,6 +5,7 @@ import { OrderConformData } from 'src/app/data/order-confirm';
 import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 import { MenuDataProvider } from 'src/app/services/data-provider/menu.data.provider';
 import { OptionDataProvider } from 'src/app/services/data-provider/option.data.provider';
+import {OrderedMenuData} from "../../data/ordered-menu";
 
 @Component({
   selector: 'comp-owner-cooking-view',
@@ -16,9 +17,6 @@ export class OwnerCookingViewComponent implements OnInit {
   @Input() orderConfirm:OrderConformData
  // @Input() price:number
   front : boolean;
-  @Input() menuinfo : MenuData[];
-  @Input() optioninfo:OptionData[];
-  @Input() amount:number[];
   constructor(
     private dataCtrl: FoodtruckDataCtrl,
 
@@ -27,6 +25,8 @@ export class OwnerCookingViewComponent implements OnInit {
       this.front =true;
       this.confirmData();
       //this.menuList=[1,2,3];
+      console.log("dddddd")
+      console.log(this.orderConfirm)
     }
     get foodtruckId(){
       return this.orderConfirm.foodtruckId
@@ -46,16 +46,10 @@ export class OwnerCookingViewComponent implements OnInit {
       })
       */
     }
-   /* get menuinfo():MenuData[]{
-      return this.menuList
-    }
-    get optioninfo():OptionData[]{
-      return this.optionList
+    get orderedMenuList() : OrderedMenuData[] {
+      return this.orderConfirm.orderedMenu
     }
 
-    get amount():number[]{
-      return this.amountList
-    }*/
 
 
   
