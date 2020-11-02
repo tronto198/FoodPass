@@ -8,6 +8,7 @@ import { FoodtruckDataCtrl } from './foodtruck.data.ctrl';
 import { OrderConformData } from 'src/app/data/order-confirm';
 import {  orderConformResponse, resOrderConfirm } from '../communication/reqType/order/orderConfirm_owner.req';
 import { OrderedMenuData } from 'src/app/data/ordered-menu';
+import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 //import { resOrderConfirm } from '../communication/reqType/foodtruck/order/orderConfirm.req';
 
 @Injectable()
@@ -15,21 +16,29 @@ export class ConfirmDataCtrl {
   orderConformData:OrderConformData[]=[];
   userIdList:number[]=[];
   index:number=0
-  tempConform:OrderConformData
-  tempOrdered:OrderedMenuData
+ // tempConform:OrderConformData
+  //tempOrdered:OrderedMenuData
   constructor(
     private comm : CommunicationService,
     private dataCtrl:FoodtruckDataCtrl
     ) {}
   PushFun(val:orderConformResponse){
+    console.log('pushFun val:', val)
+    let tempConform:OrderConformData={
+      id:val.id,
+      foodtruckId:val.foodtruckId,
+      orderNo:val.orderNo,
+      otherRequest:val.otherRequest,
+      orderedMenu:[],
+      userId:val.userId
+    }
+   // this.tempConform.id=val.id
+   // this.tempConform.foodtruckId=val.foodtruckId
+   // this.tempConform.orderNo=val.orderNo
+   // this.tempConform.otherRequest=val.otherRequest
+   // this.tempConform.userId=val.userId
     
-    this.tempConform.id=val.id
-    this.tempConform.foodtruckId=val.foodtruckId
-    this.tempConform.orderNo=val.orderNo
-    this.tempConform.otherRequest=val.otherRequest
-    this.tempConform.userId=val.userId
-    
-    this.orderConformData.push(this.tempConform)
+    this.orderConformData.push(tempConform)
     this.index++
   }
   cookingItem(foodtruckId:number):Promise<OrderConformData[]> {
@@ -40,7 +49,7 @@ export class ConfirmDataCtrl {
     return new Promise((resolve, reject)=>{
       this.comm.request<resOrderConfirm>(reqUrl.orderConfirm, req, true, "쿠킹리스트 가져오는 중입니다..")
       .then(data=>{
-        
+        console.log(`cooking item data:`, data)
         data.orderConfirmList.forEach((val)=>{
           if(this.orderConformData.length==0){
             this.PushFun(val)          
@@ -60,14 +69,21 @@ export class ConfirmDataCtrl {
             }
           }
           if(this.orderConformData[this.index].userId==val.userId){
-            this.tempOrdered.menuinfo=this.dataCtrl.findMenuById(foodtruckId, val.orderedMenu.menuId)
-            this.tempOrdered.optioninfo=this.dataCtrl.findOptionById(foodtruckId, val.orderedMenu.menuId,val.orderedMenu.optionId)
-            this.tempOrdered.amount=val.orderedMenu.amount
-            this.orderConformData[this.index].orderedMenu.push(this.tempOrdered)
+            let tempOrdered:OrderedMenuData={
+              menuinfo:this.dataCtrl.findMenuById(foodtruckId, val.orderedMenu.menuId),
+              optioninfo:this.dataCtrl.findOptionById(foodtruckId, val.orderedMenu.menuId,val.orderedMenu.optionId),
+              amount:val.orderedMenu.amount
+            }
+            //this.tempOrdered.menuinfo=this.dataCtrl.findMenuById(foodtruckId, val.orderedMenu.menuId)
+            //this.tempOrdered.optioninfo=this.dataCtrl.findOptionById(foodtruckId, val.orderedMenu.menuId,val.orderedMenu.optionId)
+            //this.tempOrdered.amount=val.orderedMenu.amount
+            this.orderConformData[this.index].orderedMenu.push(tempOrdered)
           }
         })
         if(this.orderConformData!=null){
+        
           resolve(this.orderConformData)
+          
         }else{
           reject("사장- 음식확인 리스트 못가져옴")
         }

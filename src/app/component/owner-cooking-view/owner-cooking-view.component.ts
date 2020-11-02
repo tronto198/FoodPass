@@ -16,9 +16,9 @@ export class OwnerCookingViewComponent implements OnInit {
   @Input() orderConfirm:OrderConformData
  // @Input() price:number
   front : boolean;
-  menuList : MenuData[];
-  optionList:OptionData[];
-  amountList:number[];
+  @Input() menuinfo : MenuData[];
+  @Input() optioninfo:OptionData[];
+  @Input() amount:number[];
   constructor(
     private dataCtrl: FoodtruckDataCtrl,
 
@@ -39,13 +39,14 @@ export class OwnerCookingViewComponent implements OnInit {
     }
     confirmData(){
       
-      this.orderConfirm.orderedMenu.forEach((val)=>{
+    /*  this.orderConfirm.orderedMenu.forEach((val)=>{
         this.menuList.push(val.menuinfo)
         this.optionList.push(val.optioninfo)
         this.amountList.push(val.amount)
       })
+      */
     }
-    get menuinfo():MenuData[]{
+   /* get menuinfo():MenuData[]{
       return this.menuList
     }
     get optioninfo():OptionData[]{
@@ -54,7 +55,7 @@ export class OwnerCookingViewComponent implements OnInit {
 
     get amount():number[]{
       return this.amountList
-    }
+    }*/
 
 
   
