@@ -13,7 +13,8 @@ import { CommunicationService } from '../communication/communication.service';
 export class BasketDataCtrl {
   orderedFoodtruckIdList : number[] = [];
   private dataStorage = new DataStorage<BasketOrder>();
-
+ // private orderNumList:Array<number>=new Array<number>(999);
+ 
   constructor(
     private dataCtrl: FoodtruckDataCtrl,
     private comm: CommunicationService
@@ -63,6 +64,17 @@ export class BasketDataCtrl {
     return price;
   }
 
+  // orderNo(foodtruckId:number):number{
+  //   let key=foodtruckId-1001;
+  //   let value=this.orderNumList[key];
+  //   value++;
+  //   if(value>100){
+  //     value=1;
+  //   }
+  //   this.orderNumList[key]=value;
+  //   return value;
+  // }
+
 
 
 orderAllItem() : Promise<OrderData[]> {
@@ -85,7 +97,8 @@ orderAllItem() : Promise<OrderData[]> {
         let order : orderRequest = {
           foodtruckId: orderinfo.foodtruckInfo.id,
           orderedMenu: [],
-          price: orderinfo.price
+          price: orderinfo.price,
+         // orderNo:this.orderNo(orderinfo.foodtruckInfo.id)
         };
         orderinfo.orderedMenu.forEach((val)=>{
           order.orderedMenu.push({

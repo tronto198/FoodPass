@@ -14,8 +14,9 @@ import { OrderType } from 'src/app/component/order-cardview/order-type.enum';
 @Injectable()
 export class ConfirmDataCtrl {
   orderConformData:OrderConformData[]=[];
-  userIdList:number[]=[];
+ // userIdList:number[]=[];
   index:number=0
+  index2:number=0
  // tempConform:OrderConformData
   //tempOrdered:OrderedMenuData
 
@@ -54,21 +55,20 @@ export class ConfirmDataCtrl {
           if(this.orderConformData.length==0){
             this.PushFun(val)          
            
-          }else if(this.orderConformData[this.index-1].userId!=val.userId){
+          }else if(this.orderConformData[this.index-1].orderNo!=val.orderNo){
             this.PushFun(val)
           }
         })
 
-        this.index=0
 
         data.orderConfirmList.forEach((val)=>{
-          while(this.orderConformData[this.index].userId!=val.userId){
-            this.index++;
-            if(this.index>this.orderConformData.length){
+          while(this.orderConformData[this.index2].orderNo!=val.orderNo){
+            this.index2++;
+            if(this.index2>this.orderConformData.length){
               break;
             }
           }
-          if(this.orderConformData[this.index].userId==val.userId){
+          if(this.orderConformData[this.index2].orderNo==val.orderNo){
             let tempOrdered:OrderedMenuData={
             
               menuinfo:this.dataCtrl.findMenuById(foodtruckId, val.orderedMenu.menuId),
@@ -77,7 +77,7 @@ export class ConfirmDataCtrl {
             }
             console.log(`id inform:`, foodtruckId, val.orderedMenu.menuId, val.orderedMenu.optionId)
             console.log(`tempOrdered:`, tempOrdered)
-            this.orderConformData[this.index].orderedMenu.push(tempOrdered)
+            this.orderConformData[this.index2].orderedMenu.push(tempOrdered)
           }
         })
         if(this.orderConformData!=null){

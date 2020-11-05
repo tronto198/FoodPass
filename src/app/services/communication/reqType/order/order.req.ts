@@ -16,6 +16,7 @@ export interface orderRequest {
         amount: number;
     }[],
     price: number;
+    orderNo?:number;
 }
 
 export interface orderResponse {
