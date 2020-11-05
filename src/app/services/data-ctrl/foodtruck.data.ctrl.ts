@@ -15,14 +15,33 @@ export class FoodtruckDataCtrl {
     currentFoodtrucks : FoodtruckData[] = [];
     FoodtruckMenus: MenuData[]=[];
     constructor(
+        private ftProvider: FoodtruckDataProvider,
+        private menuProvider: MenuDataProvider,
+        private optionProvider: OptionDataProvider
     ){
 
     }
 
     findFoodtruckById(id: number) : FoodtruckData {
         let ft = this.dataStorage.getData(id)
-        //console.log("foodtruckData: ", ft.data as FoodtruckData)
-        return ft ? ft.data as FoodtruckData : DefaultValue.foodtruckData
+
+        if(ft != undefined){
+            return ft.data as FoodtruckData
+        } else {
+            const answer = { ...DefaultValue.foodtruckData, id: id }
+            this.setFoodtruckData(answer)
+            this.ftProvider.getItem(id).then(r =>{
+                answer.rating = r.rating
+                answer.waiting = r.waiting
+                answer.localData = r.localData
+                answer.location = r.location
+                answer.imgSrc = r.imgSrc
+                answer.notice = r.notice
+                answer.introduction = r.introduction
+                answer.name = r.name
+            })
+            return answer
+        }
     }
 
     setFoodtruckData(...data: FoodtruckData[]){
@@ -48,11 +67,24 @@ export class FoodtruckDataCtrl {
         let ft = this.dataStorage.getData(foodtruckId)
       
         if(ft == null){
-            return DefaultValue.menuData
+            return this.menuAlternative(foodtruckId, id)
         }
         let menu = ft.getData(id)
       
-        return menu ? menu.data as MenuData : DefaultValue.menuData
+        return menu ? menu.data as MenuData : this.menuAlternative(foodtruckId, id)
+    }
+
+    private menuAlternative(foodtruckId: number, id: number) : MenuData {
+        const answer = { ...DefaultValue.menuData, id: id }
+        this.setMenuData(foodtruckId, answer)
+
+        this.menuProvider.getItem(foodtruckId, id).then(r =>{
+            answer.menuName = r.menuName
+            answer.imgsrc = r.imgsrc
+            answer.menuInformation = r.menuInformation
+            answer.price = r.price
+        })
+        return answer
     }
 
     setMenuData(foodtruckId: number, ...data: MenuData[]){

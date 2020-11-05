@@ -32,7 +32,7 @@ export class MapComponent implements OnInit {
             
           })
           this.foodtruckSearch()
-        }, 10);
+        }, 100);
   }
 
 
