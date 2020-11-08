@@ -94,10 +94,12 @@ export class WaitingDataCtrl{
     })
   }
 
-  orderReady(userOrderMenuId:number, foodtruckId: number){
+  orderReady(userOrderMenuId:number, foodtruckId: number, name:string, userId:number){
     let req:reqOrderReady={
       orderId:userOrderMenuId,
-      foodtruckId:foodtruckId
+      foodtruckId:foodtruckId,
+      foodtruckName:name,
+      userId:userId
     }
     return new Promise((resolve, reject)=>{
       this.communication.request<resOrderReady>(reqUrl.orderCall, req, true)
