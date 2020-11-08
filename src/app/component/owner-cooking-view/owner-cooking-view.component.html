@@ -2,7 +2,7 @@
 <ion-card class="front-card" [class.back-card]="!isFront()">
   <ion-card-content class="food-card">
       
-  <ion-button class="call" (click)="calltheConsumer()" > 완료 </ion-button>
+  <ion-button class="call" (click)="calltheConsumer(orderNo)" > 완료 </ion-button>
       <div class="number-text">{{orderNo}}번</div>
       <ion-list >
         <ion-item *ngFor="let orderedMenu of orderedMenuList">

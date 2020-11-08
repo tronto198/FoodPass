@@ -1,11 +1,11 @@
 import { OrderData } from 'src/app/data/order';
-import { OrderWatingData } from 'src/app/data/order-wating';
+import { OrderWaitingData } from 'src/app/data/order-wating';
 
-export interface reqOrderWating {
+export interface reqOrderWaiting {
    userId:number
 }
 
-export interface resOrderWating {
-   orderData:OrderData[]
-   //orderWatingList:OrderWatingData[]
+export interface resOrderWaiting {
+   //orderData:OrderData[]
+   orderWaitingList:OrderWaitingData[]
 }

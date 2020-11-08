@@ -1,16 +1,16 @@
 <ion-card class="front-card" [class.back-card]="!isFront()" expand="full">
     <ion-card-content>
-      <div *ngIf="isFront()" (click)="toggleFront()">
+      <ion-item *ngIf="isFront()" (click)="toggleFront()">
         <!-- <comp-ft-view foodtruckId={{foodtruckId}}></comp-ft-view> -->
         <!-- <ion-icon name="menu"></ion-icon> -->
         <ion-label> <h2>{{name}}</h2> </ion-label>
         <!-- <comp-ft-img slot="start" class="img" foodtruckId={{foodtruckId}}></comp-ft-img> -->
         <div class="number-text">{{watingNum}}번</div>
       
-      </div>
+      </ion-item>
 
-      <div *ngIf="!isFront()" (click)="toggleFront()" >
-        <ion-list >
+ 
+        <ion-item *ngIf="!isFront()" (click)="toggleFront()" >
             <!-- <comp-waiting-item></comp-waiting-item> -->
     
             <ion-item *ngFor="let ordered of waitingOrder.orderedMenu" >
@@ -18,8 +18,8 @@
               <ion-label>{{ordered.optioninfo.name}}</ion-label>
               <ion-label>{{ordered.amount}}</ion-label>
             </ion-item>                                                                                                                                                                                                                                                                                                                    
-          </ion-list>
-        </div>
+          </ion-item>
+       
         <!-- <div *ngIf="!isSMapLooking()" >지도 </div>
         <ion-button color="medium" (click)="toggleSMap()">임시로 지도 표시 버튼</ion-button> -->
     <div class="total-price">총 {{price}} 원</div>

@@ -1,11 +1,13 @@
-export interface OrderWatingData {
-    id: number
-    userId:number
-    foodtruckId:number
-    orderDateTime:string
-    price:number
-    otherRequest:string
-    isReceved:boolean
-    orderNumber:number
-    finishedTime:String
+import { BasketOrderedMenu } from './basket-ordered-menu';
+import { FoodtruckData } from './foodtruck';
+import { WaitingData } from './waiting';
+
+export interface OrderWaitingData {
+    id: number;
+    foodtruckId?:number;
+    foodtruckInfo?: FoodtruckData;
+    orderedMenu?: BasketOrderedMenu[];
+    price: number;
+    orderNo?: number;
+    waiting?: WaitingData;
 }
