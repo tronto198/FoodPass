@@ -3,7 +3,7 @@ const express = require('express')
 const app = express.Router();
 const path = require('path');
 const db=new (require('../Database_Connecter'))(path.join(__dirname,'../db_configure.json'));
-
+const request = require('request');
 
 //function
 function sendResult(res, json) {
@@ -96,14 +96,48 @@ app.post('/waiting', (req, res) => {
         sendError(err3, { description: '' })
       })
 
-      sendResult(res, data);
+      
     })
-    
+    sendResult(res, data);
   })
 
 })
 
 //푸드트럭 주문 준비 다 돼서 손님 호출
+
+let reqOptions = {
+  url: "https://fcm.googleapis.com/fcm/send",
+  method: 'POST',
+  headers: {
+    "Authorization": "key=AAAAqAZx8DM:APA91bHrlqNpGI0u6EWzDEAgCyOb4teElDbqjTpY5aOMJAsgdOoI6viEP4pUO18qXdpp3DCSIlwndF9fA8mB020YagM8FqR0b_EjjsxL_pMu5cQKXxWHe9RJWW5OEBTRaAA24RI1nuMb",
+    "Content-Type": "application/json"
+  },
+  body: {
+    "to": "eso2Isxg_D40bzGPHU--id:APA91bFukQFj6WkXID4A8D2rSJHNxREkyG0_7E8FwwRMA1w2vkjAAqrkfqUejVXFxUpK823hIUQcWqTLlwmRd8Y-1xAXquslK-M4x_dM2oMgHB8YufE6aklFbakbUeKE9SK90StM0Lut",
+    "priority": "high",
+    "notification": {
+      "body": "test1",
+      "title": "token tests",
+      "images": ""
+    },
+    "data" : {
+      "message" : "foreground",
+      "title" : "token testtestgs"
+    }
+  },
+  json: true
+}
+
+request.post(reqOptions, (err, res, body) =>{
+  // console.log(res);
+  if(err){
+    console.log('error!', err);
+  }
+  if(body){
+    console.log('body', body);
+  }
+});
+
 app.post('/ready', (req, res) => {
  
   let data = req.body.data;
@@ -112,6 +146,8 @@ app.post('/ready', (req, res) => {
   console.log(`order/ready`, foodtruckId, user_order_menu_id)
   const Sql = "update user_order_menu_tb set finished_time=current_timestamp where foodtruck_id=$1 and user_order_menu_id=$2  Returning user_order_menu_id, user_id, foodtruck_id, finished_time";
   const values = [foodtruckId, user_order_menu_id];
+
+
 
   db.query(Sql, values).then(res2 => {
     sendResult(res, res2);
@@ -222,7 +258,7 @@ async function order(req, res) {
     user_order_sql = user_order_sql.concat(` (${req.body.userId}, ${val.foodtruckId}, ${val.price})`);
       if (index > 0) {
         
-        relation_valid_sql = relation_valid_sql.concat(` or( user_id=${req.body.userId} and foodtruck_id=${val.foodtruckId})`);
+        relation_valid_sql = relation_valid_sql.concat(` or (user_id=${req.body.userId} and foodtruck_id=${val.foodtruckId})`);
         
       }
     })
@@ -270,6 +306,7 @@ async function order(req, res) {
 
     console.log('order insert : ' + user_order_sql);
     db.query(user_order_sql).then(user_order_val => {
+      console.log(`insert order db query: `,user_order_sql)
       let order_info_sql = "insert into order_tb(user_order_menu_id, menu_id, option_id, count) values"
      // console.log(`user_order_val:`, user_order_val)
       user_order_val.rows.forEach((val, index) => {
@@ -279,6 +316,9 @@ async function order(req, res) {
           order_info_sql = order_info_sql.concat(`,`);
         }
         orderList[index].orderedMenu.forEach((menuval, index2) => {
+          if(index2>0){
+            order_info_sql = order_info_sql.concat(`,`);
+          }
           
           order_info_sql = order_info_sql.concat(` (${val.id}, ${menuval.menuId}, ${menuval.optionId}, ${menuval.amount})`);
           
@@ -289,7 +329,7 @@ async function order(req, res) {
         data.orderList.push({ id: val.id, foodtruckId: orderList[index].foodtruckId });
       })
 
-     // console.log('orderInfo insert: ', order_info_sql);
+      console.log('orderInfo insert: ', order_info_sql);
       //console.log(order_info_sql)
       db.query(order_info_sql).then(() => {
         db.query('COMMIT').then(() => {
