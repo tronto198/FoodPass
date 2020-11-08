@@ -1,7 +1,8 @@
 //ListData
 const express=require('express')
 const app=express.Router();
-const db=new (require('../Database_Connecter'))('./main/FoodPassServer/db_configure.json');
+const path = require('path');
+const db=new (require('../Database_Connecter'))(path.join(__dirname,'../db_configure.json'));
 
 
 //function
@@ -33,7 +34,13 @@ app.post('/foodtruck',(req,res)=>{
     // console.log("connect ${location}");
     console.log(`get foodtruckList location: { lat: ${location_lat}, lng: ${location_lng} }`);
   
-    const listSql="select foodtruck_id, st_x(location) as x, st_y(location) as y, name, image, introduction, notice from foodtruck_tb where ST_DistanceSphere(location,ST_MakePoint($2, $1))<=500";
+    //const listSql="select foodtruck_id, st_x(location) as x, st_y(location) as y, name, image, introduction, notice from foodtruck_tb where ST_DistanceSphere(location,ST_MakePoint($2, $1))<=500";
+    const listSql=`select truck.foodtruck_id, truck.x, truck.y, truck.name, truck.image, truck.introduction, truck.notice, num_of_waiting as people, rating
+                  from statistics_tb inner join (select foodtruck_id, st_x(location) as x, st_y(location) as y, name, image, introduction, notice 
+                                                from foodtruck_tb 
+                                                where ST_DistanceSphere(location,ST_MakePoint($2, $1))<=500) truck 
+                                      on statistics_tb.foodtruck_id =truck.foodtruck_id
+                   order by foodtruck_id;`
     const values=[location_lat, location_lng];
   
      db.query(listSql,values).then(res2 =>{
@@ -44,7 +51,7 @@ app.post('/foodtruck',(req,res)=>{
       res2.rows.forEach(element => {
         let ftinfo = {
           id: element.foodtruck_id,
-          imgSrc: "http://3.34.192.233:8080/"+element.image,
+          imgSrc: "https://foodpass.tk/"+element.image,
           introduction: element.introduction,
           location:{
             lng:element.x,
@@ -52,6 +59,10 @@ app.post('/foodtruck',(req,res)=>{
           },
           name: element.name,
           notice: element.notice,
+          waiting:{
+            person: element.people,
+            time: element.people*7
+          }
           //origin_information: element.origin_information
         }
         data.foodtruckList.push(ftinfo);
@@ -98,7 +109,7 @@ app.post('/foodtruck',(req,res)=>{
            menuName: element.name,
            menuInformation: element.introduction,
            price: element.price,
-           imgsrc: "http://3.34.192.233:8080/"+element.image
+           imgsrc: "https://foodpass.tk/"+element.image
   
          }
          data.menuList.push(menuinfo);

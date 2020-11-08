@@ -2,7 +2,8 @@
 //infoData
 const express=require('express')
 const app=express.Router();
-const db=new (require('../Database_Connecter'))('./main/FoodPassServer/db_configure.json');
+const path = require('path');
+const db=new (require('../Database_Connecter'))(path.join(__dirname,'../db_configure.json'));
 
 
 //function
@@ -31,7 +32,7 @@ app.post('/foodtruck',(req,res)=>{
     const values=[foodtruck_id];
   
      db.query(foodtruckSql,values).then(res2=>{
-       //여기엔 메뉴리스트 붙일 예정
+   
        const foodtruck = res2.rows[0];
        let data={
            foodtruckData: {
@@ -42,24 +43,11 @@ app.post('/foodtruck',(req,res)=>{
                lat: foodtruck.y
              },
              name : foodtruck.name,
-             notice: foodtruck.notice
+             notice: foodtruck.notice,
+             imgSrc: "https://foodpass.tk/"+foodtruck.image,
+            
            }
-       };
-      
-      //  res2.rows.forEach(element => {
-      //   let ftinfo = {
-      //     id: element.foodtruck_id,
-      //     //imgSrc: element.image,
-      //     introduction: element.introduction,
-      //     location:{
-      //       lng:element.x,
-      //       lat:element.y
-      //     },
-      //     name: element.name,
-      //     notice: element.notice,
-      //     //origin_information: element.origin_information
-      //   }
-        // result.data.foodtruckList.push(ftinfo);
+       }; 
         sendResult(res, data);
       
      })
@@ -78,39 +66,56 @@ app.post('/foodtruck',(req,res)=>{
     let menu_id=data.menuId;
     console.log("connect ${foodtruck_id}, ${menu_id}");
   
-    const optionSql="select * from menu_tb where foodtruck_id=$1 and menu_id=$2";
+    const menuSql="select * from menu_tb where foodtruck_id=$1 and menu_id=$2";
     const values=[foodtruck_id, menu_id];
   
     db.query(menuSql,values).then(res2=>{
-      //여기에 옵션리스트도 곧 붙일 예정
+    
       let element = res2.rows[0];
       let data={
         menuData: {
-          menuId: element.menu_id,
+          id: element.menu_id,
           menuName: element.name,
           menuInformation: element.introduction,
           price: element.price,
-        }
-        
-        
-      };
-      // res2.rows.forEach(element=>{
-      //   let menuinfo={
-      //     menuId=element.menu_id,
-      //     menuName=element.name,
-      //     menuInformation=element.introduction,
-      //     price=element.price,
-      //     //imgsrc=element.image
-  
-      //   }
-      //   result.data.menuList.push(menuinfo);
-      // });
+          imgsrc:"https://foodpass.tk/"+element.image
+        }              
+      };    
       sendResult(res,data);
-    
    })
    .catch(err=>{
      console.log(err.stack)
      sendError(err, {description: ''});
    });
   });
+
+    //foodtruckId, menuId, optionId받으면 옵션 정보 리턴
+    app.post('/option',(req,res)=>{
+      let data=req.body.data;
+      let foodtruck_id=data.foodtruckId;
+      let menu_id=data.menuId;
+      let option_id=data.optionId;
+      console.log("connect ${foodtruck_id}, ${menu_id} ${option_id}");
+    
+      const optionSql="select * from option_tb where foodtruck_id=$1 and menu_id=$2 and option_id=$3";
+      const values=[foodtruck_id, menu_id, option_id];
+    
+      db.query(optionSql,values).then(res2=>{
+     
+        let element = res2.rows[0];
+        let data={
+          optionData: {
+            id: element.option_id,
+            name: element.name,
+            extraPrice: element.extra_price,
+          }              
+        };    
+        sendResult(res,data);
+     })
+     .catch(err=>{
+       console.log(err.stack)
+       sendError(err, {description: ''});
+     });
+    });
+
   module.exports=app;

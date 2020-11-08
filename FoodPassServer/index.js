@@ -2,7 +2,10 @@
 const express=require('express');
 const bodyParser=require('body-parser');
 const cors=require('cors');
-const port=8080 
+const port=443
+const path = require('path');
+const fs = require('fs');
+const HTTPS = require('https');;
 
 var compression=require('compression')
 var accountRouter=require('./routes/account')
@@ -43,6 +46,18 @@ app.use((err, req,res,next)=>{
 })
 
 //서버 열기
-app.listen(port, function(){
-  console.log(`server starting with ${port}`)
-});
+try {
+  const option = {
+    ca: fs.readFileSync('/etc/letsencrypt/live/foodpass.tk/fullchain.pem'),
+    key: fs.readFileSync(path.resolve(process.cwd(), '/etc/letsencrypt/live/foodpass.tk/privkey.pem'), 'utf8').toString(),
+    cert: fs.readFileSync(path.resolve(process.cwd(), '/etc/letsencrypt/live/foodpass.tk/cert.pem'), 'utf8').toString(),
+  };
+
+  HTTPS.createServer(option, app).listen(port, () => {
+    console.log(`[HTTPS] Soda Server is started on port ${port}`);
+  });
+} catch (error) {
+  console.error('[HTTPS] HTTPS 오류가 발생하였습니다. HTTPS 서버는 실행되지 않습니다.');
+  console.error(error);
+}
+

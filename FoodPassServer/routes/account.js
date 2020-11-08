@@ -1,7 +1,8 @@
 //account
 const express=require('express')
 const app=express.Router();
-const db=new (require('../Database_Connecter'))('./main/FoodPassServer/db_configure.json');
+const path = require('path');
+const db=new (require('../Database_Connecter'))(path.join(__dirname,'../db_configure.json'));
 
 //function
 function sendResult(res, json){
@@ -43,7 +44,7 @@ app.get('/create',(req,res)=>{
   //pushToken
   app.post('/pushToken',(req,res)=>{
     let data=req.body.data;
-    let userId = data.userId;//------>req.body.userId 수정함.
+    let userId = req.body.userId;//------>req.body.userId 수정함.
     let push_token=data.token;
   
     const Sql = "update user_tb set push_token=$1 where user_id=$2";
