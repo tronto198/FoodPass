@@ -105,57 +105,77 @@ app.post('/waiting', (req, res) => {
 
 //푸드트럭 주문 준비 다 돼서 손님 호출
 
-let reqOptions = {
-  url: "https://fcm.googleapis.com/fcm/send",
-  method: 'POST',
-  headers: {
-    "Authorization": "key=AAAAqAZx8DM:APA91bHrlqNpGI0u6EWzDEAgCyOb4teElDbqjTpY5aOMJAsgdOoI6viEP4pUO18qXdpp3DCSIlwndF9fA8mB020YagM8FqR0b_EjjsxL_pMu5cQKXxWHe9RJWW5OEBTRaAA24RI1nuMb",
-    "Content-Type": "application/json"
-  },
-  body: {
-    "to": "eso2Isxg_D40bzGPHU--id:APA91bFukQFj6WkXID4A8D2rSJHNxREkyG0_7E8FwwRMA1w2vkjAAqrkfqUejVXFxUpK823hIUQcWqTLlwmRd8Y-1xAXquslK-M4x_dM2oMgHB8YufE6aklFbakbUeKE9SK90StM0Lut",
-    "priority": "high",
-    "notification": {
-      "body": "test1",
-      "title": "token tests",
-      "images": ""
-    },
-    "data" : {
-      "message" : "foreground",
-      "title" : "token testtestgs"
-    }
-  },
-  json: true
-}
 
-request.post(reqOptions, (err, res, body) =>{
-  // console.log(res);
-  if(err){
-    console.log('error!', err);
-  }
-  if(body){
-    console.log('body', body);
-  }
-});
+
+
 
 app.post('/ready', (req, res) => {
  
   let data = req.body.data;
   let foodtruckId = data.foodtruckId;
   let user_order_menu_id = data.orderId;
-  console.log(`order/ready`, foodtruckId, user_order_menu_id)
-  const Sql = "update user_order_menu_tb set finished_time=current_timestamp where foodtruck_id=$1 and user_order_menu_id=$2  Returning user_order_menu_id, user_id, foodtruck_id, finished_time";
-  const values = [foodtruckId, user_order_menu_id];
+  let foodtruckName=data.foodtruckName;
+  let userId=data.userId;
+  console.log(`order/ready`, foodtruckId, user_order_menu_id, foodtruckName, userId)
+  const Sql = `update user_order_menu_tb set finished_time=current_timestamp where foodtruck_id=${foodtruckId} and user_order_menu_id=${user_order_menu_id}  Returning user_order_menu_id, user_id, foodtruck_id, finished_time;`;
+  const sql2=`select push_token from user_tb where user_id=${userId};`
+  //const values = [foodtruckId, user_order_menu_id, userId];
 
 
+ 
 
-  db.query(Sql, values).then(res2 => {
-    sendResult(res, res2);
+  db.query(Sql+sql2).then(res2 => {
+    let token;
+    res2[1].rows.forEach(val=>{
+        token=val.push_token;
+    });
+  //  console.log(res2);
+    console.log(`hello token: `,token)
+    //console.log(res2[1].rows)
+    let reqOptions = {
+      url: "https://fcm.googleapis.com/fcm/send",
+      method: 'POST',
+      headers: {
+        "Authorization": "key=AAAAqAZx8DM:APA91bHrlqNpGI0u6EWzDEAgCyOb4teElDbqjTpY5aOMJAsgdOoI6viEP4pUO18qXdpp3DCSIlwndF9fA8mB020YagM8FqR0b_EjjsxL_pMu5cQKXxWHe9RJWW5OEBTRaAA24RI1nuMb",
+        "Content-Type": "application/json"
+      },
+      body: {
+        "to": `${token}`,
+        "priority": "high",
+        "notification": {
+          "body": "조리가 완료됐습니다. 수령해주세요!",
+          "title": `${foodtruckName} 푸드트럭 주문번호: ${user_order_menu_id} 번 손님`,
+          "images": ""
+        },
+        "data" : {
+          "message" : "foreground",
+          "title" : "token testtestgs"
+        }
+      },
+      json: true
+    }
+  
+  
+    request.post(reqOptions, (error, res5, bodym) =>{
+      // console.log(res);
+      if(error){
+        console.log('error!', error);
+      }
+      if(bodym){
+       console.log('body', bodym);
+      }
+    });
+
+
+    sendResult(res, res2[0]);
   })
     .catch(err => {
       console.log(err.stack)
       sendError(err, { description: '' })
     })
+
+
+
 })
 
 
