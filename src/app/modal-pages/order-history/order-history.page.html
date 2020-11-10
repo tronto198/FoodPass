@@ -12,7 +12,7 @@
 <ion-content>  
 
   <ion-card *ngFor="let od of orderHistoryData" class="orderHistory">
-      <comp-ft-orderhistory-view id={{od.id}}></comp-ft-orderhistory-view>
+      <comp-ft-orderhistory-view [ohData]="od"></comp-ft-orderhistory-view>
   </ion-card>
 
 

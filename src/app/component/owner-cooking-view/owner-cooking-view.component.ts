@@ -6,6 +6,7 @@ import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctr
 import { WaitingDataCtrl } from 'src/app/services/data-ctrl/waiting.data.ctrl';
 import { MenuDataProvider } from 'src/app/services/data-provider/menu.data.provider';
 import { OptionDataProvider } from 'src/app/services/data-provider/option.data.provider';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import {OrderedMenuData} from "../../data/ordered-menu";
 
 @Component({
@@ -20,13 +21,15 @@ export class OwnerCookingViewComponent implements OnInit {
   front : boolean;
   constructor(
     private dataCtrl: FoodtruckDataCtrl,
-    private watingCtrl:WaitingDataCtrl
+    private watingCtrl:WaitingDataCtrl,
+    private sharedData: SharedDataService,
 
     ) { }
     ngOnInit() {
       this.front =true;
       this.confirmData();
       //this.menuList=[1,2,3];
+      
 
       console.log(this.orderConfirm)
     }
@@ -51,7 +54,9 @@ export class OwnerCookingViewComponent implements OnInit {
     }
 
 
-
+    get userId():number{
+      return this.sharedData.account.myAccountId
+    }
   
 
   toggleFront(){
@@ -63,9 +68,9 @@ export class OwnerCookingViewComponent implements OnInit {
   }
 
   calltheConsumer(orderNo:number){
-    alert("손님을 호출했습니다!");
+    alert(`손님을 호출했습니다!  ${this.foodtruckInfo.name}, ${this.userId}`);
     //여기에 뭘해야하지...?
-    this.watingCtrl.orderReady(orderNo, this.foodtruckId)
+    this.watingCtrl.orderReady(orderNo, this.foodtruckId, this.foodtruckInfo.name, this.userId)
 
   }
 

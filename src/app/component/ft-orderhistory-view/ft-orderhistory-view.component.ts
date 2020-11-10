@@ -9,23 +9,23 @@ import { HistoryDataCtrl } from 'src/app/services/data-ctrl/history.data.ctrl';
 })
 export class FtOrderhistoryViewComponent implements OnInit {
 
-  @Input() id:number;
+  @Input() ohData:OrderHistoryData;
   constructor(private dataCtrl:HistoryDataCtrl ) { }
   ngOnInit() {}
 
-  get orderHistoryData():OrderHistoryData{
+  /*get orderHistoryData():OrderHistoryData{
     return this.dataCtrl.getItem(this.id)
-  }
+  }*/
 
   get foodtruckName():string{
-    return this.orderHistoryData.foodtruckInfo.name
+    return this.ohData.foodtruckInfo.name
   }
 
   get foodtruckInform():string{
-    return this.orderHistoryData.foodtruckInfo.introduction
+    return this.ohData.foodtruckInfo.introduction
   }
   get price():number{
-    return this.orderHistoryData.price
+    return this.ohData.price
   }
 
 }

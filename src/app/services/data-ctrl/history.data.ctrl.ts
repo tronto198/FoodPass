@@ -51,8 +51,10 @@ export class HistoryDataCtrl {
       this.communication.request<resOrderHistory>(reqUrl.orderHistory, req, false)
       .then(val =>{
         console.log("got history");
-        this.orderhistoryList = val.historyList;
-
+      this.orderhistoryList=val.historyList;
+      
+        //this.orderhistoryList = val.historyList;
+       // console.log(`promise orderHistoryList: ${this.orderhistoryList}`)
         if(this.orderhistoryList!=null){
           resolve(this.orderhistoryList)
         }else{

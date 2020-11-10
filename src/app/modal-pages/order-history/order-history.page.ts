@@ -13,19 +13,21 @@ import { HistoryDataCtrl } from 'src/app/services/data-ctrl/history.data.ctrl';
 export class OrderHistoryPage implements OnInit {
 
   @Input() userId:number;
+  orderHistoryDataList:OrderHistoryData[]=[];
   constructor(
     private historyCtrl: HistoryDataCtrl,
   ) { }
   ngOnInit() {
 
     //todo histroyProvider로 분리 
-    this.historyCtrl.getHistory(this.userId).then((val)=>{
-      this.historyCtrl.orderhistoryList = val
+    this.historyCtrl.getHistory(this.userId).then(()=>{
+      this.orderHistoryDataList=this.historyCtrl.orderhistoryList
     })
   }
 
   get orderHistoryData(){
-    return this.historyCtrl.orderhistoryList
+    //console.log(`orderHistoryDataList: `, this.orderHistoryDataList)
+    return this.orderHistoryDataList
   }
  
   get orderList() : OrderHistoryData[]{
