@@ -100,7 +100,7 @@ app.get('/create',(req,res)=>{
           }
         })
       })
-  
+      console.log(data.historyList)
       sendResult(res, data);
     })
   
