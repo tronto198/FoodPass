@@ -28,20 +28,24 @@ export class FoodtruckDataCtrl {
         if(ft != undefined){
             return ft.data as FoodtruckData
         } else {
-            const answer = { ...DefaultValue.foodtruckData, id: id }
-            this.setFoodtruckData(answer)
-            this.ftProvider.getItem(id).then(r =>{
-                answer.rating = r.rating
-                answer.waiting = r.waiting
-                answer.localData = r.localData
-                answer.location = r.location
-                answer.imgSrc = r.imgSrc
-                answer.notice = r.notice
-                answer.introduction = r.introduction
-                answer.name = r.name
-            })
-            return answer
+            return this.foodtruckAlternative(id)
         }
+    }
+
+    private foodtruckAlternative(foodtruckId: number) : FoodtruckData {
+        let answer = { ...DefaultValue.foodtruckData, id: foodtruckId }
+        this.setFoodtruckData(answer)
+        this.ftProvider.getItem(foodtruckId).then(r =>{
+            answer.rating = r.rating
+            answer.waiting = r.waiting
+            answer.localData = r.localData
+            answer.location = r.location
+            answer.imgSrc = r.imgSrc
+            answer.notice = r.notice
+            answer.introduction = r.introduction
+            answer.name = r.name
+        })
+        return answer
     }
 
     setFoodtruckData(...data: FoodtruckData[]){
@@ -67,6 +71,7 @@ export class FoodtruckDataCtrl {
         let ft = this.dataStorage.getData(foodtruckId)
       
         if(ft == null){
+            this.foodtruckAlternative(foodtruckId)
             return this.menuAlternative(foodtruckId, id)
         }
         let menu = ft.getData(id)
@@ -102,25 +107,38 @@ export class FoodtruckDataCtrl {
             return [ DefaultValue.optionData ];
         }
         let menu = ft.getData(menuId)
-        return menu ? menu.toArray() : [DefaultValue.optionData];
+        return menu ? menu.toArray() : [];
     }
 
 
     findOptionById(foodtruckId: number, menuId: number, id: number) : OptionData {
         let ft = this.dataStorage.getData(foodtruckId)
         if(ft == null){
-            console.log("ft null")
-            return DefaultValue.optionData
+            this.foodtruckAlternative(foodtruckId)
+            this.menuAlternative(foodtruckId, menuId)
+            return this.optionAlternative(foodtruckId, menuId, id)
         }
         let menu = ft.getData(menuId)
         if(menu == null) {
-            console.log("menu null")
-            return DefaultValue.optionData
+            this.menuAlternative(foodtruckId, menuId)
+            return this.optionAlternative(foodtruckId, menuId, id)
         }
 
         let option = menu.getData(id)
-        return option ? option : DefaultValue.optionData
-        
+        return option ? option : this.optionAlternative(foodtruckId, menuId, id)
+
+    }
+
+    private optionAlternative(foodtruckId: number, menuId: number, id: number) : OptionData {
+        let mock : OptionData = { ...DefaultValue.optionData, id: id }
+        this.setOptionData(foodtruckId, menuId, [mock])
+
+        this.optionProvider.getItem(foodtruckId, menuId, id).then(r =>{
+            mock.name = r.name
+            mock.extraPrice = r.extraPrice
+        })
+
+        return mock
     }
 
     setOptionData(foodtruckId: number, menuId: number, data: OptionData[]){
