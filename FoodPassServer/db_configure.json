@@ -1,6 +1,6 @@
 {
   "user":"postgres",
-  "host":"3.34.192.233",
+  "host":"3.34.145.2",
   "database":"foodpass",
   "password":"postgres",
   "port":5432
