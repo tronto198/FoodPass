@@ -1,6 +1,7 @@
 const express=require('express')
 const app=express.Router();
-const db=new (require('../Database_Connecter'))('./main/FoodPassServer/db_configure.json');
+const path = require('path');
+const db=new (require('../Database_Connecter'))(path.join(__dirname,'../db_configure.json'));
 
 
 //function
