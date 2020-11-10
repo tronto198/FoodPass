@@ -36,7 +36,6 @@ export class SharedAccount {
             this.localStorage.get(StorageID).then(val =>{
                 if(val != undefined){
                     this.myAccountId = val;
-                    //this.myAccountId=4026
                     console.log(`local id : ${this.myAccountId}`);
                     resolve();
                 }
