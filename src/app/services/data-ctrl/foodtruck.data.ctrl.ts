@@ -142,7 +142,6 @@ export class FoodtruckDataCtrl {
     }
 
     setOptionData(foodtruckId: number, menuId: number, data: OptionData[]){
-        console.log(`setOptionData`)
         data.forEach((val)=>{
             this.dataStorage.getData(foodtruckId).getData(menuId).setData(val);
         })

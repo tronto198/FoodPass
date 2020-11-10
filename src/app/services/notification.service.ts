@@ -37,7 +37,6 @@ export class NotificationService {
       (token) => {
           console.log('Permission granted! Save to the server!', token);
           this.token = token;
-          // alert('permission granted');
           if(pipe){
             pipe(token);
           }
@@ -45,7 +44,7 @@ export class NotificationService {
       },
       (err) => {
           console.error(err);
-          // alert('permission denied');
+          alert('권한 요청에 실패했습니다.');
           if(error){
             error(err);
           }
@@ -56,8 +55,6 @@ export class NotificationService {
   foregroundMessaging(pipe? : (message : any) => void){
       this.afMessaging.messages.subscribe((msg : foregroundFCM) =>{
           console.log(msg);
-          // alert(message);
-        //   let data = msg.data;
           if(pipe){
               pipe(msg);
           }
