@@ -16,7 +16,7 @@ import { MenuInfoPage } from './menu-info/menu-info.page';
   styleUrls: ['./foodtruck-info.page.scss'],
 })
 export class FoodtruckInfoPage implements OnInit  {
-
+  b:boolean;
   foodtruckId: number;
   
   constructor(
@@ -29,6 +29,7 @@ export class FoodtruckInfoPage implements OnInit  {
   ) { }
 
   async ngOnInit() {
+    this.b=false;
     await this.getRoutingData();
     this.menuProvider.getListByFoodtruckId(this.foodtruckId).then(list=>{
 
