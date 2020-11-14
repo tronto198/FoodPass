@@ -8,14 +8,15 @@ import { ControlledData } from 'src/app/services/data-ctrl/data.interface';
 
 export class BasketOrder extends CheckboxValue implements OrderData, ControlledData{
     id: number;
-    foodtruckinfo: FoodtruckData;
+    foodtruckInfo: FoodtruckData;
     orderedMenu: BasketOrderedMenu[] = [];
+    
 
     constructor(parent: CheckboxValue, orderData: OrderData = null){
         super(parent);
         if(orderData != null){
             this.id = orderData.id;
-            this.foodtruckinfo = orderData.foodtruckinfo;
+            this.foodtruckInfo = orderData.foodtruckInfo;
             this.orderedMenu = [];
             orderData.orderedMenu.forEach((val, index, arr) =>{
                 this.orderedMenu.push(new BasketOrderedMenu(this, val));
@@ -56,7 +57,7 @@ export class BasketOrder extends CheckboxValue implements OrderData, ControlledD
 
         const extractOrder = new BasketOrder(this.parent);
         extractOrder.orderedMenu = extractMember;
-        extractOrder.foodtruckinfo = this.foodtruckinfo;
+        extractOrder.foodtruckInfo = this.foodtruckInfo;
 
         return [remainThis, extractOrder];
     }
@@ -68,7 +69,7 @@ export class BasketOrder extends CheckboxValue implements OrderData, ControlledD
         })
         let orderData : OrderData = {
             id : this.id,
-            foodtruckinfo: this.foodtruckinfo,
+            foodtruckInfo: this.foodtruckInfo,
             orderedMenu: orderedMenuData,
             price: this.price
         };

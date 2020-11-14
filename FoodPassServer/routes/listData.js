@@ -70,7 +70,7 @@ app.post('/foodtruck',(req,res)=>{
       sendResult(res, data);
      })
      .catch(err=>{
-      console.log(err.stack)
+      console.log(`At server listData.js :foodtruck list error:`+err.stack)
       sendError(err, {description: ''});
      });
     });

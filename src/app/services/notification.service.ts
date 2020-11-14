@@ -68,6 +68,7 @@ export class NotificationService {
   sendTokenToServer(){
     let req : reqPushToken = {
       token: this.token
+      
     }
     this.dataCtrl.request<resPushToken>(reqUrl.pushToken, req, false)
     .then(v =>{

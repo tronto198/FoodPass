@@ -9,15 +9,21 @@
 
 <ion-content>
 
-  <p *ngIf="owner==true; then ownerView else userView"></p>
-  <ng-template #ownerView>
-    <ng-container *ngFor="let od of orderHistoryData">
-      <comp-ft-waiting-view></comp-ft-waiting-view>
- </ng-container>
+  <p *ngIf="isOpened==true; then openView else closeView"></p>
+  <ng-template #openView>
+    <ion-badge color="danger"  justify-content-center align-items-center style="width: 100%"  expand="full" >
+      <ion-label>내 푸드트럭 주문</ion-label>
+    </ion-badge>
+    <!--/<ng-container *ngFor="let cooking of cookingList">
+      <comp-owner-cooking-view orderConfirm={{cooking}} menuinfo={{cooking.orderedMenu.menuinfo}}  optioninfo={{cooking.orderedMenu.orderinfo}} amount={{cooking.orderedMenu.amount}} ></comp-owner-cooking-view>
+    </ng-container>-->
+    <app-cooking-order-list></app-cooking-order-list>
   </ng-template>
-    <ng-template #userView>
-      <ng-container *ngFor="let od of orderHistoryData">
-      <comp-ft-waiting-view></comp-ft-waiting-view>
- </ng-container>
+
+  <ng-template #closeView>
+      <order-waiting-order-list ></order-waiting-order-list>
+    <!-- <ng-container *ngFor="let ol of orderList">
+      <comp-ft-waiting-view></comp-ft-waiting-view> -->
+ <!-- </ng-container> -->
   </ng-template>
 </ion-content>

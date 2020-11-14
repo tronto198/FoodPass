@@ -10,17 +10,36 @@
   
 <ion-content>
   <!-- 맵 -->
-  <div class="fullscreen" id="map"></div>
+  <!-- <div class="fullscreen" id="map"></div> -->
+  <home-map></home-map>
+
+  <!-- 내 푸드트럭 운영 버튼 -->
+  <p *ngIf="isOwner==true; then executiveView else customerView"></p>
+  <ng-template #customerView>
+  </ng-template>
+  <ng-template #executiveView>
+    <p *ngIf="isOpened==true; then openView else closeView"></p>
+    <ng-template #openView>
+      <ion-button class="aList aButton open-ft" (click)="toggleOpen()">
+        {{openedFoodtruckText}}
+      </ion-button>
+    </ng-template> 
+
+    <ng-template #closeView>
+      <ion-button class="aList aButton close-ft" (click)="toggleOpen()">
+        {{openedFoodtruckText}}
+      </ion-button>
+    </ng-template>
+  </ng-template>
+  
+
+
+ 
 
   <!-- 푸드트럭 리스트 버튼 -->
   <ion-button class="foodtruckList mapButton" (click)="showFoodtruckList()">
     <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
   </ion-button>
 
-  <!-- 현재 위치 버튼 -->
-  <ion-button [ngClass]="{'watching':isWatching}" class="location mapButton"
-  (click)="watchPosition()">
-    <ion-icon slot="icon-only" name="locate-outline"></ion-icon>
-  </ion-button>
 
 </ion-content>

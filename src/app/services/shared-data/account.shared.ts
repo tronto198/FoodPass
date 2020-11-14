@@ -36,7 +36,7 @@ export class SharedAccount {
             this.localStorage.get(StorageID).then(val =>{
                 if(val != undefined){
                     this.myAccountId = val;
-                    console.log(`local id : ${val}`);
+                    console.log(`local id : ${this.myAccountId}`);
                     resolve();
                 }
                 else{
@@ -53,10 +53,11 @@ export class SharedAccount {
 
     private createId(resolve, reject) : void {
         let url = environment.host.concat(reqUrl.newAccount);
-        this.httpClient.post(url, {}, httpOption).subscribe(data  =>{
+        this.httpClient.get(url, httpOption).subscribe(data  =>{
             let d = data as httpResponse;
             if(d.result){
                 this.myAccountId = (d.data as resNewAccount).accountId;
+               //this.myAccountId=4026
                 console.log(`id created : ${this.myAccountId}` );
                 this.localStorage.set(StorageID, this.myAccountId).then(val =>{
                     console.log("id saved");

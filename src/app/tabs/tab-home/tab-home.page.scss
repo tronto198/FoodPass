@@ -51,6 +51,21 @@
     height: 32px;
 }
 
+.aList {
+    position: absolute;
+    top: $searchBox-height + $top-space;
+    left: 50%; 
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.aButton {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    width: 160px;
+    height: 32px;
+}
+
 .watching {
     --background: #3880ff;
     --color: white;
@@ -71,4 +86,27 @@
     // max-height: $searchResult-hieght;
     background: white;
     z-index: 10;
+}
+
+
+
+.total-price{
+    text-align: right;
+    font-size: 1.3em; 
+}
+
+.bt-count{
+    padding: 0em 1.0em;
+}
+
+.number-text{
+    font-size: 24px;
+}
+
+.close-ft{
+    --background : green;
+}
+
+.open-ft{
+    --background : purple;
 }

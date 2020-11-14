@@ -17,6 +17,7 @@ export class FtMenuImgComponent implements OnInit {
       return this.dataCtrl.findMenuById(this.foodtruckId, this.menuId)
     }
     get imgSrc():string{
+     
       return this.menuInfo.imgsrc ? this.menuInfo.imgsrc: DefaultValue.MenuImgSrc
     }
 

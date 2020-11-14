@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedDataModule } from '../shared-data/shared-data.module';
 import { FoodtruckDataProvider } from './foodtruck.data.provider';
 import { MenuDataProvider } from './menu.data.provider';
+import { OptionDataProvider } from './option.data.provider';
 
 
 
@@ -14,7 +15,8 @@ import { MenuDataProvider } from './menu.data.provider';
   ],
   providers: [
     FoodtruckDataProvider,
-    MenuDataProvider
+    MenuDataProvider,
+    OptionDataProvider,
   ]
 })
 export class DataProviderModule { }

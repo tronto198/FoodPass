@@ -5,6 +5,7 @@ import { BasketDataCtrl } from './basket.data.ctrl';
 import { HistoryDataCtrl } from './history.data.ctrl';
 import { WaitingDataCtrl } from './waiting.data.ctrl';
 import { LocationDataCtrl } from './location.data.ctrl';
+import { ConfirmDataCtrl } from './confirm.data.ctrl';
 
 @NgModule({
 //   declarations: [],
@@ -15,11 +16,12 @@ import { LocationDataCtrl } from './location.data.ctrl';
 //   ],
   providers: [
     FoodtruckDataCtrl,
-  
+    ConfirmDataCtrl,
     BasketDataCtrl,
     HistoryDataCtrl,
     WaitingDataCtrl,
     LocationDataCtrl,
+    BasketDataCtrl,
   ]
 })
 export class DataCtrlModule { }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes, Router } from '@angular/router';
-import { FoodtruckListPage } from './modal-pages/foodtruck-list/foodtruck-list.page';
-import { FoodtruckListPageModule } from './modal-pages/foodtruck-list/foodtruck-list.module';
+import { FoodtruckListPage } from './route-pages/foodtruck-list/foodtruck-list.page';
 
 const routes: Routes = [
   {
@@ -10,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'foodtruck',
-    loadChildren: () => import('./modal-pages/foodtruck/foodtruck.module').then(m => m.FoodtruckPageModule)
+    loadChildren: () => import('./route-pages/foodtruck-info/foodtruck-info.module').then(m => m.FoodtruckInfoPageModule)
   },
   {
     path: 'history',
@@ -23,8 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'basket',
-    loadChildren: () => import('./modal-pages/basket/basket.module').then( m => m.BasketPageModule)
-  },  {
+    loadChildren: () => import('./route-pages/basket/basket.module').then( m => m.BasketPageModule)
+  },
+  {
     path: 'register-foodtruck',
     loadChildren: () => import('./modal-pages/register-foodtruck/register-foodtruck.module').then( m => m.RegisterFoodtruckPageModule)
   }

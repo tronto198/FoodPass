@@ -5,7 +5,7 @@ export interface MenuData extends ControlledData{
     id:number;
     menuName:string;
     menuInformation?:string;
-    price?:number;
+    price:number;
 
     imgsrc?:string;
 }

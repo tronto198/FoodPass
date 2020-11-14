@@ -1,178 +1,104 @@
-// import { Injectable } from '@angular/core';
-// import { DataStorage } from './data.storage';
-// import { BasketOrder } from 'src/app/data/basket-data/basket-order';
 
-// @Injectable()
-// export class BasketDataCtrl {
-//     private dataStorage = new DataStorage<BasketOrder>();
-
-//     getBasketList() : BasketOrder[] {
-//         return this.dataStorage.toArray();
-//     }
-
-//     findBasketById(id: number) : BasketOrder{
-//         return this.dataStorage.getData(id);
-//     }
-
-//     setBasketData(...data: BasketOrder[]){
-//         data.forEach((val)=>{
-//             this.dataStorage.setData(val);
-//         })
-        
-//     }
-    
-// }
-import { FoodtruckData } from 'src/app/data/foodtruck';
-import { MenuData } from 'src/app/data/menu';
-import { OptionData } from 'src/app/data/option';
-import { CheckboxValue } from 'src/app/data/basket-data/checkbox-value';
-import { BasketOrder } from 'src/app/data/basket-data/basket-order';
-import { BasketOrderedMenu } from 'src/app/data/basket-data/basket-ordered-menu';
-import { OrderData } from 'src/app/data/order';
-import { orderRequest, reqOrder, resOrder } from 'src/app/services/communication/reqType/order/order.req';
-import { reqUrl } from 'src/app/services/communication/reqType/req-url.enum';
-import { CommunicationService } from 'src/app/services/communication/communication.service';
 import { Injectable } from '@angular/core';
+import { FoodtruckDataCtrl } from './foodtruck.data.ctrl';
+import { DataStorage } from './data.storage';
+import { BasketOrder } from 'src/app/data/basket-order';
+import { BasketOrderedMenu } from 'src/app/data/basket-ordered-menu';
+import { OrderData } from 'src/app/data/order';
+import { orderRequest, reqOrder, resOrder } from '../communication/reqType/order/order.req';
+import { reqUrl } from '../communication/reqType/req-url.enum';
+import { CommunicationService } from '../communication/communication.service';
 
 @Injectable()
-export class BasketDataCtrl extends CheckboxValue{
-  basket : BasketOrder[] = [];
-
-  constructor(private dataCtrl : CommunicationService) {
-    super();
-  }
-
-  get items(){
-    return this.basket;
-  }
-
-  makeTestdata(){
-    let ftId = Math.floor(Math.random() * 1000);
-    let menucount = Math.floor(Math.random() * 3) + 1;
-
-    for(let i = 0; i < menucount; i++){
-      let menuId = Math.floor(Math.random() * 1000);
-      let price = Math.floor(Math.random() * 80) * 100;
-      let ftdata : FoodtruckData = {
-        id: ftId,
-        name: ftId  + " foodtruck",
-        introduction: "test",
-        notice: ""
-      }
-        ftdata.waiting = {person: 3, time: 5};
-      let menudata : MenuData ={
-        id: menuId,
-        menuName: menuId + " menu",
-        price: price
-      };
-      let optiondata : OptionData = {
-        id: ftId + menuId,
-        name: ftId + menuId + " option",
-        extraPrice: 500
-      };
-  
-      let amount = Math.floor(Math.random() * 2) + 1;
-      this.push(ftdata, menudata, optiondata, amount);
-    }
-  }
-
-  push(foodtruck : FoodtruckData, menu: MenuData, option: OptionData, amount: number = 1){
-
-    const existIndex : number = this.basket.findIndex((value, index, obj) =>{
-      return value.foodtruckinfo.id == foodtruck.id;
-    })
-
-    if(existIndex == -1){
-      //푸드트럭 첫 주문
-      
-      let newOrder : BasketOrder = new BasketOrder(this);
-
-      let newOrderedMenu : BasketOrderedMenu = new BasketOrderedMenu(newOrder);
-      newOrderedMenu.menuinfo = menu;
-      newOrderedMenu.optioninfo = option;
-      newOrderedMenu.amount = amount;
+export class BasketDataCtrl {
+  orderedFoodtruckIdList : number[] = [];
+  private dataStorage = new DataStorage<BasketOrder>();
+ // private orderNumList:Array<number>=new Array<number>(999);
+ 
+  constructor(
+    private dataCtrl: FoodtruckDataCtrl,
+    private comm: CommunicationService
+  ) {}
 
 
-      newOrder.foodtruckinfo = foodtruck;
-      newOrder.orderedMenu = [newOrderedMenu];
+  push(foodtruckId: number, menuId: number, optionId: number, amount: number){
 
-      this.basket.push(newOrder);
-    }
-    else{
-      //이미 같은 푸드트럭의 주문이 있음
-      let existOrder : BasketOrder = this.basket[existIndex];
-      let newOrderedMenu : BasketOrderedMenu = new BasketOrderedMenu(existOrder);
-      newOrderedMenu.menuinfo = menu;
-      newOrderedMenu.optioninfo = option;
-      newOrderedMenu.amount = amount;
-
-      existOrder.orderedMenu.push(newOrderedMenu);
+    let orderedMenu : BasketOrderedMenu = {
+      menuId: menuId,
+      optionId: optionId,
+      amount: amount
     }
 
-    console.log("menu pushed into basket");
+    if(!this.dataStorage.has(foodtruckId)){
+      this.setOrder(new BasketOrder(foodtruckId, this.dataCtrl))
+      this.orderedFoodtruckIdList.push(foodtruckId)
+    }
+    this.getOrder(foodtruckId).orderedMenu.push(orderedMenu)
+  }
+
+
+  clear(){
+    this.orderedFoodtruckIdList = []
+    this.dataStorage = new DataStorage<BasketOrder>()
+  }
+
+  setOrder(order: BasketOrder){
+    this.dataStorage.setData(order);
+  }
+
+  getOrder(foodtruckId: number) : BasketOrder{
+    return this.dataStorage.getData(foodtruckId)
 
   }
 
-  get totalPrice(){
-    let price : number = 0;
 
-    for(let order of this.basket){
-      price += order.price;
+  get totalPrice() : number{
+    var price = 0;
+    for(let id of this.orderedFoodtruckIdList){
+      let foodtruck = this.getOrder(id);
+      for(let menu of foodtruck.orderedMenu){
+        price += menu.amount * (this.dataCtrl.findMenuById(id, menu.menuId).price + this.dataCtrl.findOptionById(id, menu.menuId, menu.optionId).extraPrice)
+      } 
     }
 
     return price;
   }
 
-  private classifyCheckedOrder() : [BasketOrder[], BasketOrder[]]{
-    let checkedOrder : BasketOrder[] = [];
-    let unCheckedOrder : BasketOrder[] = [];
+  // orderNo(foodtruckId:number):number{
+  //   let key=foodtruckId-1001;
+  //   let value=this.orderNumList[key];
+  //   value++;
+  //   if(value>100){
+  //     value=1;
+  //   }
+  //   this.orderNumList[key]=value;
+  //   return value;
+  // }
 
-    this.basket.forEach((val, index, arr)=>{
-      if(val.value){
-        let [remaining, extractOrder] = val.extractCheckedMenu();
-        if(remaining){
-          unCheckedOrder.push(val);
-        }
-        checkedOrder.push(extractOrder);
-      }
-      
-    });
 
-    this.toggle();
 
-    return [checkedOrder, unCheckedOrder];
-  }
+orderAllItem() : Promise<OrderData[]> {
+  let AllOrderList:BasketOrder[]=[]
 
-  private orderListChanged(){
-    this.basket.forEach((val, index, arr)=>{
-      val.checkEmpty();
-    })
-  }
-
-  private extractCheckedOrder() : BasketOrder[] {
-    let [checked, unChecked] = this.classifyCheckedOrder();
-    this.basket = unChecked;
-    this.orderListChanged();
-    this.value = true;
-    return checked;
-  }
-
-  orderCheckedItem() : Promise<OrderData[]> {
-    let checkedOrderList = this.extractCheckedOrder();
+    for(let id of this.orderedFoodtruckIdList){
+      AllOrderList.push(this.getOrder(id))
+    }
     
     return new Promise((resolve, reject) =>{
       
       
       let orderList : orderRequest[] = [];
-      let orderDataList: OrderData[] = [];
-      checkedOrderList.forEach((val, index, arr)=>{
-        let orderinfo : OrderData = val.extractData();
-        orderDataList.push(orderinfo);
+     // let orderDataList: BasketOrder[] = [];
+
+      AllOrderList.forEach((val, index, arr)=>{
+        let orderinfo=val.extractData()
+       // orderDataList.push(orderinfo);
 
         let order : orderRequest = {
-          foodtruckId: orderinfo.foodtruckinfo.id,
+          foodtruckId: orderinfo.foodtruckInfo.id,
           orderedMenu: [],
-          price: orderinfo.price
+          price: orderinfo.price,
+         // orderNo:this.orderNo(orderinfo.foodtruckInfo.id)
         };
         orderinfo.orderedMenu.forEach((val)=>{
           order.orderedMenu.push({
@@ -185,33 +111,19 @@ export class BasketDataCtrl extends CheckboxValue{
         orderList.push(order);
       });
 
-      // orderList.forEach((val, index) =>{
-      //   val.id = index;
-      // });
       
       let req : reqOrder = {
         orderList : orderList
       };
 
-      // let resExpect : resOrder = {
-      //   orderList : orderList
-      // };
-
-      // this.dataCtrl.testRequest<resOrder>(reqType, req, true, resExpect, 1500)
-      // .then(data =>{
-      //   resolve(data.orderList);
-      // }).catch(e =>{
-      //   reject(e);
-      // })
-
-      this.dataCtrl.request<resOrder>(reqUrl.order, req).then(data =>{
+      this.comm.request<resOrder>(reqUrl.order, req).then(data =>{
         console.log(data);
         let orderedList : OrderData[] = [];
         data.orderList.forEach((val, index) =>{
-          for(let i = index; i < orderDataList.length; i++){
-            if(orderDataList[i].foodtruckinfo.id == val.foodtruckId){
-              orderDataList[i].id = val.id;
-              orderedList.push(orderDataList[i]);
+          for(let i = index; i < AllOrderList.length; i++){
+            if(AllOrderList[i].foodtruckId == val.foodtruckId){
+              AllOrderList[i].orderId = val.id;
+              orderedList.push(AllOrderList[i].extractData());
               break;
             }
             else{
@@ -219,6 +131,8 @@ export class BasketDataCtrl extends CheckboxValue{
             }
           }
         })
+
+
         resolve(orderedList);
       });
     });

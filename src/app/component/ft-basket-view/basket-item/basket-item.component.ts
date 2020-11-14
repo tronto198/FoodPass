@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FoodtruckData } from 'src/app/data/foodtruck';
 import { MenuData } from 'src/app/data/menu';
 import { OptionData } from 'src/app/data/option';
+import { BasketDataCtrl } from 'src/app/services/data-ctrl/basket.data.ctrl';
+import { FoodtruckDataCtrl } from 'src/app/services/data-ctrl/foodtruck.data.ctrl';
 
 @Component({
   selector: 'basket-item',
@@ -8,37 +11,49 @@ import { OptionData } from 'src/app/data/option';
   styleUrls: ['./basket-item.component.scss'],
 })
 export class BasketItemComponent implements OnInit {
-  isChecked: boolean;
-  @Input() menuData : MenuData[];
-  @Input() optionData : OptionData[];
-  
-  count : number;
-  
-  constructor() { 
+  @Input() foodtruckId: number;
+  @Input() index: number;
+
+  constructor(
+    private dataCtrl: FoodtruckDataCtrl,
+    private basketCtrl: BasketDataCtrl,
+  ) { 
   }
 
   ngOnInit() {
-    this.count =1;
-    this.isChecked = false;
   }
 
-  get price():number{
-    return 0;
-    // return this.menuData.price + this.optionData[0].extraPrice;
+  get orderedMenuInfo(){
+    return this.basketCtrl.getOrder(this.foodtruckId).orderedMenu[this.index];
   }
 
-  get optionName():string{
-    return this.optionData[0].name;
+  get menuInfo(){
+    return this.dataCtrl.findMenuById(this.foodtruckId, this.orderedMenuInfo.menuId);
   }
 
+  get optionInfo() {
+    return this.dataCtrl.findOptionById(this.foodtruckId, this.orderedMenuInfo.menuId, this.orderedMenuInfo.optionId);
+  }
+
+  get amount() {
+    return this.orderedMenuInfo.amount;
+  }
+
+  set amount(val: number){
+    this.orderedMenuInfo.amount = val;
+  }
+
+  get price(){
+    return this.amount * (this.menuInfo.price + this.optionInfo.extraPrice)
+  }
   
 
   addCount(){
-    this.count++;
+    this.amount++;
   }
 
   subCount(){
-    if(this.count>1) this.count--;
+    if(this.amount>1) this.amount--;
   }
 
 }

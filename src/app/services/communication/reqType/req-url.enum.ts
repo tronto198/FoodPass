@@ -11,16 +11,20 @@ export enum reqUrl {
 
     foodtruckData = "/infoData/foodtruck",
     menuData = "/infoData/menu",
+    optionData = "/infoData/option",
 
-    order = "/order/request",
-    orderReceived = "/order/received",
-
+    order = "/order/create",
+    orderConfirm = "/order/confirm",
+    orderCall = "/order/ready",
+    orderReceived = "/order/finish",
+    orderWating="/order/waiting",
+   
     
     newFoodtruck = "/foodtruck/create",
     modifyFoodtruckInfo = "/foodtruck/modify",
     deleteFoodtruck = "/foodtruck/delete",
-    openFoodtruck = "/foodtruck/open",//
-    closeFoodtruck = "/foodtruck/close",//
+    openFoodtruck = "/foodtruck/open",
+    closeFoodtruck = "/foodtruck/close",
 
     newMenu = "/foodtruck/menu/create",
     modifyMenuInfo = "/foodtruck/menu/modify",
@@ -30,7 +34,6 @@ export enum reqUrl {
     modifyOptionInfo = "/foodtruck/option/modify",
     deleteOption = "/foodtruck/option/delete",
 
-    orderConfirm = "/foodtruck/order/confirm",//
-    orderCall = "/foodtruck/order/call",//
+   
 };
 

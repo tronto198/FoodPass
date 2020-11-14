@@ -1,11 +1,11 @@
-<div class="flex">
-  <ion-badge *ngIf="waitingPerson != 0" color="primary">
+<div class="flex" *ngIf="isValid">
+  <ion-badge color="primary">
     <ion-icon name="people"></ion-icon>
-    {{waitingPerson}}
+    {{waitingPerson}}명 대기
   </ion-badge>
-  <ion-badge *ngIf="waitingTime != 0" color="warning">
+  <ion-badge color="warning">
     <ion-icon name="time"></ion-icon>
-    {{waitingTime}}
+    {{waitingTime}}분 대기
   </ion-badge>
   <ng-content></ng-content>
 </div>

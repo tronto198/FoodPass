@@ -18,14 +18,14 @@ export class TabMypagePage implements OnInit {
   value = 'Techiediaries';
   
   myFoodtruck : FoodtruckData
-  qrData : string
-  owner : boolean
+  // qrData : string
 
 
   constructor(
     private config : SharedDataService,
     private push : NotificationService,
     private pageCtrl : PageControllerService,
+    private sharedData : SharedDataService,
     private modalCtrl : ModalController
   ) { }
 
@@ -36,16 +36,18 @@ export class TabMypagePage implements OnInit {
 
   ngOnInit() {
     // this.master();
-    this.owner = true;
     this.myFoodtruck = {
       id: 10011,
       name: "master",
       introduction: "운영자용 수정 푸드트럭",
       notice: "수정 공지"
     }
-    this.qrData = 'http://localhost:8100/foodtruck/0';
+    this.sharedData.foodtruckOwner = false;
   }
 
+  get isOpened() : boolean{
+    return this.sharedData.isFoodtruckOpen;
+  }
 
   get admin() : boolean{
     return this.config.foodtruckOwner;
@@ -76,6 +78,18 @@ export class TabMypagePage implements OnInit {
   master(){
     this.admin = true;
     this.pageCtrl.presentFoodtruck();
+  }
+
+  registerMyFoodtruck(){
+    this.isOwner = !this.isOwner;
+  }
+
+  set isOwner(b : boolean){
+    this.sharedData.foodtruckOwner = b;
+  }
+
+  get isOwner(){
+    return this.sharedData.foodtruckOwner;
   }
 
   // getImage(): void {

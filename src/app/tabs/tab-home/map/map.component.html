@@ -1,0 +1,8 @@
+  <!-- 맵 -->
+  <div class="fullscreen" id="map"></div>
+
+  <!-- 현재 위치 버튼 -->
+  <ion-button [ngClass]="{'watching':isWatching}" class="location mapButton"
+  (click)="watchPosition()">
+    <ion-icon slot="icon-only" name="locate-outline"></ion-icon>
+  </ion-button>
