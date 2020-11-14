@@ -1,4 +1,5 @@
 //order
+const { info } = require('console');
 const express = require('express')
 const app = express.Router();
 const path = require('path');
@@ -42,64 +43,85 @@ app.post('/create', (req, res) => {
 //손님 대기화면에 수령못한 주문목록 나타내기
 
 
-
 app.post('/waiting', (req, res) => {
   let data = req.body.data;
   let userId= data.userId;
   console.log('주문대기목록 order/wating userId:', userId)
-  const Sql = "select * from user_order_menu_tb where user_id=$1 and is_received=false;";
+  const SqlJoin = `select user_order_menu_tb.user_order_menu_id, user_order_menu_tb.foodtruck_id , order_number, user_order_menu_tb.price, user_id  , menu_tb.menu_id , option_tb.option_id  , count , other_request
+  from user_order_menu_tb 
+    inner join order_tb on user_order_menu_tb.user_order_menu_id =order_tb.user_order_menu_id
+    inner join menu_tb on order_tb.menu_id =menu_tb.menu_id 
+    left outer join option_tb on order_tb.option_id =option_tb.option_id
+  where user_order_menu_tb.user_id=$1 and is_received=false
+  order by order_date_time ;`;
+
   const values = [userId];
-  let idData={
-    userorderIdList:[]
-  }
  
-  db.query(Sql, values).then(res2 => {
+ 
+  db.query(SqlJoin, values).then(res2 => {
+    let index=0;
     let data={
-      orderWaitingList:[]
+      orderWaitingList:[]=[]
     };
-    res2.rows.forEach(element=>{
-      let info={
-        id:element.user_order_menu_id,
-        foodtruckId:element.foodtruck_id,
-        orderedMenu:[],
-        price:element.price,
-        orderNo:element.order_number,
-       
-      }
-      idData.userorderIdList.push(element.user_order_menu_id)
-    
+    res2.rows.forEach((element)=>{
+      console.log(`element: ${element.menu_id}`)
+      if(data.orderWaitingList.length==0){
+        data.orderWaitingList.push(
+          {id: element.user_order_menu_id,
+          foodtruckId:element.foodtruck_id,
+          orderedMenu:[],
+          price:element.price,
+          orderNo:element.order_number
 
-     // console.log(`info: `,info)
-      data.orderWaitingList.push(info);
-    })
-
-
-   
-    idData.userorderIdList.forEach((id, index)=>{
-      const sql3="select * from order_tb where user_order_menu_id=$1;"
-      const values3=[id]
-      //console.log('menu: ', values3)
-      db.query(sql3, values3).then(res3=>{
-        //console.log('db3: ', res3)
-        res3.rows.forEach(element3=>{
-          let orderedMenu={
-            menuId:element3.menu_id,
-            optionId:element3.option_id,
-            amount:element3.count
           }
-         
-          data.orderWaitingList[index].orderedMenu.push(orderedMenu)
-          console.log(`orderedMenu: `,data.orderWaitingList[index].orderedMenu)
-        })
-        //console.log(`data: `, data)
-        
-      }).catch(err3 => {
-        console.log(err3.stack)
-        sendError(err3, { description: '' })
-      })
+          )
+          //console.log(`data.orderWatingList: ${data.orderWaitingList}`)
+          data.orderWaitingList[index].orderedMenu.push(
+            {
+             menuId:element.menu_id,
+             optionId: element.option_id,
+             amount:element.count 
+            }
+          )
+          index++;
+      }else{
+        if(data.orderWaitingList[index-1].id!=element.user_order_menu_id){
+          data.orderWaitingList.push(
+            {id: element.user_order_menu_id,
+            foodtruckId:element.foodtruck_id,
+            orderedMenu:[],
+            price:element.price,
+            orderNo:element.order_number
+  
+            }
+            )
+            data.orderWaitingList[index].orderedMenu.push(
+              {
+               menuId:element.menu_id,
+               optionId: element.option_id,
+               amount:element.count 
+              }
+            )
+          
 
-      
+        }else{
+
+          data.orderWaitingList[index-1].orderedMenu.push(
+            {
+             menuId:element.menu_id,
+             optionId: element.option_id,
+             amount:element.count 
+            }
+          )
+
+        }
+
+        index++;
+      }
+  
     })
+      console.log(`please i'm waiting: ${data.orderWaitingList[0].orderedMenu[0].menuId}`)
+      console.log(`please i'm waiting: ${data.orderWaitingList[0].id}`)
       sendResult(res, data);
     
  
@@ -107,10 +129,74 @@ app.post('/waiting', (req, res) => {
 
 })
 
+
+// app.post('/waiting', (req, res) => {
+//   let data = req.body.data;
+//   let userId= data.userId;
+//   console.log('주문대기목록 order/wating userId:', userId)
+//   const Sql = "select * from user_order_menu_tb where user_id=$1 and is_received=false;";
+
+//   const values = [userId];
+//   let idData={
+//     userorderIdList:[]
+//   }
+ 
+//   db.query(Sql, values).then(res2 => {
+//     let data={
+//       orderWaitingList:[]
+//     };
+//     res2.rows.forEach(element=>{
+//       let info={
+//         id:element.user_order_menu_id,
+//         foodtruckId:element.foodtruck_id,
+//         orderedMenu:[],
+//         price:element.price,
+//         orderNo:element.order_number,
+       
+//       }
+//       idData.userorderIdList.push(element.user_order_menu_id)
+    
+
+//      // console.log(`info: `,info)
+//       data.orderWaitingList.push(info);
+//     })
+
+
+   
+//     idData.userorderIdList.forEach((id, index)=>{
+//       const sql3="select * from order_tb where user_order_menu_id=$1;"
+//       const values3=[id]
+//       //console.log('menu: ', values3)
+//       db.query(sql3, values3).then(res3=>{
+//         //console.log('db3: ', res3)
+//         res3.rows.forEach(element3=>{
+//           let orderedMenu={
+//             menuId:element3.menu_id,
+//             optionId:element3.option_id,
+//             amount:element3.count
+//           }
+         
+//           data.orderWaitingList[index].orderedMenu.push(orderedMenu)
+//           console.log(`orderedMenu: `,data.orderWaitingList[index].orderedMenu)
+//         })
+//         //console.log(`data: `, data)
+        
+//       }).catch(err3 => {
+//         console.log(err3.stack)
+//         sendError(err3, { description: '' })
+//       })
+
+      
+//     })
+//       sendResult(res, data);
+    
+ 
+//   })
+
+// })
+
+
 //푸드트럭 주문 준비 다 돼서 손님 호출
-
-
-
 
 
 app.post('/ready', (req, res) => {
@@ -124,19 +210,12 @@ app.post('/ready', (req, res) => {
   const sqlInit=`select user_id from user_order_menu_tb where user_order_menu_id=${user_order_menu_id};`;
   db.query(sqlInit).then(res1=>{
    userId=res1.rows[0].user_id;
-
-
-
-
   }).then(()=>{
     console.log(`order/ready`, foodtruckId, user_order_menu_id, foodtruckName, userId)
     const Sql = `update user_order_menu_tb set finished_time=current_timestamp where foodtruck_id=${foodtruckId} and user_order_menu_id=${user_order_menu_id}  Returning user_order_menu_id, user_id, foodtruck_id, finished_time;`;
     const sql2=`select push_token from user_tb where user_id=${userId};`
     //const values = [foodtruckId, user_order_menu_id, userId];
-  
-  
-   
-  
+
     db.query(Sql+sql2).then(res2 => {
      
      let token=res2[1].rows[0].push_token;
@@ -155,13 +234,13 @@ app.post('/ready', (req, res) => {
          // "to": `dbeVtbvoa0YbPMSMQ9fpeQ:APA91bEJlq5Wa7j-7IluO19ftUnoQjt1xjPX60cLr8FLn0kBJJI0TbUJlmtR_iVGFtgjGItSjDu3sM2nwzlPGmpx7qHoRla9R86iWVmIPnQpcJHvC9AqqPm9vyd_tI7CYrG0lGFK_N2t`,
           "priority": "high",
           "notification": {
-            "body": "조리가 완료됐습니다. 수령해주세요!",
+            "body": "조리가 완료됐습니다. 수령해주세요! (백그라운드)",
             "title": `${foodtruckName} 푸드트럭 주문번호: ${user_order_menu_id} 번 손님`,
             "images": ""
           },
           "data" : {
-            "message" : "foreground",
-            "title" : "token testtestgs"
+            "message" : "조리가 완료됐습니다. 수령해주세요! (포그라운드)",
+            "title" : `${foodtruckName} 푸드트럭 주문번호: ${user_order_menu_id} 번 손님`
           }
         },
         json: true
@@ -227,7 +306,7 @@ app.post('/confirm', (req, res) => {
       inner join order_tb on user_order_menu_tb.user_order_menu_id =order_tb.user_order_menu_id
       inner join menu_tb on order_tb.menu_id =menu_tb.menu_id 
       left outer join option_tb on order_tb.option_id =option_tb.option_id
-    where user_order_menu_tb.foodtruck_id=$1
+    where user_order_menu_tb.foodtruck_id=$1 and is_received=false
     order by user_order_menu_tb.order_number;`;
     //Returning user_order_menu_tb.foodtruck_id , user_order_menu_tb.order_number, user_order_menu_tb.user_id  , menu_tb.menu_id, option_tb.option_id, order_tb.count , user_order_menu_tb.other_request`;
   
@@ -266,7 +345,6 @@ app.post('/confirm', (req, res) => {
 
 
 
-
 async function order(req, res) {
 
   let orderList = req.body.data.orderList;
@@ -282,7 +360,7 @@ async function order(req, res) {
     let relation_valid_sql = `select foodtruck_id from relation_user_foodtruck_tb where (user_id=${req.body.userId} and foodtruck_id=${orderList[0].foodtruckId})`;
     let foodtruckIdList = []
     //let user_order_sql = "insert into user_order_menu_tb(user_order_menu_id, user_id, foodtruck_id, price) values"
-    let user_order_sql = "insert into user_order_menu_tb(user_id, foodtruck_id, price) values"
+    let user_order_sql = "insert into user_order_menu_tb(user_id, foodtruck_id, price, order_date_time) values"
 
     orderList.forEach((val, index) => {
       foodtruckIdList.push(val.foodtruckId);
@@ -291,7 +369,7 @@ async function order(req, res) {
       }
    // user_order_sql = user_order_sql.concat(` (default, ${req.body.userId}, ${val.foodtruckId}, ${val.price})`);
 
-    user_order_sql = user_order_sql.concat(` (${req.body.userId}, ${val.foodtruckId}, ${val.price})`);
+    user_order_sql = user_order_sql.concat(` (${req.body.userId}, ${val.foodtruckId}, ${val.price},current_timestamp )`);
       if (index > 0) {
         
         relation_valid_sql = relation_valid_sql.concat(` or (user_id=${req.body.userId} and foodtruck_id=${val.foodtruckId})`);
