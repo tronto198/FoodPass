@@ -125,6 +125,7 @@ export class FoodtruckDataCtrl {
         }
 
         let option = menu.getData(id)
+        console.log(`foodtruckId:${foodtruckId}, menuId:${menuId}, optionId: ${id}, is option null? ${option}`)
         return option ? option : this.optionAlternative(foodtruckId, menuId, id)
 
     }
@@ -136,8 +137,9 @@ export class FoodtruckDataCtrl {
         this.optionProvider.getItem(foodtruckId, menuId, id).then(r =>{
             mock.name = r.name
             mock.extraPrice = r.extraPrice
+            console.log(`result getItem: ${r.name}, ${r.extraPrice}`)
         })
-
+        console.log(`mock: ${mock.name}, ${mock.extraPrice}`)
         return mock
     }
 

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { ADataProvider } from './data.provider.abstract';
 import { reqOptionList, resOptionList } from '../communication/reqType/listData/optionList.req';
 import { reqUrl } from '../communication/reqType/req-url.enum';
+import { resolve } from 'url';
+import { resOptionData } from '../communication/reqType/infoData/optionData.req';
 
 @Injectable()
 export class OptionDataProvider extends ADataProvider{
@@ -13,8 +15,13 @@ export class OptionDataProvider extends ADataProvider{
             menuId: menuId,
             optionId: optionId
         }
-        return this.getDataWithPromise<OptionData>(() => {
-            return this.comm.request<OptionData>(reqUrl.optionData, req, true, "옵션 정보를 가져오는 중입니다...")
+        // return this.getDataWithPromise<OptionData>(() => {
+        //     return this.comm.request<OptionData>(reqUrl.optionData, req, true, "옵션 정보를 가져오는 중입니다...")
+        // })
+        return new Promise((resolve)=>{
+            this.comm.request<resOptionData>(reqUrl.optionData, req, true, "옵션 정보가져오는 중입니다...").then(r=>{
+                resolve(r.optionData)
+            })
         })
     }
 
